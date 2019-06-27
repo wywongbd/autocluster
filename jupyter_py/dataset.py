@@ -14,6 +14,7 @@ class Dataset(object):
         y_col - name of target variable column
         numerical_cols - list of column names of numerical features
         categorical_cols - list of column names of categorical features
+        ignore_cols - list of columns to be ignored
         train_size + val_size + test_size must be equal to 1
         classification - set to False if you are doing regression
         """
