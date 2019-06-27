@@ -77,10 +77,10 @@ class Dataset(object):
     @staticmethod
     def split_data(X, y, train_size, val_size, test_size):
         X_train, X_test, y_train, y_test = train_test_split(X, y, 
-                                                            test_size = val_size + test_size, 
+                                                            test_size = test_size, 
                                                             random_state=1)
         X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, 
-                                                          test_size = val_size, 
+                                                          test_size = val_size / (val_size + train_size), 
                                                           random_state=1)  
         return X_train, y_train, X_val, y_val, X_test, y_test
     
