@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 
 class Dataset(object):
     def __init__(self, path, y_col, train_size=0.5, val_size=0.25, test_size=0.25, 
-                 numeric_cols = [], categorical_cols = [], classification=True):
+                 numeric_cols=[], categorical_cols=[], ignore_cols=[], classification=True):
         """
         --------------------------------------------------------------
         Arguments:
@@ -15,9 +15,13 @@ class Dataset(object):
         numerical_cols - list of column names of numerical features
         categorical_cols - list of column names of categorical features
         train_size + val_size + test_size must be equal to 1
+        classification - set to False if you are doing regression
         """
         # read csv file as dataframe
         self.data_pd = pd.read_csv(path, sep= ',', header='infer')
+        
+        # ignore columns that are not relevant
+        self.data_pd = self.data_pd.drop(columns=ignore_cols)
         
         # split dataset into features and output
         self.X_pd, self.y_pd = Dataset.feature_target_split(self.data_pd, y_col)
@@ -41,6 +45,8 @@ class Dataset(object):
             self.y_pd[y_col] = self.y_pd[y_col].astype('category')
             self.categorical_mappings[y_col] = dict(enumerate(self.y_pd[y_col].cat.categories))
             self.y_pd = pd.DataFrame(self.y_pd[y_col].cat.codes)
+        else:
+            self.y_pd[y_col] = self.y_pd[y_col].astype(float)
         
         # convert dataframe to numpy matrix
         self.X, self.y = self.X_pd.to_numpy(), self.y_pd.to_numpy()
