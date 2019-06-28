@@ -41,7 +41,8 @@ class Dataset(object):
             
         if len(numeric_cols) > 0:
             self.X_pd[numeric_cols] = self.X_pd[numeric_cols].astype(float)
-            
+        
+        # cast target variable column to categorical if we are doing classification
         if classification:
             self.y_pd[y_col] = self.y_pd[y_col].astype('category')
             self.categorical_mappings[y_col] = dict(enumerate(self.y_pd[y_col].cat.categories))
