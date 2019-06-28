@@ -4,7 +4,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split 
 
 class Dataset(object):
-    def __init__(self, path, y_col, train_size=0.5, val_size=0.25, test_size=0.25, 
+    def __init__(self, path, y_col, header='infer', train_size=0.5, val_size=0.25, test_size=0.25, 
                  numeric_cols=[], categorical_cols=[], ignore_cols=[], classification=True):
         """
         --------------------------------------------------------------
@@ -19,7 +19,7 @@ class Dataset(object):
         classification - set to False if you are doing regression
         """
         # read csv file as dataframe
-        self.data_pd = pd.read_csv(path, sep= ',', header='infer')
+        self.data_pd = pd.read_csv(path, sep= ',', header=header)
         
         # ignore columns that are not relevant
         self.data_pd = self.data_pd.drop(columns=ignore_cols)
