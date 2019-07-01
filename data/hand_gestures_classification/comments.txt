@@ -1,0 +1,7 @@
+Each dataset line has 8 consecutive readings of all 8 sensors. so 64 columns of EMG data. The last column is a resulting gesture that was made while recording the data (classes 0-3) So each line has the following structure:
+
+[8sensors][8sensors][8sensors][8sensors][8sensors][8sensors][8sensors][8sensors][GESTURE_CLASS]
+
+Data was recorded at 200 Hz, which means that each line is 40ms of record time.
+
+A classifier given 64 numbers would predict a gesture class (0-3). Gesture classes were : rock - 0, scissors - 1, paper - 2, ok - 3.
