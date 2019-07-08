@@ -8,7 +8,7 @@ class AutoCluster(object):
         # create dataset object
         self._dataset = Dataset(X)
         pass
-    
+
     def plot_clusters(self):
         pass
     
