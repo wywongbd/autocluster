@@ -2,9 +2,12 @@ from dataset import Dataset
 
 class AutoCluster(object):
     def __init__(self):
-        self.algorithm = None
+        self._algorithm = None
+        self._dataset = None
     
-    def fit(self, X, standardize=True):
+    def fit(self, X):
+        # create dataset object
+        self._dataset = Dataset(X)
             
     
     def plot_clusters(self):
