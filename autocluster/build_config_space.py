@@ -4,16 +4,27 @@ from ConfigSpace.hyperparameters import CategoricalHyperparameter, \
 UniformFloatHyperparameter, UniformIntegerHyperparameter
 from ConfigSpace.conditions import InCondition
 
-def build_config_space(algorithms_ls=[algorithms.KMeans, algorithms.DBSCAN]):
+class Mapper(object):
+    d = {
+        "KMeans": algorithms.KMeans,
+        "DBSCAN": algorithms.DBSCAN
+    }
+    @staticmethod
+    def getClass(string):
+        return Mapper.d[string]
+
+
+def build_config_space(algorithms_ls=["KMeans", "DBSCAN"]):
     cs = ConfigurationSpace()
     algorithm_choice = CategoricalHyperparameter("algorithm_choice", 
-                                                 [alg for alg in algorithms_ls], 
+                                                 algorithms_ls, 
                                                  default_value=algorithms_ls[0])
     cs.add_hyperparameters([algorithm_choice])
     
-    for algorithm in algorithms_ls:
+    for string in algorithms_ls:
+        algorithm = Mapper.getClass(string) 
         cs.add_hyperparameters(algorithm.params)
         for param in algorithm.params:
-            cs.add_condition(InCondition(child=param, parent=algorithm_choice, values=[algorithm]))
+            cs.add_condition(InCondition(child=param, parent=algorithm_choice, values=[string]))
     
     return cs
