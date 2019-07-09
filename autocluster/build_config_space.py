@@ -9,7 +9,6 @@ class Mapper(object):
         "KMeans": algorithms.KMeans,
         "DBSCAN": algorithms.DBSCAN
     }
-    
     @staticmethod
     def getClass(string):
         return Mapper.d[string]
