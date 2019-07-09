@@ -7,12 +7,22 @@ from ConfigSpace.conditions import InCondition
 class Mapper(object):
     d = {
         "KMeans": algorithms.KMeans,
-        "DBSCAN": algorithms.DBSCAN
+        "DBSCAN": algorithms.DBSCAN,
+        "MiniBatchKMeans": algorithms.MiniBatchKMeans,
+        "AffinityPropagation": algorithms.AffinityPropagation,
+        "MeanShift": algorithms.MeanShift,
+        "SpectralClustering": algorithms.SpectralClustering,
+        "AgglomerativeClustering": algorithms.AgglomerativeClustering,
+        "OPTICS": algorithms.OPTICS,
+        "Birch": algorithms.Birch
     }
     @staticmethod
     def getClass(string):
         return Mapper.d[string]
-
+    
+    @staticmethod
+    def getAlgorithms():
+        return list(Mapper.d.keys())
 
 def build_config_space(algorithms_ls=["KMeans", "DBSCAN"]):
     cs = ConfigurationSpace()

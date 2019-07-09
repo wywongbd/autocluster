@@ -2,26 +2,24 @@ from dataset import Dataset
 from algorithms import algorithms
 from build_config_space import build_config_space, Mapper
 
-#libraries
 import numpy as np
-
-from sklearn import cluster, datasets, mixture, metrics
-from sklearn.neighbors import kneighbors_graph
-from sklearn.preprocessing import StandardScaler
+from sklearn import cluster
 
 # Import SMAC-utilities
 from smac.tae.execute_func import ExecuteTAFuncDict
 from smac.scenario.scenario import Scenario
 from smac.facade.smac_facade import SMAC
 
-np.random.seed(0)
-
 class AutoCluster(object):
     def __init__(self):
         self._dataset = None
         self._algorithm = None
 
-    def fit(self, X, algorithms_ls = ["KMeans", "DBSCAN"], n_evaluations=50, seed=30):
+    def fit(self, X, 
+            algorithms_ls=['KMeans','DBSCAN'], 
+            n_evaluations=50, 
+            seed=30):
+        
         # create dataset object
         self._dataset = Dataset(X)
         

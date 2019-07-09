@@ -77,8 +77,10 @@ class algorithms(object):
         _model = cluster.SpectralClustering
         _params = [
             UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=10),
-            CategoricalHyperparameter("eigen_solver", [None,'arpack','lobpcg',\
-                                                       'amg'], default_value=None),
+            
+            # None was removed from eigne_solver's list of possible values
+            CategoricalHyperparameter("eigen_solver", ['arpack','lobpcg',\
+                                                       'amg'], default_value='arpack'),
             CategoricalHyperparameter("affinity", ['nearest_neighbors', 'precomputed',\
                                                    'rbf'], default_value='rbf')
         ]
