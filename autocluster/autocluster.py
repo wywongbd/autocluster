@@ -4,7 +4,10 @@ from build_config_space import build_config_space, Mapper
 from utils.stringutils import StringUtils
 
 import numpy as np
+
+import matplotlib.pyplot as plt
 from sklearn import cluster, metrics
+from itertools import cycle, islice
 
 # Import SMAC-utilities
 from smac.tae.execute_func import ExecuteTAFuncDict
@@ -73,7 +76,7 @@ class AutoCluster(object):
                 y_pred = candidate_model.predict(scaled_data)
 
             if len(set(y_pred)) == 1:
-                return 0
+                return 1
             else:
                 return -1 * metrics.silhouette_score(scaled_data, y_pred, metric='euclidean')
         
@@ -90,8 +93,23 @@ class AutoCluster(object):
         # return a pair
         return smac_obj, optimal_config
 
-    def plot_clusters(self):
-        pass
-
     def predict(self, X):
-        return self._algorithm.predict(self._dataset.standard_scaler.transform(X)) if self._algorithm else None
+        if self._algorithm is None:
+            return None
+        
+        scaled_X = self._dataset.standard_scaler.transform(X)
+        y_pred = None
+        
+        try:
+            y_pred = self._algorithm.predict(scaled_X)
+        except:
+            y_pred = self._algorithm.fit_predict(scaled_X) 
+            
+        colors = np.array(list(islice(cycle(['#377eb8', '#ff7f00', '#4daf4a',
+                                             '#f781bf', '#a65628', '#984ea3',
+                                             '#999999', '#e41a1c', '#dede00']),
+                                              int(max(y_pred) + 1))))
+        plt.scatter(X[:, 0], X[:, 1], s=5, color=colors[y_pred])
+        plt.show()
+        return y_pred
+        
