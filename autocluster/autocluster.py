@@ -1,9 +1,10 @@
 from dataset import Dataset
 from algorithms import algorithms
 from build_config_space import build_config_space, Mapper
+from utils.stringutils import StringUtils
 
 import numpy as np
-from sklearn import cluster
+from sklearn import cluster, metrics
 
 # Import SMAC-utilities
 from smac.tae.execute_func import ExecuteTAFuncDict
@@ -28,6 +29,8 @@ class AutoCluster(object):
         
         #config space object
         cs = build_config_space(algorithms_ls)
+        
+        print(cs)
 
         #define scenario object to be passed into SMAC
         scenario = Scenario({
@@ -49,10 +52,13 @@ class AutoCluster(object):
             algorithm = Mapper.getClass(cfg_subset["algorithm_choice"])
             
             # pop "algorithm_choice" key from the dictionary
-            cfg.pop("algorithm_choice", None)
+            cfg_subset.pop("algorithm_choice", None)
             
+            # decode the encoded parameters
+            cfg_subset_decoded = {StringUtils.decode_parameter(k, algorithm.name): v for k, v in cfg_subset.items()}
+                        
             # build model
-            model = algorithm.model(**cfg)
+            model = algorithm.model(**cfg_subset_decoded)
             model.fit(scaled_data)
             
             return model
@@ -78,6 +84,8 @@ class AutoCluster(object):
         # refit to get optimal model
         optimal_model = fit_model(optimal_config)
         self._algorithm = optimal_model
+        
+        print("Optimization is complete, the optimal configuration is {}".format(optimal_config))
         
         # return a pair
         return smac_obj, optimal_config
