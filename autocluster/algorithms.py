@@ -29,8 +29,8 @@ class algorithms(object):
         _name = "DBSCAN"
         _model = cluster.DBSCAN
         _params = [
-            UniformFloatHyperparameter("eps", 0.01, 10, default_value=2.0),
-            UniformIntegerHyperparameter("min_samples", 5, 1000, default_value=100)
+            UniformFloatHyperparameter("eps", 0.01, 10, default_value=0.01),
+            UniformIntegerHyperparameter("min_samples", 5, 1000, default_value=5)
         ]
         _params_names = set([p.name for p in _params])
 
@@ -79,10 +79,14 @@ class algorithms(object):
             UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=10),
             
             # None was removed from eigne_solver's list of possible values
-            CategoricalHyperparameter("eigen_solver", ['arpack','lobpcg',\
-                                                       'amg'], default_value='arpack'),
+            CategoricalHyperparameter("eigen_solver", ['arpack','lobpcg'], default_value='arpack'),
             CategoricalHyperparameter("affinity", ['nearest_neighbors', 'precomputed',\
                                                    'rbf'], default_value='rbf')
+            # -----------------------------------------------------------------
+            # TODO:
+            # -----------------------------------------------------------------
+            # error was found when 'amg' was passed into 'eigen_solver'
+            # ValueError: The eigen_solver was set to 'amg', but pyamg is not available.
         ]
         _params_names = set([p.name for p in _params])
         
