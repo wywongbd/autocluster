@@ -22,7 +22,8 @@ class AutoCluster(object):
     def fit(self, X, 
             algorithms_ls=['KMeans','DBSCAN'], 
             n_evaluations=50, 
-            seed=30):
+            seed=30
+           ):
         
         # create dataset object
         self._dataset = Dataset(X)
