@@ -108,15 +108,25 @@ class algorithms(object):
         _params = [
             UniformIntegerHyperparameter("min_samples", 5, 1000, default_value=100),
             UniformFloatHyperparameter("max_eps", 0.01, 10, default_value=2.0),
-            CategoricalHyperparameter("metric", ['euclidean', 'l1', 'l2', 'manhattan',\
-                                                   'cosine', 'cityblock', 'braycurtis',\
-                                                 'canberra', 'chebyshev', 'correlation',\
-                                                 'dice', 'hamming', 'jaccard', 'kulsinski',\
-                                                 'mahalanobis', 'minkowski', 'rogerstanimoto',\
-                                                 'russellrao', 'seuclidean', 'sokalmichener', \
-                                                 'sokalsneath', 'sqeuclidean', 'yule'],\
-                                      default_value='minkowski'),
+            CategoricalHyperparameter("metric", ['minkowski', 'euclidean', 'manhattan', 'l1', 'l2', 'cosine'], default_value='minkowski'),
             CategoricalHyperparameter("cluster_method", ['xi', 'dbscan'], default_value='xi')
+            
+            # -----------------------------------------------------------------
+            # TODO:
+            # -----------------------------------------------------------------
+            # some metrics, like the following, are only for boolean arrays, and will lead to infinite recursion when passed in with non-boolean data
+            # 'russellrao', 'sokalmichener', 'dice', 'rogerstanimoto'
+            # due to this reason, the 'metric' 
+            # orginal entire list of metrics:
+            # ['euclidean', 'l1', 'l2', 'manhattan',\
+            #   'cosine', 'cityblock', 'braycurtis',\
+            #   'canberra', 'chebyshev', 'correlation',\
+            #   'hamming', 'jaccard', 'kulsinski',\
+            #   'mahalanobis', 'minkowski',\
+            #   'seuclidean', 'russellrao', 'sokalmichener', 'dice', 'rogerstanimoto', \
+            #   'sokalsneath', 'sqeuclidean', 'yule'],\
+            #
+            # perhaps 'metric' should be an input from user, we don't need to optimize it at all
         ]
         _params_names = set([p.name for p in _params])
         
@@ -125,6 +135,6 @@ class algorithms(object):
         _name = "Birch"
         _model = cluster.Birch
         _params = [
-            UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=10)
+            UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=5)
         ]
         _params_names = set([p.name for p in _params]) 
