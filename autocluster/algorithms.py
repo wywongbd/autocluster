@@ -74,7 +74,10 @@ class algorithms(object):
         _name = "AffinityPropagation"
         _model = cluster.AffinityPropagation
         _params = [
-            UniformFloatHyperparameter("damping", 0.5, 1, default_value=0.5)
+            UniformFloatHyperparameter("damping", 0.5, 1, default_value=0.5),
+            
+            # "affinity" was added
+            CategoricalHyperparameter("affinity", ['euclidean', 'precomputed'], default_value='euclidean')
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
@@ -86,6 +89,7 @@ class algorithms(object):
         _model = cluster.MeanShift
         _params = [
             CategoricalHyperparameter("bin_seeding", [True, False], default_value=False)
+            
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
@@ -100,8 +104,13 @@ class algorithms(object):
             
             # None was removed from eigne_solver's list of possible values
             CategoricalHyperparameter("eigen_solver", ['arpack','lobpcg'], default_value='arpack'),
-            CategoricalHyperparameter("affinity", ['nearest_neighbors', 'precomputed',\
-                                                   'rbf'], default_value='rbf')
+            
+            # Values 'poly', 'sigmoid', 'laplacian', 'chi2' were included
+            CategoricalHyperparameter("affinity", ['nearest_neighbors', 'precomputed', 'poly', 'sigmoid',\
+                                                   'laplacian', 'chi2', 'rbf'], default_value='rbf'),
+            
+            # "assign_labels" was added
+            CategoricalHyperparameter("assign_labels", ['kmeans','discretize'], default_value='kmeans')
             # -----------------------------------------------------------------
             # TODO:
             # -----------------------------------------------------------------
@@ -123,7 +132,7 @@ class algorithms(object):
                                       default_value='complete'),
             CategoricalHyperparameter("affinity", 
                                       ['euclidean', 'l1', 'l2', 'manhattan','cosine', 'precomputed', 'cityblock'],
-                                      default_value='euclidean'),
+                                      default_value='euclidean')
             #'ward' has been included now
         ]
         _params_names = set([p.name for p in _params]) 
@@ -139,7 +148,10 @@ class algorithms(object):
         _model = cluster.OPTICS
         _params = [
             UniformIntegerHyperparameter("min_samples", 5, 1000, default_value=100),
-            UniformFloatHyperparameter("max_eps", 0.01, 10, default_value=2.0),
+            
+            # "max_eps" may not be useful
+            #UniformFloatHyperparameter("max_eps", 0.01, 10, default_value=2.0),
+            
             CategoricalHyperparameter("metric", ['minkowski', 'euclidean', 'manhattan', 'l1', 'l2', 'cosine'], default_value='minkowski'),
             CategoricalHyperparameter("cluster_method", ['xi', 'dbscan'], default_value='xi')
             
@@ -169,7 +181,10 @@ class algorithms(object):
         _name = "Birch"
         _model = cluster.Birch
         _params = [
-            UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=5)
+            UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=5),
+            
+            # "branching_factor" was added
+            UniformIntegerHyperparameter("branching_factor", 10, 1000, default_value=50)
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
