@@ -88,7 +88,7 @@ class AutoCluster(object):
         # refit to get optimal model
         self._algorithm = fit_model(optimal_config)
         
-        print("Optimization is complete, the optimal configuration is {}".format(optimal_config))
+        print("Optimization is complete, the optimal configuration is \n{}".format(optimal_config))
         
         # return a pair
         return self._smac_obj, optimal_config
