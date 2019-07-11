@@ -16,7 +16,8 @@ class Mapper(object):
         "SpectralClustering": algorithms.SpectralClustering,
         "AgglomerativeClustering": algorithms.AgglomerativeClustering,
         "OPTICS": algorithms.OPTICS,
-        "Birch": algorithms.Birch
+        "Birch": algorithms.Birch,
+        "GaussianMixture": algorithms.GaussianMixture
     }
     @staticmethod
     def getClass(string):
