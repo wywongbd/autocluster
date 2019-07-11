@@ -39,8 +39,8 @@ class algorithms(object):
         _name = "DBSCAN"
         _model = cluster.DBSCAN
         _params = [
-            UniformFloatHyperparameter("eps", 0.01, 10, default_value=0.01),
-            UniformIntegerHyperparameter("min_samples", 5, 1000, default_value=5)
+            UniformFloatHyperparameter("eps", 0.01, 5, default_value=0.01),
+            UniformIntegerHyperparameter("min_samples", 5, 100, default_value=5)
         ]
         _params_names = set([p.name for p in _params])
         _conditions = []

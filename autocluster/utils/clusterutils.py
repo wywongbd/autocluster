@@ -35,5 +35,5 @@ class ClusterUtils(object):
         # visualize_sample_data(noisy_circles[0])
         # visualize_sample_data(noisy_moons[0])
         # visualize_sample_data(aniso[0])
-        plt.scatter(points[:, 0], points[:, 1])
+        plt.scatter(points[:, 0], points[:, 1], s=5)
         plt.show()
