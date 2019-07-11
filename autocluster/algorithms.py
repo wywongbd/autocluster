@@ -3,7 +3,7 @@ from smac.configspace import ConfigurationSpace
 from ConfigSpace.hyperparameters import CategoricalHyperparameter, \
 UniformFloatHyperparameter, UniformIntegerHyperparameter
 from ConfigSpace.conditions import InCondition
-from ConfigSpace import ForbiddenAndConjunction, ForbiddenEqualsClause
+from ConfigSpace import ForbiddenAndConjunction, ForbiddenEqualsClause, ForbiddenInClause
 
 class algorithms(object):
     # this class is just to create an extra layer of namespace
@@ -129,12 +129,8 @@ class algorithms(object):
         _params_names = set([p.name for p in _params]) 
         _conditions = []
         _forbidden_clauses = [
-            ForbiddenAndConjunction(ForbiddenEqualsClause(_params[1], "ward"), ForbiddenEqualsClause(_params[2], "l1")),
-            ForbiddenAndConjunction(ForbiddenEqualsClause(_params[1], "ward"), ForbiddenEqualsClause(_params[2], "l2")),
-            ForbiddenAndConjunction(ForbiddenEqualsClause(_params[1], "ward"), ForbiddenEqualsClause(_params[2], "manhattan")),
-            ForbiddenAndConjunction(ForbiddenEqualsClause(_params[1], "ward"), ForbiddenEqualsClause(_params[2], "cosine")),
-            ForbiddenAndConjunction(ForbiddenEqualsClause(_params[1], "ward"), ForbiddenEqualsClause(_params[2], "precomputed")),
-            ForbiddenAndConjunction(ForbiddenEqualsClause(_params[1], "ward"), ForbiddenEqualsClause(_params[2], "cityblock")),
+            ForbiddenAndConjunction(ForbiddenEqualsClause(_params[1], "ward"), ForbiddenInClause(_params[2], ['l2', 'l1', 'manhattan', 'cosine',\
+                                                                                                             'precomputed', 'cityblock']))
         ]
         
     class OPTICS(object, metaclass=Metaclass):
