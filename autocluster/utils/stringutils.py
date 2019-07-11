@@ -19,8 +19,9 @@ class StringUtils(object):
         assert(str_ls[-1] == algorithm_name)
         
         decoded = str_ls[0]
-        if decoded.find(StringUtils.parameter_conditions_separator) != -1:
-            decoded = decoded.split(StringUtils.parameter_conditions_separator)[0]
+        
+        # if decoded.find(StringUtils.parameter_conditions_separator) != -1:
+        #     decoded = decoded.split(StringUtils.parameter_conditions_separator)[0]
         
         return decoded
     
