@@ -2,6 +2,8 @@ from sklearn import cluster
 from smac.configspace import ConfigurationSpace
 from ConfigSpace.hyperparameters import CategoricalHyperparameter, \
 UniformFloatHyperparameter, UniformIntegerHyperparameter
+from ConfigSpace.conditions import InCondition
+from ConfigSpace import ForbiddenAndConjunction, ForbiddenEqualsClause
 
 class algorithms(object):
     # this class is just to create an extra layer of namespace
@@ -23,16 +25,26 @@ class algorithms(object):
         @property
         def params_names(cls):
             return cls._params_names
+        
+        @property
+        def conditions(cls):
+            return cls._conditions
+        
+        @property
+        def forbidden_clauses(cls):
+            return cls._forbidden_clauses
 
     class DBSCAN(object, metaclass=Metaclass):
         # static variables
         _name = "DBSCAN"
         _model = cluster.DBSCAN
         _params = [
-            UniformFloatHyperparameter("eps", 0.01, 10, default_value=0.01),
-            UniformIntegerHyperparameter("min_samples", 5, 1000, default_value=5)
+            UniformFloatHyperparameter("eps", 0.01, 5, default_value=0.01),
+            UniformIntegerHyperparameter("min_samples", 5, 100, default_value=5)
         ]
         _params_names = set([p.name for p in _params])
+        _conditions = []
+        _forbidden_clauses = []
 
     class KMeans(object, metaclass=Metaclass):
         # static variables
@@ -42,6 +54,8 @@ class algorithms(object):
             UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=10)
         ]
         _params_names = set([p.name for p in _params]) 
+        _conditions = []
+        _forbidden_clauses = []
         
     class MiniBatchKMeans(object, metaclass=Metaclass):
         # static variables
@@ -52,6 +66,8 @@ class algorithms(object):
             UniformIntegerHyperparameter("batch_size", 10, 1000, default_value=100)
         ]
         _params_names = set([p.name for p in _params]) 
+        _conditions = []
+        _forbidden_clauses = []
     
     class AffinityPropagation(object, metaclass=Metaclass):
         # static variables
@@ -61,6 +77,8 @@ class algorithms(object):
             UniformFloatHyperparameter("damping", 0.5, 1, default_value=0.5)
         ]
         _params_names = set([p.name for p in _params]) 
+        _conditions = []
+        _forbidden_clauses = []
         
     class MeanShift(object, metaclass=Metaclass):
         # static variables
@@ -70,6 +88,8 @@ class algorithms(object):
             CategoricalHyperparameter("bin_seeding", [True, False], default_value=False)
         ]
         _params_names = set([p.name for p in _params]) 
+        _conditions = []
+        _forbidden_clauses = []
         
     class SpectralClustering(object, metaclass=Metaclass):
         # static variables
@@ -89,6 +109,8 @@ class algorithms(object):
             # ValueError: The eigen_solver was set to 'amg', but pyamg is not available.
         ]
         _params_names = set([p.name for p in _params])
+        _conditions = []
+        _forbidden_clauses = []
         
     class AgglomerativeClustering(object, metaclass=Metaclass):
         # static variables
@@ -96,14 +118,24 @@ class algorithms(object):
         _model = cluster.AgglomerativeClustering
         _params = [
             UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=10),
-            CategoricalHyperparameter("affinity", ['euclidean', 'l1', 'l2', 'manhattan',\
-                                                   'cosine', 'precomputed', 'cityblock'],\
+            CategoricalHyperparameter("linkage", 
+                                      ['ward', 'complete', 'average', 'single'], 
+                                      default_value='complete'),
+            CategoricalHyperparameter("affinity", 
+                                      ['euclidean', 'l1', 'l2', 'manhattan','cosine', 'precomputed', 'cityblock'],
                                       default_value='euclidean'),
-            CategoricalHyperparameter("linkage", ['complete', 'average', 'single'],\
-                                      default_value='complete')
-            #'ward' is not added yet.
+            #'ward' has been included now
         ]
         _params_names = set([p.name for p in _params]) 
+        _conditions = []
+        _forbidden_clauses = [
+            ForbiddenAndConjunction(ForbiddenEqualsClause(_params[1], "ward"), ForbiddenEqualsClause(_params[2], "l1")),
+            ForbiddenAndConjunction(ForbiddenEqualsClause(_params[1], "ward"), ForbiddenEqualsClause(_params[2], "l2")),
+            ForbiddenAndConjunction(ForbiddenEqualsClause(_params[1], "ward"), ForbiddenEqualsClause(_params[2], "manhattan")),
+            ForbiddenAndConjunction(ForbiddenEqualsClause(_params[1], "ward"), ForbiddenEqualsClause(_params[2], "cosine")),
+            ForbiddenAndConjunction(ForbiddenEqualsClause(_params[1], "ward"), ForbiddenEqualsClause(_params[2], "precomputed")),
+            ForbiddenAndConjunction(ForbiddenEqualsClause(_params[1], "ward"), ForbiddenEqualsClause(_params[2], "cityblock")),
+        ]
         
     class OPTICS(object, metaclass=Metaclass):
         # static variables
@@ -133,6 +165,8 @@ class algorithms(object):
             # perhaps 'metric' should be an input from user, we don't need to optimize it at all
         ]
         _params_names = set([p.name for p in _params])
+        _conditions = []
+        _forbidden_clauses = []
         
     class Birch(object, metaclass=Metaclass):
         # static variables
@@ -142,3 +176,5 @@ class algorithms(object):
             UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=5)
         ]
         _params_names = set([p.name for p in _params]) 
+        _conditions = []
+        _forbidden_clauses = []

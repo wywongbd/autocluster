@@ -4,7 +4,6 @@ from build_config_space import build_config_space, Mapper
 from utils.stringutils import StringUtils
 
 import numpy as np
-
 import matplotlib.pyplot as plt
 from sklearn import cluster, metrics
 from itertools import cycle, islice
@@ -18,11 +17,13 @@ class AutoCluster(object):
     def __init__(self):
         self._dataset = None
         self._algorithm = None
+        self._smac_obj = None
 
     def fit(self, X, 
             algorithms_ls=['KMeans','DBSCAN'], 
             n_evaluations=50, 
-            seed=30):
+            seed=30
+           ):
         
         # create dataset object
         self._dataset = Dataset(X)
@@ -81,17 +82,16 @@ class AutoCluster(object):
                 return -1 * metrics.silhouette_score(scaled_data, y_pred, metric='euclidean')
         
         # run SMAC to optimize 
-        smac_obj = SMAC(scenario=scenario, rng=np.random.RandomState(seed), tae_runner=evaluate_model)
-        optimal_config = smac_obj.optimize()
+        self._smac_obj = SMAC(scenario=scenario, rng=np.random.RandomState(seed), tae_runner=evaluate_model)
+        optimal_config = self._smac_obj.optimize()
         
         # refit to get optimal model
-        optimal_model = fit_model(optimal_config)
-        self._algorithm = optimal_model
+        self._algorithm = fit_model(optimal_config)
         
-        print("Optimization is complete, the optimal configuration is {}".format(optimal_config))
+        print("Optimization is complete, the optimal configuration is \n{}".format(optimal_config))
         
         # return a pair
-        return smac_obj, optimal_config
+        return self._smac_obj, optimal_config
 
     def predict(self, X):
         if self._algorithm is None:
@@ -112,4 +112,19 @@ class AutoCluster(object):
         plt.scatter(X[:, 0], X[:, 1], s=5, color=colors[y_pred])
         plt.show()
         return y_pred
+    
+    def plot_convergence(self):
+        if self._smac_obj is None:
+            return
+        
+        history = self._smac_obj.runhistory.data
+        cost_ls = [v.cost for k, v in history.items()]
+        min_cost_ls = list(np.minimum.accumulate(cost_ls))
+        
+        # plotting
+        plt.figure(figsize=(10,10))
+        plt.plot(min_cost_ls, linestyle='-', marker='o', color='b')
+        plt.xlabel('n_evaluations', color='white', fontsize=15)
+        plt.ylabel('performance of best configuration', color='white', fontsize=15)
+        plt.show()
         
