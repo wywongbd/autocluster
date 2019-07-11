@@ -48,5 +48,9 @@ def build_config_space(algorithms_ls=["KMeans", "DBSCAN"]):
         # define dependency
         for param in algorithm.params:
             cs.add_condition(InCondition(child=param, parent=algorithm_choice, values=[string]))
+        
+        # add forbidden clauses
+        for condition in algorithm.forbidden_clauses:
+            cs.add_forbidden_clause(condition)
     
     return cs
