@@ -1,4 +1,4 @@
-from sklearn import cluster 
+from sklearn import cluster, mixture
 from smac.configspace import ConfigurationSpace
 from ConfigSpace.hyperparameters import CategoricalHyperparameter, \
 UniformFloatHyperparameter, UniformIntegerHyperparameter
@@ -185,6 +185,21 @@ class algorithms(object):
             
             # "branching_factor" was added
             UniformIntegerHyperparameter("branching_factor", 10, 1000, default_value=50)
+        ]
+        _params_names = set([p.name for p in _params]) 
+        _conditions = []
+        _forbidden_clauses = []
+        
+    # new algorithm
+    class GaussianMixture(object, metaclass=Metaclass):
+        # static variables
+        _name = "GaussianMixture"
+        _model = mixture.GaussianMixture
+        _params = [
+            UniformIntegerHyperparameter("n_components", 1, 20, default_value=5),
+            CategoricalHyperparameter("covariance_type", ['full', 'tied', 'diag', 'spherical'], default_value='full'),
+            CategoricalHyperparameter("init_params", ['kmeans', 'random'], default_value='kmeans'),
+            CategoricalHyperparameter("warm_start", [True, False], default_value=False)
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
