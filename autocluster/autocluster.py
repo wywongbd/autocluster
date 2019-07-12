@@ -23,8 +23,22 @@ class AutoCluster(object):
     def fit(self, X, 
             algorithms_ls=['KMeans','DBSCAN'], 
             n_evaluations=50, 
-            seed=30
+            seed=30,
+            run_obj='quality',
+            cutoff_time=60,
+            shared_model=True
            ):
+        """
+        --------------------------------
+        Arguments:
+        --------------------------------
+        X: numpy array 
+        algorithms_ls: list of clustering algorithms to explore
+        n_evaluations: max # of evaluations done during optimization, higher values yield better results 
+        run_obj: 'runtime' or 'quality', cutoff_time must be provided if 'runtime' chosen.
+        cutoff_time: Maximum runtime, after which the target algorithm is cancelled. Required if run_obj is 'runtime'.
+        
+        """
         
         # create dataset object
         self._dataset = Dataset(X)
@@ -39,11 +53,14 @@ class AutoCluster(object):
 
         #define scenario object to be passed into SMAC
         scenario = Scenario({
-            "run_obj": "quality",
+            "run_obj": run_obj,
             "runcount-limit": n_evaluations,
+            "cutoff_time": cutoff_time,
             "cs": cs,
             "deterministic": "true",
-            "input_psmac_dirs": LogUtils.create_new_directory('psmac')
+            "input_psmac_dirs": LogUtils.create_new_directory('psmac'),
+            "output_dir": LogUtils.create_new_directory('smac'),
+            "shared_model": shared_model
         })
         
         # helper function
@@ -91,8 +108,8 @@ class AutoCluster(object):
         self._algorithm = fit_model(optimal_config)
         
         print("Optimization is complete.")
-        print("Took {} ms, the optimal configuration is \n{}".format(self._smac_obj.stats.ta_time_used, 
-                                                                      optimal_config))
+        print("Took {} seconds, the optimal configuration is \n{}".format(self._smac_obj.stats.ta_time_used, 
+                                                                          optimal_config))
         
         # return a pair
         return self._smac_obj, optimal_config
