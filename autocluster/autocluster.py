@@ -2,6 +2,7 @@ from dataset import Dataset
 from algorithms import algorithms
 from build_config_space import build_config_space, Mapper
 from utils.stringutils import StringUtils
+from utils.logutils import LogUtils
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -41,7 +42,8 @@ class AutoCluster(object):
             "run_obj": "quality",
             "runcount-limit": n_evaluations,
             "cs": cs,
-            "deterministic": "true"
+            "deterministic": "true",
+            "input_psmac_dirs": LogUtils.create_new_directory('psmac')
         })
         
         # helper function
@@ -88,7 +90,9 @@ class AutoCluster(object):
         # refit to get optimal model
         self._algorithm = fit_model(optimal_config)
         
-        print("Optimization is complete, the optimal configuration is \n{}".format(optimal_config))
+        print("Optimization is complete.")
+        print("Took {} ms, the optimal configuration is \n{}".format(self._smac_obj.stats.ta_time_used, 
+                                                                      optimal_config))
         
         # return a pair
         return self._smac_obj, optimal_config
