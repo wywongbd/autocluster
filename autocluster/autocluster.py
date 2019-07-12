@@ -26,7 +26,9 @@ class AutoCluster(object):
             seed=30,
             run_obj='quality',
             cutoff_time=60,
-            shared_model=True
+            shared_model=True, 
+            evaluator=lambda X, y_pred: float('inf') if len(set(y_pred)) == 1 \
+                        else -1 * metrics.silhouette_score(X, y_pred, metric='euclidean')  
            ):
         """
         --------------------------------
@@ -95,10 +97,7 @@ class AutoCluster(object):
             else:
                 y_pred = candidate_model.predict(scaled_data)
 
-            if len(set(y_pred)) == 1:
-                return 1
-            else:
-                return -1 * metrics.silhouette_score(scaled_data, y_pred, metric='euclidean')
+            return evaluator(X=scaled_data, y_pred=y_pred)
         
         # run SMAC to optimize 
         self._smac_obj = SMAC(scenario=scenario, rng=np.random.RandomState(seed), tae_runner=evaluate_model)
