@@ -27,8 +27,8 @@ class AutoCluster(object):
             run_obj='quality',
             cutoff_time=60,
             shared_model=True, 
-            evaluator=lambda X, y_pred: float('inf') if len(set(y_pred)) == 1 \
-                        else -1 * metrics.silhouette_score(X, y_pred, metric='euclidean')  
+            evaluator=(lambda X, y_pred: float('inf') if len(set(y_pred)) == 1 \
+                       else -1 * metrics.silhouette_score(X, y_pred, metric='euclidean'))  
            ):
         """
         --------------------------------
@@ -39,7 +39,8 @@ class AutoCluster(object):
         n_evaluations: max # of evaluations done during optimization, higher values yield better results 
         run_obj: 'runtime' or 'quality', cutoff_time must be provided if 'runtime' chosen.
         cutoff_time: Maximum runtime, after which the target algorithm is cancelled. Required if run_obj is 'runtime'.
-        
+        shared_model: whether or not to use parallel SMAC 
+        evaluator: a function for evaluating clustering result, must have the arguments X and y_pred
         """
         
         # create dataset object
