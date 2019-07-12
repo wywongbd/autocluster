@@ -138,8 +138,9 @@ class algorithms(object):
         _params_names = set([p.name for p in _params]) 
         _conditions = []
         _forbidden_clauses = [
-            ForbiddenAndConjunction(ForbiddenEqualsClause(_params[1], "ward"), ForbiddenInClause(_params[2], ['l2', 'l1', 'manhattan', 'cosine',\
-                                                                                                             'precomputed', 'cityblock']))
+            ForbiddenAndConjunction(ForbiddenEqualsClause(_params[1], "ward"), 
+                                    ForbiddenInClause(_params[2], ['l2', 'l1', 'manhattan', 
+                                                                   'cosine','precomputed', 'cityblock']))
         ]
         
     class OPTICS(object, metaclass=Metaclass):
