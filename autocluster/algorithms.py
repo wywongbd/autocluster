@@ -1,4 +1,4 @@
-from sklearn import cluster, mixture
+from sklearn import cluster, mixture, manifold
 from smac.configspace import ConfigurationSpace
 from ConfigSpace.hyperparameters import CategoricalHyperparameter, \
 UniformFloatHyperparameter, UniformIntegerHyperparameter
@@ -191,7 +191,6 @@ class algorithms(object):
         _conditions = []
         _forbidden_clauses = []
         
-    # new algorithm
     class GaussianMixture(object, metaclass=Metaclass):
         # static variables
         _name = "GaussianMixture"
@@ -205,3 +204,17 @@ class algorithms(object):
         _params_names = set([p.name for p in _params]) 
         _conditions = []
         _forbidden_clauses = []
+        
+    class TSNE(object, metaclass=Metaclass):
+        # static variables
+        _name = "TSNE"
+        _model = manifold.TSNE
+        _params = [
+            UniformIntegerHyperparameter("n_components", 2, 4, default_value=2),
+            UniformFloatHyperparameter("perplexity", 5, 50, default_value=30)
+        ]
+        _params_names = set([p.name for p in _params]) 
+        _conditions = []
+        _forbidden_clauses = []
+        
+    
