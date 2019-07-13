@@ -117,8 +117,7 @@ class AutoCluster(object):
                 y_pred = candidate_model.labels_.astype(np.int)
             else:
                 y_pred = candidate_model.predict(compressed_data)
-            
-            print("Evaluating configuration ... ")
+    
             return evaluator(X=compressed_data, y_pred=y_pred)
         
         # run SMAC to optimize 
@@ -129,8 +128,8 @@ class AutoCluster(object):
         self._clustering_model, self._dim_reduction_model, _ = fit_model(optimal_config)
         
         print("Optimization is complete.")
-        print("Took {} time, the optimal configuration is \n{}".format(self._smac_obj.stats.ta_time_used, 
-                                                                          optimal_config))
+        print("Took {} seconds.".format(round(self._smac_obj.stats.get_used_wallclock_time(), 2)))
+        print("The optimal configuration is \n{}".format(optimal_config))
         
         # return a pair
         return self._smac_obj, optimal_config
