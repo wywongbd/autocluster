@@ -6,7 +6,7 @@ from utils.logutils import LogUtils
 
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn import cluster, metrics
+from sklearn import cluster, metrics, manifold
 from itertools import cycle, islice
 
 # Import SMAC-utilities
@@ -17,11 +17,13 @@ from smac.facade.smac_facade import SMAC
 class AutoCluster(object):
     def __init__(self):
         self._dataset = None
-        self._algorithm = None
+        self._clustering_model = None
+        self._dim_reduction_model = None
         self._smac_obj = None
 
     def fit(self, X, 
-            algorithms_ls=['KMeans','DBSCAN'], 
+            cluster_alg_ls=['KMeans','DBSCAN'],
+            dim_reduction_alg_ls=['TSNE'],
             n_evaluations=50, 
             seed=30,
             run_obj='quality',
@@ -35,7 +37,8 @@ class AutoCluster(object):
         Arguments:
         --------------------------------
         X: numpy array 
-        algorithms_ls: list of clustering algorithms to explore
+        cluster_alg_ls: list of clustering algorithms to explore
+        dim_reduction_alg_ls: list of dimension algorithms to explore
         n_evaluations: max # of evaluations done during optimization, higher values yield better results 
         run_obj: 'runtime' or 'quality', cutoff_time must be provided if 'runtime' chosen.
         cutoff_time: Maximum runtime, after which the target algorithm is cancelled. Required if run_obj is 'runtime'.
@@ -50,7 +53,7 @@ class AutoCluster(object):
         scaled_data = self._dataset.standard_scaler.transform(X)
         
         #config space object
-        cs = build_config_space(algorithms_ls)
+        cs = build_config_space(cluster_alg_ls, dim_reduction_alg_ls)
         
         print(cs)
 
@@ -68,48 +71,60 @@ class AutoCluster(object):
         
         # helper function
         def fit_model(cfg):
+            compressed_data = scaled_data
+            
             # convert cfg into a dictionary
             cfg = {k : cfg[k] for k in cfg if cfg[k]}
             
             # remove keys with value == None
-            cfg_subset = {k: v for k, v in cfg.items() if v is not None}
+            cfg = {k: v for k, v in cfg.items() if v is not None}
+            
+            print("Fitting configuration: {}".format(cfg))
             
             # get the dimension reduction method chosen
-            # TODO: perform dimension reduction on data
-            dim_reduction = Mapper.getClass(cfg_subset.get("dim_reduction_choice", None))
+            dim_reduction_alg = Mapper.getClass(cfg.get("dim_reduction_choice", None))
+            dim_reduction_model = None
+            
+            # fit dimension reduction model
+            if dim_reduction_alg:
+                cfg_dim_reduction = {StringUtils.decode_parameter(k, dim_reduction_alg.name): v
+                                     for k, v in cfg.items() if StringUtils.decode_parameter(k, dim_reduction_alg.name) is not None}
+                
+                # compress the data using chosen configurations
+                dim_reduction_model = dim_reduction_alg.model(**cfg_dim_reduction)
+                compressed_data = dim_reduction_model.fit_transform(scaled_data)
             
             # get the model chosen
-            algorithm = Mapper.getClass(cfg_subset["clustering_choice"])
-            
-            # pop "algorithm_choice" key from the dictionary
-            cfg_subset.pop("clustering_choice", None)
-            
+            clustering_alg = Mapper.getClass(cfg["clustering_choice"])
+               
             # decode the encoded parameters
-            cfg_subset_decoded = {StringUtils.decode_parameter(k, algorithm.name): v for k, v in cfg_subset.items()}
+            cfg_clustering = {StringUtils.decode_parameter(k, clustering_alg.name): v 
+                              for k, v in cfg.items() if StringUtils.decode_parameter(k, clustering_alg.name) is not None}
                         
             # build model
-            model = algorithm.model(**cfg_subset_decoded)
-            model.fit(scaled_data)
+            clustering_model = clustering_alg.model(**cfg_clustering)
+            clustering_model.fit(compressed_data)
             
-            return model
+            return clustering_model, dim_reduction_model, compressed_data
         
         # this is the blackbox function to be optimized
         def evaluate_model(cfg):
-            candidate_model = fit_model(cfg)
+            candidate_model, _, compressed_data = fit_model(cfg)
 
             if hasattr(candidate_model, 'labels_'):
                 y_pred = candidate_model.labels_.astype(np.int)
             else:
-                y_pred = candidate_model.predict(scaled_data)
-
-            return evaluator(X=scaled_data, y_pred=y_pred)
+                y_pred = candidate_model.predict(compressed_data)
+            
+            print("Evaluating configuration ... ")
+            return evaluator(X=compressed_data, y_pred=y_pred)
         
         # run SMAC to optimize 
         self._smac_obj = SMAC(scenario=scenario, rng=np.random.RandomState(seed), tae_runner=evaluate_model)
         optimal_config = self._smac_obj.optimize()
         
         # refit to get optimal model
-        self._algorithm = fit_model(optimal_config)
+        self._clustering_model, self._dim_reduction_model, _ = fit_model(optimal_config)
         
         print("Optimization is complete.")
         print("Took {} seconds, the optimal configuration is \n{}".format(self._smac_obj.stats.ta_time_used, 
@@ -119,24 +134,28 @@ class AutoCluster(object):
         return self._smac_obj, optimal_config
 
     def predict(self, X , plot=True):
-        if self._algorithm is None:
+        if self._clustering_model is None:
             return None
         
         scaled_X = self._dataset.standard_scaler.transform(X)
+        compressed_X = self._dim_reduction_model.fit_transform(scaled_X) if self._dim_reduction_model else scaled_X
         y_pred = None
         
         try:
-            y_pred = self._algorithm.predict(scaled_X)
+            y_pred = self._clustering_model.predict(compressed_X)
         except:
-            y_pred = self._algorithm.fit_predict(scaled_X) 
+            y_pred = self._clustering_model.fit_predict(compressed_X) 
         
         if plot:
             colors = np.array(list(islice(cycle(['#377eb8', '#ff7f00', '#4daf4a',
                                                  '#f781bf', '#a65628', '#984ea3',
                                                  '#999999', '#e41a1c', '#dede00']),
                                                   int(max(y_pred) + 1))))
-            plt.scatter(X[:, 0], X[:, 1], s=5, color=colors[y_pred])
+            # check if dimension reduction is needed
+            scaled_X = manifold.TSNE(n_components=2).fit_transform(scaled_X) if scaled_X.shape[1] > 2 else scaled_X
+            plt.scatter(scaled_X[:, 0], scaled_X[:, 1], s=5, color=colors[y_pred])
             plt.show()
+            
         return y_pred
     
     def plot_convergence(self):

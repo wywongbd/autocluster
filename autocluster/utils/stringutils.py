@@ -15,15 +15,8 @@ class StringUtils(object):
     def decode_parameter(encoded_parameter, algorithm_name):
         str_ls = encoded_parameter.split(StringUtils.parameter_algorithm_separator)
         
-        # basic check to make sure everything is working as expected
-        assert(str_ls[-1] == algorithm_name)
-        
-        decoded = str_ls[0]
-        
-        # if decoded.find(StringUtils.parameter_conditions_separator) != -1:
-        #     decoded = decoded.split(StringUtils.parameter_conditions_separator)[0]
-        
-        return decoded
+        # return None if algorithm_name does not match encoding
+        return str_ls[0] if algorithm_name == str_ls[-1] else None
     
     @staticmethod
     def parameter_is_encoded(parameter_string):
