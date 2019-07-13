@@ -218,7 +218,7 @@ class algorithms(object):
         _model = manifold.TSNE
         _params = [
             UniformIntegerHyperparameter("n_components", 2, 3, default_value=2),
-            UniformFloatHyperparameter("perplexity", 5, 50, default_value=30)
+            # UniformFloatHyperparameter("perplexity", 5, 50, default_value=30)
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
