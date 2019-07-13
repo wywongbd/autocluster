@@ -51,7 +51,7 @@ class algorithms(object):
         _name = "KMeans"
         _model = cluster.KMeans
         _params = [
-            UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=10)
+            UniformIntegerHyperparameter("n_clusters", 1, 15, default_value=5)
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
@@ -62,7 +62,7 @@ class algorithms(object):
         _name = "MiniBatchKMeans"
         _model = cluster.MiniBatchKMeans
         _params = [
-            UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=10),
+            UniformIntegerHyperparameter("n_clusters", 1, 15, default_value=10),
             UniformIntegerHyperparameter("batch_size", 10, 1000, default_value=100)
         ]
         _params_names = set([p.name for p in _params]) 
@@ -77,7 +77,9 @@ class algorithms(object):
             UniformFloatHyperparameter("damping", 0.5, 1, default_value=0.5),
             
             # "affinity" was added
-            CategoricalHyperparameter("affinity", ['euclidean', 'precomputed'], default_value='euclidean')
+            CategoricalHyperparameter("affinity", ['euclidean'], default_value='euclidean')
+            
+            # 'precomputed' is excluded from "affinity"s possible values
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
@@ -89,7 +91,6 @@ class algorithms(object):
         _model = cluster.MeanShift
         _params = [
             CategoricalHyperparameter("bin_seeding", [True, False], default_value=False)
-            
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
@@ -102,12 +103,14 @@ class algorithms(object):
         _params = [
             UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=10),
             
-            # None was removed from eigne_solver's list of possible values
-            CategoricalHyperparameter("eigen_solver", ['arpack','lobpcg'], default_value='arpack'),
+            # None and 'lobpcg' were excluded from eigne_solver's list of possible values
+            CategoricalHyperparameter("eigen_solver", ['arpack'], default_value='arpack'),
             
-            # Values 'poly', 'sigmoid', 'laplacian', 'chi2' were included
-            CategoricalHyperparameter("affinity", ['nearest_neighbors', 'precomputed', 'poly', 'sigmoid',\
-                                                   'laplacian', 'chi2', 'rbf'], default_value='rbf'),
+            # Values 'poly', 'sigmoid', 'laplacian', 'chi2' were included,
+            # 'precomputed' is excluded because it requires distance matrix input
+            # 'chi2' is excluded due to "ValueError: X contains negative values.""
+            CategoricalHyperparameter("affinity", ['nearest_neighbors', 'poly', 'sigmoid',\
+                                                   'laplacian', 'rbf'], default_value='rbf'),
             
             # "assign_labels" was added
             CategoricalHyperparameter("assign_labels", ['kmeans','discretize'], default_value='kmeans')
@@ -131,16 +134,19 @@ class algorithms(object):
                                       ['ward', 'complete', 'average', 'single'], 
                                       default_value='complete'),
             CategoricalHyperparameter("affinity", 
-                                      ['euclidean', 'l1', 'l2', 'manhattan','cosine', 'precomputed', 'cityblock'],
+                                      ['euclidean', 'cityblock', 
+                                       'l2', 'l1', 'manhattan', 'cosine'],
                                       default_value='euclidean')
             #'ward' has been included now
+            # 'precomputed' has been excluded from "affinity" s possible values because it requires 
+            # a precomputed distance matrix as input from user
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
         _forbidden_clauses = [
             ForbiddenAndConjunction(ForbiddenEqualsClause(_params[1], "ward"), 
-                                    ForbiddenInClause(_params[2], ['l2', 'l1', 'manhattan', 
-                                                                   'cosine','precomputed', 'cityblock']))
+                                    ForbiddenInClause(_params[2], ['cosine', 'cityblock', 
+                                                                   'l2', 'l1', 'manhattan']))
         ]
         
     class OPTICS(object, metaclass=Metaclass):
@@ -153,7 +159,8 @@ class algorithms(object):
             # "max_eps" may not be useful
             #UniformFloatHyperparameter("max_eps", 0.01, 10, default_value=2.0),
             
-            CategoricalHyperparameter("metric", ['minkowski', 'euclidean', 'manhattan', 'l1', 'l2', 'cosine'], default_value='minkowski'),
+            CategoricalHyperparameter("metric", ['minkowski', 'euclidean', 
+                                                 'manhattan', 'l1', 'l2', 'cosine'], default_value='minkowski'),
             CategoricalHyperparameter("cluster_method", ['xi', 'dbscan'], default_value='xi')
             
             # -----------------------------------------------------------------

@@ -74,11 +74,15 @@ class AutoCluster(object):
             # remove keys with value == None
             cfg_subset = {k: v for k, v in cfg.items() if v is not None}
             
+            # get the dimension reduction method chosen
+            # TODO: perform dimension reduction on data
+            dim_reduction = Mapper.getClass(cfg_subset.get("dim_reduction_choice", None))
+            
             # get the model chosen
-            algorithm = Mapper.getClass(cfg_subset["algorithm_choice"])
+            algorithm = Mapper.getClass(cfg_subset["clustering_choice"])
             
             # pop "algorithm_choice" key from the dictionary
-            cfg_subset.pop("algorithm_choice", None)
+            cfg_subset.pop("clustering_choice", None)
             
             # decode the encoded parameters
             cfg_subset_decoded = {StringUtils.decode_parameter(k, algorithm.name): v for k, v in cfg_subset.items()}
@@ -114,7 +118,7 @@ class AutoCluster(object):
         # return a pair
         return self._smac_obj, optimal_config
 
-    def predict(self, X):
+    def predict(self, X , plot=True):
         if self._algorithm is None:
             return None
         
@@ -125,13 +129,14 @@ class AutoCluster(object):
             y_pred = self._algorithm.predict(scaled_X)
         except:
             y_pred = self._algorithm.fit_predict(scaled_X) 
-            
-        colors = np.array(list(islice(cycle(['#377eb8', '#ff7f00', '#4daf4a',
-                                             '#f781bf', '#a65628', '#984ea3',
-                                             '#999999', '#e41a1c', '#dede00']),
-                                              int(max(y_pred) + 1))))
-        plt.scatter(X[:, 0], X[:, 1], s=5, color=colors[y_pred])
-        plt.show()
+        
+        if plot:
+            colors = np.array(list(islice(cycle(['#377eb8', '#ff7f00', '#4daf4a',
+                                                 '#f781bf', '#a65628', '#984ea3',
+                                                 '#999999', '#e41a1c', '#dede00']),
+                                                  int(max(y_pred) + 1))))
+            plt.scatter(X[:, 0], X[:, 1], s=5, color=colors[y_pred])
+            plt.show()
         return y_pred
     
     def plot_convergence(self):
@@ -147,5 +152,7 @@ class AutoCluster(object):
         plt.plot(min_cost_ls, linestyle='-', marker='o', color='b')
         plt.xlabel('n_evaluations', color='white', fontsize=15)
         plt.ylabel('performance of best configuration', color='white', fontsize=15)
+        plt.tick_params(axis='x', colors='white')
+        plt.tick_params(axis='y', colors='white')
         plt.show()
         
