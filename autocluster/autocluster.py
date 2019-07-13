@@ -23,12 +23,13 @@ class AutoCluster(object):
 
     def fit(self, X, 
             cluster_alg_ls=['KMeans','DBSCAN'],
-            dim_reduction_alg_ls=['TSNE'],
+            dim_reduction_alg_ls=[],
             n_evaluations=50, 
             seed=30,
             run_obj='quality',
             cutoff_time=60,
-            shared_model=True, 
+            shared_model=True,
+            n_parallel_runs=3,
             evaluator=(lambda X, y_pred: float('inf') if len(set(y_pred)) == 1 \
                        else -1 * metrics.silhouette_score(X, y_pred, metric='euclidean'))  
            ):
@@ -64,7 +65,8 @@ class AutoCluster(object):
             "cutoff_time": cutoff_time,
             "cs": cs,
             "deterministic": "true",
-            "input_psmac_dirs": LogUtils.create_new_directory('psmac'),
+            "input_psmac_dirs": [LogUtils.create_new_directory('psmac') for i in range(n_parallel_runs)] 
+                                if shared_model else None,
             "output_dir": LogUtils.create_new_directory('smac'),
             "shared_model": shared_model
         })
@@ -127,7 +129,7 @@ class AutoCluster(object):
         self._clustering_model, self._dim_reduction_model, _ = fit_model(optimal_config)
         
         print("Optimization is complete.")
-        print("Took {} seconds, the optimal configuration is \n{}".format(self._smac_obj.stats.ta_time_used, 
+        print("Took {} time, the optimal configuration is \n{}".format(self._smac_obj.stats.ta_time_used, 
                                                                           optimal_config))
         
         # return a pair
