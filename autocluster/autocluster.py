@@ -145,7 +145,7 @@ class AutoCluster(object):
             try:
                 compressed_X = self._dim_reduction_model.transform(scaled_X)
             except:
-                compressed_X = self._dim_reduction_mode.fit_transform(scaled_X)
+                compressed_X = self._dim_reduction_model.fit_transform(scaled_X)
         else:
             compressed_X = scaled_X
         
