@@ -1,7 +1,7 @@
-from sklearn import cluster, mixture, manifold
+from sklearn import cluster, mixture, manifold, decomposition
 from smac.configspace import ConfigurationSpace
 from ConfigSpace.hyperparameters import CategoricalHyperparameter, \
-UniformFloatHyperparameter, UniformIntegerHyperparameter
+UniformFloatHyperparameter, UniformIntegerHyperparameter, OrdinalHyperparameter
 from ConfigSpace.conditions import InCondition
 from ConfigSpace import ForbiddenAndConjunction, ForbiddenEqualsClause, ForbiddenInClause
 
@@ -90,7 +90,8 @@ class algorithms(object):
         _name = "MeanShift"
         _model = cluster.MeanShift
         _params = [
-            CategoricalHyperparameter("bin_seeding", [True, False], default_value=False)
+            CategoricalHyperparameter("bin_seeding", [True, False], default_value=False),
+            UniformFloatHyperparameter("bandwidth", 0.1, 50)
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
@@ -211,17 +212,30 @@ class algorithms(object):
         _params_names = set([p.name for p in _params]) 
         _conditions = []
         _forbidden_clauses = []
-        
+    
+	# TSNE does not work yet, still debugging, do not use
     class TSNE(object, metaclass=Metaclass):
         # static variables
         _name = "TSNE"
         _model = manifold.TSNE
         _params = [
-            UniformIntegerHyperparameter("n_components", 2, 3, default_value=2),
-            # UniformFloatHyperparameter("perplexity", 5, 50, default_value=30)
+            OrdinalHyperparameter("n_components", sequence=list(range(2, 4)), default_value=2),
+            UniformFloatHyperparameter("perplexity", 5, 50, default_value=30)
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
         _forbidden_clauses = []
         
+    class PCA(object, metaclass=Metaclass):
+		# static variables
+        _name = "PCA"
+        _model = decomposition.PCA
+        _params = [
+            OrdinalHyperparameter("n_components", sequence=list(range(2, 4)), default_value=2),
+            CategoricalHyperparameter("svd_solver", ['auto', 'full', 'arpack', 'randomized'], default_value='auto'),
+            CategoricalHyperparameter("whiten", [True, False], default_value=False),
+        ]
+        _params_names = set([p.name for p in _params])
+        _conditions = []
+        _forbidden_clauses = []
     
