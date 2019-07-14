@@ -68,7 +68,8 @@ class AutoCluster(object):
             "input_psmac_dirs": [LogUtils.create_new_directory('psmac') for i in range(n_parallel_runs)] 
                                 if shared_model else None,
             "output_dir": LogUtils.create_new_directory('smac'),
-            "shared_model": shared_model
+            "shared_model": shared_model,
+            "abort_on_first_run_crash": False,
         })
         
         # helper function
@@ -139,7 +140,15 @@ class AutoCluster(object):
             return None
         
         scaled_X = self._dataset.standard_scaler.transform(X)
-        compressed_X = self._dim_reduction_model.fit_transform(scaled_X) if self._dim_reduction_model else scaled_X
+        
+        if self._dim_reduction_model:
+            try:
+                compressed_X = self._dim_reduction_model.transform(scaled_X)
+            except:
+                compressed_X = self._dim_reduction_mode.fit_transform(scaled_X)
+        else:
+            compressed_X = scaled_X
+        
         y_pred = None
         
         try:
@@ -153,8 +162,12 @@ class AutoCluster(object):
                                                  '#999999', '#e41a1c', '#dede00']),
                                                   int(max(y_pred) + 1))))
             # check if dimension reduction is needed
-            scaled_X = manifold.TSNE(n_components=2).fit_transform(scaled_X) if scaled_X.shape[1] > 2 else scaled_X
-            plt.scatter(scaled_X[:, 0], scaled_X[:, 1], s=5, color=colors[y_pred])
+            if compressed_X.shape[1] > 2:
+                print('doing TSNE')
+                compressed_X = manifold.TSNE(n_components=2).fit_transform(compressed_X) 
+            plt.scatter(compressed_X[:, 0], compressed_X[:, 1], s=5, color=colors[y_pred])
+            plt.tick_params(axis='x', colors='white')
+            plt.tick_params(axis='y', colors='white')
             plt.show()
             
         return y_pred
