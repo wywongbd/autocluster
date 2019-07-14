@@ -20,7 +20,8 @@ class Mapper(object):
         "OPTICS": algorithms.OPTICS,
         "Birch": algorithms.Birch,
         "GaussianMixture": algorithms.GaussianMixture,
-        "TSNE": algorithms.TSNE
+        "TSNE": algorithms.TSNE,
+		"PCA": algorithms.PCA
     }
     @staticmethod
     def getClass(string):
