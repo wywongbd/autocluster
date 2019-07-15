@@ -15,11 +15,12 @@ from smac.scenario.scenario import Scenario
 from smac.facade.smac_facade import SMAC
 
 class AutoCluster(object):
-    def __init__(self):
+    def __init__(self, logger=None):
         self._dataset = None
         self._clustering_model = None
         self._dim_reduction_model = None
         self._smac_obj = None
+        self._logger = logger
 
     def fit(self, X, 
             cluster_alg_ls=['KMeans','DBSCAN'],
@@ -63,8 +64,8 @@ class AutoCluster(object):
         clustering_min_size = min([Mapper.getClass(alg).n_possible_cfgs for alg in cluster_alg_ls])
         n_evaluations = min(n_evaluations, clustering_min_size * dim_reduction_min_size)
         
-        print(cs)
-        print('Truncated n_evaluations: {}'.format(n_evaluations))
+        self._log(cs)
+        self._log('Truncated n_evaluations: {}'.format(n_evaluations))
 
         #define scenario object to be passed into SMAC
         scenario_params = {
@@ -81,7 +82,7 @@ class AutoCluster(object):
         }
         scenario = Scenario(scenario_params)
         
-        # print(scenario_params)
+        self._log('{}'.format(scenario_params))
         
         # helper function
         def fit_model(cfg):
@@ -93,7 +94,7 @@ class AutoCluster(object):
             # remove keys with value == None
             cfg = {k: v for k, v in cfg.items() if v is not None}
             
-            print("Fitting configuration: {}".format(cfg))
+            self._log("Fitting configuration: {}".format(cfg))
             
             # get the dimension reduction method chosen
             dim_reduction_alg = Mapper.getClass(cfg.get("dim_reduction_choice", None))
@@ -139,9 +140,9 @@ class AutoCluster(object):
         # refit to get optimal model
         self._clustering_model, self._dim_reduction_model, _ = fit_model(optimal_config)
         
-        print("Optimization is complete.")
-        print("Took {} seconds.".format(round(self._smac_obj.stats.get_used_wallclock_time(), 2)))
-        print("The optimal configuration is \n{}".format(optimal_config))
+        self._log("Optimization is complete.")
+        self._log("Took {} seconds.".format(round(self._smac_obj.stats.get_used_wallclock_time(), 2)))
+        self._log("The optimal configuration is \n{}".format(optimal_config))
         
         # return a pair
         return self._smac_obj, optimal_config
@@ -174,7 +175,7 @@ class AutoCluster(object):
                                                   int(max(y_pred) + 1))))
             # check if dimension reduction is needed
             if compressed_X.shape[1] > 2:
-                print('doing TSNE')
+                self._log('performing TSNE')
                 compressed_X = manifold.TSNE(n_components=2).fit_transform(compressed_X) 
                 
             plt.figure(figsize=(10,10))
@@ -201,4 +202,10 @@ class AutoCluster(object):
         plt.tick_params(axis='x', colors='white')
         plt.tick_params(axis='y', colors='white')
         plt.show()
+        
+    def _log(self, string):
+        if self._logger:
+            self._logger.info(string)
+        else:
+            print(string)
         
