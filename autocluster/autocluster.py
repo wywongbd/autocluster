@@ -3,9 +3,6 @@ from algorithms import algorithms
 from build_config_space import build_config_space, Mapper
 from utils.stringutils import StringUtils
 from utils.logutils import LogUtils
-
-import numpy as np
-import matplotlib.pyplot as plt
 from sklearn import cluster, metrics, manifold
 from itertools import cycle, islice
 
@@ -14,6 +11,11 @@ from smac.tae.execute_func import ExecuteTAFuncDict
 from smac.scenario.scenario import Scenario
 from smac.facade.smac_facade import SMAC
 
+import os
+import logging
+import numpy as np
+import matplotlib.pyplot as plt
+
 class AutoCluster(object):
     def __init__(self, logger=None):
         self._dataset = None
@@ -21,6 +23,10 @@ class AutoCluster(object):
         self._dim_reduction_model = None
         self._smac_obj = None
         self._logger = logger
+        self._log_path = None
+        
+        if self._logger:
+            self._log_path = logging.getLoggerClass().root.handlers[0].baseFilename
 
     def fit(self, X, 
             cluster_alg_ls=['KMeans','DBSCAN'],
@@ -74,9 +80,10 @@ class AutoCluster(object):
             "cutoff_time": cutoff_time,
             "cs": cs,
             "deterministic": "true",
-            "input_psmac_dirs": [LogUtils.create_new_directory('psmac') for i in range(n_parallel_runs)] 
-                                if shared_model else None,
-            "output_dir": LogUtils.create_new_directory('smac'),
+            "input_psmac_dirs": [
+                LogUtils.create_new_directory('{}/psmac'.format(self.log_dir)) for i in range(n_parallel_runs)
+            ] if shared_model else None,
+            "output_dir": LogUtils.create_new_directory('{}/smac'.format(self.log_dir)),
             "shared_model": shared_model,
             "abort_on_first_run_crash": False,
         }
@@ -208,4 +215,7 @@ class AutoCluster(object):
             self._logger.info(string)
         else:
             print(string)
-        
+    
+    @property
+    def log_dir(self):
+        return '/{}'.format(self._log_path.split(os.sep)[-2]) if self._logger else ''
