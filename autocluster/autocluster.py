@@ -56,10 +56,18 @@ class AutoCluster(object):
         #config space object
         cs = build_config_space(cluster_alg_ls, dim_reduction_alg_ls)
         
+        # make sure n_evaluations is valid
+        dim_reduction_min_size = 1 if len(dim_reduction_alg_ls) == 0 \
+                                else min([Mapper.getClass(alg).n_possible_cfgs 
+                                          for alg in dim_reduction_alg_ls])
+        clustering_min_size = min([Mapper.getClass(alg).n_possible_cfgs for alg in cluster_alg_ls])
+        n_evaluations = min(n_evaluations, clustering_min_size * dim_reduction_min_size)
+        
         print(cs)
+        print('Truncated n_evaluations: {}'.format(n_evaluations))
 
         #define scenario object to be passed into SMAC
-        scenario = Scenario({
+        scenario_params = {
             "run_obj": run_obj,
             "runcount-limit": n_evaluations,
             "cutoff_time": cutoff_time,
@@ -70,7 +78,10 @@ class AutoCluster(object):
             "output_dir": LogUtils.create_new_directory('smac'),
             "shared_model": shared_model,
             "abort_on_first_run_crash": False,
-        })
+        }
+        scenario = Scenario(scenario_params)
+        
+        # print(scenario_params)
         
         # helper function
         def fit_model(cfg):

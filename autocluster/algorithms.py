@@ -1,4 +1,5 @@
 from sklearn import cluster, mixture, manifold, decomposition
+from numpy import prod
 from smac.configspace import ConfigurationSpace
 from ConfigSpace.hyperparameters import CategoricalHyperparameter, \
 UniformFloatHyperparameter, UniformIntegerHyperparameter, OrdinalHyperparameter
@@ -33,6 +34,28 @@ class algorithms(object):
         @property
         def forbidden_clauses(cls):
             return cls._forbidden_clauses
+        
+        @property
+        def has_discrete_cfg_space(cls):
+            is_discrete = lambda param: isinstance(param, UniformIntegerHyperparameter) or \
+                                        isinstance(param, OrdinalHyperparameter) or \
+                                        isinstance(param, CategoricalHyperparameter)
+            return all([is_discrete(param) for param in cls._params])
+        
+        @property
+        def n_possible_cfgs(cls):
+            if not cls.has_discrete_cfg_space:
+                return float('inf')
+            else:
+                def n_possible_values(param):
+                    if isinstance(param, CategoricalHyperparameter):
+                        return len(param.choices)
+                    elif isinstance(param, OrdinalHyperparameter):
+                        return len(param.sequence)
+                    elif isinstance(param, UniformIntegerHyperparameter):
+                        return param.upper - param.lower + 1
+
+                return prod([n_possible_values(param) for param in cls._params])
 
     class DBSCAN(object, metaclass=Metaclass):
         # static variables
@@ -52,7 +75,7 @@ class algorithms(object):
         _model = cluster.KMeans
         _params = [
             UniformIntegerHyperparameter("n_clusters", 1, 30, default_value=5),
-            UniformIntegerHyperparameter("random_state", 0, 9, default_value=0)
+            # UniformIntegerHyperparameter("random_state", 0, 9, default_value=0)
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
@@ -217,6 +240,11 @@ class algorithms(object):
         _conditions = []
         _forbidden_clauses = []
     
+    
+    # -----------------------------------------------------------------
+    # Dimensionality Reduction Algorithms
+    # -----------------------------------------------------------------
+    
 	# TSNE does not work yet, still debugging, do not use
     class TSNE(object, metaclass=Metaclass):
         # static variables
@@ -240,8 +268,23 @@ class algorithms(object):
             OrdinalHyperparameter("n_components", sequence=list(range(2, 4)), default_value=2),
             CategoricalHyperparameter("svd_solver", ['auto', 'full', 'arpack', 'randomized'], default_value='auto'),
             CategoricalHyperparameter("whiten", [True, False], default_value=False),
+            
+            # "random_state" was included, used only when "svd_solver" = 'arpack', or 'randomized'
+            OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=0)
         ]
         _params_names = set([p.name for p in _params])
-        _conditions = []
+        _conditions = [InCondition(child=_params[3], parent=_params[1], values=['arpack', 'randomized'])]
         _forbidden_clauses = []
     
+    class IncrementalPCA(object, metaclass=Metaclass):
+        # static variables
+        _name = "IncrementalPCA"
+        _model = decomposition.IncrementalPCA
+        _params = [
+            OrdinalHyperparameter("n_components", sequence=list(range(2, 4)), default_value=2),
+            CategoricalHyperparameter("whiten", [True, False], default_value=False),
+            UniformIntegerHyperparameter("batch_size", 10, 1000, default_value=100)
+        ]
+        _params_names = set([p.name for p in _params]) 
+        _conditions = []
+        _forbidden_clauses = []
