@@ -1,7 +1,7 @@
-from sklearn import cluster 
+from sklearn import cluster, mixture, manifold, decomposition
 from smac.configspace import ConfigurationSpace
 from ConfigSpace.hyperparameters import CategoricalHyperparameter, \
-UniformFloatHyperparameter, UniformIntegerHyperparameter
+UniformFloatHyperparameter, UniformIntegerHyperparameter, OrdinalHyperparameter
 from ConfigSpace.conditions import InCondition
 from ConfigSpace import ForbiddenAndConjunction, ForbiddenEqualsClause, ForbiddenInClause
 
@@ -51,7 +51,8 @@ class algorithms(object):
         _name = "KMeans"
         _model = cluster.KMeans
         _params = [
-            UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=10)
+            UniformIntegerHyperparameter("n_clusters", 1, 30, default_value=5),
+            UniformIntegerHyperparameter("random_state", 0, 9, default_value=0)
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
@@ -62,7 +63,7 @@ class algorithms(object):
         _name = "MiniBatchKMeans"
         _model = cluster.MiniBatchKMeans
         _params = [
-            UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=10),
+            UniformIntegerHyperparameter("n_clusters", 1, 30, default_value=10),
             UniformIntegerHyperparameter("batch_size", 10, 1000, default_value=100)
         ]
         _params_names = set([p.name for p in _params]) 
@@ -77,7 +78,9 @@ class algorithms(object):
             UniformFloatHyperparameter("damping", 0.5, 1, default_value=0.5),
             
             # "affinity" was added
-            CategoricalHyperparameter("affinity", ['euclidean', 'precomputed'], default_value='euclidean')
+            CategoricalHyperparameter("affinity", ['euclidean'], default_value='euclidean')
+            
+            # 'precomputed' is excluded from "affinity"s possible values
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
@@ -88,8 +91,8 @@ class algorithms(object):
         _name = "MeanShift"
         _model = cluster.MeanShift
         _params = [
-            CategoricalHyperparameter("bin_seeding", [True, False], default_value=False)
-            
+            CategoricalHyperparameter("bin_seeding", [True, False], default_value=False),
+            UniformFloatHyperparameter("bandwidth", 0.1, 50)
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
@@ -102,12 +105,14 @@ class algorithms(object):
         _params = [
             UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=10),
             
-            # None was removed from eigne_solver's list of possible values
-            CategoricalHyperparameter("eigen_solver", ['arpack','lobpcg'], default_value='arpack'),
+            # None and 'lobpcg' were excluded from eigne_solver's list of possible values
+            CategoricalHyperparameter("eigen_solver", ['arpack'], default_value='arpack'),
             
-            # Values 'poly', 'sigmoid', 'laplacian', 'chi2' were included
-            CategoricalHyperparameter("affinity", ['nearest_neighbors', 'precomputed', 'poly', 'sigmoid',\
-                                                   'laplacian', 'chi2', 'rbf'], default_value='rbf'),
+            # Values 'poly', 'sigmoid', 'laplacian', 'chi2' were included,
+            # 'precomputed' is excluded because it requires distance matrix input
+            # 'chi2' is excluded due to "ValueError: X contains negative values.""
+            CategoricalHyperparameter("affinity", ['nearest_neighbors', 'poly', 'sigmoid',\
+                                                   'laplacian', 'rbf'], default_value='rbf'),
             
             # "assign_labels" was added
             CategoricalHyperparameter("assign_labels", ['kmeans','discretize'], default_value='kmeans')
@@ -126,20 +131,24 @@ class algorithms(object):
         _name = "AgglomerativeClustering"
         _model = cluster.AgglomerativeClustering
         _params = [
-            UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=10),
+            UniformIntegerHyperparameter("n_clusters", 1, 30, default_value=10),
             CategoricalHyperparameter("linkage", 
                                       ['ward', 'complete', 'average', 'single'], 
                                       default_value='complete'),
             CategoricalHyperparameter("affinity", 
-                                      ['euclidean', 'l1', 'l2', 'manhattan','cosine', 'precomputed', 'cityblock'],
+                                      ['euclidean', 'cityblock', 
+                                       'l2', 'l1', 'manhattan', 'cosine'],
                                       default_value='euclidean')
             #'ward' has been included now
+            # 'precomputed' has been excluded from "affinity" s possible values because it requires 
+            # a precomputed distance matrix as input from user
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
         _forbidden_clauses = [
-            ForbiddenAndConjunction(ForbiddenEqualsClause(_params[1], "ward"), ForbiddenInClause(_params[2], ['l2', 'l1', 'manhattan', 'cosine',\
-                                                                                                             'precomputed', 'cityblock']))
+            ForbiddenAndConjunction(ForbiddenEqualsClause(_params[1], "ward"), 
+                                    ForbiddenInClause(_params[2], ['cosine', 'cityblock', 
+                                                                   'l2', 'l1', 'manhattan']))
         ]
         
     class OPTICS(object, metaclass=Metaclass):
@@ -152,7 +161,8 @@ class algorithms(object):
             # "max_eps" may not be useful
             #UniformFloatHyperparameter("max_eps", 0.01, 10, default_value=2.0),
             
-            CategoricalHyperparameter("metric", ['minkowski', 'euclidean', 'manhattan', 'l1', 'l2', 'cosine'], default_value='minkowski'),
+            CategoricalHyperparameter("metric", ['minkowski', 'euclidean', 
+                                                 'manhattan', 'l1', 'l2', 'cosine'], default_value='minkowski'),
             CategoricalHyperparameter("cluster_method", ['xi', 'dbscan'], default_value='xi')
             
             # -----------------------------------------------------------------
@@ -181,7 +191,7 @@ class algorithms(object):
         _name = "Birch"
         _model = cluster.Birch
         _params = [
-            UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=5),
+            UniformIntegerHyperparameter("n_clusters", 1, 30, default_value=5),
             
             # "branching_factor" was added
             UniformIntegerHyperparameter("branching_factor", 10, 1000, default_value=50)
@@ -189,3 +199,46 @@ class algorithms(object):
         _params_names = set([p.name for p in _params]) 
         _conditions = []
         _forbidden_clauses = []
+        
+    class GaussianMixture(object, metaclass=Metaclass):
+        # static variables
+        _name = "GaussianMixture"
+        _model = mixture.GaussianMixture
+        _params = [
+            UniformIntegerHyperparameter("n_components", 1, 30, default_value=5),
+            CategoricalHyperparameter("covariance_type", ['full', 'tied', 'diag', 'spherical'], default_value='full'),
+            CategoricalHyperparameter("init_params", ['kmeans', 'random'], default_value='kmeans'),
+            CategoricalHyperparameter("warm_start", [True, False], default_value=False)
+        ]
+        _params_names = set([p.name for p in _params]) 
+        _conditions = []
+        _forbidden_clauses = []
+    
+	# TSNE does not work yet, still debugging, do not use
+    class TSNE(object, metaclass=Metaclass):
+        # static variables
+        _name = "TSNE"
+        _model = manifold.TSNE
+        _params = [
+            OrdinalHyperparameter("n_components", sequence=list(range(2, 4)), default_value=2),
+            UniformFloatHyperparameter("perplexity", 1, 300, default_value=30),
+            UniformFloatHyperparameter("early_exaggeration", 5.0, 20.0, default_value=12.0),
+            OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=0)
+        ]
+        _params_names = set([p.name for p in _params]) 
+        _conditions = []
+        _forbidden_clauses = []
+        
+    class PCA(object, metaclass=Metaclass):
+		# static variables
+        _name = "PCA"
+        _model = decomposition.PCA
+        _params = [
+            OrdinalHyperparameter("n_components", sequence=list(range(2, 4)), default_value=2),
+            CategoricalHyperparameter("svd_solver", ['auto', 'full', 'arpack', 'randomized'], default_value='auto'),
+            CategoricalHyperparameter("whiten", [True, False], default_value=False),
+        ]
+        _params_names = set([p.name for p in _params])
+        _conditions = []
+        _forbidden_clauses = []
+    
