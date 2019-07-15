@@ -88,6 +88,7 @@ class algorithms(object):
         _params = [
             UniformIntegerHyperparameter("n_clusters", 1, 30, default_value=10),
             UniformIntegerHyperparameter("batch_size", 10, 1000, default_value=100)
+            UniformIntegerHyperparameter("random_state", 0, 9, default_value=0)
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
@@ -129,7 +130,7 @@ class algorithms(object):
             UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=10),
             
             # None and 'lobpcg' were excluded from eigne_solver's list of possible values
-            CategoricalHyperparameter("eigen_solver", ['arpack'], default_value='arpack'),
+            CategoricalHyperparameter("eigen_solver", ['arpack', 'amg'], default_value='arpack'),
             
             # Values 'poly', 'sigmoid', 'laplacian', 'chi2' were included,
             # 'precomputed' is excluded because it requires distance matrix input
@@ -139,6 +140,10 @@ class algorithms(object):
             
             # "assign_labels" was added
             CategoricalHyperparameter("assign_labels", ['kmeans','discretize'], default_value='kmeans')
+            
+            UniformIntegerHyperparameter("random_state", 0, 9, default_value=0)
+            # "random_state" was included, used only when "eigen_solver" = 'amg'
+            
             # -----------------------------------------------------------------
             # TODO:
             # -----------------------------------------------------------------
@@ -146,7 +151,7 @@ class algorithms(object):
             # ValueError: The eigen_solver was set to 'amg', but pyamg is not available.
         ]
         _params_names = set([p.name for p in _params])
-        _conditions = []
+        _conditions = [InCondition(child=_params[4], parent=_params[1], values=['amg'])]
         _forbidden_clauses = []
         
     class AgglomerativeClustering(object, metaclass=Metaclass):
@@ -232,6 +237,7 @@ class algorithms(object):
             CategoricalHyperparameter("covariance_type", ['full', 'tied', 'diag', 'spherical'], default_value='full'),
             CategoricalHyperparameter("init_params", ['kmeans', 'random'], default_value='kmeans'),
             CategoricalHyperparameter("warm_start", [True, False], default_value=False)
+            UniformIntegerHyperparameter("random_state", 0, 9, default_value=0)
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
