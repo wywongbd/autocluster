@@ -65,6 +65,7 @@ class algorithms(object):
         _params = [
             UniformIntegerHyperparameter("n_clusters", 1, 30, default_value=10),
             UniformIntegerHyperparameter("batch_size", 10, 1000, default_value=100)
+            UniformIntegerHyperparameter("random_state", 0, 9, default_value=0)
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
@@ -116,6 +117,8 @@ class algorithms(object):
             
             # "assign_labels" was added
             CategoricalHyperparameter("assign_labels", ['kmeans','discretize'], default_value='kmeans')
+            
+            UniformIntegerHyperparameter("random_state", 0, 9, default_value=0)
             # -----------------------------------------------------------------
             # TODO:
             # -----------------------------------------------------------------
