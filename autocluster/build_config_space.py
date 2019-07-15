@@ -1,3 +1,5 @@
+import itertools
+
 from algorithms import algorithms
 from utils.stringutils import StringUtils
 
@@ -16,24 +18,35 @@ class Mapper(object):
         "SpectralClustering": algorithms.SpectralClustering,
         "AgglomerativeClustering": algorithms.AgglomerativeClustering,
         "OPTICS": algorithms.OPTICS,
-        "Birch": algorithms.Birch
+        "Birch": algorithms.Birch,
+        "GaussianMixture": algorithms.GaussianMixture,
+        "TSNE": algorithms.TSNE,
+		"PCA": algorithms.PCA
     }
     @staticmethod
     def getClass(string):
-        return Mapper.d[string]
+        return Mapper.d.get(string, None)
     
     @staticmethod
     def getAlgorithms():
         return list(Mapper.d.keys())
 
-def build_config_space(algorithms_ls=["KMeans", "DBSCAN"]):
+def build_config_space(clustering_ls=["KMeans", "DBSCAN"], dim_reduction_ls=[]):
     cs = ConfigurationSpace()
-    algorithm_choice = CategoricalHyperparameter("algorithm_choice", 
-                                                 algorithms_ls, 
-                                                 default_value=algorithms_ls[0])
-    cs.add_hyperparameters([algorithm_choice])
     
-    for string in algorithms_ls:
+    if len(clustering_ls) > 0:
+        clustering_choice = CategoricalHyperparameter("clustering_choice", 
+                                                      clustering_ls, 
+                                                      default_value=clustering_ls[0])
+        cs.add_hyperparameters([clustering_choice])
+    
+    if len(dim_reduction_ls) > 0:
+        dim_reduction_choice = CategoricalHyperparameter("dim_reduction_choice", 
+                                                         dim_reduction_ls,
+                                                         default_value=dim_reduction_ls[0])
+        cs.add_hyperparameters([dim_reduction_choice])    
+    
+    for idx, string in enumerate(itertools.chain(clustering_ls, dim_reduction_ls)):
         algorithm = Mapper.getClass(string)
         
         # encode parameter names
@@ -47,7 +60,10 @@ def build_config_space(algorithms_ls=["KMeans", "DBSCAN"]):
         
         # define dependency
         for param in algorithm.params:
-            cs.add_condition(InCondition(child=param, parent=algorithm_choice, values=[string]))
+            cs.add_condition(InCondition(child=param, 
+                                         parent=clustering_choice if idx < len(clustering_ls) \
+                                         else dim_reduction_choice, 
+                                         values=[string]))
         
         # add forbidden clauses
         for condition in algorithm.forbidden_clauses:
