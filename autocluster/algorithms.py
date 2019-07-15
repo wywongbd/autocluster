@@ -220,7 +220,9 @@ class algorithms(object):
         _model = manifold.TSNE
         _params = [
             OrdinalHyperparameter("n_components", sequence=list(range(2, 4)), default_value=2),
-            UniformFloatHyperparameter("perplexity", 5, 50, default_value=30)
+            UniformFloatHyperparameter("perplexity", 1, 300, default_value=30),
+            UniformFloatHyperparameter("early_exaggeration", 5.0, 20.0, default_value=12.0),
+            OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=0)
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []

@@ -157,15 +157,17 @@ class AutoCluster(object):
             y_pred = self._clustering_model.fit_predict(compressed_X) 
         
         if plot:
-            colors = np.array(list(islice(cycle(['#377eb8', '#ff7f00', '#4daf4a',
-                                                 '#f781bf', '#a65628', '#984ea3',
-                                                 '#999999', '#e41a1c', '#dede00']),
+            colors = np.array(list(islice(cycle(['#377eb8', '#ff7f00', '#4daf4a', 'magenta',
+                                                 '#f781bf', '#a65628', '#984ea3', 'black',
+                                                 '#999999', '#e41a1c', '#dede00', 'cyan']),
                                                   int(max(y_pred) + 1))))
             # check if dimension reduction is needed
             if compressed_X.shape[1] > 2:
                 print('doing TSNE')
                 compressed_X = manifold.TSNE(n_components=2).fit_transform(compressed_X) 
-            plt.scatter(compressed_X[:, 0], compressed_X[:, 1], s=5, color=colors[y_pred])
+                
+            plt.figure(figsize=(10,10))
+            plt.scatter(compressed_X[:, 0], compressed_X[:, 1], s=7, color=colors[y_pred])
             plt.tick_params(axis='x', colors='white')
             plt.tick_params(axis='y', colors='white')
             plt.show()
