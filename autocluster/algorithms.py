@@ -237,6 +237,11 @@ class algorithms(object):
         _conditions = []
         _forbidden_clauses = []
     
+    
+    # -----------------------------------------------------------------
+    # Dimensionality Reduction Algorithms
+    # -----------------------------------------------------------------
+    
 	# TSNE does not work yet, still debugging, do not use
     class TSNE(object, metaclass=Metaclass):
         # static variables
@@ -260,8 +265,23 @@ class algorithms(object):
             OrdinalHyperparameter("n_components", sequence=list(range(2, 4)), default_value=2),
             CategoricalHyperparameter("svd_solver", ['auto', 'full', 'arpack', 'randomized'], default_value='auto'),
             CategoricalHyperparameter("whiten", [True, False], default_value=False),
+            
+            # "random_state" was included, used only when "svd_solver" = 'arpack', or 'randomized'
+            OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=0)
         ]
         _params_names = set([p.name for p in _params])
-        _conditions = []
+        _conditions = [InCondition(child=_params[3], parent=_params[1], values=['arpack', 'randomized'])]
         _forbidden_clauses = []
     
+    class IncrementalPCA(object, metaclass=Metaclass):
+        # static variables
+        _name = "IncrementalPCA"
+        _model = decomposition.IncrementalPCA
+        _params = [
+            OrdinalHyperparameter("n_components", sequence=list(range(2, 4)), default_value=2),
+            CategoricalHyperparameter("whiten", [True, False], default_value=False),
+            UniformIntegerHyperparameter("batch_size", 10, 1000, default_value=100)
+        ]
+        _params_names = set([p.name for p in _params]) 
+        _conditions = []
+        _forbidden_clauses = []
