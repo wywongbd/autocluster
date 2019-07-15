@@ -1,4 +1,5 @@
 from sklearn import cluster, mixture, manifold, decomposition
+from numpy import prod
 from smac.configspace import ConfigurationSpace
 from ConfigSpace.hyperparameters import CategoricalHyperparameter, \
 UniformFloatHyperparameter, UniformIntegerHyperparameter, OrdinalHyperparameter
@@ -33,6 +34,28 @@ class algorithms(object):
         @property
         def forbidden_clauses(cls):
             return cls._forbidden_clauses
+        
+        @property
+        def has_discrete_cfg_space(cls):
+            is_discrete = lambda param: isinstance(param, UniformIntegerHyperparameter) or \
+                                        isinstance(param, OrdinalHyperparameter) or \
+                                        isinstance(param, CategoricalHyperparameter)
+            return all([is_discrete(param) for param in cls._params])
+        
+        @property
+        def n_possible_cfgs(cls):
+            if not cls.has_discrete_cfg_space:
+                return float('inf')
+            else:
+                def n_possible_values(param):
+                    if isinstance(param, CategoricalHyperparameter):
+                        return len(param.choices)
+                    elif isinstance(param, OrdinalHyperparameter):
+                        return len(param.sequence)
+                    elif isinstance(param, UniformIntegerHyperparameter):
+                        return param.upper - param.lower + 1
+
+                return prod([n_possible_values(param) for param in cls._params])
 
     class DBSCAN(object, metaclass=Metaclass):
         # static variables
@@ -52,7 +75,7 @@ class algorithms(object):
         _model = cluster.KMeans
         _params = [
             UniformIntegerHyperparameter("n_clusters", 1, 30, default_value=5),
-            UniformIntegerHyperparameter("random_state", 0, 9, default_value=0)
+            # UniformIntegerHyperparameter("random_state", 0, 9, default_value=0)
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
