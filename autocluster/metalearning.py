@@ -31,6 +31,10 @@ parser.add_argument("--log_dir_prefix", type=str, default='meta_learning', help=
 
 parser.add_argument("--n_parallel_runs", default=3, type=int,
                     help="Number of parallel runs to use in SMAC optimization.")
+parser.add_argument("--random_seed", default=27, type=int,
+                    help="Random seed used in optimization.")
+parser.add_argument("--n_evaluations", default=30, type=int, 
+                    help="Number of evaluations used in SMAC optimization.")
 
 config = parser.parse_args()
 
@@ -61,6 +65,9 @@ def main():
     _logger = logging.getLogger(__name__)
     _logger_path = logging.getLoggerClass().root.handlers[0].baseFilename
     _logger.info("Log file location: {}".format(_logger_path))
+    
+    # log all arguments passed into this script
+    _logger.info("Script arguments: {}".format(config))
     
     # get names of all raw datasets
     raw_data_filepath_ls = get_files_as_ls(config.raw_data_path, 'csv')
@@ -110,29 +117,47 @@ def main():
                                                                                              len(processed_data_filepath_ls)))
     
     # main loop of meta learning
-    for dataset_path in processed_data_filepath_ls:
+    for i, dataset_path in enumerate(processed_data_filepath_ls, 1):
+        # logging
+        _logger.info("ITERATION {} of {}".format(i, len(processed_data_filepath_ls)))
+        _logger.info("Optimizing hyperparameters on the dataset at: {}".format(dataset_path))
+        
+        # read dataset as dataframe
         dataset = pd.read_csv(dataset_path, header='infer', sep=',')
         dataset_np = dataset.to_numpy()
         
         # this dictionary will keep track of everything we need log
         records = {}
+        records["dataset"] = get_basename_from_ls([dataset_path])[0]
+        
+        # calculate metafeatures
         records["numberOfInstances"] = Metafeatures.numberOfInstances(dataset_np)
         records["numberOfFeatures"] = Metafeatures.numberOfFeatures(dataset_np)
         
         # run autocluster
-        autocluster = AutoCluster()
-        smac_obj, opt_result = autocluster.fit(dataset_np, cluster_alg_ls=['KMeans'], 
-                                               dim_reduction_alg_ls=[],
-                                               n_evaluations=40, seed=27, run_obj='quality', cutoff_time=10, 
-                                               shared_model=True, n_parallel_runs = 3,
-                                               evaluator=lambda X, y_pred: float('inf') if len(set(y_pred)) == 1 \
-                                                        else -1 * silhouette_score(X, y_pred)  
-                                              )
+        autocluster = AutoCluster(logger=_logger)
+        fit_config = {
+            "X": dataset_np, 
+            "cluster_alg_ls": ['KMeans', 'GaussianMixture'], 
+            "dim_reduction_alg_ls": ['TSNE', 'PCA'],
+            "n_evaluations": config.n_evaluations,
+            "seed": config.random_seed, 
+            "run_obj": 'quality', 
+            "cutoff_time": 10, 
+            "shared_model": True,
+            "n_parallel_runs": config.n_parallel_runs,
+            "evaluator": lambda X, y_pred: 
+                            float('inf') if len(set(y_pred)) == 1 \
+                            else -1 * silhouette_score(X, y_pred)  
+        }
+        smac_obj, opt_result = autocluster.fit(**fit_config)
         
-        records["opt_result"] = opt_result
-        records["trajectory"] = smac_obj.get_trajectory()
+        # save result
+        records["trajectory"] = autocluster.get_trajectory()
         
-        _logger.info("Done optimizing on {}, the result is: \n{}".format(dataset_path, records))
+        # log results
+        _logger.info("Done optimizing on {}.".format(dataset_path))
+        _logger.info("Record on ITERATION {}: \n{}".format(i, records))
 
 if __name__ == '__main__':
     main()
