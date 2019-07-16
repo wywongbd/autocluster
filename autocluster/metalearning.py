@@ -5,11 +5,14 @@ import argparse
 import pathlib
 import logging
 import json
+import numpy as np
+import pandas as pd
 
-from log_helper.log_helper import LogHelper
-from utils.logutils import LogUtils
 from autocluster import AutoCluster
 from preprocess_data import PreprocessedDataset
+from log_helper.log_helper import LogHelper
+from utils.logutils import LogUtils
+from utils.metafeatures import Metafeatures
 
 from sklearn import datasets
 from datetime import datetime
@@ -55,7 +58,8 @@ def main():
 
     # Setup logger
     LogHelper.setup(log_path='{}/meta.log'.format(output_dir), log_level=logging.INFO)
-    _logger = logging.getLogger(__name_)
+    _logger = logging.getLogger(__name__)
+    _logger_path = logging.getLoggerClass().root.handlers[0].baseFilename
     _logger.info("Log file location: {}".format(_logger_path))
     
     # get names of all raw datasets
@@ -107,7 +111,28 @@ def main():
     
     # main loop of meta learning
     for dataset_path in processed_data_filepath_ls:
-        pass
+        dataset = pd.read_csv(dataset_path, header='infer', sep=',')
+        dataset_np = dataset.to_numpy()
+        
+        # this dictionary will keep track of everything we need log
+        records = {}
+        records["numberOfInstances"] = Metafeatures.numberOfInstances(dataset_np)
+        records["numberOfFeatures"] = Metafeatures.numberOfFeatures(dataset_np)
+        
+        # run autocluster
+        autocluster = AutoCluster()
+        smac_obj, opt_result = autocluster.fit(dataset_np, cluster_alg_ls=['KMeans'], 
+                                               dim_reduction_alg_ls=[],
+                                               n_evaluations=40, seed=27, run_obj='quality', cutoff_time=10, 
+                                               shared_model=True, n_parallel_runs = 3,
+                                               evaluator=lambda X, y_pred: float('inf') if len(set(y_pred)) == 1 \
+                                                        else -1 * silhouette_score(X, y_pred)  
+                                              )
+        
+        records["opt_result"] = opt_result
+        records["trajectory"] = smac_obj.get_trajectory()
+        
+        _logger.info("Done optimizing on {}, the result is: \n{}".format(dataset_path, records))
 
 if __name__ == '__main__':
     main()
