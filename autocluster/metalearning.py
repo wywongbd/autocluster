@@ -42,12 +42,24 @@ def main():
 
     # Setup logger
     LogHelper.setup(log_path='{}/meta.log'.format(output_dir), log_level=logging.INFO)
-    _logger = logging.getLogger(__name__)
+    _logger = logging.getLogger(__name_)
+
+
+
+
+
+    
+    
+    #get the filenames from the ../data directory
+    file_directory = config.raw_data_path
+    file_list = [join(file_directory,f) for f in listdir(file_directory) if isfile(join(file_directory, f))]
+    print (file_list)
 
     # Log all parameters
     _logger_path = logging.getLoggerClass().root.handlers[0].baseFilename
     _logger.info("Meta-learning parameters: {}".format(vars(config)))
     _logger.info("Log file at {}" .format(_logger_path))
+
     
     X = datasets.load_iris().data
     autocluster = AutoCluster(logger=_logger)
