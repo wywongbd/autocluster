@@ -55,11 +55,7 @@ def main():
 
     # Setup logger
     LogHelper.setup(log_path='{}/meta.log'.format(output_dir), log_level=logging.INFO)
-    _logger = logging.getLogger(__name__)
-
-    # Log all parameters
-    _logger_path = logging.getLoggerClass().root.handlers[0].baseFilename
-    _logger.info("Meta-learning parameters: {}".format(vars(config)))
+    _logger = logging.getLogger(__name_)
     _logger.info("Log file location: {}".format(_logger_path))
     
     # get names of all raw datasets
