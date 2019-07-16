@@ -151,8 +151,8 @@ def main():
         autocluster = AutoCluster(logger=_logger)
         fit_config = {
             "X": dataset_np, 
-            "cluster_alg_ls": ['KMeans', 'GaussianMixture'], 
-            "dim_reduction_alg_ls": ['TSNE', 'PCA'],
+            "cluster_alg_ls": ['KMeans', 'GaussianMixture', 'Birch', 'MiniBatchKMeans', 'DBSCAN'], 
+            "dim_reduction_alg_ls": ['TSNE', 'PCA', 'IncrementalPCA'],
             "n_evaluations": config.n_evaluations,
             "seed": config.random_seed, 
             "run_obj": 'quality', 
