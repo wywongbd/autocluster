@@ -27,10 +27,10 @@ class Metafeatures(object):
 
     def calc_MetaFeatures(dataset):
         _dataset = dataset
-        _numberOfInstance = calc_NumberOfInstances(X)
-        _numberOfFeatures = calc_NumberOfFeatures(X)
-        _numberOfNumericFeatures = calc_NumberOfNumericFeatures(X)
-        _numberOfCategoricalFeatures = calc_NumberOfCategoricalFeatures(X)
+        _numberOfInstance = calc_NumberOfInstances(_dataset)
+        _numberOfFeatures = calc_NumberOfFeatures(_dataset)
+        _numberOfNumericFeatures = calc_NumberOfNumericFeatures(_dataset)
+        _numberOfCategoricalFeatures = calc_NumberOfCategoricalFeatures(_dataset)
 
 
     @staticmethod
