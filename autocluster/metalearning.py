@@ -59,8 +59,8 @@ def main():
     
     #get the filenames from the ../data directory
     file_directory = config.raw_data_path
-    #file_list = [join(file_directory,f) for f in listdir(file_directory) if isfile(join(file_directory, f))]
-    #print (file_list)
+    file_list = [join(file_directory,f) for f in listdir(file_directory) if isfile(join(file_directory, f))]
+    print (file_list)
     
     #TODO preprocess the data into something suitable for clustering
 
