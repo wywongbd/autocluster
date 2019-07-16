@@ -5,6 +5,7 @@ import argparse
 import pathlib
 import logging
 import json
+import random
 import numpy as np
 import pandas as pd
 
@@ -69,6 +70,14 @@ def main():
     # log all arguments passed into this script
     _logger.info("Script arguments: {}".format(config))
     
+    # set random seed program-wide
+    random.seed(config.random_seed)
+    np.random.seed(config.random_seed)
+    
+    ##################################################################################################
+    # Preprocessing                                                                                  #
+    ##################################################################################################
+    
     # get names of all raw datasets
     raw_data_filepath_ls = get_files_as_ls(config.raw_data_path, 'csv')
     raw_data_filename_ls = get_basename_from_ls(raw_data_filepath_ls)
@@ -115,6 +124,10 @@ def main():
     processed_data_filepath_ls = get_files_as_ls(config.processed_data_path, 'csv')
     _logger.info("Preprocessing complete, there are now {} raw csv, {} processed csv".format(len(raw_data_filepath_ls), 
                                                                                              len(processed_data_filepath_ls)))
+    
+    ##################################################################################################
+    # Meta Learning                                                                                  #
+    ##################################################################################################
     
     # main loop of meta learning
     for i, dataset_path in enumerate(processed_data_filepath_ls, 1):
