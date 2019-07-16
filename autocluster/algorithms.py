@@ -74,7 +74,7 @@ class algorithms(object):
         _name = "KMeans"
         _model = cluster.KMeans
         _params = [
-            UniformIntegerHyperparameter("n_clusters", 1, 30, default_value=5),
+            UniformIntegerHyperparameter("n_clusters", 1, 30, default_value=5)
             # UniformIntegerHyperparameter("random_state", 0, 9, default_value=0)
         ]
         _params_names = set([p.name for p in _params]) 
