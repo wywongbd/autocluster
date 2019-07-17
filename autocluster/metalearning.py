@@ -28,7 +28,8 @@ parser.add_argument("--raw_data_path", type=str, default="../data/raw_data/",
                     help="Directory of raw datasets.")
 parser.add_argument("--processed_data_path", type=str, default='../data/processed_data/', 
                     help="Directory of processed datasets.")
-parser.add_argument("--log_dir_prefix", type=str, default='meta_learning', help='Prefix of directory')
+parser.add_argument("--log_dir_prefix", type=str, default='meta_learning', 
+                    help='Prefix of directory')
 
 parser.add_argument("--n_parallel_runs", default=3, type=int,
                     help="Number of parallel runs to use in SMAC optimization.")
@@ -68,7 +69,7 @@ def main():
     _logger.info("Log file location: {}".format(_logger_path))
     
     # log all arguments passed into this script
-    _logger.info("Script arguments: {}".format(config))
+    _logger.info("Script arguments: {}".format(vars(config)))
     
     # set random seed program-wide
     random.seed(config.random_seed)
@@ -135,17 +136,25 @@ def main():
         _logger.info("ITERATION {} of {}".format(i, len(processed_data_filepath_ls)))
         _logger.info("Optimizing hyperparameters on the dataset at: {}".format(dataset_path))
         
-        # read dataset as dataframe
+        # read processed dataset as dataframe
         dataset = pd.read_csv(dataset_path, header='infer', sep=',')
         dataset_np = dataset.to_numpy()
+        dataset_basename = get_basename_from_ls([dataset_path])[0]
         
         # this dictionary will keep track of everything we need log
         records = {}
-        records["dataset"] = get_basename_from_ls([dataset_path])[0]
+        records["dataset"] = dataset_basename
+        
+        # get raw dataset
+        raw_dataset = pd.read_csv("{}/{}".format(config.raw_data_path, dataset_basename), 
+                                  header='infer', sep=',')
+        raw_dataset_np = raw_dataset.to_numpy()
+        
+        _logger.info(raw_dataset_np.shape)
         
         # calculate metafeatures
-        records["numberOfInstances"] = Metafeatures.numberOfInstances(dataset_np)
-        records["numberOfFeatures"] = Metafeatures.numberOfFeatures(dataset_np)
+        records["numberOfInstances"] = Metafeatures.numberOfInstances(raw_dataset_np)
+        records["numberOfFeatures"] = Metafeatures.numberOfFeatures(raw_dataset_np)
         
         # run autocluster
         autocluster = AutoCluster(logger=_logger)
