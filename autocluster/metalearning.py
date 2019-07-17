@@ -150,8 +150,6 @@ def main():
                                   header='infer', sep=',')
         raw_dataset_np = raw_dataset.to_numpy()
         
-        _logger.info(raw_dataset_np.shape)
-        
         # calculate metafeatures
         records["numberOfInstances"] = Metafeatures.numberOfInstances(raw_dataset_np)
         records["numberOfFeatures"] = Metafeatures.numberOfFeatures(raw_dataset_np)
