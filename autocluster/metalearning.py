@@ -37,6 +37,8 @@ parser.add_argument("--random_seed", default=27, type=int,
                     help="Random seed used in optimization.")
 parser.add_argument("--n_evaluations", default=30, type=int, 
                     help="Number of evaluations used in SMAC optimization.")
+parser.add_argument("--cutoff_time", default=1000, type=int, 
+                    help="Configuration will be terminated if it takes > cutoff_time to run.")
 
 config = parser.parse_args()
 
@@ -159,13 +161,17 @@ def main():
         autocluster = AutoCluster(logger=_logger)
         fit_config = {
             "X": dataset_np, 
-            "cluster_alg_ls": ['KMeans', 'GaussianMixture', 'Birch', 'MiniBatchKMeans', 'DBSCAN'], 
+            "cluster_alg_ls": [
+                'KMeans', 'GaussianMixture', 'Birch', 
+                'MiniBatchKMeans', 'AgglomerativeClustering', 'OPTICS', 
+                'SpectralClustering', 'DBSCAN', 'AffinityPropagation', 'MeanShift'
+            ], 
             "dim_reduction_alg_ls": ['TSNE', 'PCA', 'IncrementalPCA'],
             "n_evaluations": config.n_evaluations,
             "seed": config.random_seed, 
             "run_obj": 'quality', 
-            "cutoff_time": 1000, 
-            "shared_model": True,
+            "cutoff_time": config.cutoff_time, 
+            "shared_model": False,
             "n_parallel_runs": config.n_parallel_runs,
             "evaluator": lambda X, y_pred: 
                             float('inf') if len(set(y_pred)) == 1 \
