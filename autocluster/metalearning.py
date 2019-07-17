@@ -166,7 +166,7 @@ def main():
                 'MiniBatchKMeans', 'AgglomerativeClustering', 'OPTICS', 
                 'SpectralClustering', 'DBSCAN', 'AffinityPropagation', 'MeanShift'
             ], 
-            "dim_reduction_alg_ls": ['TSNE', 'PCA', 'IncrementalPCA'],
+            "dim_reduction_alg_ls": ['TSNE', 'PCA', 'IncrementalPCA', 'KernelPCA'],
             "n_evaluations": config.n_evaluations,
             "seed": config.random_seed, 
             "run_obj": 'quality', 
