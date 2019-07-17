@@ -22,7 +22,8 @@ class Mapper(object):
         "GaussianMixture": algorithms.GaussianMixture,
         "TSNE": algorithms.TSNE,
 		"PCA": algorithms.PCA,
-        "IncrementalPCA": algorithms.IncrementalPCA
+        "IncrementalPCA": algorithms.IncrementalPCA,
+        "LatentDirichletAllocation": algorithms.LatentDirichletAllocation
     }
     @staticmethod
     def getClass(string):
