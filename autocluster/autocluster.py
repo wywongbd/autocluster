@@ -193,6 +193,11 @@ class AutoCluster(object):
             
         return y_pred
     
+    def get_trajectory(self):
+        if self._smac_obj is None:
+            return None
+        return [(vars(t.incumbent)['_values'], t.train_perf) for t in self._smac_obj.get_trajectory()] 
+    
     def plot_convergence(self):
         if self._smac_obj is None:
             return
