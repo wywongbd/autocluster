@@ -164,7 +164,7 @@ def main():
             "n_evaluations": config.n_evaluations,
             "seed": config.random_seed, 
             "run_obj": 'quality', 
-            "cutoff_time": 10, 
+            "cutoff_time": 1000, 
             "shared_model": True,
             "n_parallel_runs": config.n_parallel_runs,
             "evaluator": lambda X, y_pred: 
