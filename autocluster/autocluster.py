@@ -10,6 +10,7 @@ from itertools import cycle, islice
 from smac.tae.execute_func import ExecuteTAFuncDict
 from smac.scenario.scenario import Scenario
 from smac.facade.smac_facade import SMAC
+from smac.optimizer import smbo, pSMAC
 
 import os
 import logging
@@ -140,8 +141,13 @@ class AutoCluster(object):
     
             return evaluator(X=compressed_data, y_pred=y_pred)
         
-        # run SMAC to optimize 
-        self._smac_obj = SMAC(scenario=scenario, rng=np.random.RandomState(seed), tae_runner=evaluate_model)
+        # run SMAC to optimize
+        smac_params = {
+            "scenario": scenario,
+            "rng": np.random.RandomState(seed),
+            "tae_runner": evaluate_model,
+        }
+        self._smac_obj = SMAC(**smac_params)
         optimal_config = self._smac_obj.optimize()
         
         # refit to get optimal model
