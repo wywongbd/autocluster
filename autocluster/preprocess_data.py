@@ -5,7 +5,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
 
 class PreprocessedDataset(object):
-    def __init__(self, path, y_col=None, header='infer',
+    def __init__(self, path=None, df=None,
+                 y_col=None, header='infer',
                  numeric_cols=[], 
                  categorical_cols=[],
                  ordinal_cols={},
@@ -15,7 +16,8 @@ class PreprocessedDataset(object):
         --------------------------------------------------------------
         Arguments:
         --------------------------------------------------------------
-        path - string type
+        path - string type, df will be ignored if path is provided
+        df - pandas dataframe, path and df cannot be both None
         y_col - name of target variable column
         ignore_cols - list of columns to be ignored
         train_size + test_size must be equal to 1
@@ -25,8 +27,18 @@ class PreprocessedDataset(object):
         categorical_cols - list of column names of categorical features
         ordinal_cols - a dictionary where each key is a column name, each value is a list of ordinal_values (ordered)
         """
-        # read csv file as dataframe
-        self.data_df_raw = pd.read_csv(path, sep= ',', header=header)
+        # path and df cannot be both None
+        assert((path is not None) or (df is not None))
+        
+        self.data_df_raw = None
+        
+        if path is not None:
+            # read csv file as dataframe
+            self.data_df_raw = pd.read_csv(path, sep= ',', header=header)
+            
+        elif df is not None:
+            # use dataframe as given
+            self.data_df_raw = df
         
         # ignore columns that are not relevant
         self.data_df = self.data_df_raw.drop(columns=ignore_cols)
