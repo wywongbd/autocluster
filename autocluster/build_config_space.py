@@ -23,7 +23,10 @@ class Mapper(object):
         "TSNE": algorithms.TSNE,
 		"PCA": algorithms.PCA,
         "IncrementalPCA": algorithms.IncrementalPCA,
-        "LatentDirichletAllocation": algorithms.LatentDirichletAllocation
+        "LatentDirichletAllocation": algorithms.LatentDirichletAllocation,
+        "FastICA": algorithms.FastICA,
+        "TruncatedSVD": algorithms.TruncatedSVD,
+        "KernelPCA": algorithms.KernelPCA
     }
     @staticmethod
     def getClass(string):

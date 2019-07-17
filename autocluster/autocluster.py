@@ -10,6 +10,7 @@ from itertools import cycle, islice
 from smac.tae.execute_func import ExecuteTAFuncDict
 from smac.scenario.scenario import Scenario
 from smac.facade.smac_facade import SMAC
+from smac.optimizer import smbo, pSMAC
 
 import os
 import logging
@@ -101,7 +102,8 @@ class AutoCluster(object):
             # remove keys with value == None
             cfg = {k: v for k, v in cfg.items() if v is not None}
             
-            self._log("Fitting configuration: {}".format(cfg))
+            # logging
+            self._log("Fitting configuration: \n{}".format(cfg))
             
             # get the dimension reduction method chosen
             dim_reduction_alg = Mapper.getClass(cfg.get("dim_reduction_choice", None))
@@ -140,8 +142,13 @@ class AutoCluster(object):
     
             return evaluator(X=compressed_data, y_pred=y_pred)
         
-        # run SMAC to optimize 
-        self._smac_obj = SMAC(scenario=scenario, rng=np.random.RandomState(seed), tae_runner=evaluate_model)
+        # run SMAC to optimize
+        smac_params = {
+            "scenario": scenario,
+            "rng": np.random.RandomState(seed),
+            "tae_runner": evaluate_model,
+        }
+        self._smac_obj = SMAC(**smac_params)
         optimal_config = self._smac_obj.optimize()
         
         # refit to get optimal model
