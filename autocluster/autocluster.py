@@ -102,7 +102,8 @@ class AutoCluster(object):
             # remove keys with value == None
             cfg = {k: v for k, v in cfg.items() if v is not None}
             
-            self._log("Fitting configuration: {}".format(cfg))
+            # logging
+            self._log("Fitting configuration: \n{}".format(cfg))
             
             # get the dimension reduction method chosen
             dim_reduction_alg = Mapper.getClass(cfg.get("dim_reduction_choice", None))
