@@ -112,6 +112,7 @@ def main():
             
             # read the json file as dictionary
             preprocess_config_dict = read_json_file('{}/{}'.format(config.processed_data_path, json_filename))
+            _logger.info(preprocess_config_dict)
             
             # preprocess and then save it
             dataset_obj = PreprocessedDataset(**preprocess_config_dict)
