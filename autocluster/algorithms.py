@@ -288,3 +288,44 @@ class algorithms(object):
         _params_names = set([p.name for p in _params]) 
         _conditions = []
         _forbidden_clauses = []
+        
+    class FastICA(object, metaclass=Metaclass):
+        # static variables
+        _name = "FastICA"
+        _model = decomposition.FastICA
+        _params = [
+            OrdinalHyperparameter("n_components", sequence=list(range(2, 4)), default_value=2),
+            CategoricalHyperparameter("algorithm", ['parallel', 'deflation'], default_value='parallel'),
+            CategoricalHyperparameter("fun", ['logcosh', 'exp','cube'], default_value='logcosh'),
+            CategoricalHyperparameter("whiten", [True,False], default_value=True),
+            OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=1)
+        ]
+        _params_names = set([p.name for p in _params])
+        _conditions = []
+        _forbidden_clauses = []
+        
+    class TruncatedSVD(object, metaclass=Metaclass):
+        # static variables
+        _name = "TruncatedSVD"
+        _model = decomposition.TruncatedSVD
+        _params = [
+            OrdinalHyperparameter("n_components", sequence=list(range(1, 10)), default_value=2),
+            CategoricalHyperparameter("algorithm", ['arpack','randomized'], default_value='randomized'),
+            OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=1)
+        ]
+        _params_names = set([p.name for p in _params])
+        _conditions = []
+        _forbidden_clauses = []
+        
+    class LatentDirichletAllocation(object, metaclass=Metaclass):
+        # static variables
+        _name = "LatentDirichletAllocation"
+        _model = decomposition.LatentDirichletAllocation
+        _params = [
+            OrdinalHyperparameter("n_components", sequence=list(range(1, 10)), default_value=2),
+            CategoricalHyperparameter("learning_method", ['batch','online'], default_value='batch'),
+            OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=1)
+        ]
+        _params_names = set([p.name for p in _params])
+        _conditions = []
+        _forbidden_clauses = []
