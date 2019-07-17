@@ -317,6 +317,19 @@ class algorithms(object):
         _conditions = []
         _forbidden_clauses = []
         
+    class KernelPCA(object, metaclass=Metaclass):
+        # static variables
+        _name = "KernelPCA"
+        _model = decomposition.KernelPCA
+        _params = [
+            OrdinalHyperparameter("n_components", sequence=list(range(1, 10)), default_value=2),
+            CategoricalHyperparameter("kernel", ['linear','poly','rbf','sigmoid','cosine'], default_value='linear'),
+            OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=1)
+        ]
+        _params_names = set([p.name for p in _params])
+        _conditions = []
+        _forbidden_clauses = []
+        
     class LatentDirichletAllocation(object, metaclass=Metaclass):
         # static variables
         _name = "LatentDirichletAllocation"
