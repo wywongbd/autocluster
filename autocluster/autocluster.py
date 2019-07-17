@@ -139,8 +139,10 @@ class AutoCluster(object):
                 y_pred = candidate_model.labels_.astype(np.int)
             else:
                 y_pred = candidate_model.predict(compressed_data)
-    
-            return evaluator(X=compressed_data, y_pred=y_pred)
+                
+            score = evaluator(X=compressed_data, y_pred=y_pred)
+            self._log("Score obtained by this configuration: {}".format(score))
+            return score
         
         # run SMAC to optimize
         smac_params = {
