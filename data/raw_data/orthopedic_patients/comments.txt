@@ -1,8 +1,0 @@
-instances : 310
-class labels : 2(column_2C_weka), 3(column_3C_weka)
-numerical columns : 6
-categorical columns : 0
-
-The first task(column_3C_weka) consists in classifying patients as belonging to one out of three categories: Normal (100 patients), Disk Hernia (60 patients) or Spondylolisthesis (150 patients).
-
-For the second task(column_2C_weka), the categories Disk Hernia and Spondylolisthesis were merged into a single category labelled as 'abnormal'. Thus, the second task consists in classifying patients as belonging to one out of two categories: Normal (100 patients) or Abnormal (210 patients).
