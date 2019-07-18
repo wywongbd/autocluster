@@ -18,7 +18,7 @@ class Decoder(object):
         return [eval(string.split('\n')[-2]) for string in string_ls]
     
     @staticmethod
-    def get_runhistory(string):
+    def get_runhistory(string, sort=True):
         # the input string is the logged string from one iteration
         string_ls =  re.findall("Fitting configuration:[\s\S]{1,}?Score obtained by this configuration:[\s\S]{1,}?\\n", string)
         history = []
@@ -36,6 +36,21 @@ class Decoder(object):
                 score = eval(score_string)
     
             history.append((configuration, score))
+        
+        if sort:
+            history = sorted(history, key=lambda tup: tup[1])
             
         return history
+    
+    @staticmethod
+    def decode_log_file(path):
+        string = Decoder.read_file_as_string(path)
+        string_ls = Decoder.split_logs_by_iteration(string)
+        dict_ls = Decoder.get_records_by_iteration(string_ls)
+
+        for string, d in zip(string_ls, dict_ls):
+            history = Decoder.get_runhistory(string, sort=True)
+            d['runhistory'] = history
+
+        return dict_ls
             
