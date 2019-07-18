@@ -188,6 +188,7 @@ def main():
         # log results
         _logger.info("Done optimizing on {}.".format(dataset_path))
         _logger.info("Record on ITERATION {}: \n{}".format(i, records))
+        _logger.info("Done with ITERATION {}.".format(i))
 
 if __name__ == '__main__':
     main()
