@@ -10,8 +10,10 @@ from itertools import cycle, islice
 from smac.tae.execute_func import ExecuteTAFuncDict
 from smac.scenario.scenario import Scenario
 from smac.facade.smac_facade import SMAC
+from smac.optimizer import smbo, pSMAC
 
 import os
+import copy
 import logging
 import numpy as np
 import matplotlib.pyplot as plt
@@ -101,7 +103,8 @@ class AutoCluster(object):
             # remove keys with value == None
             cfg = {k: v for k, v in cfg.items() if v is not None}
             
-            self._log("Fitting configuration: {}".format(cfg))
+            # logging
+            self._log("Fitting configuration: \n{}".format(cfg))
             
             # get the dimension reduction method chosen
             dim_reduction_alg = Mapper.getClass(cfg.get("dim_reduction_choice", None))
@@ -137,11 +140,18 @@ class AutoCluster(object):
                 y_pred = candidate_model.labels_.astype(np.int)
             else:
                 y_pred = candidate_model.predict(compressed_data)
-    
-            return evaluator(X=compressed_data, y_pred=y_pred)
+                
+            score = evaluator(X=compressed_data, y_pred=y_pred)
+            self._log("Score obtained by this configuration: {}".format(score))
+            return score
         
-        # run SMAC to optimize 
-        self._smac_obj = SMAC(scenario=scenario, rng=np.random.RandomState(seed), tae_runner=evaluate_model)
+        # run SMAC to optimize
+        smac_params = {
+            "scenario": scenario,
+            "rng": np.random.RandomState(seed),
+            "tae_runner": evaluate_model,
+        }
+        self._smac_obj = SMAC(**smac_params)
         optimal_config = self._smac_obj.optimize()
         
         # refit to get optimal model
@@ -192,6 +202,11 @@ class AutoCluster(object):
             plt.show()
             
         return y_pred
+    
+    def get_trajectory(self):
+        if self._smac_obj is None:
+            return None
+        return [(vars(t.incumbent)['_values'], t.train_perf) for t in self._smac_obj.get_trajectory()] 
     
     def plot_convergence(self):
         if self._smac_obj is None:

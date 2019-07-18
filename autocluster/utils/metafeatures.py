@@ -2,9 +2,9 @@ import numpy as np
 import scipy.stats
 import sklearn.decomposition
 
+# all functions are based off of the implementation in autosklearn
 # this class contains the static function we use to calculate metafeatures
 class Metafeatures(object):
-    
     @staticmethod
     def isCategorical(item): # in the future this function may change slightly if the input changes
         if type(item) is str:
@@ -54,16 +54,17 @@ class Metafeatures(object):
             if isNumerical(item):
                 count += 1
         return count
-    
+
     @staticmethod
     def numberOfCategoricalFeatures(X):
-        #checks if the item is a string
+        # checks if the item is a string
         count = 0
         for item in X[1]:
             if isCategorical(item):
                 count += 1
         return count
-    
+
+    #returns True is any data is missing
     @staticmethod
     def ratioNumericalToNominal(X):
         num_categorical = float(numberOfCategoricalFeatures(X))
@@ -82,6 +83,10 @@ class Metafeatures(object):
         else: 
             return num_categorical/num_numerical
     
+    def missingValues(X):
+        missing = ~np.isfinite(X)
+        return missing
+
     @staticmethod
     def datasetRatio(X):
         return float(numberOfFeatures(X)) /\
