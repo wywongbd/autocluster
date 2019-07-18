@@ -251,7 +251,7 @@ class algorithms(object):
         _name = "TSNE"
         _model = manifold.TSNE
         _params = [
-            OrdinalHyperparameter("n_components", sequence=list(range(2, 4)), default_value=2),
+            OrdinalHyperparameter("n_components", sequence=list(range(2,3)), default_value=2),
             UniformFloatHyperparameter("perplexity", 1, 300, default_value=30),
             UniformFloatHyperparameter("early_exaggeration", 5.0, 20.0, default_value=12.0),
             OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=0)
@@ -311,6 +311,19 @@ class algorithms(object):
         _params = [
             OrdinalHyperparameter("n_components", sequence=list(range(1, 10)), default_value=2),
             CategoricalHyperparameter("algorithm", ['arpack','randomized'], default_value='randomized'),
+            OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=1)
+        ]
+        _params_names = set([p.name for p in _params])
+        _conditions = []
+        _forbidden_clauses = []
+        
+    class KernelPCA(object, metaclass=Metaclass):
+        # static variables
+        _name = "KernelPCA"
+        _model = decomposition.KernelPCA
+        _params = [
+            OrdinalHyperparameter("n_components", sequence=list(range(1, 10)), default_value=2),
+            CategoricalHyperparameter("kernel", ['linear','poly','rbf','sigmoid','cosine'], default_value='linear'),
             OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=1)
         ]
         _params_names = set([p.name for p in _params])
