@@ -13,6 +13,7 @@ from smac.facade.smac_facade import SMAC
 from smac.optimizer import smbo, pSMAC
 
 import os
+import copy
 import logging
 import numpy as np
 import matplotlib.pyplot as plt
