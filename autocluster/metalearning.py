@@ -128,6 +128,7 @@ def main():
     processed_data_filepath_ls = get_files_as_ls(config.processed_data_path, 'csv')
     _logger.info("Preprocessing complete, there are now {} raw csv, {} processed csv".format(len(raw_data_filepath_ls), 
                                                                                              len(processed_data_filepath_ls)))
+    _logger.info("Going to perform metalearning on the following datasets: {}".format(processed_data_filepath_ls))
     
     ##################################################################################################
     # Meta Learning                                                                                  #
@@ -201,6 +202,10 @@ def main():
             "PCAKurtosisFirstPC",
             "PCASkewnessFirstPC",
         ]
+        
+        # logging
+        _logger.info("general metafeatures: {}".format(general_metafeatures))
+        _logger.info("numeric metafeatures: {}".format(numeric_metafeatures))
         
         # calculate general metafeatures
         for feature in general_metafeatures:
