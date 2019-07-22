@@ -164,14 +164,15 @@ def main():
             "logNumberOfInstances",
             "numberOfFeatures",
             "logNumberOfFeatures",
-            "isMissingFeatures",
-            "numberOfMissingFeatures",
-            # "missingValuesRatio",
+            "isMissingValues",
+            "numberOfMissingValues",
+            "missingValuesRatio",
             "sparsity",
             "datasetRatio",
             "logDatasetRatio"
         ]
         numeric_metafeatures = [
+            "sparsityOnNumericColumns",
             "minSkewness",
             "maxSkewness",
             "medianSkewness",
