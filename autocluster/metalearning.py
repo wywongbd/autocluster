@@ -28,7 +28,8 @@ parser.add_argument("--raw_data_path", type=str, default="../data/raw_data/",
                     help="Directory of raw datasets.")
 parser.add_argument("--processed_data_path", type=str, default='../data/processed_data/', 
                     help="Directory of processed datasets.")
-parser.add_argument("--log_dir_prefix", type=str, default='meta_learning', help='Prefix of directory')
+parser.add_argument("--log_dir_prefix", type=str, default='meta_learning', 
+                    help='Prefix of directory')
 
 parser.add_argument("--n_parallel_runs", default=3, type=int,
                     help="Number of parallel runs to use in SMAC optimization.")
@@ -36,6 +37,8 @@ parser.add_argument("--random_seed", default=27, type=int,
                     help="Random seed used in optimization.")
 parser.add_argument("--n_evaluations", default=30, type=int, 
                     help="Number of evaluations used in SMAC optimization.")
+parser.add_argument("--cutoff_time", default=1000, type=int, 
+                    help="Configuration will be terminated if it takes > cutoff_time to run.")
 
 config = parser.parse_args()
 
@@ -68,7 +71,7 @@ def main():
     _logger.info("Log file location: {}".format(_logger_path))
     
     # log all arguments passed into this script
-    _logger.info("Script arguments: {}".format(config))
+    _logger.info("Script arguments: {}".format(vars(config)))
     
     # set random seed program-wide
     random.seed(config.random_seed)
@@ -111,6 +114,7 @@ def main():
             
             # read the json file as dictionary
             preprocess_config_dict = read_json_file('{}/{}'.format(config.processed_data_path, json_filename))
+            _logger.info(preprocess_config_dict)
             
             # preprocess and then save it
             dataset_obj = PreprocessedDataset(**preprocess_config_dict)
@@ -124,6 +128,7 @@ def main():
     processed_data_filepath_ls = get_files_as_ls(config.processed_data_path, 'csv')
     _logger.info("Preprocessing complete, there are now {} raw csv, {} processed csv".format(len(raw_data_filepath_ls), 
                                                                                              len(processed_data_filepath_ls)))
+    _logger.info("Going to perform metalearning on the following datasets: {}".format(processed_data_filepath_ls))
     
     ##################################################################################################
     # Meta Learning                                                                                  #
@@ -135,29 +140,103 @@ def main():
         _logger.info("ITERATION {} of {}".format(i, len(processed_data_filepath_ls)))
         _logger.info("Optimizing hyperparameters on the dataset at: {}".format(dataset_path))
         
-        # read dataset as dataframe
+        # read processed dataset as dataframe
         dataset = pd.read_csv(dataset_path, header='infer', sep=',')
         dataset_np = dataset.to_numpy()
+        dataset_basename = get_basename_from_ls([dataset_path])[0]
+        dataset_basename_no_ext, _ = os.path.splitext(dataset_basename)
         
         # this dictionary will keep track of everything we need log
         records = {}
-        records["dataset"] = get_basename_from_ls([dataset_path])[0]
+        records["dataset"] = dataset_basename
+        
+        # get raw dataset
+        raw_dataset = pd.read_csv("{}/{}".format(config.raw_data_path, dataset_basename), 
+                                  header='infer', sep=',')
+        raw_dataset_np = raw_dataset.to_numpy()
+        
+        # get corresponding json filename, which tells us which columns are categorical and numerical
+        json_filename = '{}.json'.format(dataset_basename_no_ext)
+        json_file_dict = read_json_file('{}/{}'.format(config.processed_data_path, json_filename))
         
         # calculate metafeatures
-        records["numberOfInstances"] = Metafeatures.numberOfInstances(dataset_np)
-        records["numberOfFeatures"] = Metafeatures.numberOfFeatures(dataset_np)
+        general_metafeatures = [
+            "numberOfInstances",
+            "logNumberOfInstances",
+            "numberOfFeatures",
+            "logNumberOfFeatures",
+            "isMissingValues",
+            "numberOfMissingValues",
+            "missingValuesRatio",
+            "sparsity",
+            "datasetRatio",
+            "logDatasetRatio"
+        ]
+        numeric_metafeatures = [
+            "sparsityOnNumericColumns",
+            "minSkewness",
+            "maxSkewness",
+            "medianSkewness",
+            "meanSkewness",
+            "firstQuartileSkewness",
+            "thirdQuartileSkewness",
+            "minKurtosis",
+            "maxKurtosis",
+            "medianKurtosis",
+            "meanKurtosis",
+            "firstQuartileKurtosis",
+            "thirdQuartileKurtosis",
+            "minCorrelation",
+            "maxCorrelation",
+            "medianCorrelation",
+            "meanCorrelation",
+            "firstQuartileCorrelation",
+            "thirdQuartileCorrelation",
+            "minCovariance",
+            "maxCovariance",
+            "medianCovariance",
+            "meanCovariance",
+            "firstQuartileCovariance",
+            "thirdQuartileCovariance",
+            "PCAFractionOfComponentsFor95PercentVariance",
+            "PCAKurtosisFirstPC",
+            "PCASkewnessFirstPC",
+        ]
+        
+        # logging
+        _logger.info("general metafeatures: {}".format(general_metafeatures))
+        _logger.info("numeric metafeatures: {}".format(numeric_metafeatures))
+        
+        # calculate general metafeatures
+        for feature in general_metafeatures:
+            records[feature] = getattr(Metafeatures, feature)(raw_dataset_np)
+        
+        # calculate metafeatures (only numeric columns considered)
+        raw_dataset_numeric_np = raw_dataset[json_file_dict['numeric_cols']].to_numpy()
+        for feature in numeric_metafeatures:
+            if len(json_file_dict['numeric_cols']) > 0:
+                records[feature] = getattr(Metafeatures, feature)(raw_dataset_numeric_np)  
+            else:
+                records[feature] = None
         
         # run autocluster
         autocluster = AutoCluster(logger=_logger)
         fit_config = {
             "X": dataset_np, 
-            "cluster_alg_ls": ['KMeans', 'GaussianMixture', 'Birch', 'MiniBatchKMeans', 'DBSCAN'], 
-            "dim_reduction_alg_ls": ['TSNE', 'PCA', 'IncrementalPCA'],
+            "cluster_alg_ls": [
+                'KMeans', 'GaussianMixture', 'Birch', 
+                'MiniBatchKMeans', 'AgglomerativeClustering', 'OPTICS', 
+                'SpectralClustering', 'DBSCAN', 'AffinityPropagation', 'MeanShift'
+            ], 
+            "dim_reduction_alg_ls": [
+                'TSNE', 'PCA', 'IncrementalPCA', 
+                'KernelPCA', 'FastICA', 'TruncatedSVD'
+            ],
             "n_evaluations": config.n_evaluations,
             "seed": config.random_seed, 
             "run_obj": 'quality', 
-            "cutoff_time": 10, 
-            "shared_model": True,
+            "cutoff_time": config.cutoff_time, 
+            "shared_model": False,
             "n_parallel_runs": config.n_parallel_runs,
             "evaluator": lambda X, y_pred: 
                             float('inf') if len(set(y_pred)) == 1 \
@@ -171,6 +250,7 @@ def main():
         # log results
         _logger.info("Done optimizing on {}.".format(dataset_path))
         _logger.info("Record on ITERATION {}: \n{}".format(i, records))
+        _logger.info("Done with ITERATION {}.".format(i))
 
 if __name__ == '__main__':
     main()

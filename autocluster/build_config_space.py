@@ -3,7 +3,7 @@ import itertools
 from algorithms import algorithms
 from utils.stringutils import StringUtils
 
-from smac.configspace import ConfigurationSpace
+from smac.configspace import ConfigurationSpace, Configuration
 from ConfigSpace.hyperparameters import CategoricalHyperparameter, \
 UniformFloatHyperparameter, UniformIntegerHyperparameter
 from ConfigSpace.conditions import InCondition
@@ -22,7 +22,11 @@ class Mapper(object):
         "GaussianMixture": algorithms.GaussianMixture,
         "TSNE": algorithms.TSNE,
 		"PCA": algorithms.PCA,
-        "IncrementalPCA": algorithms.IncrementalPCA
+        "IncrementalPCA": algorithms.IncrementalPCA,
+        "LatentDirichletAllocation": algorithms.LatentDirichletAllocation,
+        "FastICA": algorithms.FastICA,
+        "TruncatedSVD": algorithms.TruncatedSVD,
+        "KernelPCA": algorithms.KernelPCA
     }
     @staticmethod
     def getClass(string):
@@ -71,3 +75,21 @@ def build_config_space(clustering_ls=["KMeans", "DBSCAN"], dim_reduction_ls=[]):
             cs.add_forbidden_clause(condition)
     
     return cs
+
+
+def build_config_obj(config_space, values_dict):
+    unconditional_parameters = config_space.get_all_unconditional_hyperparameters()
+    
+    for hyperparam in unconditional_parameters:
+        choice = values_dict.get(hyperparam, None)
+        if choice is None:
+            continue
+            
+        algorithm = Mapper.getClass(choice)
+        for param in algorithm.params:
+            param_name = StringUtils.encode_parameter(param.name, algorithm.name)
+            if param_name not in values_dict:
+                values_dict[param_name] = param.default_value
+                
+    return Configuration(configuration_space=config_space, values=values_dict)
+                
