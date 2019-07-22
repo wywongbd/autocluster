@@ -163,19 +163,55 @@ def main():
             "numberOfInstances",
             "logNumberOfInstances",
             "numberOfFeatures",
-            "logNumberOfFeatures"
+            "logNumberOfFeatures",
+            "isMissingFeatures",
+            "numberOfMissingFeatures",
+            # "missingValuesRatio",
+            "sparsity",
+            "datasetRatio",
+            "logDatasetRatio"
         ]
         numeric_metafeatures = [
             "minSkewness",
-            "maxSkewness"
+            "maxSkewness",
+            "medianSkewness",
+            "meanSkewness",
+            "firstQuartileSkewness",
+            "thirdQuartileSkewness",
+            "minKurtosis",
+            "maxKurtosis",
+            "medianKurtosis",
+            "meanKurtosis",
+            "firstQuartileKurtosis",
+            "thirdQuartileKurtosis",
+            "minCorrelation",
+            "maxCorrelation",
+            "medianCorrelation",
+            "meanCorrelation",
+            "firstQuartileCorrelation",
+            "thirdQuartileCorrelation",
+            "minCovariance",
+            "maxCovariance",
+            "medianCovariance",
+            "meanCovariance",
+            "firstQuartileCovariance",
+            "thirdQuartileCovariance",
+            "PCAFractionOfComponentsFor95PercentVariance",
+            "PCAKurtosisFirstPC",
+            "PCASkewnessFirstPC",
         ]
         
+        # calculate general metafeatures
         for feature in general_metafeatures:
             records[feature] = getattr(Metafeatures, feature)(raw_dataset_np)
         
+        # calculate metafeatures (only numeric columns considered)
         raw_dataset_numeric_np = raw_dataset[json_file_dict['numeric_cols']].to_numpy()
         for feature in numeric_metafeatures:
-            records[feature] = getattr(Metafeatures, feature)(raw_dataset_numeric_np)  
+            if len(json_file_dict['numeric_cols']) > 0:
+                records[feature] = getattr(Metafeatures, feature)(raw_dataset_numeric_np)  
+            else:
+                records[feature] = None
         
         # run autocluster
         autocluster = AutoCluster(logger=_logger)
