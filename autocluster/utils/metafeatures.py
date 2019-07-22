@@ -62,11 +62,11 @@ class Metafeatures(object):
     # insted of using np.isfinite, 'None' value is checked
     @staticmethod
     def isMissingValues(X):
-        return np.count_nonzero(X == None) > 0
+        return np.count_nonzero(X == None) + np.count_nonzero(X == '') > 0
     
     @staticmethod
     def numberOfMissingValues(X):
-        return np.count_nonzero(X == None)
+        return np.count_nonzero(X == None) + np.count_nonzero(X == '')
     
     @staticmethod
     def missingValuesRatio(X):
@@ -75,12 +75,12 @@ class Metafeatures(object):
     
     @staticmethod
     def sparsity(X):
-        return np.count_nonzero(X) / X.size
+        return (np.count_nonzero(X == '') + np.count_nonzero(X == 0)) / X.size
     
     # X only have numerical columns
     @staticmethod
     def sparsityOnNumericColumns(X):
-        return np.count_nonzero(X) / X.size
+        return np.count_nonzero(X == 0) / X.size
     
     
     # columns of datasets are already classified in json files.
@@ -492,3 +492,86 @@ class Metafeatures(object):
         print("Failed to compute PCA")
         #self.logger.warning("Failed to compute a Principle Component Analysis")
         return np.nan
+    
+    
+    # X only have label columns
+    @staticmethod
+    def entropyOfClasses(X):
+        X1 = X[X != None]
+        X1 = X1[X1 != '']
+        freq_dict = Counter(X1)
+        probs = np.array([value / len(X1) for value in freq_dict.values()])
+        return np.sum(-np.log2(probs) * probs)
+    
+    
+    # X only have categorical columns
+    @staticmethod
+    def minEntropy(X):
+        entropies = []
+        for sublist in X.T:
+            sublist1 = sublist[sublist != None]
+            sublist1 = sublist1[sublist1 != '']
+            freq_dict = Counter(sublist1)
+            probs = np.array([value / len(sublist1) for value in freq_dict.values()])
+            entropies.append(np.sum(-np.log2(probs) * probs))
+        return np.min(entropies) / np.log2(Metafeatures.numberOfInstances(X))
+    
+    # X only have categorical columns
+    @staticmethod
+    def maxEntropy(X):
+        entropies = []
+        for sublist in X.T:
+            sublist1 = sublist[sublist != None]
+            sublist1 = sublist1[sublist1 != '']
+            freq_dict = Counter(sublist1)
+            probs = np.array([value / len(sublist1) for value in freq_dict.values()])
+            entropies.append(np.sum(-np.log2(probs) * probs))
+        return np.max(entropies) / np.log2(Metafeatures.numberOfInstances(X))
+    
+    # X only have categorical columns
+    @staticmethod
+    def medianEntropy(X):
+        entropies = []
+        for sublist in X.T:
+            sublist1 = sublist[sublist != None]
+            sublist1 = sublist1[sublist1 != '']
+            freq_dict = Counter(sublist1)
+            probs = np.array([value / len(sublist1) for value in freq_dict.values()])
+            entropies.append(np.sum(-np.log2(probs) * probs))
+        return np.median(entropies) / np.log2(Metafeatures.numberOfInstances(X))
+    
+    # X only have categorical columns
+    @staticmethod
+    def meanEntropy(X):
+        entropies = []
+        for sublist in X.T:
+            sublist1 = sublist[sublist != None]
+            sublist1 = sublist1[sublist1 != '']
+            freq_dict = Counter(sublist1)
+            probs = np.array([value / len(sublist1) for value in freq_dict.values()])
+            entropies.append(np.sum(-np.log2(probs) * probs))
+        return np.mean(entropies) / np.log2(Metafeatures.numberOfInstances(X))
+    
+    # X only have categorical columns
+    @staticmethod
+    def firstQuartileEntropy(X):
+        entropies = []
+        for sublist in X.T:
+            sublist1 = sublist[sublist != None]
+            sublist1 = sublist1[sublist1 != '']
+            freq_dict = Counter(sublist1)
+            probs = np.array([value / len(sublist1) for value in freq_dict.values()])
+            entropies.append(np.sum(-np.log2(probs) * probs))
+        return np.percentile(entropies, 25) / np.log2(Metafeatures.numberOfInstances(X))
+    
+    # X only have categorical columns
+    @staticmethod
+    def firstQuartileEntropy(X):
+        entropies = []
+        for sublist in X.T:
+            sublist1 = sublist[sublist != None]
+            sublist1 = sublist1[sublist1 != '']
+            freq_dict = Counter(sublist1)
+            probs = np.array([value / len(sublist1) for value in freq_dict.values()])
+            entropies.append(np.sum(-np.log2(probs) * probs))
+        return np.percentile(entropies, 75) / np.log2(Metafeatures.numberOfInstances(X))
