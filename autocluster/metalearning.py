@@ -128,6 +128,7 @@ def main():
     processed_data_filepath_ls = get_files_as_ls(config.processed_data_path, 'csv')
     _logger.info("Preprocessing complete, there are now {} raw csv, {} processed csv".format(len(raw_data_filepath_ls), 
                                                                                              len(processed_data_filepath_ls)))
+    _logger.info("Going to perform metalearning on the following datasets: {}".format(processed_data_filepath_ls))
     
     ##################################################################################################
     # Meta Learning                                                                                  #
@@ -143,6 +144,7 @@ def main():
         dataset = pd.read_csv(dataset_path, header='infer', sep=',')
         dataset_np = dataset.to_numpy()
         dataset_basename = get_basename_from_ls([dataset_path])[0]
+        dataset_basename_no_ext, _ = os.path.splitext(dataset_basename)
         
         # this dictionary will keep track of everything we need log
         records = {}
@@ -153,9 +155,69 @@ def main():
                                   header='infer', sep=',')
         raw_dataset_np = raw_dataset.to_numpy()
         
+        # get corresponding json filename, which tells us which columns are categorical and numerical
+        json_filename = '{}.json'.format(dataset_basename_no_ext)
+        json_file_dict = read_json_file('{}/{}'.format(config.processed_data_path, json_filename))
+        
         # calculate metafeatures
-        records["numberOfInstances"] = Metafeatures.numberOfInstances(raw_dataset_np)
-        records["numberOfFeatures"] = Metafeatures.numberOfFeatures(raw_dataset_np)
+        general_metafeatures = [
+            "numberOfInstances",
+            "logNumberOfInstances",
+            "numberOfFeatures",
+            "logNumberOfFeatures",
+            "isMissingValues",
+            "numberOfMissingValues",
+            "missingValuesRatio",
+            "sparsity",
+            "datasetRatio",
+            "logDatasetRatio"
+        ]
+        numeric_metafeatures = [
+            "sparsityOnNumericColumns",
+            "minSkewness",
+            "maxSkewness",
+            "medianSkewness",
+            "meanSkewness",
+            "firstQuartileSkewness",
+            "thirdQuartileSkewness",
+            "minKurtosis",
+            "maxKurtosis",
+            "medianKurtosis",
+            "meanKurtosis",
+            "firstQuartileKurtosis",
+            "thirdQuartileKurtosis",
+            "minCorrelation",
+            "maxCorrelation",
+            "medianCorrelation",
+            "meanCorrelation",
+            "firstQuartileCorrelation",
+            "thirdQuartileCorrelation",
+            "minCovariance",
+            "maxCovariance",
+            "medianCovariance",
+            "meanCovariance",
+            "firstQuartileCovariance",
+            "thirdQuartileCovariance",
+            "PCAFractionOfComponentsFor95PercentVariance",
+            "PCAKurtosisFirstPC",
+            "PCASkewnessFirstPC",
+        ]
+        
+        # logging
+        _logger.info("general metafeatures: {}".format(general_metafeatures))
+        _logger.info("numeric metafeatures: {}".format(numeric_metafeatures))
+        
+        # calculate general metafeatures
+        for feature in general_metafeatures:
+            records[feature] = getattr(Metafeatures, feature)(raw_dataset_np)
+        
+        # calculate metafeatures (only numeric columns considered)
+        raw_dataset_numeric_np = raw_dataset[json_file_dict['numeric_cols']].to_numpy()
+        for feature in numeric_metafeatures:
+            if len(json_file_dict['numeric_cols']) > 0:
+                records[feature] = getattr(Metafeatures, feature)(raw_dataset_numeric_np)  
+            else:
+                records[feature] = None
         
         # run autocluster
         autocluster = AutoCluster(logger=_logger)
@@ -166,7 +228,10 @@ def main():
                 'MiniBatchKMeans', 'AgglomerativeClustering', 'OPTICS', 
                 'SpectralClustering', 'DBSCAN', 'AffinityPropagation', 'MeanShift'
             ], 
-            "dim_reduction_alg_ls": ['TSNE', 'PCA', 'IncrementalPCA', 'KernelPCA'],
+            "dim_reduction_alg_ls": [
+                'TSNE', 'PCA', 'IncrementalPCA', 
+                'KernelPCA', 'FastICA', 'TruncatedSVD'
+            ],
             "n_evaluations": config.n_evaluations,
             "seed": config.random_seed, 
             "run_obj": 'quality', 
@@ -185,6 +250,7 @@ def main():
         # log results
         _logger.info("Done optimizing on {}.".format(dataset_path))
         _logger.info("Record on ITERATION {}: \n{}".format(i, records))
+        _logger.info("Done with ITERATION {}.".format(i))
 
 if __name__ == '__main__':
     main()

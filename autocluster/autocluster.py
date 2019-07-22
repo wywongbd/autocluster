@@ -1,6 +1,6 @@
 from dataset import Dataset
 from algorithms import algorithms
-from build_config_space import build_config_space, Mapper
+from build_config_space import build_config_space, Mapper, build_config_obj
 from utils.stringutils import StringUtils
 from utils.logutils import LogUtils
 from sklearn import cluster, metrics, manifold
@@ -13,6 +13,7 @@ from smac.facade.smac_facade import SMAC
 from smac.optimizer import smbo, pSMAC
 
 import os
+import copy
 import logging
 import numpy as np
 import matplotlib.pyplot as plt
@@ -38,6 +39,7 @@ class AutoCluster(object):
             cutoff_time=60,
             shared_model=True,
             n_parallel_runs=3,
+            initial_configurations=None,
             evaluator=(lambda X, y_pred: float('inf') if len(set(y_pred)) == 1 \
                        else -1 * metrics.silhouette_score(X, y_pred, metric='euclidean'))  
            ):
@@ -144,11 +146,39 @@ class AutoCluster(object):
             self._log("Score obtained by this configuration: {}".format(score))
             return score
         
+        # dummy code to demonstrate how warmstarting can be used
+        # there must be at least two initial configurations
+        #
+        # dummy_dict = {
+        #     'algorithm___TruncatedSVD': 'randomized',
+        #     'clustering_choice': 'KMeans',
+        #     'dim_reduction_choice': 'TruncatedSVD',
+        #     'n_clusters___KMeans': 4,
+        #     'n_components___TruncatedSVD': 4,
+        #     'random_state___TruncatedSVD': 5
+        # }
+        # initial_configurations.append(build_config_obj(cs, dummy_dict))
+        # dummy_dict = {
+        #     'algorithm___FastICA': 'parallel',
+        #     'clustering_choice': 'GaussianMixture',
+        #     'covariance_type___GaussianMixture': 'tied',
+        #     'dim_reduction_choice': 'FastICA',
+        #     'fun___FastICA': 'logcosh',
+        #     'init_params___GaussianMixture': 'kmeans',
+        #     'n_components___FastICA': 3,
+        #     'n_components___GaussianMixture': 8,
+        #     'random_state___FastICA': 4,
+        #     'random_state___GaussianMixture': 5,
+        #     'whiten___FastICA': True
+        # }
+        # initial_configurations.append(build_config_obj(cs, dummy_dict))
+        
         # run SMAC to optimize
         smac_params = {
             "scenario": scenario,
             "rng": np.random.RandomState(seed),
             "tae_runner": evaluate_model,
+            "initial_configurations": initial_configurations,
         }
         self._smac_obj = SMAC(**smac_params)
         optimal_config = self._smac_obj.optimize()

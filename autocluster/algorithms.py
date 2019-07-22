@@ -309,7 +309,7 @@ class algorithms(object):
         _name = "TruncatedSVD"
         _model = decomposition.TruncatedSVD
         _params = [
-            OrdinalHyperparameter("n_components", sequence=list(range(1, 10)), default_value=2),
+            OrdinalHyperparameter("n_components", sequence=list(range(2, 10)), default_value=2),
             CategoricalHyperparameter("algorithm", ['arpack','randomized'], default_value='randomized'),
             OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=1)
         ]
@@ -322,7 +322,7 @@ class algorithms(object):
         _name = "KernelPCA"
         _model = decomposition.KernelPCA
         _params = [
-            OrdinalHyperparameter("n_components", sequence=list(range(1, 10)), default_value=2),
+            OrdinalHyperparameter("n_components", sequence=list(range(2, 10)), default_value=2),
             CategoricalHyperparameter("kernel", ['linear','poly','rbf','sigmoid','cosine'], default_value='linear'),
             OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=1)
         ]
@@ -335,7 +335,7 @@ class algorithms(object):
         _name = "LatentDirichletAllocation"
         _model = decomposition.LatentDirichletAllocation
         _params = [
-            OrdinalHyperparameter("n_components", sequence=list(range(1, 10)), default_value=2),
+            OrdinalHyperparameter("n_components", sequence=list(range(2, 10)), default_value=2),
             CategoricalHyperparameter("learning_method", ['batch','online'], default_value='batch'),
             OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=1)
         ]
