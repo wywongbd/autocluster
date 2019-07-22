@@ -61,38 +61,26 @@ class Metafeatures(object):
        
     # insted of using np.isfinite, 'None' value is checked
     @staticmethod
-    def isMissingFeatures(X):
-        for sublist in X:
-            for value in sublist:
-                if value is None:
-                    return True
-        return False
+    def isMissingValues(X):
+        return np.count_nonzero(X == None) > 0
     
     @staticmethod
-    def numberOfMissingFeatures(X):
-        count = 0
-        for sublist in X:
-            for value in sublist:
-                if value is None:
-                    count += 1
-        return count
+    def numberOfMissingValues(X):
+        return np.count_nonzero(X == None)
     
     @staticmethod
     def missingValuesRatio(X):
-        num = len(X) * len(X[0])
-        return numberOfMissingValues(X) / num
+        return Metafeatures.numberOfMissingValues(X) / X.size
     
     
     @staticmethod
     def sparsity(X):
-        num = len(X) * len(X[0])
-        count = 0
-        for sublist in X:
-            for value in sublist:
-                if not value:
-                    count += 1
-        return count / num
+        return np.count_nonzero(X) / X.size
     
+    # X only have numerical columns
+    @staticmethod
+    def sparsityOnNumericColumns(X):
+        return np.count_nonzero(X) / X.size
     
     
     # columns of datasets are already classified in json files.
@@ -276,8 +264,7 @@ class Metafeatures(object):
     @staticmethod
     def maxCorrelation(X):
         corr = np.corrcoef(X.T)
-        for i in range(len(corr)):
-            corr[i][i] = 0
+        corr = np.fill_diagonal(corr, 0)
         corr = corr[np.isfinite(corr)]
         return np.max(corr)
     
@@ -285,40 +272,32 @@ class Metafeatures(object):
     @staticmethod
     def medianCorrelation(X):
         corr = np.corrcoef(X.T)
-        corr1 = []
-        for i in range(len(corr)):
-            corr1.append(list(corr[i][:i])+list(corr[i][i+1:]))
-        corr1 = corr1[np.isfinite(corr1)]
+        corr = np.fill_diagonal(corr, np.nan).flatten()
+        corr = corr[np.isfinite(corr)]
         return np.median(corr1)
     
     # X only have numerical columns
     @staticmethod
     def meanCorrelation(X):
         corr = np.corrcoef(X.T)
-        corr1 = []
-        for i in range(len(corr)):
-            corr1.append(list(corr[i][:i])+list(corr[i][i+1:]))
-        corr1 = corr1[np.isfinite(corr1)]
+        corr = np.fill_diagonal(corr, np.nan).flatten()
+        corr = corr[np.isfinite(corr)]
         return np.mean(corr1)
     
     # X only have numerical columns
     @staticmethod
     def firstQuartileCorrelation(X):
         corr = np.corrcoef(X.T)
-        corr1 = []
-        for i in range(len(corr)):
-            corr1.append(list(corr[i][:i])+list(corr[i][i+1:]))
-        corr1 = corr1[np.isfinite(corr1)]
+        corr = np.fill_diagonal(corr, np.nan).flatten()
+        corr = corr[np.isfinite(corr)]
         return np.percentile(corr1, 25)
     
     # X only have numerical columns
     @staticmethod
     def thirdQuartileCorrelation(X):
         corr = np.corrcoef(X.T)
-        corr1 = []
-        for i in range(len(corr)):
-            corr1.append(list(corr[i][:i])+list(corr[i][i+1:]))
-        corr1 = corr1[np.isfinite(corr1)]
+        corr = np.fill_diagonal(corr, np.nan).flatten()
+        corr = corr[np.isfinite(corr)]
         return np.percentile(corr1, 75)
     
     
