@@ -39,7 +39,7 @@ class AutoCluster(object):
             cutoff_time=60,
             shared_model=True,
             n_parallel_runs=3,
-            initial_configurations=[],
+            initial_configurations=None,
             evaluator=(lambda X, y_pred: float('inf') if len(set(y_pred)) == 1 \
                        else -1 * metrics.silhouette_score(X, y_pred, metric='euclidean'))  
            ):

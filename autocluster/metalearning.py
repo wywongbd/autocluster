@@ -143,6 +143,7 @@ def main():
         dataset = pd.read_csv(dataset_path, header='infer', sep=',')
         dataset_np = dataset.to_numpy()
         dataset_basename = get_basename_from_ls([dataset_path])[0]
+        dataset_basename_no_ext, _ = os.path.splitext(dataset_basename)
         
         # this dictionary will keep track of everything we need log
         records = {}
@@ -153,9 +154,28 @@ def main():
                                   header='infer', sep=',')
         raw_dataset_np = raw_dataset.to_numpy()
         
+        # get corresponding json filename, which tells us which columns are categorical and numerical
+        json_filename = '{}.json'.format(dataset_basename_no_ext)
+        json_file_dict = read_json_file('{}/{}'.format(config.processed_data_path, json_filename))
+        
         # calculate metafeatures
-        records["numberOfInstances"] = Metafeatures.numberOfInstances(raw_dataset_np)
-        records["numberOfFeatures"] = Metafeatures.numberOfFeatures(raw_dataset_np)
+        general_metafeatures = [
+            "numberOfInstances",
+            "logNumberOfInstances",
+            "numberOfFeatures",
+            "logNumberOfFeatures"
+        ]
+        numeric_metafeatures = [
+            "minSkewness",
+            "maxSkewness"
+        ]
+        
+        for feature in general_metafeatures:
+            records[feature] = getattr(Metafeatures, feature)(raw_dataset_np)
+        
+        raw_dataset_numeric_np = raw_dataset[json_file_dict['numeric_cols']].to_numpy()
+        for feature in numeric_metafeatures:
+            records[feature] = getattr(Metafeatures, feature)(raw_dataset_numeric_np)  
         
         # run autocluster
         autocluster = AutoCluster(logger=_logger)
