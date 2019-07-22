@@ -1,0 +1,1 @@
+python metalearning.py --raw_data_path_ls ../data/breast_cancer.csv ../data/fifa19.csv ../data/Financial_Distress.csv ../data/hand_gestures_classification_merged.csv ../data/income_evaluation.csv ../data/mushrooms.csv ../data/pd_speech_features.csv --random_seed 27 --n_evaluations 200 --cutoff_time 1000
