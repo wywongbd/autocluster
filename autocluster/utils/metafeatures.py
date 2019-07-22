@@ -497,5 +497,81 @@ class Metafeatures(object):
     # X only have label columns
     @staticmethod
     def entropyOfClasses(X):
-        
-        return 
+        X1 = X[X != None]
+        X1 = X1[X1 != '']
+        freq_dict = Counter(X1)
+        probs = np.array([value / len(X1) for value in freq_dict.values()])
+        return np.sum(-np.log2(probs) * probs)
+    
+    
+    # X only have categorical columns
+    @staticmethod
+    def minEntropy(X):
+        entropies = []
+        for sublist in X.T:
+            sublist1 = sublist[sublist != None]
+            sublist1 = sublist1[sublist1 != '']
+            freq_dict = Counter(sublist1)
+            probs = np.array([value / len(sublist1) for value in freq_dict.values()])
+            entropies.append(np.sum(-np.log2(probs) * probs))
+        return np.min(entropies) / np.log2(Metafeatures.numberOfInstances(X))
+    
+    # X only have categorical columns
+    @staticmethod
+    def maxEntropy(X):
+        entropies = []
+        for sublist in X.T:
+            sublist1 = sublist[sublist != None]
+            sublist1 = sublist1[sublist1 != '']
+            freq_dict = Counter(sublist1)
+            probs = np.array([value / len(sublist1) for value in freq_dict.values()])
+            entropies.append(np.sum(-np.log2(probs) * probs))
+        return np.max(entropies) / np.log2(Metafeatures.numberOfInstances(X))
+    
+    # X only have categorical columns
+    @staticmethod
+    def medianEntropy(X):
+        entropies = []
+        for sublist in X.T:
+            sublist1 = sublist[sublist != None]
+            sublist1 = sublist1[sublist1 != '']
+            freq_dict = Counter(sublist1)
+            probs = np.array([value / len(sublist1) for value in freq_dict.values()])
+            entropies.append(np.sum(-np.log2(probs) * probs))
+        return np.median(entropies) / np.log2(Metafeatures.numberOfInstances(X))
+    
+    # X only have categorical columns
+    @staticmethod
+    def meanEntropy(X):
+        entropies = []
+        for sublist in X.T:
+            sublist1 = sublist[sublist != None]
+            sublist1 = sublist1[sublist1 != '']
+            freq_dict = Counter(sublist1)
+            probs = np.array([value / len(sublist1) for value in freq_dict.values()])
+            entropies.append(np.sum(-np.log2(probs) * probs))
+        return np.mean(entropies) / np.log2(Metafeatures.numberOfInstances(X))
+    
+    # X only have categorical columns
+    @staticmethod
+    def firstQuartileEntropy(X):
+        entropies = []
+        for sublist in X.T:
+            sublist1 = sublist[sublist != None]
+            sublist1 = sublist1[sublist1 != '']
+            freq_dict = Counter(sublist1)
+            probs = np.array([value / len(sublist1) for value in freq_dict.values()])
+            entropies.append(np.sum(-np.log2(probs) * probs))
+        return np.percentile(entropies, 25) / np.log2(Metafeatures.numberOfInstances(X))
+    
+    # X only have categorical columns
+    @staticmethod
+    def firstQuartileEntropy(X):
+        entropies = []
+        for sublist in X.T:
+            sublist1 = sublist[sublist != None]
+            sublist1 = sublist1[sublist1 != '']
+            freq_dict = Counter(sublist1)
+            probs = np.array([value / len(sublist1) for value in freq_dict.values()])
+            entropies.append(np.sum(-np.log2(probs) * probs))
+        return np.percentile(entropies, 75) / np.log2(Metafeatures.numberOfInstances(X))
