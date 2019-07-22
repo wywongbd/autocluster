@@ -62,11 +62,11 @@ class Metafeatures(object):
     # insted of using np.isfinite, 'None' value is checked
     @staticmethod
     def isMissingValues(X):
-        return np.count_nonzero(X == None) > 0
+        return np.count_nonzero(X == None) + np.count_nonzero(X == '') > 0
     
     @staticmethod
     def numberOfMissingValues(X):
-        return np.count_nonzero(X == None)
+        return np.count_nonzero(X == None) + np.count_nonzero(X == '')
     
     @staticmethod
     def missingValuesRatio(X):
@@ -75,12 +75,12 @@ class Metafeatures(object):
     
     @staticmethod
     def sparsity(X):
-        return np.count_nonzero(X) / X.size
+        return (np.count_nonzero(X == '') + np.count_nonzero(X == 0)) / X.size
     
     # X only have numerical columns
     @staticmethod
     def sparsityOnNumericColumns(X):
-        return np.count_nonzero(X) / X.size
+        return np.count_nonzero(X == 0) / X.size
     
     
     # columns of datasets are already classified in json files.
@@ -492,3 +492,10 @@ class Metafeatures(object):
         print("Failed to compute PCA")
         #self.logger.warning("Failed to compute a Principle Component Analysis")
         return np.nan
+    
+    
+    # X only have label columns
+    @staticmethod
+    def entropyOfClasses(X):
+        
+        return 
