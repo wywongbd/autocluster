@@ -38,7 +38,7 @@ class Metafeatures(object):
     # X shouldnt have labels column
     @staticmethod
     def logNumberOfInstances(X):
-        return np.log(numberOfInstances(X))
+        return np.log(Metafeatures.numberOfInstances(X))
     
     
     @staticmethod
@@ -47,7 +47,7 @@ class Metafeatures(object):
     
     @staticmethod
     def logNumberOfFeatures(X):
-        return np.log(numberOfFeatures(X))
+        return np.log(Metafeatures.numberOfFeatures(X))
     
     
     # X should have only labels column
@@ -137,12 +137,12 @@ class Metafeatures(object):
         
     @staticmethod
     def datasetRatio(X):
-        return float(numberOfFeatures(X)) /\
-            float(numberOfInstances(X))
+        return float(Metafeatures.numberOfFeatures(X)) /\
+            float(Metafeatures.numberOfInstances(X))
     
     @staticmethod
     def logDatasetRatio(X):
-        return np.log(datasetRatio(X))
+        return np.log(Metafeatures.datasetRatio(X))
     
     
     # X only have numerical columns
