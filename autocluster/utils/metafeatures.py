@@ -264,7 +264,7 @@ class Metafeatures(object):
     @staticmethod
     def maxCorrelation(X):
         corr = np.corrcoef(X.T)
-        corr = np.fill_diagonal(corr, 0)
+        np.fill_diagonal(corr, 0)
         corr = corr[np.isfinite(corr)]
         return np.max(corr)
     
@@ -272,7 +272,8 @@ class Metafeatures(object):
     @staticmethod
     def medianCorrelation(X):
         corr = np.corrcoef(X.T)
-        corr = np.fill_diagonal(corr, np.nan).flatten()
+        np.fill_diagonal(corr, np.nan)
+        corr = corr.flatten()
         corr = corr[np.isfinite(corr)]
         return np.median(corr1)
     
@@ -280,7 +281,8 @@ class Metafeatures(object):
     @staticmethod
     def meanCorrelation(X):
         corr = np.corrcoef(X.T)
-        corr = np.fill_diagonal(corr, np.nan).flatten()
+        np.fill_diagonal(corr, np.nan)
+        corr = corr.flatten()
         corr = corr[np.isfinite(corr)]
         return np.mean(corr1)
     
@@ -288,7 +290,8 @@ class Metafeatures(object):
     @staticmethod
     def firstQuartileCorrelation(X):
         corr = np.corrcoef(X.T)
-        corr = np.fill_diagonal(corr, np.nan).flatten()
+        np.fill_diagonal(corr, np.nan)
+        corr = corr.flatten()
         corr = corr[np.isfinite(corr)]
         return np.percentile(corr1, 25)
     
@@ -296,7 +299,8 @@ class Metafeatures(object):
     @staticmethod
     def thirdQuartileCorrelation(X):
         corr = np.corrcoef(X.T)
-        corr = np.fill_diagonal(corr, np.nan).flatten()
+        np.fill_diagonal(corr, np.nan)
+        corr = corr.flatten()
         corr = corr[np.isfinite(corr)]
         return np.percentile(corr1, 75)
     
