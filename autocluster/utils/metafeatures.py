@@ -275,7 +275,7 @@ class Metafeatures(object):
         np.fill_diagonal(corr, np.nan)
         corr = corr.flatten()
         corr = corr[np.isfinite(corr)]
-        return np.median(corr1)
+        return np.median(corr)
     
     # X only have numerical columns
     @staticmethod
@@ -284,7 +284,7 @@ class Metafeatures(object):
         np.fill_diagonal(corr, np.nan)
         corr = corr.flatten()
         corr = corr[np.isfinite(corr)]
-        return np.mean(corr1)
+        return np.mean(corr)
     
     # X only have numerical columns
     @staticmethod
@@ -293,7 +293,7 @@ class Metafeatures(object):
         np.fill_diagonal(corr, np.nan)
         corr = corr.flatten()
         corr = corr[np.isfinite(corr)]
-        return np.percentile(corr1, 25)
+        return np.percentile(corr, 25)
     
     # X only have numerical columns
     @staticmethod
@@ -302,7 +302,7 @@ class Metafeatures(object):
         np.fill_diagonal(corr, np.nan)
         corr = corr.flatten()
         corr = corr[np.isfinite(corr)]
-        return np.percentile(corr1, 75)
+        return np.percentile(corr, 75)
     
     
     # X only have numerical columns
