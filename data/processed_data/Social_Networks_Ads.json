@@ -1,0 +1,1 @@
+{"path": "../data/raw_data/Social_Networks_Ads.csv", "y_col": "Purchased", "categorical_cols": ["Gender"], "ignore_cols": ["User ID"], "numeric_cols": ["Age", "EstimatedSalary"], "ordinal_cols": {}, "classification": true}
