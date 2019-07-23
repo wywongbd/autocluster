@@ -1,1 +1,1 @@
-{"ordinal_cols": {}, "classification": true, "numeric_cols": ["price", "start_time", "end_time", "start_date"], "y_col": "fare", "categorical_cols": ["origin", "destination", "train_type", "train_class"], "ignore_cols": [], "path": "../spanish_rail_ticket.csv"}
+{"ordinal_cols": {}, "classification": true, "numeric_cols": ["price", "start_time", "end_time", "start_date"], "y_col": "train_class", "categorical_cols": ["origin", "destination", "train_type", "fare"], "ignore_cols": [], "path": "../spanish_rail_ticket.csv"}
