@@ -1,4 +1,5 @@
 import re
+import warnings
 
 class Decoder(object):
     @staticmethod
@@ -51,6 +52,7 @@ class Decoder(object):
         for string, d in zip(string_ls, dict_ls):
             history = Decoder.get_runhistory(string, sort=True)
             d['runhistory'] = history
-
-        return dict_ls
+        
+        metadata = {d["dataset"]: d for d in dict_ls}
+        return metadata
             
