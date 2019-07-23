@@ -2,6 +2,7 @@ import numpy as np
 import scipy.stats as scStat
 import sklearn.decomposition
 from sklearn.impute import SimpleImputer
+from sklearn.metrics import mutual_info_score
 
 # all functions are based off of the implementation in autosklearn
 # this class contains the static function we use to calculate metafeatures
@@ -584,26 +585,32 @@ class Metafeatures(object):
         X = X[~(X == '').any(axis=1)]
         X = X[~(X == None).any(axis=1)]
         
-        X_concat = [[tuple(value) for value in np.concatenate((X[:, :1], np.reshape(sublist, (-1, 1))), axis=1)]\
-             for sublist in (X.T)[1:]]
+        # code without library
+#         X_concat = [[tuple(value) for value in np.concatenate((X[:, :1], np.reshape(sublist, (-1, 1))), axis=1)]\
+#              for sublist in (X.T)[1:]]
         
-        freq_dict_class = Counter(X[:, 0])
-        prob_dict_class = dict([[key, value / len(sublist)] for (key, value) in freq_dict_class.items()])
-        prob_dicts = []
-        for sublist in X.T[1:]:
-            freq_dict = Counter(sublist)
-            prob_dict = dict([[key, value / len(sublist)] for (key, value) in freq_dict.items()])
-            prob_dicts.append(prob_dict)
+#         freq_dict_class = Counter(X[:, 0])
+#         prob_dict_class = dict([[key, value / len(sublist)] for (key, value) in freq_dict_class.items()])
+#         prob_dicts = []
+#         for sublist in X.T[1:]:
+#             freq_dict = Counter(sublist)
+#             prob_dict = dict([[key, value / len(sublist)] for (key, value) in freq_dict.items()])
+#             prob_dicts.append(prob_dict)
         
+#         mutInf = []
+#         i = 0
+#         for sublist in X_concat:
+#             freq_dict = Counter(sublist)
+#             prob_dict = dict([[key, value / len(sublist)] for (key, value) in freq_dict.items()])
+#             probs = [value * np.log(value / prob_dict_class[key[0]] / (prob_dicts[i])[key[1]]) for (key, value)\
+#                      in prob_dict.items()]
+#             mutInf.append(np.sum(probs))
+#             i += 1
+
         mutInf = []
-        i = 0
-        for sublist in X_concat:
-            freq_dict = Counter(sublist)
-            prob_dict = dict([[key, value / len(sublist)] for (key, value) in freq_dict.items()])
-            probs = [value * np.log(value / prob_dict_class[key[0]] / (prob_dicts[i])[key[1]]) for (key, value)\
-                     in prob_dict.items()]
-            mutInf.append(np.sum(probs))
-            i += 1
+        class_col1 = X[:, 0]
+        for sublist in X.T[1:]:
+            mutInf.append(mutual_info_score(labels_true = class_col1, labels_pred = sublist))
             
         return np.min(mutInf)
     
@@ -614,26 +621,10 @@ class Metafeatures(object):
         X = X[~(X == '').any(axis=1)]
         X = X[~(X == None).any(axis=1)]
         
-        X_concat = [[tuple(value) for value in np.concatenate((X[:, :1], np.reshape(sublist, (-1, 1))), axis=1)]\
-             for sublist in (X.T)[1:]]
-        
-        freq_dict_class = Counter(X[:, 0])
-        prob_dict_class = dict([[key, value / len(sublist)] for (key, value) in freq_dict_class.items()])
-        prob_dicts = []
-        for sublist in X.T[1:]:
-            freq_dict = Counter(sublist)
-            prob_dict = dict([[key, value / len(sublist)] for (key, value) in freq_dict.items()])
-            prob_dicts.append(prob_dict)
-        
         mutInf = []
-        i = 0
-        for sublist in X_concat:
-            freq_dict = Counter(sublist)
-            prob_dict = dict([[key, value / len(sublist)] for (key, value) in freq_dict.items()])
-            probs = [value * np.log(value / prob_dict_class[key[0]] / (prob_dicts[i])[key[1]]) for (key, value)\
-                     in prob_dict.items()]
-            mutInf.append(np.sum(probs))
-            i += 1
+        class_col1 = X[:, 0]
+        for sublist in X.T[1:]:
+            mutInf.append(mutual_info_score(labels_true = class_col1, labels_pred = sublist))
             
         return np.max(mutInf)
     
@@ -644,26 +635,10 @@ class Metafeatures(object):
         X = X[~(X == '').any(axis=1)]
         X = X[~(X == None).any(axis=1)]
         
-        X_concat = [[tuple(value) for value in np.concatenate((X[:, :1], np.reshape(sublist, (-1, 1))), axis=1)]\
-             for sublist in (X.T)[1:]]
-        
-        freq_dict_class = Counter(X[:, 0])
-        prob_dict_class = dict([[key, value / len(sublist)] for (key, value) in freq_dict_class.items()])
-        prob_dicts = []
-        for sublist in X.T[1:]:
-            freq_dict = Counter(sublist)
-            prob_dict = dict([[key, value / len(sublist)] for (key, value) in freq_dict.items()])
-            prob_dicts.append(prob_dict)
-        
         mutInf = []
-        i = 0
-        for sublist in X_concat:
-            freq_dict = Counter(sublist)
-            prob_dict = dict([[key, value / len(sublist)] for (key, value) in freq_dict.items()])
-            probs = [value * np.log(value / prob_dict_class[key[0]] / (prob_dicts[i])[key[1]]) for (key, value)\
-                     in prob_dict.items()]
-            mutInf.append(np.sum(probs))
-            i += 1
+        class_col1 = X[:, 0]
+        for sublist in X.T[1:]:
+            mutInf.append(mutual_info_score(labels_true = class_col1, labels_pred = sublist))
             
         return np.median(mutInf)
     
@@ -674,26 +649,10 @@ class Metafeatures(object):
         X = X[~(X == '').any(axis=1)]
         X = X[~(X == None).any(axis=1)]
         
-        X_concat = [[tuple(value) for value in np.concatenate((X[:, :1], np.reshape(sublist, (-1, 1))), axis=1)]\
-             for sublist in (X.T)[1:]]
-        
-        freq_dict_class = Counter(X[:, 0])
-        prob_dict_class = dict([[key, value / len(sublist)] for (key, value) in freq_dict_class.items()])
-        prob_dicts = []
-        for sublist in X.T[1:]:
-            freq_dict = Counter(sublist)
-            prob_dict = dict([[key, value / len(sublist)] for (key, value) in freq_dict.items()])
-            prob_dicts.append(prob_dict)
-        
         mutInf = []
-        i = 0
-        for sublist in X_concat:
-            freq_dict = Counter(sublist)
-            prob_dict = dict([[key, value / len(sublist)] for (key, value) in freq_dict.items()])
-            probs = [value * np.log(value / prob_dict_class[key[0]] / (prob_dicts[i])[key[1]]) for (key, value)\
-                     in prob_dict.items()]
-            mutInf.append(np.sum(probs))
-            i += 1
+        class_col1 = X[:, 0]
+        for sublist in X.T[1:]:
+            mutInf.append(mutual_info_score(labels_true = class_col1, labels_pred = sublist))
             
         return np.mean(mutInf)
     
@@ -704,26 +663,10 @@ class Metafeatures(object):
         X = X[~(X == '').any(axis=1)]
         X = X[~(X == None).any(axis=1)]
         
-        X_concat = [[tuple(value) for value in np.concatenate((X[:, :1], np.reshape(sublist, (-1, 1))), axis=1)]\
-             for sublist in (X.T)[1:]]
-        
-        freq_dict_class = Counter(X[:, 0])
-        prob_dict_class = dict([[key, value / len(sublist)] for (key, value) in freq_dict_class.items()])
-        prob_dicts = []
-        for sublist in X.T[1:]:
-            freq_dict = Counter(sublist)
-            prob_dict = dict([[key, value / len(sublist)] for (key, value) in freq_dict.items()])
-            prob_dicts.append(prob_dict)
-        
         mutInf = []
-        i = 0
-        for sublist in X_concat:
-            freq_dict = Counter(sublist)
-            prob_dict = dict([[key, value / len(sublist)] for (key, value) in freq_dict.items()])
-            probs = [value * np.log(value / prob_dict_class[key[0]] / (prob_dicts[i])[key[1]]) for (key, value)\
-                     in prob_dict.items()]
-            mutInf.append(np.sum(probs))
-            i += 1
+        class_col1 = X[:, 0]
+        for sublist in X.T[1:]:
+            mutInf.append(mutual_info_score(labels_true = class_col1, labels_pred = sublist))
             
         return np.percentile(mutInf, 25)
     
@@ -734,25 +677,9 @@ class Metafeatures(object):
         X = X[~(X == '').any(axis=1)]
         X = X[~(X == None).any(axis=1)]
         
-        X_concat = [[tuple(value) for value in np.concatenate((X[:, :1], np.reshape(sublist, (-1, 1))), axis=1)]\
-             for sublist in (X.T)[1:]]
-        
-        freq_dict_class = Counter(X[:, 0])
-        prob_dict_class = dict([[key, value / len(sublist)] for (key, value) in freq_dict_class.items()])
-        prob_dicts = []
-        for sublist in X.T[1:]:
-            freq_dict = Counter(sublist)
-            prob_dict = dict([[key, value / len(sublist)] for (key, value) in freq_dict.items()])
-            prob_dicts.append(prob_dict)
-        
         mutInf = []
-        i = 0
-        for sublist in X_concat:
-            freq_dict = Counter(sublist)
-            prob_dict = dict([[key, value / len(sublist)] for (key, value) in freq_dict.items()])
-            probs = [value * np.log(value / prob_dict_class[key[0]] / (prob_dicts[i])[key[1]]) for (key, value)\
-                     in prob_dict.items()]
-            mutInf.append(np.sum(probs))
-            i += 1
+        class_col1 = X[:, 0]
+        for sublist in X.T[1:]:
+            mutInf.append(mutual_info_score(labels_true = class_col1, labels_pred = sublist))
             
         return np.percentile(mutInf, 75)
