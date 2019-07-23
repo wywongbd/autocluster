@@ -1,0 +1,1 @@
+{"path": "../data/raw_data/Life_expectancy_dataset.csv", "y_col": "Continent", "categorical_cols": [], "ignore_cols": ["Country"], "numeric_cols": ["Rank", "Overall Life", "Male Life", "Female Life"], "ordinal_cols": {}, "classification": true}
