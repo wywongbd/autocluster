@@ -24,13 +24,19 @@ from sklearn.metrics import calinski_harabasz_score, silhouette_score, davies_bo
 ##################################################################################################
 parser = argparse.ArgumentParser()
 
+# directories
 parser.add_argument("--raw_data_path", type=str, default="../data/raw_data/",
-                    help="Directory of raw datasets.")
+                    help="Directory of raw datasets. Will be ignored if raw_data_path_ls is used.")
+parser.add_argument("--raw_data_path_ls", default=[], nargs='+', type=str,
+                    help="List of names of raw datasets to be processed. raw_data_path will be used if this is not provided.")
 parser.add_argument("--processed_data_path", type=str, default='../data/processed_data/', 
                     help="Directory of processed datasets.")
+
+# for logging
 parser.add_argument("--log_dir_prefix", type=str, default='meta_learning', 
                     help='Prefix of directory')
 
+# optimization
 parser.add_argument("--n_parallel_runs", default=3, type=int,
                     help="Number of parallel runs to use in SMAC optimization.")
 parser.add_argument("--random_seed", default=27, type=int,
@@ -82,7 +88,11 @@ def main():
     ##################################################################################################
     
     # get names of all raw datasets
-    raw_data_filepath_ls = get_files_as_ls(config.raw_data_path, 'csv')
+    if len(config.raw_data_path_ls) == 0:
+        raw_data_filepath_ls = get_files_as_ls(config.raw_data_path, 'csv')
+    else: 
+        raw_data_filepath_ls = config.raw_data_path_ls
+        
     raw_data_filename_ls = get_basename_from_ls(raw_data_filepath_ls)
     _logger.info("Managed to find {} raw datasets: {}".format(len(raw_data_filepath_ls), raw_data_filename_ls))
     
@@ -96,22 +106,24 @@ def main():
     json_filepath_ls = get_files_as_ls(config.processed_data_path, 'json')
     json_filename_set = set(get_basename_from_ls(json_filepath_ls))
     
+    # this list saves the paths of datasets which are ready to be processed
+    ready_datasets_ls = []
+    
     # for each raw dataset, check if processed version exist, if no, preprocess it and save it
-    for data_filename in raw_data_filename_ls:
-        if data_filename not in processed_data_filename_set:
-            # get file name without extension
-            data_filename_no_ext, _ = os.path.splitext(data_filename)
-            
-            # get corresponding json filename, which tells us how to preprocess it
-            json_filename = '{}.json'.format(data_filename_no_ext)
-            
-            # if we don't have a json file, we don't know how to preprocess this dataset
-            if json_filename not in json_filename_set:
-                _logger.info("Failed to find {}, so {} cannot be preprocessed.".format(json_filename,
-                                                                                       data_filename))
-                # ignore this dataset
-                continue
-            
+    for raw_data_path, data_filename in zip(raw_data_filepath_ls, raw_data_filename_ls):
+        # get file name without extension
+        data_filename_no_ext, _ = os.path.splitext(data_filename)
+        
+        # get corresponding json filename, which tells us how to preprocess it
+        # the json file also contains metadata, telling us how to calculate metafeatures
+        json_filename = '{}.json'.format(data_filename_no_ext)
+        
+        # if we don't have a json file, we can't process it
+        if json_filename not in json_filename_set:
+            _logger.info("Failed to find {}, so {} cannot be used.".format(json_filename, data_filename))
+            continue
+        
+        if data_filename not in processed_data_filename_set:      
             # read the json file as dictionary
             preprocess_config_dict = read_json_file('{}/{}'.format(config.processed_data_path, json_filename))
             _logger.info(preprocess_config_dict)
@@ -123,22 +135,28 @@ def main():
             
             # just for keeping track
             processed_data_filename_set.add(data_filename)
+        
+        # save into ready_datasets_ls for later use
+        processed_data_path = '{}/{}.json'.format(config.processed_data_path, data_filename_no_ext)
+        json_file_path = '{}/{}.csv'.format(config.processed_data_path, data_filename_no_ext)
+        ready_datasets_ls.append((raw_data_path, processed_data_path, json_file_path))
     
-    # read names of processed datasets again
-    processed_data_filepath_ls = get_files_as_ls(config.processed_data_path, 'csv')
-    _logger.info("Preprocessing complete, there are now {} raw csv, {} processed csv".format(len(raw_data_filepath_ls), 
-                                                                                             len(processed_data_filepath_ls)))
-    _logger.info("Going to perform metalearning on the following datasets: {}".format(processed_data_filepath_ls))
+    # logging
+    _logger.info("Going to perform metalearning on the following {} datasets: {}".format(len(ready_datasets_ls), 
+                                                                                         ready_datasets_ls))
     
     ##################################################################################################
     # Meta Learning                                                                                  #
     ##################################################################################################
     
     # main loop of meta learning
-    for i, dataset_path in enumerate(processed_data_filepath_ls, 1):
+    for i, triplet in enumerate(ready_datasets_ls, 1):
         # logging
-        _logger.info("ITERATION {} of {}".format(i, len(processed_data_filepath_ls)))
-        _logger.info("Optimizing hyperparameters on the dataset at: {}".format(dataset_path))
+        _logger.info("ITERATION {} of {}".format(i, len(ready_datasets_ls)))
+        
+        # unpack paths 
+        raw_dataset_path, json_file_path, dataset_path = triplet
+        _logger.info("Optimizing hyperparameters using these files: {}".format(triplet))
         
         # read processed dataset as dataframe
         dataset = pd.read_csv(dataset_path, header='infer', sep=',')
@@ -151,13 +169,12 @@ def main():
         records["dataset"] = dataset_basename
         
         # get raw dataset
-        raw_dataset = pd.read_csv("{}/{}".format(config.raw_data_path, dataset_basename), 
-                                  header='infer', sep=',')
+        raw_dataset = pd.read_csv(raw_dataset_path, header='infer', sep=',')
         raw_dataset_np = raw_dataset.to_numpy()
         
         # get corresponding json filename, which tells us which columns are categorical and numerical
         json_filename = '{}.json'.format(dataset_basename_no_ext)
-        json_file_dict = read_json_file('{}/{}'.format(config.processed_data_path, json_filename))
+        json_file_dict = read_json_file(json_file_path)
         
         # calculate metafeatures
         general_metafeatures = [
