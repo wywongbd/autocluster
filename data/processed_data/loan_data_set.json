@@ -1,0 +1,1 @@
+{"path": "../data/raw_data/loan_data_set.csv", "y_col": "Loan_Status", "categorical_cols": ["Gender", "Married", "Education", "Self_Employed", "Property_Area"], "ignore_cols": ["Loan_ID"], "numeric_cols": ["ApplicantIncome", "CoapplicantIncome", "LoanAmount", "Loan_Amount_Term", "Credit_History"], "ordinal_cols": {"Dependents": [0, 1, 2, "3+"]}, "classification": true}
