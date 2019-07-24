@@ -186,7 +186,12 @@ class AutoCluster(object):
                      n_evaluations=30,
                      seed=27,
                      cutoff_time=50,
-                     numerical_cols=[]
+                     numerical_cols=[],
+                     categorical_cols=[],
+                     warmstart=True,
+                     general_metafeatures=['all'],
+                     numeric_metafeatures=[],
+                     categorical_metafeatures=[]
                     ):
         # load warmstarter
         warmstarter = KDTreeWarmstarter(Constants.default_general_metafeatures)
@@ -225,7 +230,7 @@ class AutoCluster(object):
             ], 
             "dim_reduction_alg_ls": [
                 'TSNE', 'PCA', 'IncrementalPCA', 
-                'KernelPCA', 'FastICA', 'TruncatedSVD'
+                'FastICA', 'TruncatedSVD'
             ],
             "n_evaluations": n_evaluations,
             "seed": seed, 
@@ -240,6 +245,27 @@ class AutoCluster(object):
         }
         
         return self.fit(**fit_config)
+    
+    def _fit_raw_data(self, df, 
+                     n_evaluations=30,
+                     seed=27,
+                     cutoff_time=50,
+                     numerical_cols=[],
+                     categorical_cols=[],
+                     warmstart=True,
+                     general_metafeatures=['all'],
+                     numeric_metafeatures=[],
+                     categorical_metafeatures=[]
+                    ):
+        # if warmstart is True, train warmstarter using desired metafeatures
+        
+        
+        # use warmstarter to get a list of initial configurations
+        
+        
+        # 
+        
+        pass
     
 
     def predict(self, X, plot=True):

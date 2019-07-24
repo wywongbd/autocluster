@@ -10,24 +10,10 @@ from ConfigSpace.conditions import InCondition
 
 class Mapper(object):
     d = {
-        "KMeans": algorithms.KMeans,
-        "DBSCAN": algorithms.DBSCAN,
-        "MiniBatchKMeans": algorithms.MiniBatchKMeans,
-        "AffinityPropagation": algorithms.AffinityPropagation,
-        "MeanShift": algorithms.MeanShift,
-        "SpectralClustering": algorithms.SpectralClustering,
-        "AgglomerativeClustering": algorithms.AgglomerativeClustering,
-        "OPTICS": algorithms.OPTICS,
-        "Birch": algorithms.Birch,
-        "GaussianMixture": algorithms.GaussianMixture,
-        "TSNE": algorithms.TSNE,
-		"PCA": algorithms.PCA,
-        "IncrementalPCA": algorithms.IncrementalPCA,
-        "LatentDirichletAllocation": algorithms.LatentDirichletAllocation,
-        "FastICA": algorithms.FastICA,
-        "TruncatedSVD": algorithms.TruncatedSVD,
-        "KernelPCA": algorithms.KernelPCA
+        class_name: class_obj for class_name, class_obj in (algorithms.__dict__).items() 
+        if '_' not in class_name
     }
+
     @staticmethod
     def getClass(string):
         return Mapper.d.get(string, None)
