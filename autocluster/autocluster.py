@@ -3,6 +3,10 @@ from algorithms import algorithms
 from build_config_space import build_config_space, Mapper, build_config_obj
 from utils.stringutils import StringUtils
 from utils.logutils import LogUtils
+from utils.constants import Constants 
+from utils.metafeatures import Metafeatures
+from warmstarter import KDTreeWarmstarter
+
 from sklearn import cluster, metrics, manifold
 from itertools import cycle, islice
 
@@ -16,6 +20,7 @@ import os
 import copy
 import logging
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 
 class AutoCluster(object):
@@ -146,32 +151,16 @@ class AutoCluster(object):
             self._log("Score obtained by this configuration: {}".format(score))
             return score
         
-        # dummy code to demonstrate how warmstarting can be used
-        # there must be at least two initial configurations
-        #
-        # dummy_dict = {
-        #     'algorithm___TruncatedSVD': 'randomized',
-        #     'clustering_choice': 'KMeans',
-        #     'dim_reduction_choice': 'TruncatedSVD',
-        #     'n_clusters___KMeans': 4,
-        #     'n_components___TruncatedSVD': 4,
-        #     'random_state___TruncatedSVD': 5
-        # }
-        # initial_configurations.append(build_config_obj(cs, dummy_dict))
-        # dummy_dict = {
-        #     'algorithm___FastICA': 'parallel',
-        #     'clustering_choice': 'GaussianMixture',
-        #     'covariance_type___GaussianMixture': 'tied',
-        #     'dim_reduction_choice': 'FastICA',
-        #     'fun___FastICA': 'logcosh',
-        #     'init_params___GaussianMixture': 'kmeans',
-        #     'n_components___FastICA': 3,
-        #     'n_components___GaussianMixture': 8,
-        #     'random_state___FastICA': 4,
-        #     'random_state___GaussianMixture': 5,
-        #     'whiten___FastICA': True
-        # }
-        # initial_configurations.append(build_config_obj(cs, dummy_dict))
+        # build configuration objects
+        if initial_configurations:
+            ls = []
+            for cfg in initial_configurations:
+                try:
+                    obj = build_config_obj(cs, cfg[0])
+                    ls.append(obj)
+                except:
+                    pass
+            initial_configurations = ls[0 : n_evaluations]
         
         # run SMAC to optimize
         smac_params = {
@@ -192,8 +181,68 @@ class AutoCluster(object):
         
         # return a pair
         return self._smac_obj, optimal_config
+    
+    def fit_raw_data(self, df, 
+                     n_evaluations=30,
+                     seed=27,
+                     cutoff_time=50,
+                     numerical_cols=[]
+                    ):
+        # load warmstarter
+        warmstarter = KDTreeWarmstarter(Constants.default_general_metafeatures)
+        warmstarter.fit()
+        
+        # load constants
+        default_general_metafeatures_set = set(Constants.default_general_metafeatures)
+        default_numeric_metafeatures_set = set(Constants.default_numeric_metafeatures)
+        
+        # compute metafeatures
+        feature = {} 
+        m_ls = [m for m in warmstarter.metafeatures if m != 'dataset']
+        
+        for m in m_ls:
+            if m in default_general_metafeatures_set:
+                feature[m] = getattr(Metafeatures, m)(df.to_numpy())
+            elif m in default_numeric_metafeatures_set:
+                if len(numerical_cols) > 0:
+                    feature[m] = getattr(Metafeatures, m)(df[numerical_cols].to_numpy())
+                else:
+                    feature = None
+                    break
+        
+        # get initial configurations
+        initial_configurations = None
+        if feature is not None:
+            feature = pd.DataFrame([feature])[m_ls].to_numpy()
+            initial_configurations = warmstarter.query(feature, 3, 20)
+        
+        # fit on data
+        fit_config = {
+            "X": df.to_numpy(), 
+            "cluster_alg_ls": [
+                'KMeans', 'GaussianMixture',
+                'MiniBatchKMeans', 'AgglomerativeClustering'
+            ], 
+            "dim_reduction_alg_ls": [
+                'TSNE', 'PCA', 'IncrementalPCA', 
+                'KernelPCA', 'FastICA', 'TruncatedSVD'
+            ],
+            "n_evaluations": n_evaluations,
+            "seed": seed, 
+            "run_obj": 'quality', 
+            "cutoff_time": cutoff_time, 
+            "shared_model": False,
+            "n_parallel_runs": 3,
+            "evaluator": lambda X, y_pred: 
+                            float('inf') if len(set(y_pred)) == 1 \
+                            else -1 * metrics.silhouette_score(X, y_pred),
+            "initial_configurations": initial_configurations
+        }
+        
+        return self.fit(**fit_config)
+    
 
-    def predict(self, X , plot=True):
+    def predict(self, X, plot=True):
         if self._clustering_model is None:
             return None
         
