@@ -88,7 +88,7 @@ class algorithms(object):
         _params = [
             UniformIntegerHyperparameter("n_clusters", 1, 30, default_value=10),
             UniformIntegerHyperparameter("batch_size", 10, 1000, default_value=100),
-            UniformIntegerHyperparameter("random_state", 0, 9, default_value=0)
+            # UniformIntegerHyperparameter("random_state", 0, 9, default_value=0)
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
@@ -234,7 +234,7 @@ class algorithms(object):
             CategoricalHyperparameter("covariance_type", ['full', 'tied', 'diag', 'spherical'], default_value='full'),
             CategoricalHyperparameter("init_params", ['kmeans', 'random'], default_value='kmeans'),
             CategoricalHyperparameter("warm_start", [True, False], default_value=False),
-            UniformIntegerHyperparameter("random_state", 0, 9, default_value=0)
+            # UniformIntegerHyperparameter("random_state", 0, 9, default_value=0)
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
@@ -254,7 +254,7 @@ class algorithms(object):
             OrdinalHyperparameter("n_components", sequence=list(range(2,3)), default_value=2),
             UniformFloatHyperparameter("perplexity", 1, 300, default_value=30),
             UniformFloatHyperparameter("early_exaggeration", 5.0, 20.0, default_value=12.0),
-            OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=0)
+            # OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=0)
         ]
         _params_names = set([p.name for p in _params]) 
         _conditions = []
@@ -270,10 +270,12 @@ class algorithms(object):
             CategoricalHyperparameter("whiten", [True, False], default_value=False),
             
             # "random_state" was included, used only when "svd_solver" = 'arpack', or 'randomized'
-            OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=0)
+            # OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=0)
         ]
         _params_names = set([p.name for p in _params])
-        _conditions = [InCondition(child=_params[3], parent=_params[1], values=['arpack', 'randomized'])]
+        _conditions = [
+            # InCondition(child=_params[3], parent=_params[1], values=['arpack', 'randomized'])
+        ]
         _forbidden_clauses = []
     
     class IncrementalPCA(object, metaclass=Metaclass):
@@ -298,7 +300,7 @@ class algorithms(object):
             CategoricalHyperparameter("algorithm", ['parallel', 'deflation'], default_value='parallel'),
             CategoricalHyperparameter("fun", ['logcosh', 'exp','cube'], default_value='logcosh'),
             CategoricalHyperparameter("whiten", [True,False], default_value=True),
-            OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=1)
+            # OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=1)
         ]
         _params_names = set([p.name for p in _params])
         _conditions = []
@@ -311,7 +313,7 @@ class algorithms(object):
         _params = [
             OrdinalHyperparameter("n_components", sequence=list(range(2, 10)), default_value=2),
             CategoricalHyperparameter("algorithm", ['arpack','randomized'], default_value='randomized'),
-            OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=1)
+            # OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=1)
         ]
         _params_names = set([p.name for p in _params])
         _conditions = []
@@ -324,7 +326,7 @@ class algorithms(object):
         _params = [
             OrdinalHyperparameter("n_components", sequence=list(range(2, 10)), default_value=2),
             CategoricalHyperparameter("kernel", ['linear','poly','rbf','sigmoid','cosine'], default_value='linear'),
-            OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=1)
+            # OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=1)
         ]
         _params_names = set([p.name for p in _params])
         _conditions = []
@@ -337,7 +339,7 @@ class algorithms(object):
         _params = [
             OrdinalHyperparameter("n_components", sequence=list(range(2, 10)), default_value=2),
             CategoricalHyperparameter("learning_method", ['batch','online'], default_value='batch'),
-            OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=1)
+            # OrdinalHyperparameter("random_state", sequence=list(range(10)), default_value=1)
         ]
         _params_names = set([p.name for p in _params])
         _conditions = []
