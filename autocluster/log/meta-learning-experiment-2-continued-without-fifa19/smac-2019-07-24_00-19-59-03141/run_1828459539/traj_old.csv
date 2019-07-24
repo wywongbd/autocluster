@@ -1,0 +1,6 @@
+"CPU Time Used","Estimated Training Performance","Wallclock Time","Incumbent ID","Automatic Configurator (CPU) Time","Configuration..."
+0.000000, 2147483648.000000, 0.000330, 1, 0.000330, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='12.0', n_clusters___KMeans='5', n_components___TSNE='2', perplexity___TSNE='30.0', random_state___TSNE='0'
+6.262176, -0.405380, 6.283499, 1, 0.021322, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='12.0', n_clusters___KMeans='5', n_components___TSNE='2', perplexity___TSNE='30.0', random_state___TSNE='0'
+71.652093, -0.946130, 133.139837, 2, 61.487743, clustering_choice=''KMeans'', dim_reduction_choice=''KernelPCA'', kernel___KernelPCA=''poly'', n_clusters___KMeans='9', n_components___KernelPCA='5', random_state___KernelPCA='2'
+71.825961, -0.975817, 133.336537, 3, 61.510576, clustering_choice=''KMeans'', dim_reduction_choice=''KernelPCA'', kernel___KernelPCA=''poly'', n_clusters___KMeans='7', n_components___KernelPCA='8', random_state___KernelPCA='2'
+393.617035, -0.989885, 486.265212, 4, 92.648178, clustering_choice=''KMeans'', dim_reduction_choice=''KernelPCA'', kernel___KernelPCA=''poly'', n_clusters___KMeans='2', n_components___KernelPCA='4', random_state___KernelPCA='9'
