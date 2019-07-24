@@ -160,7 +160,7 @@ class AutoCluster(object):
                     ls.append(obj)
                 except:
                     pass
-            initial_configurations = ls
+            initial_configurations = ls[0 : n_evaluations]
         
         # run SMAC to optimize
         smac_params = {
@@ -220,9 +220,8 @@ class AutoCluster(object):
         fit_config = {
             "X": df.to_numpy(), 
             "cluster_alg_ls": [
-                'KMeans', 'GaussianMixture', 'Birch',
-                'MiniBatchKMeans', 'AgglomerativeClustering', 'OPTICS', 
-                'SpectralClustering', 'DBSCAN', 'AffinityPropagation', 'MeanShift'
+                'KMeans', 'GaussianMixture',
+                'MiniBatchKMeans', 'AgglomerativeClustering'
             ], 
             "dim_reduction_alg_ls": [
                 'TSNE', 'PCA', 'IncrementalPCA', 
@@ -237,7 +236,7 @@ class AutoCluster(object):
             "evaluator": lambda X, y_pred: 
                             float('inf') if len(set(y_pred)) == 1 \
                             else -1 * metrics.silhouette_score(X, y_pred),
-            "initial_configurations": initial_configurations[0 : n_evaluations]
+            "initial_configurations": initial_configurations
         }
         
         return self.fit(**fit_config)
