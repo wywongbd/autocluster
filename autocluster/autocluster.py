@@ -1,12 +1,11 @@
-from dataset import Dataset
-from preprocess_data import PreprocessedDataset
 from algorithms import algorithms
-from build_config_space import build_config_space, Mapper, build_config_obj
+from warmstarter import KDTreeWarmstarter
+from preprocess_data import PreprocessedDataset
 from utils.stringutils import StringUtils
 from utils.logutils import LogUtils
 from utils.constants import Constants 
 from utils.metafeatures import calculate_metafeatures, MetafeatureMapper
-from warmstarter import KDTreeWarmstarter
+from build_config_space import build_config_space, build_config_obj, Mapper
 
 from itertools import cycle, islice
 from sklearn import cluster, metrics, manifold, ensemble, model_selection, preprocessing
@@ -54,6 +53,9 @@ class AutoCluster(object):
             categorical_metafeatures=[]
            ):
         """
+        ---------------------------------------------------------------------------
+        Arguments
+        ---------------------------------------------------------------------------
         df: a DataFrame
         preprocess_dict: should be a dictionary with keys 'numeric_cols', 'ordinal_cols', 'categorical_cols' and 'y_col'
         cluster_alg_ls: list of clustering algorithms to explore
