@@ -3,39 +3,7 @@ import scipy.stats as scStat
 import sklearn.decomposition
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import mutual_info_score
-
-
-class MetafeatureMapper(object):
-    feature_type = {
-        f: GeneralMetafeature for f in list(GeneralMetafeature.__dict__),
-        f: GeneralMetafeatureWithoutLabels for f in list(GeneralMetafeatureWithoutLabels.__dict__),
-        f: NumericMetafeature for f in list(NumericMetafeature.__dict__),
-        f: CategoricalMetafeature for f in list(CategoricalMetafeature.__dict__),
-        f: CategoricalMetafeatureWithLabels for f in list(CategoricalMetafeatureWithLabels.__dict__),
-    }
-    
-    feature_function = {
-        
-    }
-    
-    feature_type = {
-        'numberOfInstances' : GeneralMetafeature
-        'logNumberOfInstances' : GeneralMetafeature
-        'numberOfMissingValues' : GeneralMetafeature
-        'missingValuesRatio' : GeneralMetafeature
-        'sparsity' : GeneralMetafeature
-        'numberOfFeatures' : GeneralMetafeatureWithoutLabels
-    }
-    
-    feature_function = {
-        'numberOfInstances' : GeneralMetafeature.numberOfInstances
-        'logNumberOfInstances' : GeneralMetafeature.logNumberOfInstances
-        'numberOfMissingValues' : GeneralMetafeature.numberOfMissingValues
-        'missingValuesRatio' : GeneralMetafeature.missingValuesRatio
-        'sparsity' : GeneralMetafeature.sparsity
-        'numberOfFeatures' : GeneralMetafeatureWithoutLabels.numberOfFeatures
-    }
-
+from collections import Counter
 
 
 # all functions are based off of the implementation in autosklearn
@@ -57,7 +25,7 @@ class GeneralMetafeature(object):
         
     @staticmethod
     def logNumberOfInstances(X):
-        return np.log(Metafeatures.GeneralMetafeature.numberOfInstances(X))
+        return np.log(GeneralMetafeature.numberOfInstances(X))
         
     #currently this is used to check for mistaken input 
     # in the future maybe we can generalize for dataset with missing data?
@@ -68,7 +36,7 @@ class GeneralMetafeature(object):
 
     @staticmethod
     def missingValuesRatio(X):
-        return Metafeatures.GeneralMetafeature.numberOfMissingValues(X) / X.size
+        return GeneralMetafeature.numberOfMissingValues(X) / X.size
 
     @staticmethod
     def sparsity(X):
@@ -87,16 +55,16 @@ class GeneralMetafeatureWithoutLabels(object):
 
     @staticmethod
     def logNumberOfFeatures(X):
-        return np.log(Metafeatures.GeneralMetafeatureWithoutLabels.numberOfFeatures(X))
+        return np.log(GeneralMetafeatureWithoutLabels.numberOfFeatures(X))
         
     @staticmethod
     def datasetRatio(X):
-        return float(Metafeatures.GeneralMetafeatureWithoutLabels.numberOfFeatures(X)) /\
-            float(Metafeatures.GeneralMetafeature.numberOfInstances(X))
+        return float(GeneralMetafeatureWithoutLabels.numberOfFeatures(X)) /\
+            float(GeneralMetafeature.numberOfInstances(X))
 
     @staticmethod
     def logDatasetRatio(X):
-        return np.log(Metafeatures.GeneralMetafeatureWithoutLabels.datasetRatio(X))
+        return np.log(GeneralMetafeatureWithoutLabels.datasetRatio(X))
 
 
 
@@ -487,7 +455,7 @@ class CategoricalMetafeature(object):
             freq_dict = Counter(sublist1)
             probs = np.array([value / len(sublist1) for value in freq_dict.values()])
             entropies.append(np.sum(-np.log2(probs) * probs))
-        return np.min(entropies) / np.log2(Metafeatures.numberOfInstances(X))
+        return np.min(entropies) / np.log2(GeneralMetafeature.numberOfInstances(X))
     
     @staticmethod
     def maxEntropy(X):
@@ -498,7 +466,7 @@ class CategoricalMetafeature(object):
             freq_dict = Counter(sublist1)
             probs = np.array([value / len(sublist1) for value in freq_dict.values()])
             entropies.append(np.sum(-np.log2(probs) * probs))
-        return np.max(entropies) / np.log2(Metafeatures.numberOfInstances(X))
+        return np.max(entropies) / np.log2(GeneralMetafeature.numberOfInstances(X))
     
     @staticmethod
     def medianEntropy(X):
@@ -509,7 +477,7 @@ class CategoricalMetafeature(object):
             freq_dict = Counter(sublist1)
             probs = np.array([value / len(sublist1) for value in freq_dict.values()])
             entropies.append(np.sum(-np.log2(probs) * probs))
-        return np.median(entropies) / np.log2(Metafeatures.numberOfInstances(X))
+        return np.median(entropies) / np.log2(GeneralMetafeature.numberOfInstances(X))
     
     @staticmethod
     def meanEntropy(X):
@@ -520,7 +488,7 @@ class CategoricalMetafeature(object):
             freq_dict = Counter(sublist1)
             probs = np.array([value / len(sublist1) for value in freq_dict.values()])
             entropies.append(np.sum(-np.log2(probs) * probs))
-        return np.mean(entropies) / np.log2(Metafeatures.numberOfInstances(X))
+        return np.mean(entropies) / np.log2(GeneralMetafeature.numberOfInstances(X))
     
     @staticmethod
     def firstQuartileEntropy(X):
@@ -531,7 +499,7 @@ class CategoricalMetafeature(object):
             freq_dict = Counter(sublist1)
             probs = np.array([value / len(sublist1) for value in freq_dict.values()])
             entropies.append(np.sum(-np.log2(probs) * probs))
-        return np.percentile(entropies, 25) / np.log2(Metafeatures.numberOfInstances(X))
+        return np.percentile(entropies, 25) / np.log2(GeneralMetafeature.numberOfInstances(X))
     
     @staticmethod
     def thirdQuartileEntropy(X):
@@ -542,7 +510,7 @@ class CategoricalMetafeature(object):
             freq_dict = Counter(sublist1)
             probs = np.array([value / len(sublist1) for value in freq_dict.values()])
             entropies.append(np.sum(-np.log2(probs) * probs))
-        return np.percentile(entropies, 75) / np.log2(Metafeatures.numberOfInstances(X))
+        return np.percentile(entropies, 75) / np.log2(GeneralMetafeature.numberOfInstances(X))
     
     
     
@@ -656,3 +624,93 @@ class CategoricalMetafeatureWithLabels(object):
             mutInf.append(mutual_info_score(labels_true = class_col1, labels_pred = sublist))
             
         return np.percentile(mutInf, 75)
+    
+    
+#########################################################################################################
+
+    
+class MetafeatureMapper(object):
+    feature_type = {
+        f: GeneralMetafeature for f in list(GeneralMetafeature.__dict__) if '_' not in f
+    }
+    feature_type.update({f: GeneralMetafeatureWithoutLabels for f in list(GeneralMetafeatureWithoutLabels.__dict__) if '_' not in f})
+    feature_type.update({f: NumericMetafeature for f in list(NumericMetafeature.__dict__) if '_' not in f})
+    feature_type.update({f: CategoricalMetafeature for f in list(CategoricalMetafeature.__dict__) if '_' not in f})
+    feature_type.update({f: CategoricalMetafeatureWithLabels for f in list(CategoricalMetafeatureWithLabels.__dict__) if '_' not in f})
+    
+    feature_function = {
+        f_name: f_obj for f_name, f_obj in (GeneralMetafeature.__dict__).items() if '_' not in f_name
+    }
+    feature_function.update({f_name: f_obj for f_name, f_obj in (GeneralMetafeatureWithoutLabels.__dict__).items() if '_' not in f_name})
+    feature_function.update({f_name: f_obj for f_name, f_obj in (NumericMetafeature.__dict__).items() if '_' not in f_name})
+    feature_function.update({f_name: f_obj for f_name, f_obj in (CategoricalMetafeature.__dict__).items() if '_' not in f_name})
+    feature_function.update({f_name: f_obj for f_name, f_obj in (CategoricalMetafeatureWithLabels.__dict__).items() if '_' not in f_name})
+    
+    @staticmethod
+    def getClass(string):
+        return MetafeatureMapper.feature_type.get(string, None)
+    
+    @staticmethod
+    def getMetafeatureFunction(string):
+        return MetafeatureMapper.feature_function.get(string, None)
+    
+    @staticmethod
+    def getAllMetafeatures():
+        return list(MetafeatureMapper.feature_type.keys())
+    
+    @staticmethod
+    def getGeneralMetafeatures():
+        return [key for key, value in MetafeatureMapper.feature_type.items() if value is GeneralMetafeature]
+    
+    @staticmethod
+    def getGeneralMetafeaturesWithoutLabels():
+        return [key for key, value in MetafeatureMapper.feature_type.items() if value is GeneralMetafeatureWithoutLabels]
+    
+    @staticmethod
+    def getNumericMetafeatures():
+        return [key for key, value in MetafeatureMapper.feature_type.items() if value is NumericMetafeature]
+    
+    @staticmethod
+    def getCategoricalMetafeatures():
+        return [key for key, value in MetafeatureMapper.feature_type.items() if value is CategoricalMetafeature]
+    
+    @staticmethod
+    def getCategoricalMetafeaturesWithLabels():
+        return [key for key, value in MetafeatureMapper.feature_type.items() if value is CategoricalMetafeatureWithLabels]
+    
+    
+    
+def calculate_metafeatures(raw_dataset, file_dict, metafeature_ls = []):
+    if len(metafeature_ls) == 0:
+        metafeature_ls = MetafeatureMapper.getAllMetafeatures()
+        
+    values = []
+    
+    for feature_str in metafeature_ls:
+        feature_class = MetafeatureMapper.getClass(feature_str)
+        datasets = []
+        app_data_type = True
+        
+        for i in range(feature_class.splitted_data_num):
+            col_list = []
+            
+            for col in feature_class.data_type[i]:
+                if file_dict[col]:
+                    temp_data = raw_dataset[file_dict[col]].to_numpy()
+                    if temp_data.ndim == 1:
+                        temp_data = np.reshape(temp_data, (-1, 1))
+                    col_list.append(temp_data)
+                else:
+                    values[feature_str] = None
+                    app_data_type = False
+                    break
+                    
+            if app_data_type:
+                datasets.append(np.concatenate(tuple(col_list), axis=1))
+            else:
+                break
+            
+        if app_data_type:
+            values.append(MetafeatureMapper.getMetafeatureFunction(feature_str).__get__(object)(*datasets))
+        
+    return np.array(values)
