@@ -700,17 +700,15 @@ def calculate_metafeatures(raw_dataset, file_dict, metafeature_ls = []):
                     if temp_data.ndim == 1:
                         temp_data = np.reshape(temp_data, (-1, 1))
                     col_list.append(temp_data)
-                else:
-                    values.append(None)
-                    app_data_type = False
-                    break
                     
-            if app_data_type:
-                datasets.append(np.concatenate(tuple(col_list), axis=1))
-            else:
+            if len(col_list) == 0:
+                values.append(None)
+                app_data_type = False
                 break
+            else:
+                datasets.append(np.concatenate(tuple(col_list), axis=1))
             
         if app_data_type:
             values.append(MetafeatureMapper.getMetafeatureFunction(feature_str).__get__(object)(*datasets))
         
-    return np.reshape(np.array(values), (-1, 1))
+    return np.array(values)
