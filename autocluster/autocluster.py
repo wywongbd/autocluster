@@ -5,7 +5,7 @@ from build_config_space import build_config_space, Mapper, build_config_obj
 from utils.stringutils import StringUtils
 from utils.logutils import LogUtils
 from utils.constants import Constants 
-from utils.metafeatures import Metafeatures
+from utils.metafeatures import calculate_metafeatures, MetafeatureMapper
 from warmstarter import KDTreeWarmstarter
 
 from itertools import cycle, islice
@@ -308,9 +308,11 @@ class AutoCluster(object):
             warmstarter.fit()
             
             # calculate metafeatures
-            # metafeatures = calculate_metafeatures(raw_data_cleaned,
-            #                                       general_metafeatures + numeric_metafeatures + \
-            #                                       categorical_metafeatures)
+            metafeatures = calculate_metafeatures(raw_data_cleaned,
+                                                  preprocess_dict,
+                                                  general_metafeatures + numeric_metafeatures + 
+                                                  categorical_metafeatures)
+            print(metafeatures)
             
             # query for suitable configurations
             initial_configurations = warmstarter.query(metafeatures, 3, 20)
