@@ -1,0 +1,1 @@
+{"path": "../data/raw_data/income_evaluation.csv", "y_col": " income", "categorical_cols": [" workclass", " education", " marital-status", " occupation", " relationship", " race", " sex", " native-country"], "ignore_cols": ["capital"], "numeric_cols": ["age", " fnlwgt", " education-num", " capital-gain", " capital-loss", " hours-per-week"], "ordinal_cols": {}}
