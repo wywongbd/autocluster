@@ -48,6 +48,7 @@ class AutoCluster(object):
                    else -1 * metrics.silhouette_score(X, y_pred, metric='euclidean')),
             preprocess_dict={},
             warmstart=False,
+            warmstart_datasets_dir='silhouette',
             general_metafeatures=[],
             numeric_metafeatures=[],
             categorical_metafeatures=[]
@@ -116,7 +117,8 @@ class AutoCluster(object):
             warmstarter.fit()
             
             # query for suitable configurations
-            initial_configurations = warmstarter.query(metafeatures_np, 3, 20)
+            initial_configurations = warmstarter.query(metafeatures_np, 3, 20, 
+                                                       datasets_dir=warmstart_datasets_dir)
             
             # construct configuration objects
             for cfg in initial_configurations:
