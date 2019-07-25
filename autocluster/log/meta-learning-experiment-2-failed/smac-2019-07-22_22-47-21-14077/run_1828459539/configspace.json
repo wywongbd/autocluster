@@ -1,0 +1,947 @@
+{
+  "json_format_version": 0.1,
+  "conditions": [
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "affinity___AffinityPropagation",
+      "values": [
+        "AffinityPropagation"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "affinity___AgglomerativeClustering",
+      "values": [
+        "AgglomerativeClustering"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "affinity___SpectralClustering",
+      "values": [
+        "SpectralClustering"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "assign_labels___SpectralClustering",
+      "values": [
+        "SpectralClustering"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "bandwidth___MeanShift",
+      "values": [
+        "MeanShift"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "batch_size___MiniBatchKMeans",
+      "values": [
+        "MiniBatchKMeans"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "bin_seeding___MeanShift",
+      "values": [
+        "MeanShift"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "branching_factor___Birch",
+      "values": [
+        "Birch"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "cluster_method___OPTICS",
+      "values": [
+        "OPTICS"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "covariance_type___GaussianMixture",
+      "values": [
+        "GaussianMixture"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "damping___AffinityPropagation",
+      "values": [
+        "AffinityPropagation"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "eigen_solver___SpectralClustering",
+      "values": [
+        "SpectralClustering"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "eps___DBSCAN",
+      "values": [
+        "DBSCAN"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "init_params___GaussianMixture",
+      "values": [
+        "GaussianMixture"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "linkage___AgglomerativeClustering",
+      "values": [
+        "AgglomerativeClustering"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "metric___OPTICS",
+      "values": [
+        "OPTICS"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "min_samples___DBSCAN",
+      "values": [
+        "DBSCAN"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "min_samples___OPTICS",
+      "values": [
+        "OPTICS"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "n_clusters___AgglomerativeClustering",
+      "values": [
+        "AgglomerativeClustering"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "n_clusters___Birch",
+      "values": [
+        "Birch"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "n_clusters___KMeans",
+      "values": [
+        "KMeans"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "n_clusters___MiniBatchKMeans",
+      "values": [
+        "MiniBatchKMeans"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "n_clusters___SpectralClustering",
+      "values": [
+        "SpectralClustering"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "n_components___GaussianMixture",
+      "values": [
+        "GaussianMixture"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "random_state___GaussianMixture",
+      "values": [
+        "GaussianMixture"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "random_state___MiniBatchKMeans",
+      "values": [
+        "MiniBatchKMeans"
+      ]
+    },
+    {
+      "parent": "clustering_choice",
+      "type": "IN",
+      "child": "warm_start___GaussianMixture",
+      "values": [
+        "GaussianMixture"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "algorithm___FastICA",
+      "values": [
+        "FastICA"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "algorithm___TruncatedSVD",
+      "values": [
+        "TruncatedSVD"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "batch_size___IncrementalPCA",
+      "values": [
+        "IncrementalPCA"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "early_exaggeration___TSNE",
+      "values": [
+        "TSNE"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "fun___FastICA",
+      "values": [
+        "FastICA"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "kernel___KernelPCA",
+      "values": [
+        "KernelPCA"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "n_components___FastICA",
+      "values": [
+        "FastICA"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "n_components___IncrementalPCA",
+      "values": [
+        "IncrementalPCA"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "n_components___KernelPCA",
+      "values": [
+        "KernelPCA"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "n_components___PCA",
+      "values": [
+        "PCA"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "n_components___TSNE",
+      "values": [
+        "TSNE"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "n_components___TruncatedSVD",
+      "values": [
+        "TruncatedSVD"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "perplexity___TSNE",
+      "values": [
+        "TSNE"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "random_state___FastICA",
+      "values": [
+        "FastICA"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "random_state___KernelPCA",
+      "values": [
+        "KernelPCA"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "random_state___PCA",
+      "values": [
+        "PCA"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "random_state___TSNE",
+      "values": [
+        "TSNE"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "random_state___TruncatedSVD",
+      "values": [
+        "TruncatedSVD"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "svd_solver___PCA",
+      "values": [
+        "PCA"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "whiten___FastICA",
+      "values": [
+        "FastICA"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "whiten___IncrementalPCA",
+      "values": [
+        "IncrementalPCA"
+      ]
+    },
+    {
+      "parent": "dim_reduction_choice",
+      "type": "IN",
+      "child": "whiten___PCA",
+      "values": [
+        "PCA"
+      ]
+    }
+  ],
+  "forbiddens": [
+    {
+      "clauses": [
+        {
+          "type": "EQUALS",
+          "value": "ward",
+          "name": "linkage___AgglomerativeClustering"
+        },
+        {
+          "type": "IN",
+          "values": [
+            "manhattan",
+            "cityblock",
+            "l1",
+            "l2",
+            "cosine"
+          ],
+          "name": "affinity___AgglomerativeClustering"
+        }
+      ],
+      "type": "AND",
+      "name": "linkage___AgglomerativeClustering"
+    }
+  ],
+  "python_module_version": "0.4.10",
+  "hyperparameters": [
+    {
+      "choices": [
+        "KMeans",
+        "GaussianMixture",
+        "Birch",
+        "MiniBatchKMeans",
+        "AgglomerativeClustering",
+        "OPTICS",
+        "SpectralClustering",
+        "DBSCAN",
+        "AffinityPropagation",
+        "MeanShift"
+      ],
+      "default": "KMeans",
+      "type": "categorical",
+      "name": "clustering_choice"
+    },
+    {
+      "choices": [
+        "TSNE",
+        "PCA",
+        "IncrementalPCA",
+        "KernelPCA",
+        "FastICA",
+        "TruncatedSVD"
+      ],
+      "default": "TSNE",
+      "type": "categorical",
+      "name": "dim_reduction_choice"
+    },
+    {
+      "choices": [
+        "euclidean"
+      ],
+      "default": "euclidean",
+      "type": "categorical",
+      "name": "affinity___AffinityPropagation"
+    },
+    {
+      "choices": [
+        "euclidean",
+        "cityblock",
+        "l2",
+        "l1",
+        "manhattan",
+        "cosine"
+      ],
+      "default": "euclidean",
+      "type": "categorical",
+      "name": "affinity___AgglomerativeClustering"
+    },
+    {
+      "choices": [
+        "nearest_neighbors",
+        "poly",
+        "sigmoid",
+        "laplacian",
+        "rbf"
+      ],
+      "default": "rbf",
+      "type": "categorical",
+      "name": "affinity___SpectralClustering"
+    },
+    {
+      "choices": [
+        "parallel",
+        "deflation"
+      ],
+      "default": "parallel",
+      "type": "categorical",
+      "name": "algorithm___FastICA"
+    },
+    {
+      "choices": [
+        "arpack",
+        "randomized"
+      ],
+      "default": "randomized",
+      "type": "categorical",
+      "name": "algorithm___TruncatedSVD"
+    },
+    {
+      "choices": [
+        "kmeans",
+        "discretize"
+      ],
+      "default": "kmeans",
+      "type": "categorical",
+      "name": "assign_labels___SpectralClustering"
+    },
+    {
+      "log": false,
+      "type": "uniform_float",
+      "name": "bandwidth___MeanShift",
+      "default": 25.05,
+      "upper": 50.0,
+      "lower": 0.1
+    },
+    {
+      "log": false,
+      "type": "uniform_int",
+      "name": "batch_size___IncrementalPCA",
+      "default": 100,
+      "upper": 1000,
+      "lower": 10
+    },
+    {
+      "log": false,
+      "type": "uniform_int",
+      "name": "batch_size___MiniBatchKMeans",
+      "default": 100,
+      "upper": 1000,
+      "lower": 10
+    },
+    {
+      "choices": [
+        true,
+        false
+      ],
+      "default": false,
+      "type": "categorical",
+      "name": "bin_seeding___MeanShift"
+    },
+    {
+      "log": false,
+      "type": "uniform_int",
+      "name": "branching_factor___Birch",
+      "default": 50,
+      "upper": 1000,
+      "lower": 10
+    },
+    {
+      "choices": [
+        "xi",
+        "dbscan"
+      ],
+      "default": "xi",
+      "type": "categorical",
+      "name": "cluster_method___OPTICS"
+    },
+    {
+      "choices": [
+        "full",
+        "tied",
+        "diag",
+        "spherical"
+      ],
+      "default": "full",
+      "type": "categorical",
+      "name": "covariance_type___GaussianMixture"
+    },
+    {
+      "log": false,
+      "type": "uniform_float",
+      "name": "damping___AffinityPropagation",
+      "default": 0.5,
+      "upper": 1.0,
+      "lower": 0.5
+    },
+    {
+      "log": false,
+      "type": "uniform_float",
+      "name": "early_exaggeration___TSNE",
+      "default": 12.0,
+      "upper": 20.0,
+      "lower": 5.0
+    },
+    {
+      "choices": [
+        "arpack"
+      ],
+      "default": "arpack",
+      "type": "categorical",
+      "name": "eigen_solver___SpectralClustering"
+    },
+    {
+      "log": false,
+      "type": "uniform_float",
+      "name": "eps___DBSCAN",
+      "default": 0.01,
+      "upper": 5.0,
+      "lower": 0.01
+    },
+    {
+      "choices": [
+        "logcosh",
+        "exp",
+        "cube"
+      ],
+      "default": "logcosh",
+      "type": "categorical",
+      "name": "fun___FastICA"
+    },
+    {
+      "choices": [
+        "kmeans",
+        "random"
+      ],
+      "default": "kmeans",
+      "type": "categorical",
+      "name": "init_params___GaussianMixture"
+    },
+    {
+      "choices": [
+        "linear",
+        "poly",
+        "rbf",
+        "sigmoid",
+        "cosine"
+      ],
+      "default": "linear",
+      "type": "categorical",
+      "name": "kernel___KernelPCA"
+    },
+    {
+      "choices": [
+        "ward",
+        "complete",
+        "average",
+        "single"
+      ],
+      "default": "complete",
+      "type": "categorical",
+      "name": "linkage___AgglomerativeClustering"
+    },
+    {
+      "choices": [
+        "minkowski",
+        "euclidean",
+        "manhattan",
+        "l1",
+        "l2",
+        "cosine"
+      ],
+      "default": "minkowski",
+      "type": "categorical",
+      "name": "metric___OPTICS"
+    },
+    {
+      "log": false,
+      "type": "uniform_int",
+      "name": "min_samples___DBSCAN",
+      "default": 5,
+      "upper": 100,
+      "lower": 5
+    },
+    {
+      "log": false,
+      "type": "uniform_int",
+      "name": "min_samples___OPTICS",
+      "default": 100,
+      "upper": 1000,
+      "lower": 5
+    },
+    {
+      "log": false,
+      "type": "uniform_int",
+      "name": "n_clusters___AgglomerativeClustering",
+      "default": 10,
+      "upper": 30,
+      "lower": 1
+    },
+    {
+      "log": false,
+      "type": "uniform_int",
+      "name": "n_clusters___Birch",
+      "default": 5,
+      "upper": 30,
+      "lower": 1
+    },
+    {
+      "log": false,
+      "type": "uniform_int",
+      "name": "n_clusters___KMeans",
+      "default": 5,
+      "upper": 30,
+      "lower": 1
+    },
+    {
+      "log": false,
+      "type": "uniform_int",
+      "name": "n_clusters___MiniBatchKMeans",
+      "default": 10,
+      "upper": 30,
+      "lower": 1
+    },
+    {
+      "log": false,
+      "type": "uniform_int",
+      "name": "n_clusters___SpectralClustering",
+      "default": 10,
+      "upper": 20,
+      "lower": 1
+    },
+    {
+      "default": 2,
+      "sequence": [
+        2,
+        3
+      ],
+      "type": "ordinal",
+      "name": "n_components___FastICA"
+    },
+    {
+      "log": false,
+      "type": "uniform_int",
+      "name": "n_components___GaussianMixture",
+      "default": 5,
+      "upper": 30,
+      "lower": 1
+    },
+    {
+      "default": 2,
+      "sequence": [
+        2,
+        3
+      ],
+      "type": "ordinal",
+      "name": "n_components___IncrementalPCA"
+    },
+    {
+      "default": 2,
+      "sequence": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "type": "ordinal",
+      "name": "n_components___KernelPCA"
+    },
+    {
+      "default": 2,
+      "sequence": [
+        2,
+        3
+      ],
+      "type": "ordinal",
+      "name": "n_components___PCA"
+    },
+    {
+      "default": 2,
+      "sequence": [
+        2
+      ],
+      "type": "ordinal",
+      "name": "n_components___TSNE"
+    },
+    {
+      "default": 2,
+      "sequence": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "type": "ordinal",
+      "name": "n_components___TruncatedSVD"
+    },
+    {
+      "log": false,
+      "type": "uniform_float",
+      "name": "perplexity___TSNE",
+      "default": 30.0,
+      "upper": 300.0,
+      "lower": 1.0
+    },
+    {
+      "default": 1,
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "type": "ordinal",
+      "name": "random_state___FastICA"
+    },
+    {
+      "log": false,
+      "type": "uniform_int",
+      "name": "random_state___GaussianMixture",
+      "default": 0,
+      "upper": 9,
+      "lower": 0
+    },
+    {
+      "default": 1,
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "type": "ordinal",
+      "name": "random_state___KernelPCA"
+    },
+    {
+      "log": false,
+      "type": "uniform_int",
+      "name": "random_state___MiniBatchKMeans",
+      "default": 0,
+      "upper": 9,
+      "lower": 0
+    },
+    {
+      "default": 0,
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "type": "ordinal",
+      "name": "random_state___PCA"
+    },
+    {
+      "default": 0,
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "type": "ordinal",
+      "name": "random_state___TSNE"
+    },
+    {
+      "default": 1,
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "type": "ordinal",
+      "name": "random_state___TruncatedSVD"
+    },
+    {
+      "choices": [
+        "auto",
+        "full",
+        "arpack",
+        "randomized"
+      ],
+      "default": "auto",
+      "type": "categorical",
+      "name": "svd_solver___PCA"
+    },
+    {
+      "choices": [
+        true,
+        false
+      ],
+      "default": false,
+      "type": "categorical",
+      "name": "warm_start___GaussianMixture"
+    },
+    {
+      "choices": [
+        true,
+        false
+      ],
+      "default": true,
+      "type": "categorical",
+      "name": "whiten___FastICA"
+    },
+    {
+      "choices": [
+        true,
+        false
+      ],
+      "default": false,
+      "type": "categorical",
+      "name": "whiten___IncrementalPCA"
+    },
+    {
+      "choices": [
+        true,
+        false
+      ],
+      "default": false,
+      "type": "categorical",
+      "name": "whiten___PCA"
+    }
+  ]
+}

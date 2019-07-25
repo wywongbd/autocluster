@@ -1,0 +1,13 @@
+execdir = .
+ta_run_limit = 200.0
+overall_obj = par10
+initial_incumbent = DEFAULT
+deterministic = True
+always_race_default = False
+wallclock_limit = inf
+algo_runs_timelimit = inf
+cost_for_crash = 2147483647.0
+pcs_fn = log//metalearning-2019-07-22_22-46-59-98668/smac-2019-07-22_23-08-35-72512/run_1828459539/configspace.json
+run_obj = quality
+par_factor = 10
+cutoff = 1000.0

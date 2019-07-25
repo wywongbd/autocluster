@@ -1,0 +1,1 @@
+{"path": "../data/raw_data/xray.csv", "y_col": "Finding Labels", "categorical_cols": ["Patient Gender", "View Position"], "ignore_cols": ["Image Index", "Patient ID", "Patient Age"], "numeric_cols": ["Follow-up #", "Patient Age#", "OriginalImageWidth", "OriginalImageHeight", "OriginalImagePixelSpacing_x", "OriginalImagePixelSpacing_y"], "ordinal_cols": {}, "classification": true}

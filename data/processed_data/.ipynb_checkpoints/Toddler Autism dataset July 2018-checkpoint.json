@@ -1,0 +1,1 @@
+{"path": "../data/raw_data/Toddler Autism dataset July 2018.csv", "y_col": "Class/ASD Traits ", "categorical_cols": ["A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10", "Sex", "Ethnicity", "Jaundice", "Family_mem_with_ASD", "Who completed the test"], "ignore_cols": ["Case_No"], "numeric_cols": ["Age_Mons", "Qchat-10-Score"], "ordinal_cols": {}, "classification": true}
