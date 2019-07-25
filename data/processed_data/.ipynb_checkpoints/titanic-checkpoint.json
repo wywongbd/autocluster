@@ -1,1 +1,0 @@
-{"path": "../data/raw_data/titanic.csv", "y_col": "Survived", "categorical_cols": ["Sex", "Embarked"], "ignore_cols": ["PassengerId", "Name", "Ticket", "Cabin"], "numeric_cols": ["Age", "SibSp", "Parch", "Fare"], "ordinal_cols": {"Pclass": [1, 2, 3]}, "classification": true}
