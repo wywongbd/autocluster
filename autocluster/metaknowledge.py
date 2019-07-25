@@ -19,6 +19,8 @@ parser.add_argument("--log_filepath_ls", default=[], nargs='+', type=str,
                     help="List of log files to process.")
 parser.add_argument("--metafeatures_filename", type=str, default='metafeatures_table', 
                     help="Name of metafeatures table (to be generated).")
+# parser.add_argument("--metaknowledge_prefix", default='silhouette', type=str,
+#                     help="Which folder does this metaknowledge belongs to?")
 
 config = parser.parse_args()
 
