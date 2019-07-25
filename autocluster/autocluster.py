@@ -101,22 +101,22 @@ class AutoCluster(object):
         cs = build_config_space(cluster_alg_ls, dim_reduction_alg_ls)
         self._log(cs)    
         
+        # calculate metafeatures
+        metafeatures_np = None
+        metafeatures_ls = general_metafeatures + numeric_metafeatures + categorical_metafeatures
+        if len(metafeatures_ls) > 0:
+            metafeatures_np = calculate_metafeatures(raw_data_cleaned, preprocess_dict, 
+                                                     metafeatures_ls)
+        
         # perform warmstart, if needed
         initial_cfgs_ls = []
-        if warmstart:
+        if warmstart and len(metafeatures_ls) > 0:
             # create and train warmstarter 
-            warmstarter = KDTreeWarmstarter(general_metafeatures + numeric_metafeatures + \
-                                            categorical_metafeatures)
+            warmstarter = KDTreeWarmstarter(metafeatures_ls)
             warmstarter.fit()
             
-            # calculate metafeatures
-            metafeatures = calculate_metafeatures(raw_data_cleaned,
-                                                  preprocess_dict,
-                                                  general_metafeatures + numeric_metafeatures + 
-                                                  categorical_metafeatures)
-            
             # query for suitable configurations
-            initial_configurations = warmstarter.query(metafeatures, 3, 20)
+            initial_configurations = warmstarter.query(metafeatures_np, 3, 20)
             
             # construct configuration objects
             for cfg in initial_configurations:
@@ -257,8 +257,19 @@ class AutoCluster(object):
         self._log("Took {} seconds.".format(round(self._smac_obj.stats.get_used_wallclock_time(), 2)))
         self._log("The optimal configuration is \n{}".format(optimal_config))
         
-        # return a pair
-        return self._smac_obj, optimal_config
+        # return a dictionary
+        result = {
+            "cluster_alg_ls": cluster_alg_ls,
+            "dim_reduction_alg_ls": dim_reduction_alg_ls,
+            "smac_obj": self._smac_obj,
+            "optimal_cfg": optimal_config,
+            "metafeatures": metafeatures_np,
+            "metafeatures_used": metafeatures_ls,
+            "clustering_model": self._clustering_model,
+            "dim_reduction_model": self._dim_reduction_model,
+            "scaler": self._scaler
+        }
+        return result
     
 
     def predict(self, df, plot=True):
