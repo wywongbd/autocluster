@@ -6,6 +6,7 @@ import pathlib
 import logging
 import json
 import random
+import traceback
 import numpy as np
 import pandas as pd
 
@@ -168,8 +169,10 @@ def main():
             _logger.info("Record on ITERATION {}: \n{}".format(i, records))
             _logger.info("Done with ITERATION {}.".format(i))
         
-        except:
+        except Exception as e:
             # logging
+            _logger.info("Error message: {}".format(str(e)))
+            _logger.info("Traceback: {}".format(traceback.format_exc()))
             _logger.info("ITERATION {} of {} FAILED! ".format(i, len(merged_dict)))
 
 if __name__ == '__main__':
