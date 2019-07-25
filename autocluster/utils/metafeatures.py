@@ -701,7 +701,7 @@ def calculate_metafeatures(raw_dataset, file_dict, metafeature_ls = []):
                         temp_data = np.reshape(temp_data, (-1, 1))
                     col_list.append(temp_data)
                 else:
-                    values[feature_str] = None
+                    values.append(None)
                     app_data_type = False
                     break
                     
@@ -713,4 +713,4 @@ def calculate_metafeatures(raw_dataset, file_dict, metafeature_ls = []):
         if app_data_type:
             values.append(MetafeatureMapper.getMetafeatureFunction(feature_str).__get__(object)(*datasets))
         
-    return np.array(values)
+    return np.reshape(np.array(values), (-1, 1))
