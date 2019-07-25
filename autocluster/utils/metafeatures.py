@@ -4,87 +4,121 @@ import sklearn.decomposition
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import mutual_info_score
 
+
+class MetafeatureMapper(object):
+    feature_type = {
+        f: GeneralMetafeature for f in list(GeneralMetafeature.__dict__),
+        f: GeneralMetafeatureWithoutLabels for f in list(GeneralMetafeatureWithoutLabels.__dict__),
+        f: NumericMetafeature for f in list(NumericMetafeature.__dict__),
+        f: CategoricalMetafeature for f in list(CategoricalMetafeature.__dict__),
+        f: CategoricalMetafeatureWithLabels for f in list(CategoricalMetafeatureWithLabels.__dict__),
+    }
+    
+    feature_function = {
+        
+    }
+    
+    feature_type = {
+        'numberOfInstances' : GeneralMetafeature
+        'logNumberOfInstances' : GeneralMetafeature
+        'numberOfMissingValues' : GeneralMetafeature
+        'missingValuesRatio' : GeneralMetafeature
+        'sparsity' : GeneralMetafeature
+        'numberOfFeatures' : GeneralMetafeatureWithoutLabels
+    }
+    
+    feature_function = {
+        'numberOfInstances' : GeneralMetafeature.numberOfInstances
+        'logNumberOfInstances' : GeneralMetafeature.logNumberOfInstances
+        'numberOfMissingValues' : GeneralMetafeature.numberOfMissingValues
+        'missingValuesRatio' : GeneralMetafeature.missingValuesRatio
+        'sparsity' : GeneralMetafeature.sparsity
+        'numberOfFeatures' : GeneralMetafeatureWithoutLabels.numberOfFeatures
+    }
+
+
+
 # all functions are based off of the implementation in autosklearn
 # this class contains the static function we use to calculate metafeatures
 
-class Metafeatures(object):
-    ########################
-    # type of X is ndarray #               
-    # X has no headers     #
-    ########################
-    
-#     @staticmethod
-#     def isCategorical(item): # in the future this function may change slightly if the input changes
-#         if type(item) is str:
-#             return True
-#         else:
-#             return False
+########################
+# type of X is ndarray #               
+# X has no headers     #
+########################
 
-#     @staticmethod
-#     def isOrdinal(item):
-#         return True
-    
-#     @staticmethod
-#     def isNumerical(item):
-#         if type(item) is str:
-#             return False
-#         else:
-#             return True
-    
-    # X shouldnt have labels column
+class GeneralMetafeature(object):
+    # dataset contains the whole columns
+    splitted_data_num = 1
+    data_type = [['y_col', 'categorical_cols', 'numeric_cols', 'ordinal_cols']]
+        
     @staticmethod
     def numberOfInstances(X):
         return float(X.shape[0])
-    
-    # X shouldnt have labels column
+        
     @staticmethod
     def logNumberOfInstances(X):
-        return np.log(Metafeatures.numberOfInstances(X))
-    
-    
-    @staticmethod
-    def numberOfFeatures(X):
-        return float(X.shape[1])
-    
-    @staticmethod
-    def logNumberOfFeatures(X):
-        return np.log(Metafeatures.numberOfFeatures(X))
-    
-    
-    # X should have only labels column
-    @staticmethod
-    def numberOfClasses(X):
-        return len(np.unique(X))
-    
-    
+        return np.log(Metafeatures.GeneralMetafeature.numberOfInstances(X))
+        
     #currently this is used to check for mistaken input 
     # in the future maybe we can generalize for dataset with missing data?
-       
-    # insted of using np.isfinite, 'None' value is checked
-    @staticmethod
-    def isMissingValues(X):
-        return np.count_nonzero(X == None) + np.count_nonzero(X == '') > 0
-    
+
     @staticmethod
     def numberOfMissingValues(X):
         return np.count_nonzero(X == None) + np.count_nonzero(X == '')
-    
+
     @staticmethod
     def missingValuesRatio(X):
-        return Metafeatures.numberOfMissingValues(X) / X.size
-    
-    
+        return Metafeatures.GeneralMetafeature.numberOfMissingValues(X) / X.size
+
     @staticmethod
     def sparsity(X):
         return (np.count_nonzero(X == '') + np.count_nonzero(X == 0)) / X.size
-    
-    # X only has numerical columns
+
+
+
+class GeneralMetafeatureWithoutLabels(object):
+    # dataset doesn't contain the label column
+    splitted_data_num = 1
+    data_type = [['categorical_cols', 'numeric_cols', 'ordinal_cols']]
+        
     @staticmethod
-    def sparsityOnNumericColumns(X):
-        return np.count_nonzero(X == 0) / X.size
+    def numberOfFeatures(X):
+        return float(X.shape[1])
+
+    @staticmethod
+    def logNumberOfFeatures(X):
+        return np.log(Metafeatures.GeneralMetafeatureWithoutLabels.numberOfFeatures(X))
+        
+    @staticmethod
+    def datasetRatio(X):
+        return float(Metafeatures.GeneralMetafeatureWithoutLabels.numberOfFeatures(X)) /\
+            float(Metafeatures.GeneralMetafeature.numberOfInstances(X))
+
+    @staticmethod
+    def logDatasetRatio(X):
+        return np.log(Metafeatures.GeneralMetafeatureWithoutLabels.datasetRatio(X))
+
+
+
+class LabelsMetafeatures(object):
+    # dataset contains the label column only
+    splitted_data_num = 1
+    data_type = [['y_col']]
+        
+    @staticmethod
+    def numberOfClasses(X):
+        return len(np.unique(X))
+        
+    @staticmethod
+    def entropyOfClasses(X):
+        X1 = X[X != None]
+        X1 = X1[X1 != '']
+        freq_dict = Counter(X1)
+        probs = np.array([value / len(X1) for value in freq_dict.values()])
+        return np.sum(-np.log2(probs) * probs)
+
     
-    
-    # columns of datasets are already classified in json files.
+        # columns of datasets are already classified in json files.
 #     @staticmethod
 #     def numberOfNumericFeatures(X):
 #         #checks if the item is a string
@@ -123,153 +157,104 @@ class Metafeatures(object):
 #         else: 
 #             return num_categorical/num_numerical
 
-        
+
+class NumericMetafeature(object):
+    # dataset contains numeric columns only
+    splitted_data_num = 1
+    data_type = [['numeric_cols']]
+
     @staticmethod
-    def datasetRatio(X):
-        return float(Metafeatures.numberOfFeatures(X)) /\
-            float(Metafeatures.numberOfInstances(X))
-    
-    @staticmethod
-    def logDatasetRatio(X):
-        return np.log(Metafeatures.datasetRatio(X))
-    
-    
-    # X only has numerical columns
+    def sparsityOnNumericColumns(X):
+        return np.count_nonzero(X == 0) / X.size
+
     @staticmethod
     def minSkewness(X):
         skewness = scStat.skew(X)
-        
         # only finite values are accepted
         skewness = skewness[np.isfinite(skewness)]
-        
         return min(skewness)
-    
-    # X only has numerical columns
+
     @staticmethod
     def maxSkewness(X):
         skewness = scStat.skew(X)
         skewness = skewness[np.isfinite(skewness)]
         return max(skewness)
-    
-    # X only has numerical columns
+
     @staticmethod
     def medianSkewness(X):
         skewness = scStat.skew(X)
         skewness = skewness[np.isfinite(skewness)]
         return np.median(skewness)
-    
-    # X only has numerical columns
+
     @staticmethod
     def meanSkewness(X):
         skewness = scStat.skew(X)
         skewness = skewness[np.isfinite(skewness)]
         return np.mean(skewness)
-    
-    # X only has numerical columns
+
     @staticmethod
     def firstQuartileSkewness(X):
         skewness = scStat.skew(X)
         skewness = skewness[np.isfinite(skewness)]
         return np.percentile(skewness, 25)
-    
-    # X only has numerical columns
+
     @staticmethod
     def thirdQuartileSkewness(X):
         skewness = scStat.skew(X)
         skewness = skewness[np.isfinite(skewness)]
         return np.percentile(skewness, 75)
-    
-    
-    # X only has numerical columns
+
+
     @staticmethod
     def minKurtosis(X):
         kurtosis = scStat.kurtosis(X)
         kurtosis = kurtosis[np.isfinite(kurtosis)]
         return min(kurtosis)
-    
-    # X only has numerical columns
+
     @staticmethod
     def maxKurtosis(X):
         kurtosis = scStat.kurtosis(X)
         kurtosis = kurtosis[np.isfinite(kurtosis)]
         return max(kurtosis)
-    
-    # X only has numerical columns
+
     @staticmethod
     def medianKurtosis(X):
         kurtosis = scStat.kurtosis(X)
         kurtosis = kurtosis[np.isfinite(kurtosis)]
         return np.median(kurtosis)
-    
-    # X only has numerical columns
+
     @staticmethod
     def meanKurtosis(X):
         kurtosis = scStat.kurtosis(X)
         kurtosis = kurtosis[np.isfinite(kurtosis)]
         return np.mean(kurtosis)
-    
-    # X only has numerical columns
+
     @staticmethod
     def firstQuartileKurtosis(X):
         kurtosis = scStat.kurtosis(X)
         kurtosis = kurtosis[np.isfinite(kurtosis)]
         return np.percentile(kurtosis, 25)
-    
-    # X only has numerical columns
+
     @staticmethod
     def thirdQuartileKurtosis(X):
         kurtosis = scStat.kurtosis(X)
         kurtosis = kurtosis[np.isfinite(kurtosis)]
         return np.percentile(kurtosis, 75)
-    
-    
-    
-#     @staticmethod
-#     def Kurtosisses(X):
-#         if isMissingFeatures(X):
-#             print('Error in calculating Kurtosis, data is missing values')
-#             return None
-    
-#         kurts = []
-#         for i in range(X.shape[1]):
-#             if not isCategorical(i):
-#                 kurts.append(scipy.stats.kurtosis(X[:, i]))
-#         return kurts
 
-        
-#     @staticmethod
-#     def Skewnesses(X):
-#         if isMissingFeatures(X):
-#             print('Error in calculating Skewness, data is missing values')
-#             return None
-        
-#         skews = []
-#         for i in range(X.shape[1]):
-#             if not isCategorical(i):
-#                 skews.append(scipy.stats.skew(X[:, i]))
-#         return skews
-    
-    # todo we may want to calculate some more nuanced metrics for kurtosis and skewness in the future.
 
-    # todo not sure if landmarking can be done without labels, to look into and maybe implement later
-    
-    
-    # X only has numerical columns
     @staticmethod
     def minCorrelation(X):
         corr = np.corrcoef(X.T)
         corr = corr[np.isfinite(corr)]
         return np.min(corr)
-    
-    # X only has numerical columns
+
     @staticmethod
     def maxCorrelation(X):
         corr = np.corrcoef(X.T)
         np.fill_diagonal(corr, 0)
         corr = corr[np.isfinite(corr)]
         return np.max(corr)
-    
-    # X only have numerical columns
+
     @staticmethod
     def medianCorrelation(X):
         corr = np.corrcoef(X.T)
@@ -277,8 +262,7 @@ class Metafeatures(object):
         corr = corr.flatten()
         corr = corr[np.isfinite(corr)]
         return np.median(corr)
-    
-    # X only has numerical columns
+
     @staticmethod
     def meanCorrelation(X):
         corr = np.corrcoef(X.T)
@@ -286,8 +270,7 @@ class Metafeatures(object):
         corr = corr.flatten()
         corr = corr[np.isfinite(corr)]
         return np.mean(corr)
-    
-    # X only has numerical columns
+
     @staticmethod
     def firstQuartileCorrelation(X):
         corr = np.corrcoef(X.T)
@@ -295,8 +278,7 @@ class Metafeatures(object):
         corr = corr.flatten()
         corr = corr[np.isfinite(corr)]
         return np.percentile(corr, 25)
-    
-    # X only has numerical columns
+
     @staticmethod
     def thirdQuartileCorrelation(X):
         corr = np.corrcoef(X.T)
@@ -304,49 +286,130 @@ class Metafeatures(object):
         corr = corr.flatten()
         corr = corr[np.isfinite(corr)]
         return np.percentile(corr, 75)
-    
-    
-    # X only has numerical columns
+
+
     @staticmethod
     def minCovariance(X):
         cov = np.cov(X.T)
         cov = cov[np.isfinite(cov)]
         return np.min(cov)
-    
-    # X only has numerical columns
+
     @staticmethod
     def maxCovariance(X):
         cov = np.cov(X.T)
         cov = cov[np.isfinite(cov)]
         return np.max(cov)
-    
-    # X only has numerical columns
+
     @staticmethod
     def medianCovariance(X):
         cov = np.cov(X.T)
         cov = cov[np.isfinite(cov)]
         return np.median(cov)
-    
-    # X only has numerical columns
+
     @staticmethod
     def meanCovariance(X):
         cov = np.cov(X.T)
         cov = cov[np.isfinite(cov)]
         return np.mean(cov)
-    
-    # X only has numerical columns
+
     @staticmethod
     def firstQuartileCovariance(X):
         cov = np.cov(X.T)
         cov = cov[np.isfinite(cov)]
         return np.percentile(cov, 25)
-    
-    # X only has numerical columns
+
     @staticmethod
     def thirdQuartileCovariance(X):
         cov = np.cov(X.T)
         cov = cov[np.isfinite(cov)]
         return np.percentile(cov, 75)
+
+
+    @staticmethod
+    def PCAFractionOfComponentsFor95PercentVariance(X):
+        pca = sklearn.decomposition.PCA(copy=True)
+        rs = np.random.RandomState(42)
+        indices = np.arange(X.shape[0])
+
+        # replace missing values using the mean along each column
+        imp_mean = SimpleImputer(strategy='mean')
+        X_transformed = imp_mean.fit_transform(X)
+
+        for i in range(10):
+            try:
+                rs.shuffle(indices)
+                pca.fit(X_transformed[indices])
+                sum_ = 0.
+                idx = 0
+                while sum_ < 0.95 and idx < len(pca.explained_variance_ratio_):
+                    sum_ += pca.explained_variance_ratio_[idx]
+                    idx += 1
+                return float(idx)/float(X.shape[1])
+
+            except LinAlgError as e:
+                pass
+
+        print("Failed to compute PCA")
+        #self.logger.warning("Failed to compute a Principle Component Analysis")
+        return np.nan
+
+
+    @staticmethod
+    def PCAKurtosisFirstPC(X):
+        pca = sklearn.decomposition.PCA(copy=True)
+        rs = np.random.RandomState(42)
+        indices = np.arange(X.shape[0])
+
+        imp_mean = SimpleImputer(strategy='mean')
+        X_transformed = imp_mean.fit_transform(X)
+
+        for i in range(10):
+            try:
+                rs.shuffle(indices)
+                pca.fit(X_transformed[indices])
+                components = pca.components_
+                pca.components_ = components[:1]
+                transformed = pca.transform(X_transformed)
+                pca.components_ = components
+                kurtosis = scStat.kurtosis(transformed)
+                return kurtosis[0]
+
+            except LinAlgError as e:
+                pass
+
+        print("Failed to compute PCA")
+        #self.logger.warning("Failed to compute a Principle Component Analysis")
+        return np.nan
+
+
+    @staticmethod
+    def PCASkewnessFirstPC(X):
+        pca = sklearn.decomposition.PCA(copy=True)
+        rs = np.random.RandomState(42)
+        indices = np.arange(X.shape[0])
+
+        imp_mean = SimpleImputer(strategy='mean')
+        X_transformed = imp_mean.fit_transform(X)
+
+        for i in range(10):
+            try:
+                rs.shuffle(indices)
+                pca.fit(X_transformed[indices])
+                components = pca.components_
+                pca.components_ = components[:1]
+                transformed = pca.transform(X_transformed)
+                pca.components_ = components
+                skewness = scStat.skew(transformed)
+                return skewness[0]
+
+            except LinAlgError as e:
+                pass
+
+        print("Failed to compute PCA")
+        #self.logger.warning("Failed to compute a Principle Component Analysis")
+        return np.nan
+    
+
     
     
 #     @staticmethod
@@ -408,104 +471,13 @@ class Metafeatures(object):
 #         skewness = scipy.stats.skew(transformed)
 #         return skewness[0]
 
-    
-    # X only has numerical columns
-    @staticmethod
-    def PCAFractionOfComponentsFor95PercentVariance(X):
-        pca = sklearn.decomposition.PCA(copy=True)
-        rs = np.random.RandomState(42)
-        indices = np.arange(X.shape[0])
-        
-        # replace missing values using the mean along each column
-        imp_mean = SimpleImputer(strategy='mean')
-        X_transformed = imp_mean.fit_transform(X)
-        
-        for i in range(10):
-            try:
-                rs.shuffle(indices)
-                pca.fit(X_transformed[indices])
-                sum_ = 0.
-                idx = 0
-                while sum_ < 0.95 and idx < len(pca.explained_variance_ratio_):
-                    sum_ += pca.explained_variance_ratio_[idx]
-                    idx += 1
-                return float(idx)/float(X.shape[1])
-            
-            except LinAlgError as e:
-                pass
-            
-        print("Failed to compute PCA")
-        #self.logger.warning("Failed to compute a Principle Component Analysis")
-        return np.nan
-    
-    
-    @staticmethod
-    def PCAKurtosisFirstPC(X):
-        pca = sklearn.decomposition.PCA(copy=True)
-        rs = np.random.RandomState(42)
-        indices = np.arange(X.shape[0])
-        
-        imp_mean = SimpleImputer(strategy='mean')
-        X_transformed = imp_mean.fit_transform(X)
-        
-        for i in range(10):
-            try:
-                rs.shuffle(indices)
-                pca.fit(X_transformed[indices])
-                components = pca.components_
-                pca.components_ = components[:1]
-                transformed = pca.transform(X_transformed)
-                pca.components_ = components
-                kurtosis = scStat.kurtosis(transformed)
-                return kurtosis[0]
 
-            except LinAlgError as e:
-                pass
-            
-        print("Failed to compute PCA")
-        #self.logger.warning("Failed to compute a Principle Component Analysis")
-        return np.nan
-    
-    
-    @staticmethod
-    def PCASkewnessFirstPC(X):
-        pca = sklearn.decomposition.PCA(copy=True)
-        rs = np.random.RandomState(42)
-        indices = np.arange(X.shape[0])
-        
-        imp_mean = SimpleImputer(strategy='mean')
-        X_transformed = imp_mean.fit_transform(X)
-        
-        for i in range(10):
-            try:
-                rs.shuffle(indices)
-                pca.fit(X_transformed[indices])
-                components = pca.components_
-                pca.components_ = components[:1]
-                transformed = pca.transform(X_transformed)
-                pca.components_ = components
-                skewness = scStat.skew(transformed)
-                return skewness[0]
 
-            except LinAlgError as e:
-                pass
-            
-        print("Failed to compute PCA")
-        #self.logger.warning("Failed to compute a Principle Component Analysis")
-        return np.nan
+class CategoricalMetafeature(object):
+    # dataset contains categorical columns only
+    splitted_data_num = 1
+    data_type = [['categorical_cols', 'ordinal_cols']]
     
-    
-    # X only has label columns
-    @staticmethod
-    def entropyOfClasses(X):
-        X1 = X[X != None]
-        X1 = X1[X1 != '']
-        freq_dict = Counter(X1)
-        probs = np.array([value / len(X1) for value in freq_dict.values()])
-        return np.sum(-np.log2(probs) * probs)
-    
-    
-    # X only has categorical columns
     @staticmethod
     def minEntropy(X):
         entropies = []
@@ -517,7 +489,6 @@ class Metafeatures(object):
             entropies.append(np.sum(-np.log2(probs) * probs))
         return np.min(entropies) / np.log2(Metafeatures.numberOfInstances(X))
     
-    # X only has categorical columns
     @staticmethod
     def maxEntropy(X):
         entropies = []
@@ -529,7 +500,6 @@ class Metafeatures(object):
             entropies.append(np.sum(-np.log2(probs) * probs))
         return np.max(entropies) / np.log2(Metafeatures.numberOfInstances(X))
     
-    # X only has categorical columns
     @staticmethod
     def medianEntropy(X):
         entropies = []
@@ -541,7 +511,6 @@ class Metafeatures(object):
             entropies.append(np.sum(-np.log2(probs) * probs))
         return np.median(entropies) / np.log2(Metafeatures.numberOfInstances(X))
     
-    # X only has categorical columns
     @staticmethod
     def meanEntropy(X):
         entropies = []
@@ -553,7 +522,6 @@ class Metafeatures(object):
             entropies.append(np.sum(-np.log2(probs) * probs))
         return np.mean(entropies) / np.log2(Metafeatures.numberOfInstances(X))
     
-    # X only has categorical columns
     @staticmethod
     def firstQuartileEntropy(X):
         entropies = []
@@ -565,7 +533,6 @@ class Metafeatures(object):
             entropies.append(np.sum(-np.log2(probs) * probs))
         return np.percentile(entropies, 25) / np.log2(Metafeatures.numberOfInstances(X))
     
-    # X only has categorical columns
     @staticmethod
     def thirdQuartileEntropy(X):
         entropies = []
@@ -577,6 +544,12 @@ class Metafeatures(object):
             entropies.append(np.sum(-np.log2(probs) * probs))
         return np.percentile(entropies, 75) / np.log2(Metafeatures.numberOfInstances(X))
     
+    
+    
+class CategoricalMetafeatureWithLabels(object):
+    # dataset contains categorical columns and the label column
+    splitted_data_num = 2
+    data_type = [['y_col'], ['categorical_cols', 'ordinal_cols']]
     
     # class_col has the label column only, cat_cols has categorical columns only
     @staticmethod
