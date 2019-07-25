@@ -711,4 +711,4 @@ def calculate_metafeatures(raw_dataset, file_dict, metafeature_ls = []):
         if app_data_type:
             values.append(MetafeatureMapper.getMetafeatureFunction(feature_str).__get__(object)(*datasets))
         
-    return np.array(values)
+    return np.reshape(np.array(values), (1, -1))
