@@ -1,4 +1,5 @@
 from dataset import Dataset
+from preprocess_data import PreprocessedDataset
 from algorithms import algorithms
 from build_config_space import build_config_space, Mapper, build_config_obj
 from utils.stringutils import StringUtils
@@ -7,8 +8,8 @@ from utils.constants import Constants
 from utils.metafeatures import Metafeatures
 from warmstarter import KDTreeWarmstarter
 
-from sklearn import cluster, metrics, manifold
 from itertools import cycle, islice
+from sklearn import cluster, metrics, manifold, ensemble, model_selection, preprocessing
 
 # Import SMAC-utilities
 from smac.tae.execute_func import ExecuteTAFuncDict
@@ -81,7 +82,7 @@ class AutoCluster(object):
         self._log(cs)
         self._log('Truncated n_evaluations: {}'.format(n_evaluations))
 
-        #define scenario object to be passed into SMAC
+        # define scenario object to be passed into SMAC
         scenario_params = {
             "run_obj": run_obj,
             "runcount-limit": n_evaluations,
@@ -246,26 +247,215 @@ class AutoCluster(object):
         
         return self.fit(**fit_config)
     
-    def _fit_raw_data(self, df, 
-                     n_evaluations=30,
-                     seed=27,
-                     cutoff_time=50,
-                     numerical_cols=[],
-                     categorical_cols=[],
-                     warmstart=True,
-                     general_metafeatures=['all'],
-                     numeric_metafeatures=[],
-                     categorical_metafeatures=[]
-                    ):
-        # if warmstart is True, train warmstarter using desired metafeatures
+    def _fit(self, df, 
+             cluster_alg_ls=['KMeans','DBSCAN'],
+             dim_reduction_alg_ls=[],
+             n_evaluations=30,
+             run_obj='quality',
+             seed=27,
+             cutoff_time=50,
+             evaluator=(lambda X, y_pred: float('inf') if len(set(y_pred)) == 1 \
+                       else -1 * metrics.silhouette_score(X, y_pred, metric='euclidean')),
+             preprocess_dict={},
+             warmstart=False,
+             general_metafeatures=[],
+             numeric_metafeatures=[],
+             categorical_metafeatures=[]
+            ):
+        """
+        preprocess_dict: should be a dictionary with keys numeric_cols, ordinal_cols, categorical_cols and ignore_cols
+        """
+        #############################################################
+        # Data preprocessing                                        #
+        #############################################################
+        # rename 
+        raw_data = df
         
+        # encode categorical and ordinal columns
+        preprocess_dict['df'] = raw_data
+        raw_data_np = PreprocessedDataset(**preprocess_dict).X
         
-        # use warmstarter to get a list of initial configurations
+        # perform outlier detection
+        predicted_labels = ensemble.IsolationForest(n_estimators=20, 
+                                                    warm_start=True,
+                                                    behaviour='new',
+                                                    contamination='auto').fit_predict(raw_data_np)
+        idx_np = np.where(predicted_labels == 1)
         
+        # remove outliers
+        raw_data_cleaned = raw_data.iloc[idx_np].reset_index(drop=True)
+        self._log("{}/{} datapoints remaining after outlier removal".format(len(raw_data_cleaned), 
+                                                                            len(raw_data_np)))
         
-        # 
+        # encode cleaned datasest
+        preprocess_dict['df'] = raw_data_cleaned
+        processed_data_np = PreprocessedDataset(**preprocess_dict).X
         
-        pass
+        #############################################################
+        # Warmstarting (Optional)                                   #
+        #############################################################
+        
+        # construct desired configuration space
+        cs = build_config_space(cluster_alg_ls, dim_reduction_alg_ls)
+        self._log(cs)    
+        
+        # perform warmstart, if needed
+        initial_cfgs_ls = None
+        if warmstart:
+            # create and train warmstarter 
+            warmstarter = KDTreeWarmstarter(general_metafeatures + numeric_metafeatures + \
+                                            categorical_metafeatures)
+            warmstarter.fit()
+            
+            # calculate metafeatures
+            # metafeatures = calculate_metafeatures(raw_data_cleaned,
+            #                                       general_metafeatures + numeric_metafeatures + \
+            #                                       categorical_metafeatures)
+            
+            # query for suitable configurations
+            initial_configurations = warmstarter.query(metafeatures, 3, 20)
+            
+            # construct configuration objects
+            for cfg in initial_configurations:
+                try:
+                    initial_cfgs_ls.append(build_config_obj(cs, cfg[0]))
+                except:
+                    pass
+                
+            # if too little configurations available, just ignore
+            initial_cfgs_ls = None if len(initial_cfgs_ls) < 2 else initial_cfgs_ls
+            
+        #############################################################
+        # Bayesian optimization (SMAC)                              #
+        #############################################################
+        # make sure n_evaluations is valid
+        dim_reduction_min_size = 1 if len(dim_reduction_alg_ls) == 0 \
+                                else min([Mapper.getClass(alg).n_possible_cfgs 
+                                          for alg in dim_reduction_alg_ls])
+        clustering_min_size = min([Mapper.getClass(alg).n_possible_cfgs for alg in cluster_alg_ls])
+        n_evaluations = min(n_evaluations, clustering_min_size * dim_reduction_min_size)
+        initial_cfgs_ls = initial_cfgs_ls[0 : n_evaluations] if initial_cfgs_ls is not None else None
+        self._log('Truncated n_evaluations: {}'.format(n_evaluations))
+        
+        # define scenario object to be passed into SMAC
+        scenario_params = {
+            "run_obj": run_obj,
+            "runcount-limit": n_evaluations,
+            "cutoff_time": cutoff_time,
+            "cs": cs,
+            "deterministic": "true",
+            "output_dir": LogUtils.create_new_directory('{}/smac'.format(self.log_dir)),
+            "abort_on_first_run_crash": False,
+        }
+        scenario = Scenario(scenario_params)    
+        self._log('{}'.format(scenario_params))
+        
+        # functions required for SMAC optimization
+        def fit_models(cfg, data):
+            ################################################
+            # Get configurations                           #
+            ################################################
+            # convert cfg into a dictionary
+            cfg = {k : cfg[k] for k in cfg if cfg[k]}
+            
+            # remove keys with value == None
+            cfg = {k: v for k, v in cfg.items() if v is not None}
+            
+            # logging
+            self._log("Fitting configuration: \n{}".format(cfg))
+            
+            ################################################
+            # Preprocessing                                #
+            ################################################
+            # fit standard scaler
+            scaler = preprocessing.StandardScaler()
+            scaler.fit(data)
+            
+            # standardize data
+            scaled_data = scaler.transform(data)
+            
+            ################################################
+            # Dimensionality reduction                     #
+            ################################################
+            # get the dimension reduction method chosen
+            dim_reduction_alg = Mapper.getClass(cfg.get("dim_reduction_choice", None))
+            dim_reduction_model = None
+            
+            # fit dimension reduction model
+            compressed_data = scaled_data
+            if dim_reduction_alg:
+                cfg_dim_reduction = {StringUtils.decode_parameter(k, dim_reduction_alg.name): v
+                                     for k, v in cfg.items() if StringUtils.decode_parameter(k, dim_reduction_alg.name) is not None}
+                
+                # compress the data using chosen configurations
+                dim_reduction_model = dim_reduction_alg.model(**cfg_dim_reduction)
+                compressed_data = dim_reduction_model.fit_transform(scaled_data)
+            
+            ################################################
+            # Clustering                                   #
+            ################################################
+            # get the model chosen
+            clustering_alg = Mapper.getClass(cfg["clustering_choice"])
+               
+            # decode the encoded parameters
+            cfg_clustering = {StringUtils.decode_parameter(k, clustering_alg.name): v 
+                              for k, v in cfg.items() if StringUtils.decode_parameter(k, clustering_alg.name) is not None}
+                        
+            # train clustering model
+            clustering_model = clustering_alg.model(**cfg_clustering)
+            clustering_model.fit(compressed_data)
+            
+            return scaler, dim_reduction_model, clustering_model, 
+        
+        def evaluate_model(cfg):
+            # split data into train and test
+            train_data, valid_data = model_selection.train_test_split(processed_data_np,
+                                                                      test_size=0.4, 
+                                                                      random_state=seed,
+                                                                      shuffle=True)
+            
+            # fit clustering and dimension reduction models on training data
+            scaler, dim_reduction_model, clustering_model = fit_models(cfg, train_data)
+            
+            # test on validation data
+            scaled_valid_data = scaler.transform(valid_data)
+            compressed_valid_data = scaled_valid_data
+            if dim_reduction_model:
+                try:
+                    compressed_valid_data = dim_reduction_model.transform(scaled_valid_data)
+                except:
+                    compressed_valid_data = dim_reduction_model.fit_transform(scaled_valid_data)
+                    
+            # predict on validation data
+            if hasattr(clustering_model, 'fit_predict'):
+                y_pred = clustering_model.fit_predict(compressed_valid_data)
+            else:
+                y_pred = clustering_model.predict(compressed_valid_data)
+            
+            # evaluate using provided evaluator
+            score = evaluator(X=compressed_valid_data, y_pred=y_pred)
+            self._log("Score obtained by this configuration: {}".format(score))
+            
+            return score
+    
+        # run SMAC to optimize
+        smac_params = {
+            "scenario": scenario,
+            "rng": np.random.RandomState(seed),
+            "tae_runner": evaluate_model,
+            "initial_configurations": initial_cfgs_ls,
+        }
+        self._smac_obj = SMAC(**smac_params)
+        optimal_config = self._smac_obj.optimize()
+        
+        # refit to get optimal model
+        self._scaler, self._dim_reduction_model, self._clustering_model = fit_models(optimal_config, processed_data_np)
+        self._log("Optimization is complete.")
+        self._log("Took {} seconds.".format(round(self._smac_obj.stats.get_used_wallclock_time(), 2)))
+        self._log("The optimal configuration is \n{}".format(optimal_config))
+        
+        # return a pair
+        return self._smac_obj, optimal_config
     
 
     def predict(self, X, plot=True):
