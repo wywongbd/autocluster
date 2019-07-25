@@ -259,6 +259,8 @@ class AutoCluster(object):
         
         # return a dictionary
         result = {
+            "cluster_alg_ls": cluster_alg_ls,
+            "dim_reduction_alg_ls": dim_reduction_alg_ls,
             "smac_obj": self._smac_obj,
             "optimal_cfg": optimal_config,
             "metafeatures": metafeatures_np,
