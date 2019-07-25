@@ -1,1 +1,0 @@
-{"path": "../data/raw_data/weatherAUS.csv", "y_col": "RainTomorrow", "categorical_cols": ["sex", "cp", "fbs", "restecg", "exang"], "ignore_cols": [], "numeric_cols": ["age", "trestbps", "chol", "thalach", "oldpeak"], "ordinal_cols": {"slope": [0, 1, 2], "thal": [0, 1, 2, 3], "ca": [0, 1, 2, 3]}}
