@@ -67,7 +67,7 @@ class KDTreeWarmstarter(object):
         self.model = KDTree(self.scaler.transform(table_without_dataset_np), 
                             leaf_size=5)
     
-    def query(self, features, neighbor_k=3, top_k=10):
+    def query(self, features, neighbor_k=3, top_k=10, datasets_dir='silhouette'):
         """
         Returns a list of configurations (in dictionary form)
         """
@@ -91,7 +91,7 @@ class KDTreeWarmstarter(object):
         # add configurations to list
         for name in datasets:
             name_no_ext, _ = os.path.splitext(name)
-            dic = read_json_file('{}/{}.json'.format('metaknowledge/datasets', name_no_ext))
+            dic = read_json_file('{}/{}/{}.json'.format('metaknowledge', datasets_dir, name_no_ext))
             config_ls.extend(dic['runhistory'][0 : top_k])
             
         return config_ls
