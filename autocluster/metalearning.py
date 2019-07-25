@@ -149,17 +149,6 @@ def main():
         json_filename = '{}.json'.format(dataset_basename_no_ext)
         json_file_dict = read_json_file(json_file_path)
         
-        # logging
-        _logger.info("general metafeatures: {}".format(MetafeatureMapper.getGeneralMetafeatures()))
-        _logger.info("numeric metafeatures: {}".format(MetafeatureMapper.getNumericMetafeatures()))
-        _logger.info("categorical metafeatures: {}".format(MetafeatureMapper.getCategoricalMetafeatures()))
-        
-        # calculate metafeatures
-        metafeatures = calculate_metafeatures(dataset, json_file_dict, MetafeatureMapper.getAllMetafeatures())
-        metafeatures_ls = list(metafeatures[0])
-        records.update(dict(zip(MetafeatureMapper.getAllMetafeatures(), metafeatures_ls))) 
-        _logger.info("metafeature values: {}".format(metafeatures_ls))
-        
         # run autocluster
         autocluster = AutoCluster(logger=_logger)
         fit_params = {
@@ -183,10 +172,12 @@ def main():
             "numeric_metafeatures": MetafeatureMapper.getNumericMetafeatures(),
             "categorical_metafeatures": MetafeatureMapper.getCategoricalMetafeatures(),
         }
-        smac_obj, opt_result = autocluster.fit(**fit_params)
+        result_dict = autocluster.fit(**fit_params)
         
         # save result
         records["trajectory"] = autocluster.get_trajectory()
+        metafeatures_ls = list(result_dict["metafeatures"][0])
+        records.update(dict(zip(result_dict["metafeatures_used"], metafeatures_ls))) 
         
         # log results
         _logger.info("Done optimizing on {}.".format(raw_dataset_path))
