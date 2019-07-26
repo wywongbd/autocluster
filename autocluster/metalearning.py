@@ -10,6 +10,7 @@ import traceback
 import numpy as np
 import pandas as pd
 
+from evaluators import get_evaluator
 from autocluster import AutoCluster
 from preprocess_data import PreprocessedDataset
 from log_helper.log_helper import LogHelper
@@ -36,6 +37,8 @@ parser.add_argument("--log_dir_prefix", type=str, default='meta_learning',
                     help='Prefix of directory')
 
 # optimization
+parser.add_argument("--n_folds", default=3, type=int,
+                    help="Number of folds used in k-fold cross validation during evaluation step of SMAC optimization.")
 parser.add_argument("--random_seed", default=27, type=int,
                     help="Random seed used in optimization.")
 parser.add_argument("--n_evaluations", default=30, type=int, 
@@ -154,6 +157,10 @@ def main():
                 "seed": config.random_seed,
                 "cutoff_time": config.cutoff_time,
                 "preprocess_dict": json_file_dict,
+                "evaluator": get_evaluator(evaluator_ls = ['silhouetteScore'], 
+                                           weights = [], clustering_num = None, 
+                                           min_proportion = .01),
+                "n_folds": config.n_folds,
                 "warmstart": False,
                 "general_metafeatures": MetafeatureMapper.getGeneralMetafeatures(),
                 "numeric_metafeatures": MetafeatureMapper.getNumericMetafeatures(),
