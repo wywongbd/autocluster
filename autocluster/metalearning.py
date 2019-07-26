@@ -33,7 +33,7 @@ parser.add_argument("--json_data_path_ls", default=[], nargs='+', type=str,
                     help="List of json files required for preprocessing the raw datasets.")
 
 # for logging
-parser.add_argument("--log_dir_prefix", type=str, default='meta_learning', 
+parser.add_argument("--log_dir_prefix", type=str, default='metalearning', 
                     help='Prefix of directory')
 
 # optimization
@@ -73,7 +73,7 @@ def read_json_file(filename):
 
 def main():
     # Create output directory
-    output_dir = LogUtils.create_new_directory(prefix='metalearning')    
+    output_dir = LogUtils.create_new_directory(prefix=config.log_dir_prefix)    
 
     # Setup logger
     LogHelper.setup(log_path='{}/meta.log'.format(output_dir), log_level=logging.INFO)
@@ -138,6 +138,13 @@ def main():
             json_file_dict = read_json_file(json_file_path)
             json_file_dict = {k: v for k, v in json_file_dict.items() 
                               if k in ["numeric_cols", "categorical_cols", "ordinal_cols", "y_col", "ignore_cols"]}
+            
+            # for safety reasons
+            json_file_dict["numeric_cols"] = json_file_dict.get("numeric_cols", [])
+            json_file_dict["categorical_cols"] = json_file_dict.get("categorical_cols", [])
+            json_file_dict["ordinal_cols"] = json_file_dict.get("ordinal_cols", {})
+            json_file_dict["y_col"] = json_file_dict.get("y_col", None)
+            json_file_dict["ignore_cols"] = json_file_dict.get("ignore_cols", [])
 
             # run autocluster
             autocluster = AutoCluster(logger=_logger)
