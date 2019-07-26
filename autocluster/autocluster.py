@@ -48,7 +48,7 @@ class AutoCluster(object):
             evaluator=get_evaluator(evaluator_ls = ['silhouetteScore'], 
                                     weights = [], clustering_num = None, 
                                     min_proportion = .01),
-            n_folds=5,
+            n_folds=3,
             preprocess_dict={},
             warmstart=False,
             warmstart_datasets_dir='silhouette',
@@ -132,7 +132,9 @@ class AutoCluster(object):
                 
         # if too little configurations available, just ignore
         initial_cfgs_ls = None if len(initial_cfgs_ls) < 2 else initial_cfgs_ls
-            
+        if initial_cfgs_ls is not None:
+            self._log('Found {} relevant intial configurations from warmstarter.'.format(len(initial_cfgs_ls)))
+        
         #############################################################
         # Bayesian optimization (SMAC)                              #
         #############################################################
