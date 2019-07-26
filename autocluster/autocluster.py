@@ -213,34 +213,49 @@ class AutoCluster(object):
             return scaler, dim_reduction_model, clustering_model, 
         
         def evaluate_model(cfg):
-            # split data into train and test
-            train_data, valid_data = model_selection.train_test_split(processed_data_np,
-                                                                      test_size=0.4, 
-                                                                      random_state=seed,
-                                                                      shuffle=True)
+            # k fold cross validation
+            kf = model_selection.KFold(n_splits=5, shuffle=True, random_state=seed)
+            kf.get_n_splits(processed_data_np)
             
-            # fit clustering and dimension reduction models on training data
-            scaler, dim_reduction_model, clustering_model = fit_models(cfg, train_data)
+            # store score obtain by each fold
+            score_ls = []
             
-            # test on validation data
-            scaled_valid_data = scaler.transform(valid_data)
-            compressed_valid_data = scaled_valid_data
-            if dim_reduction_model:
-                try:
-                    compressed_valid_data = dim_reduction_model.transform(scaled_valid_data)
-                except:
-                    compressed_valid_data = dim_reduction_model.fit_transform(scaled_valid_data)
-                    
-            # predict on validation data
-            if hasattr(clustering_model, 'fit_predict'):
-                y_pred = clustering_model.fit_predict(compressed_valid_data)
+            for train_idx, valid_idx in kf.split(processed_data_np):
+                # split data into train and test
+                train_data, valid_data = processed_data_np[train_idx], processed_data_np[valid_idx]
+
+                # fit clustering and dimension reduction models on training data
+                scaler, dim_reduction_model, clustering_model = fit_models(cfg, train_data)
+
+                # test on validation data
+                scaled_valid_data = scaler.transform(valid_data)
+                compressed_valid_data = scaled_valid_data
+                if dim_reduction_model:
+                    try:
+                        compressed_valid_data = dim_reduction_model.transform(scaled_valid_data)
+                    except:
+                        compressed_valid_data = dim_reduction_model.fit_transform(scaled_valid_data)
+
+                # predict on validation data
+                if hasattr(clustering_model, 'fit_predict'):
+                    y_pred = clustering_model.fit_predict(compressed_valid_data)
+                else:
+                    y_pred = clustering_model.predict(compressed_valid_data)
+
+                # evaluate using provided evaluator
+                score = evaluator(X=compressed_valid_data, y_pred=y_pred)
+                score_ls.append(score)
+                
+                # if we have infinity, no point continue evaluating
+                if score in [float('inf'), np.nan]:
+                    break
+            
+            if (float('inf') in score_ls) or (np.nan in score_ls):
+                score = float('inf')
             else:
-                y_pred = clustering_model.predict(compressed_valid_data)
-            
-            # evaluate using provided evaluator
-            score = evaluator(X=compressed_valid_data, y_pred=y_pred)
+                score = np.mean(score_ls)
+                
             self._log("Score obtained by this configuration: {}".format(score))
-            
             return score
     
         # run SMAC to optimize
