@@ -344,3 +344,23 @@ class algorithms(object):
         _params_names = set([p.name for p in _params])
         _conditions = []
         _forbidden_clauses = []
+        
+    class NullModel(object, metaclass=Metaclass):
+        # fake model class
+        class model(object):
+            def __init__(self, random_state=1):
+                pass
+            
+            def fit_transform(self, data):
+                return data
+        
+        # static variables
+        # this is a dummy class, if user chooses this algorithm, then no dimension reduction is done
+        _name = "NullModel"
+        _model = model
+        _params = [
+            OrdinalHyperparameter("random_state", sequence=list(range(3)), default_value=1)
+        ]
+        _params_names = set([p.name for p in _params])
+        _conditions = []
+        _forbidden_clauses = []
