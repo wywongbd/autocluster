@@ -74,7 +74,7 @@ class algorithms(object):
         _name = "KMeans"
         _model = cluster.KMeans
         _params = [
-            UniformIntegerHyperparameter("n_clusters", 1, 30, default_value=5)
+            UniformIntegerHyperparameter("n_clusters", 1, 80, default_value=5)
             # UniformIntegerHyperparameter("random_state", 0, 9, default_value=0)
         ]
         _params_names = set([p.name for p in _params]) 
@@ -86,7 +86,7 @@ class algorithms(object):
         _name = "MiniBatchKMeans"
         _model = cluster.MiniBatchKMeans
         _params = [
-            UniformIntegerHyperparameter("n_clusters", 1, 30, default_value=10),
+            UniformIntegerHyperparameter("n_clusters", 1, 80, default_value=10),
             UniformIntegerHyperparameter("batch_size", 10, 1000, default_value=100),
             # UniformIntegerHyperparameter("random_state", 0, 9, default_value=0)
         ]
@@ -127,7 +127,7 @@ class algorithms(object):
         _name = "SpectralClustering"
         _model = cluster.SpectralClustering
         _params = [
-            UniformIntegerHyperparameter("n_clusters", 1, 20, default_value=10),
+            UniformIntegerHyperparameter("n_clusters", 1, 80, default_value=10),
             
             # None and 'lobpcg' were excluded from eigne_solver's list of possible values
             CategoricalHyperparameter("eigen_solver", ['arpack'], default_value='arpack'),
@@ -156,7 +156,7 @@ class algorithms(object):
         _name = "AgglomerativeClustering"
         _model = cluster.AgglomerativeClustering
         _params = [
-            UniformIntegerHyperparameter("n_clusters", 1, 30, default_value=10),
+            UniformIntegerHyperparameter("n_clusters", 1, 80, default_value=10),
             CategoricalHyperparameter("linkage", 
                                       ['ward', 'complete', 'average', 'single'], 
                                       default_value='complete'),
@@ -216,7 +216,7 @@ class algorithms(object):
         _name = "Birch"
         _model = cluster.Birch
         _params = [
-            UniformIntegerHyperparameter("n_clusters", 1, 30, default_value=5),
+            UniformIntegerHyperparameter("n_clusters", 1, 80, default_value=5),
             
             # "branching_factor" was added
             UniformIntegerHyperparameter("branching_factor", 10, 1000, default_value=50)
@@ -230,7 +230,7 @@ class algorithms(object):
         _name = "GaussianMixture"
         _model = mixture.GaussianMixture
         _params = [
-            UniformIntegerHyperparameter("n_components", 1, 30, default_value=5),
+            UniformIntegerHyperparameter("n_components", 1, 80, default_value=5),
             CategoricalHyperparameter("covariance_type", ['full', 'tied', 'diag', 'spherical'], default_value='full'),
             CategoricalHyperparameter("init_params", ['kmeans', 'random'], default_value='kmeans'),
             CategoricalHyperparameter("warm_start", [True, False], default_value=False),
@@ -359,7 +359,7 @@ class algorithms(object):
         _name = "NullModel"
         _model = model
         _params = [
-            OrdinalHyperparameter("random_state", sequence=list(range(3)), default_value=1)
+            OrdinalHyperparameter("random_state", sequence=list(range(2)), default_value=1)
         ]
         _params_names = set([p.name for p in _params])
         _conditions = []
