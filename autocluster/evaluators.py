@@ -30,9 +30,18 @@ class EvaluatorMapper(object):
     
     @staticmethod
     def linearCombinationOfEvaluators(X, y_pred, evaluator_ls, weights, clustering_num, min_proportion):
-        
-        
-        if len(set(y_pred)) < clustering_num :
+        if type(clustering_num) == int:
+            if len(set(y_pred)) != clustering_num:
+                return float('inf')
+        elif type(clustering_num) == tuple:
+            if len(clustering_num) == 1 and clustering_num[0] > 1:
+                if len(set(y_pred)) != clustering_num[0]:
+                    return float('inf')
+            elif len(clustering_num) == 2 and clustering_num[0] <= clustering_num[1] and clustering_num[1] > 1:
+                if len(set(y_pred)) < clustering_num[0] or len(set(y_pred)) == 1 or len(set(y_pred)) > clustering_num[1]:
+                    return float('inf')
+
+        if len(set(y_pred)) == 1 :
             return float('inf')
     
         values = []
@@ -40,10 +49,10 @@ class EvaluatorMapper(object):
         for evaluator in evaluator_ls:
             values.append(EvaluatorMapper.getEvaluatorFunction(evaluator).__get__(object)(X, y_pred))
 
-        if len(weights) != len(evaluator_ls):
+        weight_sum = np.sum(weights)
+        if len(weights) != len(evaluator_ls) or weight_sum == 0:
             return np.mean(values)
         else:
-            weight_sum = np.sum(weights)
             return np.sum(np.multiply(weights * values)) / weight_sum
     
     
