@@ -133,6 +133,8 @@ def main():
             # get corresponding json filename, which tells us which columns are categorical and numerical
             json_filename = '{}.json'.format(dataset_basename_no_ext)
             json_file_dict = read_json_file(json_file_path)
+            json_file_dict = {k: v for k, v in json_file_dict.items() 
+                              if k in ["numeric_cols", "categorical_cols", "ordinal_cols", "y_col"]}
 
             # run autocluster
             autocluster = AutoCluster(logger=_logger)
