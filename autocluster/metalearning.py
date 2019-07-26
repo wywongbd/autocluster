@@ -157,7 +157,8 @@ def main():
                 ], 
                 "dim_reduction_alg_ls": [
                     'TSNE', 'PCA', 'IncrementalPCA', 
-                    'KernelPCA', 'FastICA', 'TruncatedSVD'
+                    'KernelPCA', 'FastICA', 'TruncatedSVD',
+                    'NullModel'
                 ],
                 "n_evaluations": config.n_evaluations,
                 "run_obj": 'quality',
