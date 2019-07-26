@@ -79,7 +79,7 @@ class AutoCluster(object):
         raw_data_np = PreprocessedDataset(**preprocess_dict).X
         
         # perform outlier detection
-        predicted_labels = ensemble.IsolationForest(n_estimators=20, 
+        predicted_labels = ensemble.IsolationForest(n_estimators=100, 
                                                     warm_start=True,
                                                     behaviour='new',
                                                     contamination='auto').fit_predict(raw_data_np)
