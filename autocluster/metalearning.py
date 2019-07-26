@@ -10,6 +10,7 @@ import traceback
 import numpy as np
 import pandas as pd
 
+from evaluators import get_evaluator
 from autocluster import AutoCluster
 from preprocess_data import PreprocessedDataset
 from log_helper.log_helper import LogHelper
@@ -154,6 +155,9 @@ def main():
                 "seed": config.random_seed,
                 "cutoff_time": config.cutoff_time,
                 "preprocess_dict": json_file_dict,
+                "evaluator": get_evaluator(evaluator_ls = ['silhouetteScore'], 
+                                           weights = [], clustering_num = None, 
+                                           min_proportion = .01),
                 "warmstart": False,
                 "general_metafeatures": MetafeatureMapper.getGeneralMetafeatures(),
                 "numeric_metafeatures": MetafeatureMapper.getNumericMetafeatures(),

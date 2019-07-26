@@ -1,4 +1,5 @@
 from algorithms import algorithms
+from evaluators import get_evaluator
 from warmstarter import KDTreeWarmstarter
 from preprocess_data import PreprocessedDataset
 from utils.stringutils import StringUtils
@@ -44,8 +45,10 @@ class AutoCluster(object):
             run_obj='quality',
             seed=27,
             cutoff_time=50,
-            evaluator=(lambda X, y_pred: float('inf') if len(set(y_pred)) == 1 \
-                   else -1 * metrics.silhouette_score(X, y_pred, metric='euclidean')),
+            evaluator=get_evaluator(evaluator_ls = ['silhouetteScore'], 
+                                    weights = [], clustering_num = None, 
+                                    min_proportion = .01),
+            n_folds=5,
             preprocess_dict={},
             warmstart=False,
             warmstart_datasets_dir='silhouette',
@@ -158,18 +161,6 @@ class AutoCluster(object):
         # functions required for SMAC optimization
         def fit_models(cfg, data):
             ################################################
-            # Get configurations                           #
-            ################################################
-            # convert cfg into a dictionary
-            cfg = {k : cfg[k] for k in cfg if cfg[k]}
-            
-            # remove keys with value == None
-            cfg = {k: v for k, v in cfg.items() if v is not None}
-            
-            # logging
-            self._log("Fitting configuration: \n{}".format(cfg))
-            
-            ################################################
             # Preprocessing                                #
             ################################################
             # fit standard scaler
@@ -212,9 +203,24 @@ class AutoCluster(object):
             
             return scaler, dim_reduction_model, clustering_model, 
         
+        def cfg_to_dict(cfg):
+            # convert cfg into a dictionary
+            cfg = {k : cfg[k] for k in cfg if cfg[k]}
+            
+            # remove keys with value == None
+            return {k: v for k, v in cfg.items() if v is not None}     
+        
         def evaluate_model(cfg):
-            # k fold cross validation
-            kf = model_selection.KFold(n_splits=5, shuffle=True, random_state=seed)
+            # get cfg as dictionary
+            cfg = cfg_to_dict(cfg)
+            
+            # logging
+            self._log("Fitting configuration: \n{}".format(cfg))
+            
+            ################################################
+            # K fold cross validation                      #
+            ################################################
+            kf = model_selection.KFold(n_splits=n_folds, shuffle=True, random_state=seed)
             kf.get_n_splits(processed_data_np)
             
             # store score obtain by each fold
@@ -269,7 +275,8 @@ class AutoCluster(object):
         optimal_config = self._smac_obj.optimize()
         
         # refit to get optimal model
-        self._scaler, self._dim_reduction_model, self._clustering_model = fit_models(optimal_config, processed_data_np)
+        self._scaler, self._dim_reduction_model, self._clustering_model = fit_models(cfg_to_dict(optimal_config), 
+                                                                                     processed_data_np)
         self._log("Optimization is complete.")
         self._log("Took {} seconds.".format(round(self._smac_obj.stats.get_used_wallclock_time(), 2)))
         self._log("The optimal configuration is \n{}".format(optimal_config))
