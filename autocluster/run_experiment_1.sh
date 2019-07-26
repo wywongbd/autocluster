@@ -1,1 +1,4 @@
-python metalearning.py --raw_data_path_ls ../data/banana.csv  ../data/heart.csv  ../data/iris.csv  ../data/nasa.csv  ../data/pulsar_stars.csv --random_seed 27 --n_evaluations 200 --cutoff_time 1000
+python metalearning.py \
+--raw_data_path_ls ../data/avocado.csv ../data/glass.csv ../data/nasa.csv ../data/iris.csv ../data/banana.csv  \
+--json_data_path_ls ../data/processed_data/avocado.json ../data/processed_data/glass.json ../data/processed_data/nasa.json ../data/processed_data/iris.json ../data/processed_data/banana.json  \
+--random_seed 27 --n_evaluations 20 --cutoff_time 50

@@ -1,12 +1,11 @@
-from dataset import Dataset
-from preprocess_data import PreprocessedDataset
 from algorithms import algorithms
-from build_config_space import build_config_space, Mapper, build_config_obj
+from warmstarter import KDTreeWarmstarter
+from preprocess_data import PreprocessedDataset
 from utils.stringutils import StringUtils
 from utils.logutils import LogUtils
 from utils.constants import Constants 
 from utils.metafeatures import calculate_metafeatures, MetafeatureMapper
-from warmstarter import KDTreeWarmstarter
+from build_config_space import build_config_space, build_config_obj, Mapper
 
 from itertools import cycle, islice
 from sklearn import cluster, metrics, manifold, ensemble, model_selection, preprocessing
@@ -49,11 +48,15 @@ class AutoCluster(object):
                    else -1 * metrics.silhouette_score(X, y_pred, metric='euclidean')),
             preprocess_dict={},
             warmstart=False,
+            warmstart_datasets_dir='silhouette',
             general_metafeatures=[],
             numeric_metafeatures=[],
             categorical_metafeatures=[]
            ):
         """
+        ---------------------------------------------------------------------------
+        Arguments
+        ---------------------------------------------------------------------------
         df: a DataFrame
         preprocess_dict: should be a dictionary with keys 'numeric_cols', 'ordinal_cols', 'categorical_cols' and 'y_col'
         cluster_alg_ls: list of clustering algorithms to explore
@@ -99,22 +102,23 @@ class AutoCluster(object):
         cs = build_config_space(cluster_alg_ls, dim_reduction_alg_ls)
         self._log(cs)    
         
+        # calculate metafeatures
+        metafeatures_np = None
+        metafeatures_ls = general_metafeatures + numeric_metafeatures + categorical_metafeatures
+        if len(metafeatures_ls) > 0:
+            metafeatures_np = calculate_metafeatures(raw_data_cleaned, preprocess_dict, 
+                                                     metafeatures_ls)
+        
         # perform warmstart, if needed
         initial_cfgs_ls = []
-        if warmstart:
+        if warmstart and len(metafeatures_ls) > 0:
             # create and train warmstarter 
-            warmstarter = KDTreeWarmstarter(general_metafeatures + numeric_metafeatures + \
-                                            categorical_metafeatures)
+            warmstarter = KDTreeWarmstarter(metafeatures_ls)
             warmstarter.fit()
             
-            # calculate metafeatures
-            metafeatures = calculate_metafeatures(raw_data_cleaned,
-                                                  preprocess_dict,
-                                                  general_metafeatures + numeric_metafeatures + 
-                                                  categorical_metafeatures)
-            
             # query for suitable configurations
-            initial_configurations = warmstarter.query(metafeatures, 3, 20)
+            initial_configurations = warmstarter.query(metafeatures_np, 3, 20, 
+                                                       datasets_dir=warmstart_datasets_dir)
             
             # construct configuration objects
             for cfg in initial_configurations:
@@ -255,8 +259,19 @@ class AutoCluster(object):
         self._log("Took {} seconds.".format(round(self._smac_obj.stats.get_used_wallclock_time(), 2)))
         self._log("The optimal configuration is \n{}".format(optimal_config))
         
-        # return a pair
-        return self._smac_obj, optimal_config
+        # return a dictionary
+        result = {
+            "cluster_alg_ls": cluster_alg_ls,
+            "dim_reduction_alg_ls": dim_reduction_alg_ls,
+            "smac_obj": self._smac_obj,
+            "optimal_cfg": optimal_config,
+            "metafeatures": metafeatures_np,
+            "metafeatures_used": metafeatures_ls,
+            "clustering_model": self._clustering_model,
+            "dim_reduction_model": self._dim_reduction_model,
+            "scaler": self._scaler
+        }
+        return result
     
 
     def predict(self, df, plot=True):
