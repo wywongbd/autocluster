@@ -353,6 +353,9 @@ class algorithms(object):
             
             def fit_transform(self, data):
                 return data
+            
+            def transform(self, data):
+                return data
         
         # static variables
         # this is a dummy class, if user chooses this algorithm, then no dimension reduction is done
