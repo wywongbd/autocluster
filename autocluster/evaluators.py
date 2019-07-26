@@ -1,4 +1,5 @@
 from sklearn import metrics
+from collections import Counter
 import numpy as np
 
 class Evaluators(object):
@@ -8,11 +9,11 @@ class Evaluators(object):
     
     @staticmethod
     def daviesBouldinScore(X, y_pred):
-        return np.tanh(davies_bouldin_score(X, y_pred))
+        return np.tanh(metrics.davies_bouldin_score(X, y_pred))
     
     @staticmethod
     def calinskiHarabaszScore(X, y_pred):
-        return 1 - np.tanh(calinski_harabasz_score(X, y_pred))
+        return 1 - np.tanh(metrics.calinski_harabasz_score(X, y_pred))
     
     
 class EvaluatorMapper(object):
@@ -30,6 +31,7 @@ class EvaluatorMapper(object):
     
     @staticmethod
     def linearCombinationOfEvaluators(X, y_pred, evaluator_ls, weights, clustering_num, min_proportion):
+        # check if num of clusters is within the range
         if type(clustering_num) == int:
             if len(set(y_pred)) != clustering_num:
                 return float('inf')
@@ -43,7 +45,16 @@ class EvaluatorMapper(object):
 
         if len(set(y_pred)) == 1 :
             return float('inf')
+        
+        # check if (minimun cluster size)/(maximun cluster size) is over min_proportion
+        freq_dict = Counter(y_pred)
+        cluster_size_ls = list(freq_dict.values())
+        max_cluster_size = np.max(cluster_size_ls)
+        min_cluster_size = np.min(cluster_size_ls)
+        if min_cluster_size / max_cluster_size < min_proportion:
+            return float('inf')
     
+        # evaluate linear combination of scores
         values = []
 
         for evaluator in evaluator_ls:
@@ -53,10 +64,15 @@ class EvaluatorMapper(object):
         if len(weights) != len(evaluator_ls) or weight_sum == 0:
             return np.mean(values)
         else:
-            return np.sum(np.multiply(weights * values)) / weight_sum
+            return np.sum(np.multiply(weights, values)) / weight_sum
     
     
     
-def get_evaluator(evaluator_ls = ['silhouetteScore'], weights = []):
-    return (lambda X, y_pred: EvaluatorMapper.linearCombinationOfEvaluators(X, y_pred,\
-                                evaluator_ls = evaluator_ls, weights = weights))
+def get_evaluator(evaluator_ls = ['silhouetteScore'], weights = [], clustering_num = None, min_proportion = .01):
+    # evaluator_ls : 'silhouetteScore' or 'daviesBouldinScore' or 'calinskiHarabaszScore'
+    # weights : coefficients of evaluators. no need to make total = 1, but should not make total = 0
+    # clustering_num : integer or tuple. None is equal to (2, float('inf'))
+    # min_proportion : (minimun cluster size)/(maximun cluster size)
+    
+    return (lambda X, y_pred: EvaluatorMapper.linearCombinationOfEvaluators(X, y_pred, evaluator_ls = evaluator_ls,\
+                            weights = weights, clustering_num = clustering_num, min_proportion = min_proportion))
