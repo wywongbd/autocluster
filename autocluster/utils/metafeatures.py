@@ -449,7 +449,7 @@ class CategoricalMetafeature(object):
     @staticmethod
     def minEntropy(X):
         entropies = []
-        for sublist in X.T:
+        for sublist in X.T.astype(str):
             sublist1 = sublist[sublist != None]
             sublist1 = sublist1[sublist1 != '']
             freq_dict = Counter(sublist1)
@@ -460,7 +460,7 @@ class CategoricalMetafeature(object):
     @staticmethod
     def maxEntropy(X):
         entropies = []
-        for sublist in X.T:
+        for sublist in X.T.astype(str):
             sublist1 = sublist[sublist != None]
             sublist1 = sublist1[sublist1 != '']
             freq_dict = Counter(sublist1)
@@ -471,7 +471,7 @@ class CategoricalMetafeature(object):
     @staticmethod
     def medianEntropy(X):
         entropies = []
-        for sublist in X.T:
+        for sublist in X.T.astype(str):
             sublist1 = sublist[sublist != None]
             sublist1 = sublist1[sublist1 != '']
             freq_dict = Counter(sublist1)
@@ -482,7 +482,7 @@ class CategoricalMetafeature(object):
     @staticmethod
     def meanEntropy(X):
         entropies = []
-        for sublist in X.T:
+        for sublist in X.T.astype(str):
             sublist1 = sublist[sublist != None]
             sublist1 = sublist1[sublist1 != '']
             freq_dict = Counter(sublist1)
@@ -493,7 +493,7 @@ class CategoricalMetafeature(object):
     @staticmethod
     def firstQuartileEntropy(X):
         entropies = []
-        for sublist in X.T:
+        for sublist in X.T.astype(str):
             sublist1 = sublist[sublist != None]
             sublist1 = sublist1[sublist1 != '']
             freq_dict = Counter(sublist1)
@@ -504,7 +504,7 @@ class CategoricalMetafeature(object):
     @staticmethod
     def thirdQuartileEntropy(X):
         entropies = []
-        for sublist in X.T:
+        for sublist in X.T.astype(str):
             sublist1 = sublist[sublist != None]
             sublist1 = sublist1[sublist1 != '']
             freq_dict = Counter(sublist1)
@@ -522,7 +522,7 @@ class CategoricalMetafeatureWithLabels(object):
     # class_col has the label column only, cat_cols has categorical columns only
     @staticmethod
     def minMutualInformation(class_col, cat_cols):
-        X = np.concatenate((class_col, cat_cols), axis=1)
+        X = np.concatenate((class_col, cat_cols), axis=1).astype(str)
         X = X[~(X == '').any(axis=1)]
         X = X[~(X == None).any(axis=1)]
         
@@ -558,7 +558,7 @@ class CategoricalMetafeatureWithLabels(object):
     # class_col has the label column only, cat_cols has categorical columns only
     @staticmethod
     def maxMutualInformation(class_col, cat_cols):
-        X = np.concatenate((class_col, cat_cols), axis=1)
+        X = np.concatenate((class_col, cat_cols), axis=1).astype(str)
         X = X[~(X == '').any(axis=1)]
         X = X[~(X == None).any(axis=1)]
         
@@ -572,7 +572,7 @@ class CategoricalMetafeatureWithLabels(object):
     # class_col has the label column only, cat_cols has categorical columns only
     @staticmethod
     def medianMutualInformation(class_col, cat_cols):
-        X = np.concatenate((class_col, cat_cols), axis=1)
+        X = np.concatenate((class_col, cat_cols), axis=1).astype(str)
         X = X[~(X == '').any(axis=1)]
         X = X[~(X == None).any(axis=1)]
         
@@ -586,7 +586,7 @@ class CategoricalMetafeatureWithLabels(object):
     # class_col has the label column only, cat_cols has categorical columns only
     @staticmethod
     def meanMutualInformation(class_col, cat_cols):
-        X = np.concatenate((class_col, cat_cols), axis=1)
+        X = np.concatenate((class_col, cat_cols), axis=1).astype(str)
         X = X[~(X == '').any(axis=1)]
         X = X[~(X == None).any(axis=1)]
         
@@ -600,7 +600,7 @@ class CategoricalMetafeatureWithLabels(object):
     # class_col has the label column only, cat_cols has categorical columns only
     @staticmethod
     def firstQuartileMutualInformation(class_col, cat_cols):
-        X = np.concatenate((class_col, cat_cols), axis=1)
+        X = np.concatenate((class_col, cat_cols), axis=1).astype(str)
         X = X[~(X == '').any(axis=1)]
         X = X[~(X == None).any(axis=1)]
         
@@ -614,7 +614,7 @@ class CategoricalMetafeatureWithLabels(object):
     # class_col has the label column only, cat_cols has categorical columns only
     @staticmethod
     def thirdQuartileMutualInformation(class_col, cat_cols):
-        X = np.concatenate((class_col, cat_cols), axis=1)
+        X = np.concatenate((class_col, cat_cols), axis=1).astype(str)
         X = X[~(X == '').any(axis=1)]
         X = X[~(X == None).any(axis=1)]
         

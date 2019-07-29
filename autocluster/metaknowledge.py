@@ -19,6 +19,8 @@ parser.add_argument("--log_filepath_ls", default=[], nargs='+', type=str,
                     help="List of log files to process.")
 parser.add_argument("--metafeatures_filename", type=str, default='metafeatures_table', 
                     help="Name of metafeatures table (to be generated).")
+parser.add_argument("--datasets_dir", default='datasets', type=str,
+                    help="Which folder does this metaknowledge belongs to?")
 
 config = parser.parse_args()
 
@@ -28,6 +30,7 @@ config = parser.parse_args()
 
 def collect_and_save_metaknowledge(log_filepath_ls, 
                                    metafeatures_filename='metafeatures_table',
+                                   datasets_dir='datasets',
                                    logger=None
                                   ):
     # logging function
@@ -71,12 +74,16 @@ def collect_and_save_metaknowledge(log_filepath_ls,
     
     log("Saved metafeatures table as csv file.")
     
+    # create directory if doesn't exist
+    if not os.path.exists('metaknowledge/{}'.format(datasets_dir)):
+        pathlib.Path('metaknowledge/{}'.format(datasets_dir)).mkdir(parents=True, exist_ok=True)
+    
     # save the metaknowledge of each dataset as csv for retrieval of runhistory
     for d in metadata:
         string = json.dumps(metadata[d])
         d_no_ext, _ = os.path.splitext(d)
         print(string,  
-              file=open('{}/{}.json'.format('metaknowledge/datasets', d_no_ext), 'w'))
+              file=open('{}/{}/{}.json'.format('metaknowledge', datasets_dir, d_no_ext), 'w'))
         
     log("Saved metaknowledge of each dataset.")
     
@@ -98,7 +105,10 @@ def main():
     _logger.info("Script arguments: {}".format(vars(config)))
     
     # collect and save metaknowledge
-    collect_and_save_metaknowledge(config.log_filepath_ls, config.metafeatures_filename)
+    collect_and_save_metaknowledge(log_filepath_ls=config.log_filepath_ls, 
+                                   metafeatures_filename=config.metafeatures_filename,
+                                   datasets_dir=config.datasets_dir
+                                  )
     
 if __name__ == '__main__':
     main()
