@@ -10,6 +10,7 @@ import traceback
 import numpy as np
 import pandas as pd
 
+from evaluators import get_evaluator
 from autocluster import AutoCluster
 from preprocess_data import PreprocessedDataset
 from log_helper.log_helper import LogHelper
@@ -32,10 +33,12 @@ parser.add_argument("--json_data_path_ls", default=[], nargs='+', type=str,
                     help="List of json files required for preprocessing the raw datasets.")
 
 # for logging
-parser.add_argument("--log_dir_prefix", type=str, default='meta_learning', 
+parser.add_argument("--log_dir_prefix", type=str, default='metalearning', 
                     help='Prefix of directory')
 
 # optimization
+parser.add_argument("--n_folds", default=3, type=int,
+                    help="Number of folds used in k-fold cross validation during evaluation step of SMAC optimization.")
 parser.add_argument("--random_seed", default=27, type=int,
                     help="Random seed used in optimization.")
 parser.add_argument("--n_evaluations", default=30, type=int, 
@@ -70,7 +73,7 @@ def read_json_file(filename):
 
 def main():
     # Create output directory
-    output_dir = LogUtils.create_new_directory(prefix='metalearning')    
+    output_dir = LogUtils.create_new_directory(prefix=config.log_dir_prefix)    
 
     # Setup logger
     LogHelper.setup(log_path='{}/meta.log'.format(output_dir), log_level=logging.INFO)
@@ -135,6 +138,13 @@ def main():
             json_file_dict = read_json_file(json_file_path)
             json_file_dict = {k: v for k, v in json_file_dict.items() 
                               if k in ["numeric_cols", "categorical_cols", "ordinal_cols", "y_col", "ignore_cols"]}
+            
+            # for safety reasons
+            json_file_dict["numeric_cols"] = json_file_dict.get("numeric_cols", [])
+            json_file_dict["categorical_cols"] = json_file_dict.get("categorical_cols", [])
+            json_file_dict["ordinal_cols"] = json_file_dict.get("ordinal_cols", {})
+            json_file_dict["y_col"] = json_file_dict.get("y_col", None)
+            json_file_dict["ignore_cols"] = json_file_dict.get("ignore_cols", [])
 
             # run autocluster
             autocluster = AutoCluster(logger=_logger)
@@ -147,13 +157,18 @@ def main():
                 ], 
                 "dim_reduction_alg_ls": [
                     'TSNE', 'PCA', 'IncrementalPCA', 
-                    'KernelPCA', 'FastICA', 'TruncatedSVD'
+                    'KernelPCA', 'FastICA', 'TruncatedSVD',
+                    'NullModel'
                 ],
                 "n_evaluations": config.n_evaluations,
                 "run_obj": 'quality',
                 "seed": config.random_seed,
                 "cutoff_time": config.cutoff_time,
                 "preprocess_dict": json_file_dict,
+                "evaluator": get_evaluator(evaluator_ls = ['silhouetteScore'], 
+                                           weights = [], clustering_num = None, 
+                                           min_proportion = .01),
+                "n_folds": config.n_folds,
                 "warmstart": False,
                 "general_metafeatures": MetafeatureMapper.getGeneralMetafeatures(),
                 "numeric_metafeatures": MetafeatureMapper.getNumericMetafeatures(),

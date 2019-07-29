@@ -1,4 +1,5 @@
 from algorithms import algorithms
+from evaluators import get_evaluator
 from warmstarter import KDTreeWarmstarter
 from preprocess_data import PreprocessedDataset
 from utils.stringutils import StringUtils
@@ -44,8 +45,10 @@ class AutoCluster(object):
             run_obj='quality',
             seed=27,
             cutoff_time=50,
-            evaluator=(lambda X, y_pred: float('inf') if len(set(y_pred)) == 1 \
-                   else -1 * metrics.silhouette_score(X, y_pred, metric='euclidean')),
+            evaluator=get_evaluator(evaluator_ls = ['silhouetteScore'], 
+                                    weights = [], clustering_num = None, 
+                                    min_proportion = .01),
+            n_folds=3,
             preprocess_dict={},
             warmstart=False,
             warmstart_datasets_dir='silhouette',
@@ -129,7 +132,9 @@ class AutoCluster(object):
                 
         # if too little configurations available, just ignore
         initial_cfgs_ls = None if len(initial_cfgs_ls) < 2 else initial_cfgs_ls
-            
+        if initial_cfgs_ls is not None:
+            self._log('Found {} relevant intial configurations from warmstarter.'.format(len(initial_cfgs_ls)))
+        
         #############################################################
         # Bayesian optimization (SMAC)                              #
         #############################################################
@@ -157,18 +162,6 @@ class AutoCluster(object):
         
         # functions required for SMAC optimization
         def fit_models(cfg, data):
-            ################################################
-            # Get configurations                           #
-            ################################################
-            # convert cfg into a dictionary
-            cfg = {k : cfg[k] for k in cfg if cfg[k]}
-            
-            # remove keys with value == None
-            cfg = {k: v for k, v in cfg.items() if v is not None}
-            
-            # logging
-            self._log("Fitting configuration: \n{}".format(cfg))
-            
             ################################################
             # Preprocessing                                #
             ################################################
@@ -212,35 +205,65 @@ class AutoCluster(object):
             
             return scaler, dim_reduction_model, clustering_model, 
         
+        def cfg_to_dict(cfg):
+            # convert cfg into a dictionary
+            cfg = {k : cfg[k] for k in cfg if cfg[k]}
+            
+            # remove keys with value == None
+            return {k: v for k, v in cfg.items() if v is not None}     
+        
         def evaluate_model(cfg):
-            # split data into train and test
-            train_data, valid_data = model_selection.train_test_split(processed_data_np,
-                                                                      test_size=0.4, 
-                                                                      random_state=seed,
-                                                                      shuffle=True)
+            # get cfg as dictionary
+            cfg = cfg_to_dict(cfg)
             
-            # fit clustering and dimension reduction models on training data
-            scaler, dim_reduction_model, clustering_model = fit_models(cfg, train_data)
+            # logging
+            self._log("Fitting configuration: \n{}".format(cfg))
             
-            # test on validation data
-            scaled_valid_data = scaler.transform(valid_data)
-            compressed_valid_data = scaled_valid_data
-            if dim_reduction_model:
-                try:
-                    compressed_valid_data = dim_reduction_model.transform(scaled_valid_data)
-                except:
-                    compressed_valid_data = dim_reduction_model.fit_transform(scaled_valid_data)
-                    
-            # predict on validation data
-            if hasattr(clustering_model, 'fit_predict'):
-                y_pred = clustering_model.fit_predict(compressed_valid_data)
+            ################################################
+            # K fold cross validation                      #
+            ################################################
+            kf = model_selection.KFold(n_splits=n_folds, shuffle=True, random_state=seed)
+            kf.get_n_splits(processed_data_np)
+            
+            # store score obtain by each fold
+            score_ls = []
+            
+            for train_idx, valid_idx in kf.split(processed_data_np):
+                # split data into train and test
+                train_data, valid_data = processed_data_np[train_idx], processed_data_np[valid_idx]
+
+                # fit clustering and dimension reduction models on training data
+                scaler, dim_reduction_model, clustering_model = fit_models(cfg, train_data)
+
+                # test on validation data
+                scaled_valid_data = scaler.transform(valid_data)
+                compressed_valid_data = scaled_valid_data
+                if dim_reduction_model:
+                    try:
+                        compressed_valid_data = dim_reduction_model.transform(scaled_valid_data)
+                    except:
+                        compressed_valid_data = dim_reduction_model.fit_transform(scaled_valid_data)
+
+                # predict on validation data
+                if hasattr(clustering_model, 'fit_predict'):
+                    y_pred = clustering_model.fit_predict(compressed_valid_data)
+                else:
+                    y_pred = clustering_model.predict(compressed_valid_data)
+
+                # evaluate using provided evaluator
+                score = evaluator(X=compressed_valid_data, y_pred=y_pred)
+                score_ls.append(score)
+                
+                # if we have infinity, no point continue evaluating
+                if score in [float('inf'), np.nan]:
+                    break
+            
+            if (float('inf') in score_ls) or (np.nan in score_ls):
+                score = float('inf')
             else:
-                y_pred = clustering_model.predict(compressed_valid_data)
-            
-            # evaluate using provided evaluator
-            score = evaluator(X=compressed_valid_data, y_pred=y_pred)
+                score = np.mean(score_ls)
+                
             self._log("Score obtained by this configuration: {}".format(score))
-            
             return score
     
         # run SMAC to optimize
@@ -254,7 +277,8 @@ class AutoCluster(object):
         optimal_config = self._smac_obj.optimize()
         
         # refit to get optimal model
-        self._scaler, self._dim_reduction_model, self._clustering_model = fit_models(optimal_config, processed_data_np)
+        self._scaler, self._dim_reduction_model, self._clustering_model = fit_models(cfg_to_dict(optimal_config), 
+                                                                                     processed_data_np)
         self._log("Optimization is complete.")
         self._log("Took {} seconds.".format(round(self._smac_obj.stats.get_used_wallclock_time(), 2)))
         self._log("The optimal configuration is \n{}".format(optimal_config))
