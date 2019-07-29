@@ -71,7 +71,7 @@ def main():
                     ], 
                     "dim_reduction_alg_ls": [
                         'TSNE', 'PCA', 'IncrementalPCA', 
-                        'KernelPCA', 'FastICA', 'TruncatedSVD'
+                        'KernelPCA', 'FastICA', 'TruncatedSVD', 'NullModel'
                     ],
                     "n_evaluations": config.n_evaluations,
                     "run_obj": 'quality',
@@ -87,7 +87,7 @@ def main():
                                                weights = [silhouette, davies, calinski], clustering_num = None, 
                                                min_proportion = .01),
                     "n_folds": 3,
-                    "warmstart": True,
+                    "warmstart": False,
                     "general_metafeatures": MetafeatureMapper.getGeneralMetafeatures(),
                     "numeric_metafeatures": MetafeatureMapper.getNumericMetafeatures(),
                     "categorical_metafeatures": [],
