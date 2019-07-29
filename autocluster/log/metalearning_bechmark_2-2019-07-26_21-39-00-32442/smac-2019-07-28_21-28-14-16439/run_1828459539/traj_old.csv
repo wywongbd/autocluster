@@ -1,0 +1,7 @@
+"CPU Time Used","Estimated Training Performance","Wallclock Time","Incumbent ID","Automatic Configurator (CPU) Time","Configuration..."
+0.000000, 2147483648.000000, 0.000300, 1, 0.000300, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='12.0', n_clusters___KMeans='5', n_components___TSNE='2', perplexity___TSNE='30.0'
+117.043067, 0.232215, 117.063721, 1, 0.020653, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='12.0', n_clusters___KMeans='5', n_components___TSNE='2', perplexity___TSNE='30.0'
+1529.108530, 0.150314, 1542.085923, 2, 12.977393, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='19.26649199829881', n_clusters___KMeans='4', n_components___TSNE='2', perplexity___TSNE='87.25177114220787'
+5198.161067, 0.059984, 5300.114243, 3, 101.953176, clustering_choice=''KMeans'', dim_reduction_choice=''KernelPCA'', kernel___KernelPCA=''linear'', n_clusters___KMeans='3', n_components___KernelPCA='4'
+10393.307291, 0.059984, 10619.084007, 4, 225.776716, clustering_choice=''Birch'', dim_reduction_choice=''NullModel'', branching_factor___Birch='296', n_clusters___Birch='75', random_state___NullModel='0'
+10534.042406, 0.059984, 10774.915592, 5, 240.873186, clustering_choice=''Birch'', dim_reduction_choice=''IncrementalPCA'', batch_size___IncrementalPCA='785', branching_factor___Birch='427', n_clusters___Birch='66', n_components___IncrementalPCA='2', whiten___IncrementalPCA='False'
