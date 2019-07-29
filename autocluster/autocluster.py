@@ -52,6 +52,9 @@ class AutoCluster(object):
             preprocess_dict={},
             warmstart=False,
             warmstart_datasets_dir='silhouette',
+            warmstart_metafeatures_table_path='metaknowledge/metafeatures_table.csv',
+            warmstart_n_neighbors=3,
+            warmstart_top_n=20,
             general_metafeatures=[],
             numeric_metafeatures=[],
             categorical_metafeatures=[]
@@ -61,6 +64,7 @@ class AutoCluster(object):
         Arguments
         ---------------------------------------------------------------------------
         df: a DataFrame
+        n_folds: number of folds used in k-fold cross validation
         preprocess_dict: should be a dictionary with keys 'numeric_cols', 'ordinal_cols', 'categorical_cols' and 'y_col'
         cluster_alg_ls: list of clustering algorithms to explore
         dim_reduction_alg_ls: list of dimension algorithms to explore
@@ -117,10 +121,11 @@ class AutoCluster(object):
         if warmstart and len(metafeatures_ls) > 0:
             # create and train warmstarter 
             warmstarter = KDTreeWarmstarter(metafeatures_ls)
-            warmstarter.fit()
+            warmstarter.fit(warmstart_metafeatures_table_path)
             
             # query for suitable configurations
-            initial_configurations = warmstarter.query(metafeatures_np, 3, 20, 
+            initial_configurations = warmstarter.query(metafeatures_np, 
+                                                       warmstart_n_neighbors, warmstart_top_n, 
                                                        datasets_dir=warmstart_datasets_dir)
             
             # construct configuration objects
