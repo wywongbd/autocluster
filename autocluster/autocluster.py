@@ -61,6 +61,7 @@ class AutoCluster(object):
         Arguments
         ---------------------------------------------------------------------------
         df: a DataFrame
+        n_folds: number of folds used in k-fold cross validation
         preprocess_dict: should be a dictionary with keys 'numeric_cols', 'ordinal_cols', 'categorical_cols' and 'y_col'
         cluster_alg_ls: list of clustering algorithms to explore
         dim_reduction_alg_ls: list of dimension algorithms to explore
