@@ -11,7 +11,7 @@ class Decoder(object):
     @staticmethod
     def split_logs_by_iteration(string):
         # this function returns a list of strings
-        return re.findall("(ITERATION [0-9]{1} of [0-9]{1}[\s\S]{1,}?Done with ITERATION [0-9]{1})", string)
+        return re.findall("(ITERATION [0-9]{1,} of [0-9]{1,}[\s\S]{1,}?Done with ITERATION [0-9]{1,})", string)
     
     @staticmethod
     def get_records_by_iteration(string_ls):
