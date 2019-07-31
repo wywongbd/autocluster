@@ -19,10 +19,12 @@ from smac.optimizer import smbo, pSMAC
 
 import os
 import copy
+import time
 import logging
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 
 class AutoCluster(object):
     def __init__(self, logger=None):
@@ -303,7 +305,7 @@ class AutoCluster(object):
         return result
     
 
-    def predict(self, df, plot=True):
+    def predict(self, df, plot=True, save_plot=True):
         if (self._clustering_model is None) or (self._preprocess_dict is None):
             return None
         
@@ -330,11 +332,12 @@ class AutoCluster(object):
         except:
             y_pred = self._clustering_model.fit_predict(compressed_data) 
         
-        if plot:
-            colors = np.array(list(islice(cycle(['#377eb8', '#ff7f00', '#4daf4a', 'magenta',
-                                                 '#f781bf', '#a65628', '#984ea3', 'black',
-                                                 '#999999', '#e41a1c', '#dede00', 'cyan']),
-                                                  int(max(y_pred) + 1))))
+        if plot or save_plot:
+            colors = cm.nipy_spectral(np.linspace(0, 1, int(max(y_pred) + 1)))
+#             colors = np.array(list(islice(cycle(['#377eb8', '#ff7f00', '#4daf4a', 'magenta',
+#                                                  '#f781bf', '#a65628', '#984ea3', 'black',
+#                                                  '#999999', '#e41a1c', '#dede00', 'cyan']),
+#                                                   int(max(y_pred) + 1))))
             # check if dimension reduction is needed
             if compressed_data.shape[1] > 2:
                 self._log('performing TSNE')
@@ -344,7 +347,12 @@ class AutoCluster(object):
             plt.scatter(compressed_data[:, 0], compressed_data[:, 1], s=7, color=colors[y_pred])
             plt.tick_params(axis='x', colors='white')
             plt.tick_params(axis='y', colors='white')
-            plt.show()
+            
+            if save_plot:
+                timestr = time.strftime("%Y-%m-%d_%H-%M-%S")
+                plt.savefig('plots/plot-' + timestr + '.png', bbox_inches='tight')
+            if plot:
+                plt.show()
             
         return y_pred
     
