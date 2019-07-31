@@ -305,7 +305,7 @@ class AutoCluster(object):
         return result
     
 
-    def predict(self, df, plot=True, save_plot=True):
+    def predict(self, df, plot=True, save_plot=True, prefix=None):
         if (self._clustering_model is None) or (self._preprocess_dict is None):
             return None
         
@@ -350,7 +350,10 @@ class AutoCluster(object):
             
             if save_plot:
                 timestr = time.strftime("%Y-%m-%d_%H-%M-%S")
-                plt.savefig('plots/plot-' + timestr + '.png', bbox_inches='tight')
+                if prefix == None:
+                    plt.savefig('plots/plot-' + timestr + '.png', bbox_inches='tight')
+                else:
+                    plt.savefig('plots/plot-' + prefix + '-' + timestr + '.png', bbox_inches='tight')
             if plot:
                 plt.show()
             
