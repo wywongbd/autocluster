@@ -17,6 +17,9 @@ from collections import Counter
 from utils.metafeatures import MetafeatureMapper
 from sklearn.metrics.cluster import v_measure_score
 from sklearn.model_selection import train_test_split
+from log_helper.log_helper import LogHelper
+from utils.logutils import LogUtils
+from utils.metafeatures import MetafeatureMapper, calculate_metafeatures
 from datetime import datetime
 
 ##################################################################################################
@@ -83,7 +86,8 @@ def main():
     # read all available benchmark datasets
     metafeatures_table = pd.read_csv(config.benchmark_metafeatures_table_path, 
                                      sep=',', header='infer')
-    _logger.info('Found {} benchmark datasets: {}'.format(len(metafeatures_table), list(metafeatures['datasets'])))
+    _logger.info('Found {} benchmark datasets: {}'.format(len(metafeatures_table), 
+                                                          list(metafeatures_table['dataset'])))
     
     # split benchmark data into train and test
     train_idx, test_idx = train_test_split([i for i in range(len(metafeatures_table))], 
@@ -94,7 +98,7 @@ def main():
     
     # save the train metafeatures table
     metafeatures_table_name_no_ext, _ = os.path.splitext(config.benchmark_metafeatures_table_path)
-    metafeatures_table_train.to_csv('{}/{}_trimmed.csv'.format('metaknowledge', metafeatures_table_name_no_ext), 
+    metafeatures_table_train.to_csv('{}_trimmed.csv'.format(metafeatures_table_name_no_ext), 
                                     encoding='utf-8', index=False)
     
     # get names of test datasets
@@ -133,10 +137,10 @@ def main():
                 'KernelPCA', 'FastICA', 'TruncatedSVD',
                 'NullModel'
             ],
-            "n_evaluations": config['n_evaluations'],
+            "n_evaluations": config.n_evaluations,
             "run_obj": 'quality',
-            "seed": config['random_seed'],
-            "cutoff_time": config['cutoff_time'],
+            "seed": config.random_seed,
+            "cutoff_time": config.cutoff_time,
             "preprocess_dict": preprocess_dict,
             "evaluator": get_evaluator(evaluator_ls = ['silhouetteScore'], 
                                        weights = [], clustering_num = None, 
@@ -144,14 +148,18 @@ def main():
             "n_folds": config.n_folds,
             "warmstart": True,
             "warmstart_datasets_dir": 'benchmark_silhouette',
-            "warmstart_metafeatures_table_path": '{}/{}_trimmed.csv'.format('metaknowledge', metafeatures_table_name_no_ext),
+            "warmstart_metafeatures_table_path": '{}_trimmed.csv'.format(metafeatures_table_name_no_ext),
             "warmstart_n_neighbors": 3,
             "warmstart_top_n": 10,
             "general_metafeatures": config.general_metafeatures,
             "numeric_metafeatures": config.numeric_metafeatures,
             "categorical_metafeatures": [],
         }
-        cluster = AutoCluster()
+        cluster = AutoCluster(logger=_logger)
         result = cluster.fit(**fit_params)
         predictions = cluster.predict(dataset, plot=False, 
-                                      save_plot=True, prefix='{}/{}.png'.format(output_dir, dataset_name))
+                                      save_plot=True, file_path='{}/{}.png'.format(output_dir, dataset_name))
+        
+        
+if __name__ == '__main__':
+    main()
