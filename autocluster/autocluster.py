@@ -351,9 +351,9 @@ class AutoCluster(object):
             if save_plot:
                 timestr = time.strftime("%Y-%m-%d_%H-%M-%S")
                 if prefix == None:
-                    plt.savefig('plots/plot-' + timestr + '.png', bbox_inches='tight')
+                    plt.savefig('plots/plot-{}.png'.format(timestr), bbox_inches='tight')
                 else:
-                    plt.savefig('plots/plot-' + prefix + '-' + timestr + '.png', bbox_inches='tight')
+                    plt.savefig('plots/plot-{}-{}.png'.format(prefix, timestr), bbox_inches='tight')
             if plot:
                 plt.show()
             
