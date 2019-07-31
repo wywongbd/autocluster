@@ -305,7 +305,7 @@ class AutoCluster(object):
         return result
     
 
-    def predict(self, df, plot=True, save_plot=True, prefix=None):
+    def predict(self, df, plot=True, save_plot=True, file_path=None):
         if (self._clustering_model is None) or (self._preprocess_dict is None):
             return None
         
@@ -343,19 +343,21 @@ class AutoCluster(object):
                 self._log('performing TSNE')
                 compressed_data = manifold.TSNE(n_components=2).fit_transform(compressed_data) 
                 
-            plt.figure(figsize=(10,10))
+            fig = plt.figure(figsize=(10,10))
             plt.scatter(compressed_data[:, 0], compressed_data[:, 1], s=7, color=colors[y_pred])
             plt.tick_params(axis='x', colors='white')
             plt.tick_params(axis='y', colors='white')
             
             if save_plot:
                 timestr = time.strftime("%Y-%m-%d_%H-%M-%S")
-                if prefix == None:
-                    plt.savefig('plots/plot-{}.png'.format(timestr), bbox_inches='tight')
+                if file_path == None:
+                    fig.savefig('plots/plot-{}.png'.format(timestr), bbox_inches='tight')
                 else:
-                    plt.savefig('plots/plot-{}-{}.png'.format(prefix, timestr), bbox_inches='tight')
+                    fig.savefig(file_path, bbox_inches='tight')
             if plot:
                 plt.show()
+                
+            plt.close(fig)
             
         return y_pred
     
