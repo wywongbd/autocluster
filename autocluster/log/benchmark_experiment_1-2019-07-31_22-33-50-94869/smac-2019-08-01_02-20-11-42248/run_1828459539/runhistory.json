@@ -1,0 +1,629 @@
+{
+  "config_origins": {
+    "1": "Initial design",
+    "2": "Initial design",
+    "3": "Initial design",
+    "4": "Initial design",
+    "5": "Initial design",
+    "6": "Initial design",
+    "7": "Initial design",
+    "8": "Initial design",
+    "9": "Initial design",
+    "10": "Initial design",
+    "11": "Initial design",
+    "12": "Initial design",
+    "13": "Initial design",
+    "14": "Initial design",
+    "15": "Initial design",
+    "16": "Initial design",
+    "17": "Initial design",
+    "18": "Initial design",
+    "19": "Initial design",
+    "20": "Initial design",
+    "21": "Initial design",
+    "22": "Initial design",
+    "23": "Initial design",
+    "24": "Random Search (sorted)",
+    "25": "Random Search (sorted)"
+  },
+  "data": [
+    [
+      [
+        1,
+        null,
+        0
+      ],
+      [
+        0.002899683048331455,
+        0.15437602996826172,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        2,
+        null,
+        0
+      ],
+      [
+        0.002899683049920406,
+        1.1190903186798096,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        3,
+        null,
+        0
+      ],
+      [
+        0.003160681054710716,
+        0.12210345268249512,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        4,
+        null,
+        0
+      ],
+      [
+        0.0056652500246782145,
+        0.14062833786010742,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        5,
+        null,
+        0
+      ],
+      [
+        0.005697029205821731,
+        0.2176520824432373,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        6,
+        null,
+        0
+      ],
+      [
+        0.00437099867974076,
+        5.511411905288696,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        7,
+        null,
+        0
+      ],
+      [
+        0.00437099867974076,
+        0.08486819267272949,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        8,
+        null,
+        0
+      ],
+      [
+        0.00778726226644072,
+        0.08288764953613281,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        9,
+        null,
+        0
+      ],
+      [
+        0.005329332451081821,
+        0.3522329330444336,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        10,
+        null,
+        0
+      ],
+      [
+        0.0031499285825086765,
+        0.08515501022338867,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        11,
+        null,
+        0
+      ],
+      [
+        0.0034100506200734904,
+        0.09556913375854492,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        12,
+        null,
+        0
+      ],
+      [
+        0.0034039173847137025,
+        0.5170028209686279,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        13,
+        null,
+        0
+      ],
+      [
+        0.0036746649449829563,
+        0.11036968231201172,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        14,
+        null,
+        0
+      ],
+      [
+        0.2905428121170453,
+        1.5077202320098877,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        15,
+        null,
+        0
+      ],
+      [
+        0.25331273307291596,
+        1.726682424545288,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        16,
+        null,
+        0
+      ],
+      [
+        0.05936900774637858,
+        6.86455512046814,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        17,
+        null,
+        0
+      ],
+      [
+        0.059463898340861,
+        6.808238744735718,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        18,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.1258716583251953,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        19,
+        null,
+        0
+      ],
+      [
+        0.1486082673072815,
+        9.311135292053223,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        20,
+        null,
+        0
+      ],
+      [
+        0.13310882449150085,
+        9.122049331665039,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        21,
+        null,
+        0
+      ],
+      [
+        0.23910878598690033,
+        9.529935836791992,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        22,
+        null,
+        0
+      ],
+      [
+        0.1949970324834188,
+        8.849725723266602,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        23,
+        null,
+        0
+      ],
+      [
+        0.3306386222441991,
+        9.305341005325317,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        24,
+        null,
+        0
+      ],
+      [
+        0.3086107681728066,
+        0.06407618522644043,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        25,
+        null,
+        0
+      ],
+      [
+        0.34718190330317,
+        0.07409238815307617,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ]
+  ],
+  "configs": {
+    "1": {
+      "dim_reduction_choice": "TruncatedSVD",
+      "algorithm___TruncatedSVD": "randomized",
+      "n_clusters___Birch": 45,
+      "branching_factor___Birch": 291,
+      "clustering_choice": "Birch",
+      "n_components___TruncatedSVD": 9
+    },
+    "2": {
+      "damping___AffinityPropagation": 0.6576249736165388,
+      "dim_reduction_choice": "TruncatedSVD",
+      "algorithm___TruncatedSVD": "arpack",
+      "affinity___AffinityPropagation": "euclidean",
+      "clustering_choice": "AffinityPropagation",
+      "n_components___TruncatedSVD": 9
+    },
+    "3": {
+      "n_components___KernelPCA": 8,
+      "dim_reduction_choice": "KernelPCA",
+      "affinity___AgglomerativeClustering": "cityblock",
+      "n_clusters___AgglomerativeClustering": 16,
+      "linkage___AgglomerativeClustering": "average",
+      "clustering_choice": "AgglomerativeClustering",
+      "kernel___KernelPCA": "cosine"
+    },
+    "4": {
+      "dim_reduction_choice": "IncrementalPCA",
+      "n_components___IncrementalPCA": 3,
+      "affinity___AgglomerativeClustering": "l1",
+      "n_clusters___AgglomerativeClustering": 16,
+      "batch_size___IncrementalPCA": 688,
+      "linkage___AgglomerativeClustering": "average",
+      "clustering_choice": "AgglomerativeClustering",
+      "whiten___IncrementalPCA": false
+    },
+    "5": {
+      "dim_reduction_choice": "FastICA",
+      "fun___FastICA": "logcosh",
+      "affinity___AgglomerativeClustering": "cityblock",
+      "n_clusters___AgglomerativeClustering": 16,
+      "algorithm___FastICA": "parallel",
+      "whiten___FastICA": true,
+      "linkage___AgglomerativeClustering": "single",
+      "clustering_choice": "AgglomerativeClustering",
+      "n_components___FastICA": 3
+    },
+    "6": {
+      "dim_reduction_choice": "TruncatedSVD",
+      "algorithm___TruncatedSVD": "arpack",
+      "assign_labels___SpectralClustering": "kmeans",
+      "eigen_solver___SpectralClustering": "arpack",
+      "affinity___SpectralClustering": "rbf",
+      "n_clusters___SpectralClustering": 16,
+      "clustering_choice": "SpectralClustering",
+      "n_components___TruncatedSVD": 4
+    },
+    "7": {
+      "dim_reduction_choice": "TruncatedSVD",
+      "algorithm___TruncatedSVD": "arpack",
+      "n_clusters___Birch": 47,
+      "branching_factor___Birch": 90,
+      "clustering_choice": "Birch",
+      "n_components___TruncatedSVD": 4
+    },
+    "8": {
+      "dim_reduction_choice": "NullModel",
+      "branching_factor___Birch": 23,
+      "clustering_choice": "Birch",
+      "n_clusters___Birch": 37,
+      "random_state___NullModel": 1
+    },
+    "9": {
+      "dim_reduction_choice": "IncrementalPCA",
+      "n_components___IncrementalPCA": 3,
+      "n_clusters___Birch": 52,
+      "batch_size___IncrementalPCA": 234,
+      "branching_factor___Birch": 208,
+      "clustering_choice": "Birch",
+      "whiten___IncrementalPCA": false
+    },
+    "10": {
+      "dim_reduction_choice": "TruncatedSVD",
+      "algorithm___TruncatedSVD": "randomized",
+      "n_clusters___Birch": 78,
+      "branching_factor___Birch": 55,
+      "clustering_choice": "Birch",
+      "n_components___TruncatedSVD": 8
+    },
+    "11": {
+      "n_components___KernelPCA": 7,
+      "dim_reduction_choice": "KernelPCA",
+      "n_clusters___Birch": 40,
+      "branching_factor___Birch": 814,
+      "clustering_choice": "Birch",
+      "kernel___KernelPCA": "linear"
+    },
+    "12": {
+      "n_components___KernelPCA": 6,
+      "dim_reduction_choice": "KernelPCA",
+      "n_clusters___Birch": 55,
+      "branching_factor___Birch": 37,
+      "clustering_choice": "Birch",
+      "kernel___KernelPCA": "linear"
+    },
+    "13": {
+      "n_components___KernelPCA": 5,
+      "dim_reduction_choice": "KernelPCA",
+      "n_clusters___Birch": 39,
+      "branching_factor___Birch": 642,
+      "clustering_choice": "Birch",
+      "kernel___KernelPCA": "linear"
+    },
+    "14": {
+      "n_components___KernelPCA": 4,
+      "dim_reduction_choice": "KernelPCA",
+      "n_clusters___KMeans": 46,
+      "clustering_choice": "KMeans",
+      "kernel___KernelPCA": "cosine"
+    },
+    "15": {
+      "damping___AffinityPropagation": 0.5312640844556049,
+      "dim_reduction_choice": "PCA",
+      "svd_solver___PCA": "arpack",
+      "affinity___AffinityPropagation": "euclidean",
+      "clustering_choice": "AffinityPropagation",
+      "n_components___PCA": 3,
+      "whiten___PCA": true
+    },
+    "16": {
+      "n_components___TSNE": 2,
+      "dim_reduction_choice": "TSNE",
+      "n_clusters___KMeans": 17,
+      "perplexity___TSNE": 26.777213151075554,
+      "clustering_choice": "KMeans",
+      "early_exaggeration___TSNE": 10.671025383415328
+    },
+    "17": {
+      "n_components___TSNE": 2,
+      "dim_reduction_choice": "TSNE",
+      "n_clusters___KMeans": 17,
+      "perplexity___TSNE": 26.777213151075554,
+      "clustering_choice": "KMeans",
+      "early_exaggeration___TSNE": 10.606878475720531
+    },
+    "18": {
+      "dim_reduction_choice": "IncrementalPCA",
+      "n_components___IncrementalPCA": 3,
+      "batch_size___IncrementalPCA": 439,
+      "clustering_choice": "DBSCAN",
+      "eps___DBSCAN": 4.193312344936521,
+      "whiten___IncrementalPCA": false,
+      "min_samples___DBSCAN": 60
+    },
+    "19": {
+      "n_components___TSNE": 2,
+      "dim_reduction_choice": "TSNE",
+      "affinity___AgglomerativeClustering": "l1",
+      "n_clusters___AgglomerativeClustering": 10,
+      "perplexity___TSNE": 98.82437631075788,
+      "linkage___AgglomerativeClustering": "complete",
+      "clustering_choice": "AgglomerativeClustering",
+      "early_exaggeration___TSNE": 11.576946856101737
+    },
+    "20": {
+      "n_components___TSNE": 2,
+      "dim_reduction_choice": "TSNE",
+      "affinity___AgglomerativeClustering": "euclidean",
+      "n_clusters___AgglomerativeClustering": 11,
+      "perplexity___TSNE": 98.13466153435772,
+      "linkage___AgglomerativeClustering": "average",
+      "clustering_choice": "AgglomerativeClustering",
+      "early_exaggeration___TSNE": 11.774054940810725
+    },
+    "21": {
+      "n_components___TSNE": 2,
+      "dim_reduction_choice": "TSNE",
+      "affinity___AgglomerativeClustering": "euclidean",
+      "n_clusters___AgglomerativeClustering": 7,
+      "perplexity___TSNE": 108.95260211301307,
+      "linkage___AgglomerativeClustering": "complete",
+      "clustering_choice": "AgglomerativeClustering",
+      "early_exaggeration___TSNE": 11.15270831559351
+    },
+    "22": {
+      "n_components___TSNE": 2,
+      "dim_reduction_choice": "TSNE",
+      "affinity___AgglomerativeClustering": "cityblock",
+      "n_clusters___AgglomerativeClustering": 9,
+      "perplexity___TSNE": 75.02951800275987,
+      "linkage___AgglomerativeClustering": "complete",
+      "clustering_choice": "AgglomerativeClustering",
+      "early_exaggeration___TSNE": 11.694792129671114
+    },
+    "23": {
+      "n_components___TSNE": 2,
+      "dim_reduction_choice": "TSNE",
+      "affinity___AgglomerativeClustering": "cityblock",
+      "n_clusters___AgglomerativeClustering": 7,
+      "perplexity___TSNE": 106.46467072185206,
+      "linkage___AgglomerativeClustering": "single",
+      "clustering_choice": "AgglomerativeClustering",
+      "early_exaggeration___TSNE": 11.899087656726248
+    },
+    "24": {
+      "dim_reduction_choice": "TruncatedSVD",
+      "algorithm___TruncatedSVD": "randomized",
+      "affinity___AgglomerativeClustering": "cityblock",
+      "n_clusters___AgglomerativeClustering": 50,
+      "linkage___AgglomerativeClustering": "average",
+      "clustering_choice": "AgglomerativeClustering",
+      "n_components___TruncatedSVD": 7
+    },
+    "25": {
+      "dim_reduction_choice": "TruncatedSVD",
+      "algorithm___TruncatedSVD": "randomized",
+      "affinity___AgglomerativeClustering": "cityblock",
+      "n_clusters___AgglomerativeClustering": 63,
+      "linkage___AgglomerativeClustering": "single",
+      "clustering_choice": "AgglomerativeClustering",
+      "n_components___TruncatedSVD": 9
+    }
+  }
+}

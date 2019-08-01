@@ -1,0 +1,3 @@
+"CPU Time Used","Estimated Training Performance","Wallclock Time","Incumbent ID","Automatic Configurator (CPU) Time","Configuration..."
+0.000000, 2147483648.000000, 0.000023, 1, 0.000023, clustering_choice=''Birch'', dim_reduction_choice=''KernelPCA'', branching_factor___Birch='42', kernel___KernelPCA=''cosine'', n_clusters___Birch='56', n_components___KernelPCA='2'
+0.602519, 0.010152, 0.636030, 1, 0.033512, clustering_choice=''Birch'', dim_reduction_choice=''KernelPCA'', branching_factor___Birch='42', kernel___KernelPCA=''cosine'', n_clusters___Birch='56', n_components___KernelPCA='2'
