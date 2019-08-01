@@ -44,13 +44,13 @@ class Decoder(object):
         return history
     
     @staticmethod
-    def decode_log_file(path):
+    def decode_log_file(path, sort_runhistory=True):
         string = Decoder.read_file_as_string(path)
         string_ls = Decoder.split_logs_by_iteration(string)
         dict_ls = Decoder.get_records_by_iteration(string_ls)
 
         for string, d in zip(string_ls, dict_ls):
-            history = Decoder.get_runhistory(string, sort=True)
+            history = Decoder.get_runhistory(string, sort=sort_runhistory)
             d['runhistory'] = history
         
         metadata = {d["dataset"]: d for d in dict_ls}
