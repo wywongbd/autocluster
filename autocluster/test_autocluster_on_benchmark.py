@@ -39,14 +39,18 @@ parser.add_argument("--log_dir_prefix", type=str, default='benchmark_experiment'
 # optimization
 parser.add_argument("--test_size", default=0.1666, type=float,
                     help="Portion of benchmark datasets used for testing.")
+parser.add_argument('--optimizer', choices=['smac', 'random'], default='smac', 
+                    help='Choice of optimizer, smac for bayesian optimization, random for random sampling optimization.')
 parser.add_argument("--n_folds", default=3, type=int,
-                    help="Number of folds used in k-fold cross validation during evaluation step of SMAC optimization.")
+                    help="Number of folds used in k-fold cross validation during evaluation step of optimization.")
 parser.add_argument("--random_seed", default=27, type=int,
                     help="Random seed used in optimization.")
 parser.add_argument("--n_evaluations", default=10, type=int, 
-                    help="Number of evaluations used in SMAC optimization.")
+                    help="Number of evaluations used in optimization.")
 parser.add_argument("--cutoff_time", default=100, type=int, 
                     help="Configuration will be terminated if it takes > cutoff_time to run.")
+parser.add_argument("--warmstart", default=1, type=int, 
+                    help="Flag to indicate whether to use warmstart, 0 for no, 1 for yes.")
 parser.add_argument("--warmstart_n_neighbors", default=3, type=int, 
                     help="Number of similar datasets to use for retrieving initial configurations of warmstarter.")
 parser.add_argument("--warmstart_top_n", default=10, type=int, 
@@ -146,6 +150,7 @@ def main():
                 'KernelPCA', 'FastICA', 'TruncatedSVD',
                 'NullModel'
             ],
+            "optimizer": config.optimizer,
             "n_evaluations": config.n_evaluations,
             "run_obj": 'quality',
             "seed": config.random_seed,
@@ -155,7 +160,7 @@ def main():
                                        weights = [], clustering_num = None, 
                                        min_proportion = .01),
             "n_folds": config.n_folds,
-            "warmstart": True,
+            "warmstart": (config.warmstart != 0),
             "warmstart_datasets_dir": 'benchmark_silhouette',
             "warmstart_metafeatures_table_path": '{}_trimmed.csv'.format(metafeatures_table_name_no_ext),
             "warmstart_n_neighbors": config.warmstart_n_neighbors,
