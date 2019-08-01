@@ -1,0 +1,13 @@
+always_race_default = False
+algo_runs_timelimit = inf
+deterministic = True
+cost_for_crash = 2147483647.0
+cutoff = 100.0
+wallclock_limit = inf
+run_obj = quality
+par_factor = 10
+overall_obj = par10
+ta_run_limit = 25.0
+execdir = .
+initial_incumbent = DEFAULT
+pcs_fn = log//benchmark_experiment_1-2019-07-31_22-33-50-94869/smac-2019-08-01_01-24-39-35035/run_1828459539/configspace.json
