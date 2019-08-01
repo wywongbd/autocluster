@@ -48,7 +48,11 @@ class RandomOptimizer(object):
 
                 if score < incumbent[1]:
                     incumbent = (cfg, score)
-                    self._trajectory.append((cfg, score))           
+                    self._trajectory.append((cfg, score))   
+                    
+                # cancel the timer if we finished on time
+                signal.alarm(0)
+                
             except Exception as e: 
                 print(e)
         

@@ -35,6 +35,7 @@ class AutoCluster(object):
         self._scaler = None
         self._preprocess_dict = None
         self._smac_obj = None
+        self._random_optimizer_obj = None
         self._logger = logger
         self._log_path = None
         
@@ -277,6 +278,9 @@ class AutoCluster(object):
             return score
         
         if optimizer == 'smac':
+            # reset
+            self._random_optimizer_obj= None
+            
             # run SMAC to optimize
             smac_params = {
                 "scenario": scenario,
@@ -289,12 +293,16 @@ class AutoCluster(object):
             time_spent = round(self._smac_obj.stats.get_used_wallclock_time(), 2)
             
         elif optimizer == 'random':
+            # reset
+            self._smac_obj= None
+            
+            # run random optimizer
             t0 = time.time()
-            obj = RandomOptimizer(random_seed=seed, 
-                                  blackbox_function=evaluate_model, 
-                                  config_space=cs)
-            optimal_config, score = obj.optimize(n_evaluations=n_evaluations,
-                                                 cutoff=cutoff_time)
+            self._random_optimizer_obj = RandomOptimizer(random_seed=seed, 
+                                                         blackbox_function=evaluate_model, 
+                                                         config_space=cs)
+            optimal_config, score = self._random_optimizer_obj.optimize(n_evaluations=n_evaluations,
+                                                                        cutoff=cutoff_time)
             time_spent = round(time.time() - t0, 2)
             
         # refit to get optimal model
@@ -308,6 +316,7 @@ class AutoCluster(object):
         result = {
             "cluster_alg_ls": cluster_alg_ls,
             "dim_reduction_alg_ls": dim_reduction_alg_ls,
+            "random_optimizer_obj": self._random_optimizer_obj,
             "smac_obj": self._smac_obj,
             "optimal_cfg": optimal_config,
             "metafeatures": metafeatures_np,
@@ -373,16 +382,23 @@ class AutoCluster(object):
         return y_pred
     
     def get_trajectory(self):
-        if self._smac_obj is None:
+        if (self._smac_obj is None) and (self._random_optimizer_obj is None):
             return None
-        return [(vars(t.incumbent)['_values'], t.train_perf) for t in self._smac_obj.get_trajectory()] 
+        elif self._smac_obj is not None:
+            return [(vars(t.incumbent)['_values'], t.train_perf) for t in self._smac_obj.get_trajectory()] 
+        else:
+            return self._random_optimizer_obj.trajectory
     
     def plot_convergence(self):
-        if self._smac_obj is None:
+        if (self._smac_obj is None) and (self._random_optimizer_obj is None):
             return
+        elif self._smac_obj is not None:
+            history = self._smac_obj.runhistory.data
+            cost_ls = [v.cost for k, v in history.items()]
+        else:
+            history = self._random_optimizer_obj.runhistory
+            cost_ls = [cost for cfg, cost in history]
         
-        history = self._smac_obj.runhistory.data
-        cost_ls = [v.cost for k, v in history.items()]
         min_cost_ls = list(np.minimum.accumulate(cost_ls))
         
         # plotting
