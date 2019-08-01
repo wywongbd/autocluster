@@ -4,6 +4,8 @@ cd ..
 # python test_autocluster_on_benchmark.py \
 # --benchmark_metafeatures_table_path metaknowledge/benchmark_silhouette_metafeatures_table.csv \
 # --log_dir_prefix benchmark_experiment_1 \
+# --optimizer smac \
+# --warmstart 1 \
 # --test_size 0.1666 \
 # --n_folds 3 \
 # --random_seed 27 \
@@ -16,6 +18,8 @@ cd ..
 # python test_autocluster_on_benchmark.py \
 # --benchmark_metafeatures_table_path metaknowledge/benchmark_silhouette_metafeatures_table.csv \
 # --log_dir_prefix benchmark_experiment_2 \
+# --optimizer smac \
+# --warmstart 0 \
 # --test_size 0.1666 \
 # --n_folds 3 \
 # --random_seed 27 \
@@ -28,6 +32,8 @@ cd ..
 python test_autocluster_on_benchmark.py \
 --benchmark_metafeatures_table_path metaknowledge/benchmark_silhouette_metafeatures_table.csv \
 --log_dir_prefix benchmark_experiment_3 \
+--optimizer smac \
+--warmstart 1 \
 --test_size 0.1666 \
 --n_folds 3 \
 --random_seed 27 \
