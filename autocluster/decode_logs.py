@@ -1,5 +1,6 @@
 import re
 import warnings
+import numpy as np
 
 class Decoder(object):
     @staticmethod
@@ -88,6 +89,7 @@ class Decoder(object):
         for string, d in zip(string_ls, dict_ls):
             history = Decoder.get_complete_runhistory(string)
             d['runhistory'] = history
+            d['convergence_curve'] = list(np.minimum.accumulate([cost for cfg, cost in history]))
         
         metadata = {d["dataset"]: d for d in dict_ls}
         return metadata
