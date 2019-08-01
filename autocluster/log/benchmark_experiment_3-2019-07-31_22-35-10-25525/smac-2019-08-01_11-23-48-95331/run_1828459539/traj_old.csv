@@ -1,0 +1,5 @@
+"CPU Time Used","Estimated Training Performance","Wallclock Time","Incumbent ID","Automatic Configurator (CPU) Time","Configuration..."
+0.000000, 2147483648.000000, 0.000035, 1, 0.000035, clustering_choice=''Birch'', dim_reduction_choice=''KernelPCA'', branching_factor___Birch='964', kernel___KernelPCA=''rbf'', n_clusters___Birch='15', n_components___KernelPCA='2'
+4.508751, 0.013785, 4.529540, 1, 0.020789, clustering_choice=''Birch'', dim_reduction_choice=''KernelPCA'', branching_factor___Birch='964', kernel___KernelPCA=''rbf'', n_clusters___Birch='15', n_components___KernelPCA='2'
+7.977134, 0.009848, 8.111901, 2, 0.134766, clustering_choice=''DBSCAN'', dim_reduction_choice=''KernelPCA'', eps___DBSCAN='0.66161214745453', kernel___KernelPCA=''cosine'', min_samples___DBSCAN='12', n_components___KernelPCA='2'
+328.752330, 0.009848, 365.466625, 3, 36.714296, clustering_choice=''DBSCAN'', dim_reduction_choice=''KernelPCA'', eps___DBSCAN='0.627703491767353', kernel___KernelPCA=''cosine'', min_samples___DBSCAN='5', n_components___KernelPCA='2'

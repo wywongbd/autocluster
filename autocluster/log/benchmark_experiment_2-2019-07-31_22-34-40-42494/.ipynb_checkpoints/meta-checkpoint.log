@@ -1,0 +1,258 @@
+2019-07-31 21:34:40,425 INFO - log_helper.log_helper - Finished configuring logger
+2019-07-31 21:34:40,425 INFO - __main__ - Log file location: /home/wywongbd/autocluster/autocluster/log/benchmark_experiment_2-2019-07-31_22-34-40-42494/meta.log
+2019-07-31 21:34:40,425 INFO - __main__ - Script arguments: {'log_dir_prefix': 'benchmark_experiment_2', 'warmstart_n_neighbors': 1, 'random_seed': 27, 'warmstart_top_n': 1, 'n_folds': 3, 'cutoff_time': 100, 'general_metafeatures': ['numberOfInstances', 'logNumberOfInstances', 'missingValuesRatio', 'numberOfMissingValues', 'sparsity'], 'test_size': 0.1666, 'benchmark_metafeatures_table_path': 'metaknowledge/benchmark_silhouette_metafeatures_table.csv', 'n_evaluations': 100, 'numeric_metafeatures': ['firstQuartileSkewness', 'meanSkewness', 'medianKurtosis', 'PCAKurtosisFirstPC', 'maxCorrelation', 'thirdQuartileCorrelation', 'meanCorrelation', 'firstQuartileCorrelation', 'medianCorrelation', 'sparsityOnNumericColumns', 'minCovariance', 'firstQuartileKurtosis', 'maxCovariance', 'firstQuartileCovariance', 'minSkewness', 'meanCovariance', 'PCASkewnessFirstPC', 'meanKurtosis', 'maxSkewness', 'maxKurtosis', 'thirdQuartileKurtosis', 'medianCovariance', 'thirdQuartileCovariance', 'PCAFractionOfComponentsFor95PercentVariance', 'medianSkewness', 'minCorrelation', 'minKurtosis', 'thirdQuartileSkewness']}
+2019-07-31 21:34:40,434 INFO - __main__ - Found 120 benchmark datasets: ['g2-128-80.csv', 's3.csv', 'g2-16-90.csv', 'g2-16-100.csv', 'a2.csv', 'g2-512-60.csv', 'g2-32-40.csv', 'g2-512-50.csv', 'g2-32-70.csv', 'dim7.csv', 'dim11.csv', 'g2-2-60.csv', 'g2-256-50.csv', 'g2-512-90.csv', 'dim9.csv', 'g2-2-10.csv', 'g2-8-90.csv', 'g2-512-10.csv', 'g2-4-80.csv', 'dim2.csv', 'g2-8-70.csv', 'g2-32-80.csv', 'g2-256-80.csv', 'g2-4-40.csv', 'g2-256-20.csv', 'g2-128-50.csv', 'g2-256-10.csv', 'g2-128-90.csv', 'g2-512-80.csv', 'dim8.csv', 'g2-4-10.csv', 'g2-32-100.csv', 'g2-256-70.csv', 'dim12.csv', 'dim064.csv', 'dim032.csv', 'g2-16-40.csv', 'g2-2-100.csv', 's4.csv', 'g2-8-100.csv', 'g2-4-100.csv', 'g2-64-40.csv', 'g2-512-70.csv', 'dim6.csv', 'birch2.csv', 'g2-64-80.csv', 'g2-16-50.csv', 'g2-128-60.csv', 'g2-8-30.csv', 'g2-32-60.csv', 'g2-4-90.csv', 'g2-8-80.csv', 'g2-256-30.csv', 'g2-8-20.csv', 'g2-8-50.csv', 'g2-16-10.csv', 'g2-256-90.csv', 'g2-2-90.csv', 's2.csv', 'dim13.csv', 'g2-2-50.csv', 'g2-64-30.csv', 'g2-128-10.csv', 'g2-512-20.csv', 'g2-16-70.csv', 'g2-64-10.csv', 'g2-64-100.csv', 'g2-4-70.csv', 'g2-128-20.csv', 'g2-512-100.csv', 'dim10.csv', 'dim15.csv', 'a1.csv', 's1.csv', 'a3.csv', 'g2-4-50.csv', 'g2-64-60.csv', 'g2-32-50.csv', 'g2-64-20.csv', 'dim1024.csv', 'g2-16-80.csv', 'g2-8-40.csv', 'g2-32-10.csv', 'g2-128-40.csv', 'birch3.csv', 'g2-32-90.csv', 'dim256.csv', 'g2-64-50.csv', 'g2-2-70.csv', 'g2-16-60.csv', 'g2-4-30.csv', 'g2-512-30.csv', 'dim4.csv', 'g2-2-40.csv', 'dim5.csv', 'g2-32-20.csv', 'g2-32-30.csv', 'g2-256-60.csv', 'dim14.csv', 'g2-4-20.csv', 'dim128.csv', 'g2-16-20.csv', 'g2-16-30.csv', 'g2-256-100.csv', 'g2-512-40.csv', 'g2-64-90.csv', 'g2-128-100.csv', 'dim512.csv', 'dim3.csv', 'g2-8-10.csv', 'g2-128-70.csv', 'g2-8-60.csv', 'g2-128-30.csv', 'g2-256-40.csv', 'g2-2-20.csv', 'g2-4-60.csv', 'g2-2-30.csv', 'g2-2-80.csv', 'g2-64-70.csv', 'unbalance.csv']
+2019-07-31 21:34:40,444 INFO - __main__ - There are 20 benchmark datasets chosen as test datasets: ['g2-256-100.csv', 'g2-16-40.csv', 's2.csv', 'dim10.csv', 'g2-16-60.csv', 'g2-4-70.csv', 'dim7.csv', 'g2-64-30.csv', 'g2-256-50.csv', 'g2-32-50.csv', 'dim128.csv', 'g2-4-10.csv', 'dim14.csv', 'g2-128-90.csv', 'g2-32-40.csv', 'g2-32-10.csv', 'g2-64-50.csv', 'dim6.csv', 'g2-128-60.csv', 'g2-32-20.csv']
+2019-07-31 21:34:40,444 INFO - __main__ - ITERATION 1 of 20
+2019-07-31 21:34:40,444 INFO - __main__ - Running on dataset: g2-256-100.csv
+2019-07-31 21:34:41,049 INFO - __main__ - 2047/2047 datapoints remaining after outlier removal
+2019-07-31 21:34:41,082 INFO - __main__ - Configuration space object:
+  Hyperparameters:
+    affinity___AffinityPropagation, Type: Categorical, Choices: {euclidean}, Default: euclidean
+    affinity___AgglomerativeClustering, Type: Categorical, Choices: {euclidean, cityblock, l2, l1, manhattan, cosine}, Default: euclidean
+    affinity___SpectralClustering, Type: Categorical, Choices: {nearest_neighbors, poly, sigmoid, laplacian, rbf}, Default: rbf
+    algorithm___FastICA, Type: Categorical, Choices: {parallel, deflation}, Default: parallel
+    algorithm___TruncatedSVD, Type: Categorical, Choices: {arpack, randomized}, Default: randomized
+    assign_labels___SpectralClustering, Type: Categorical, Choices: {kmeans, discretize}, Default: kmeans
+    bandwidth___MeanShift, Type: UniformFloat, Range: [0.1, 50.0], Default: 25.05
+    batch_size___IncrementalPCA, Type: UniformInteger, Range: [10, 1000], Default: 100
+    batch_size___MiniBatchKMeans, Type: UniformInteger, Range: [10, 1000], Default: 100
+    bin_seeding___MeanShift, Type: Categorical, Choices: {True, False}, Default: False
+    branching_factor___Birch, Type: UniformInteger, Range: [10, 1000], Default: 50
+    cluster_method___OPTICS, Type: Categorical, Choices: {xi, dbscan}, Default: xi
+    clustering_choice, Type: Categorical, Choices: {KMeans, GaussianMixture, Birch, MiniBatchKMeans, AgglomerativeClustering, OPTICS, SpectralClustering, DBSCAN, AffinityPropagation, MeanShift}, Default: KMeans
+    covariance_type___GaussianMixture, Type: Categorical, Choices: {full, tied, diag, spherical}, Default: full
+    damping___AffinityPropagation, Type: UniformFloat, Range: [0.5, 1.0], Default: 0.5
+    dim_reduction_choice, Type: Categorical, Choices: {TSNE, PCA, IncrementalPCA, KernelPCA, FastICA, TruncatedSVD, NullModel}, Default: TSNE
+    early_exaggeration___TSNE, Type: UniformFloat, Range: [5.0, 20.0], Default: 12.0
+    eigen_solver___SpectralClustering, Type: Categorical, Choices: {arpack}, Default: arpack
+    eps___DBSCAN, Type: UniformFloat, Range: [0.01, 5.0], Default: 0.01
+    fun___FastICA, Type: Categorical, Choices: {logcosh, exp, cube}, Default: logcosh
+    init_params___GaussianMixture, Type: Categorical, Choices: {kmeans, random}, Default: kmeans
+    kernel___KernelPCA, Type: Categorical, Choices: {linear, poly, rbf, sigmoid, cosine}, Default: linear
+    linkage___AgglomerativeClustering, Type: Categorical, Choices: {ward, complete, average, single}, Default: complete
+    metric___OPTICS, Type: Categorical, Choices: {minkowski, euclidean, manhattan, l1, l2, cosine}, Default: minkowski
+    min_samples___DBSCAN, Type: UniformInteger, Range: [5, 100], Default: 5
+    min_samples___OPTICS, Type: UniformInteger, Range: [5, 1000], Default: 100
+    n_clusters___AgglomerativeClustering, Type: UniformInteger, Range: [1, 80], Default: 10
+    n_clusters___Birch, Type: UniformInteger, Range: [1, 80], Default: 5
+    n_clusters___KMeans, Type: UniformInteger, Range: [1, 80], Default: 5
+    n_clusters___MiniBatchKMeans, Type: UniformInteger, Range: [1, 80], Default: 10
+    n_clusters___SpectralClustering, Type: UniformInteger, Range: [1, 80], Default: 10
+    n_components___FastICA, Type: Ordinal, Sequence: {2, 3}, Default: 2
+    n_components___GaussianMixture, Type: UniformInteger, Range: [1, 80], Default: 5
+    n_components___IncrementalPCA, Type: Ordinal, Sequence: {2, 3}, Default: 2
+    n_components___KernelPCA, Type: Ordinal, Sequence: {2, 3, 4, 5, 6, 7, 8, 9}, Default: 2
+    n_components___PCA, Type: Ordinal, Sequence: {2, 3}, Default: 2
+    n_components___TSNE, Type: Ordinal, Sequence: {2}, Default: 2
+    n_components___TruncatedSVD, Type: Ordinal, Sequence: {2, 3, 4, 5, 6, 7, 8, 9}, Default: 2
+    perplexity___TSNE, Type: UniformFloat, Range: [1.0, 300.0], Default: 30.0
+    random_state___NullModel, Type: Ordinal, Sequence: {0, 1}, Default: 1
+    svd_solver___PCA, Type: Categorical, Choices: {auto, full, arpack, randomized}, Default: auto
+    warm_start___GaussianMixture, Type: Categorical, Choices: {True, False}, Default: False
+    whiten___FastICA, Type: Categorical, Choices: {True, False}, Default: True
+    whiten___IncrementalPCA, Type: Categorical, Choices: {True, False}, Default: False
+    whiten___PCA, Type: Categorical, Choices: {True, False}, Default: False
+  Conditions:
+    affinity___AffinityPropagation | clustering_choice in {'AffinityPropagation'}
+    affinity___AgglomerativeClustering | clustering_choice in {'AgglomerativeClustering'}
+    affinity___SpectralClustering | clustering_choice in {'SpectralClustering'}
+    algorithm___FastICA | dim_reduction_choice in {'FastICA'}
+    algorithm___TruncatedSVD | dim_reduction_choice in {'TruncatedSVD'}
+    assign_labels___SpectralClustering | clustering_choice in {'SpectralClustering'}
+    bandwidth___MeanShift | clustering_choice in {'MeanShift'}
+    batch_size___IncrementalPCA | dim_reduction_choice in {'IncrementalPCA'}
+    batch_size___MiniBatchKMeans | clustering_choice in {'MiniBatchKMeans'}
+    bin_seeding___MeanShift | clustering_choice in {'MeanShift'}
+    branching_factor___Birch | clustering_choice in {'Birch'}
+    cluster_method___OPTICS | clustering_choice in {'OPTICS'}
+    covariance_type___GaussianMixture | clustering_choice in {'GaussianMixture'}
+    damping___AffinityPropagation | clustering_choice in {'AffinityPropagation'}
+    early_exaggeration___TSNE | dim_reduction_choice in {'TSNE'}
+    eigen_solver___SpectralClustering | clustering_choice in {'SpectralClustering'}
+    eps___DBSCAN | clustering_choice in {'DBSCAN'}
+    fun___FastICA | dim_reduction_choice in {'FastICA'}
+    init_params___GaussianMixture | clustering_choice in {'GaussianMixture'}
+    kernel___KernelPCA | dim_reduction_choice in {'KernelPCA'}
+    linkage___AgglomerativeClustering | clustering_choice in {'AgglomerativeClustering'}
+    metric___OPTICS | clustering_choice in {'OPTICS'}
+    min_samples___DBSCAN | clustering_choice in {'DBSCAN'}
+    min_samples___OPTICS | clustering_choice in {'OPTICS'}
+    n_clusters___AgglomerativeClustering | clustering_choice in {'AgglomerativeClustering'}
+    n_clusters___Birch | clustering_choice in {'Birch'}
+    n_clusters___KMeans | clustering_choice in {'KMeans'}
+    n_clusters___MiniBatchKMeans | clustering_choice in {'MiniBatchKMeans'}
+    n_clusters___SpectralClustering | clustering_choice in {'SpectralClustering'}
+    n_components___FastICA | dim_reduction_choice in {'FastICA'}
+    n_components___GaussianMixture | clustering_choice in {'GaussianMixture'}
+    n_components___IncrementalPCA | dim_reduction_choice in {'IncrementalPCA'}
+    n_components___KernelPCA | dim_reduction_choice in {'KernelPCA'}
+    n_components___PCA | dim_reduction_choice in {'PCA'}
+    n_components___TSNE | dim_reduction_choice in {'TSNE'}
+    n_components___TruncatedSVD | dim_reduction_choice in {'TruncatedSVD'}
+    perplexity___TSNE | dim_reduction_choice in {'TSNE'}
+    random_state___NullModel | dim_reduction_choice in {'NullModel'}
+    svd_solver___PCA | dim_reduction_choice in {'PCA'}
+    warm_start___GaussianMixture | clustering_choice in {'GaussianMixture'}
+    whiten___FastICA | dim_reduction_choice in {'FastICA'}
+    whiten___IncrementalPCA | dim_reduction_choice in {'IncrementalPCA'}
+    whiten___PCA | dim_reduction_choice in {'PCA'}
+  Forbidden Clauses:
+    (Forbidden: linkage___AgglomerativeClustering == 'ward' && Forbidden: affinity___AgglomerativeClustering in {'cityblock', 'cosine', 'l1', 'l2', 'manhattan'})
+
+2019-07-31 21:34:43,010 INFO - __main__ - Truncated n_evaluations: 100
+2019-07-31 21:34:43,019 INFO - smac.utils.io.cmd_reader.CMDReader - Output to log//benchmark_experiment_2-2019-07-31_22-34-40-42494/smac-2019-07-31_22-34-43-01143
+2019-07-31 21:34:43,019 INFO - __main__ - {'abort_on_first_run_crash': False, 'cs': Configuration space object:
+  Hyperparameters:
+    affinity___AffinityPropagation, Type: Categorical, Choices: {euclidean}, Default: euclidean
+    affinity___AgglomerativeClustering, Type: Categorical, Choices: {euclidean, cityblock, l2, l1, manhattan, cosine}, Default: euclidean
+    affinity___SpectralClustering, Type: Categorical, Choices: {nearest_neighbors, poly, sigmoid, laplacian, rbf}, Default: rbf
+    algorithm___FastICA, Type: Categorical, Choices: {parallel, deflation}, Default: parallel
+    algorithm___TruncatedSVD, Type: Categorical, Choices: {arpack, randomized}, Default: randomized
+    assign_labels___SpectralClustering, Type: Categorical, Choices: {kmeans, discretize}, Default: kmeans
+    bandwidth___MeanShift, Type: UniformFloat, Range: [0.1, 50.0], Default: 25.05
+    batch_size___IncrementalPCA, Type: UniformInteger, Range: [10, 1000], Default: 100
+    batch_size___MiniBatchKMeans, Type: UniformInteger, Range: [10, 1000], Default: 100
+    bin_seeding___MeanShift, Type: Categorical, Choices: {True, False}, Default: False
+    branching_factor___Birch, Type: UniformInteger, Range: [10, 1000], Default: 50
+    cluster_method___OPTICS, Type: Categorical, Choices: {xi, dbscan}, Default: xi
+    clustering_choice, Type: Categorical, Choices: {KMeans, GaussianMixture, Birch, MiniBatchKMeans, AgglomerativeClustering, OPTICS, SpectralClustering, DBSCAN, AffinityPropagation, MeanShift}, Default: KMeans
+    covariance_type___GaussianMixture, Type: Categorical, Choices: {full, tied, diag, spherical}, Default: full
+    damping___AffinityPropagation, Type: UniformFloat, Range: [0.5, 1.0], Default: 0.5
+    dim_reduction_choice, Type: Categorical, Choices: {TSNE, PCA, IncrementalPCA, KernelPCA, FastICA, TruncatedSVD, NullModel}, Default: TSNE
+    early_exaggeration___TSNE, Type: UniformFloat, Range: [5.0, 20.0], Default: 12.0
+    eigen_solver___SpectralClustering, Type: Categorical, Choices: {arpack}, Default: arpack
+    eps___DBSCAN, Type: UniformFloat, Range: [0.01, 5.0], Default: 0.01
+    fun___FastICA, Type: Categorical, Choices: {logcosh, exp, cube}, Default: logcosh
+    init_params___GaussianMixture, Type: Categorical, Choices: {kmeans, random}, Default: kmeans
+    kernel___KernelPCA, Type: Categorical, Choices: {linear, poly, rbf, sigmoid, cosine}, Default: linear
+    linkage___AgglomerativeClustering, Type: Categorical, Choices: {ward, complete, average, single}, Default: complete
+    metric___OPTICS, Type: Categorical, Choices: {minkowski, euclidean, manhattan, l1, l2, cosine}, Default: minkowski
+    min_samples___DBSCAN, Type: UniformInteger, Range: [5, 100], Default: 5
+    min_samples___OPTICS, Type: UniformInteger, Range: [5, 1000], Default: 100
+    n_clusters___AgglomerativeClustering, Type: UniformInteger, Range: [1, 80], Default: 10
+    n_clusters___Birch, Type: UniformInteger, Range: [1, 80], Default: 5
+    n_clusters___KMeans, Type: UniformInteger, Range: [1, 80], Default: 5
+    n_clusters___MiniBatchKMeans, Type: UniformInteger, Range: [1, 80], Default: 10
+    n_clusters___SpectralClustering, Type: UniformInteger, Range: [1, 80], Default: 10
+    n_components___FastICA, Type: Ordinal, Sequence: {2, 3}, Default: 2
+    n_components___GaussianMixture, Type: UniformInteger, Range: [1, 80], Default: 5
+    n_components___IncrementalPCA, Type: Ordinal, Sequence: {2, 3}, Default: 2
+    n_components___KernelPCA, Type: Ordinal, Sequence: {2, 3, 4, 5, 6, 7, 8, 9}, Default: 2
+    n_components___PCA, Type: Ordinal, Sequence: {2, 3}, Default: 2
+    n_components___TSNE, Type: Ordinal, Sequence: {2}, Default: 2
+    n_components___TruncatedSVD, Type: Ordinal, Sequence: {2, 3, 4, 5, 6, 7, 8, 9}, Default: 2
+    perplexity___TSNE, Type: UniformFloat, Range: [1.0, 300.0], Default: 30.0
+    random_state___NullModel, Type: Ordinal, Sequence: {0, 1}, Default: 1
+    svd_solver___PCA, Type: Categorical, Choices: {auto, full, arpack, randomized}, Default: auto
+    warm_start___GaussianMixture, Type: Categorical, Choices: {True, False}, Default: False
+    whiten___FastICA, Type: Categorical, Choices: {True, False}, Default: True
+    whiten___IncrementalPCA, Type: Categorical, Choices: {True, False}, Default: False
+    whiten___PCA, Type: Categorical, Choices: {True, False}, Default: False
+  Conditions:
+    affinity___AffinityPropagation | clustering_choice in {'AffinityPropagation'}
+    affinity___AgglomerativeClustering | clustering_choice in {'AgglomerativeClustering'}
+    affinity___SpectralClustering | clustering_choice in {'SpectralClustering'}
+    algorithm___FastICA | dim_reduction_choice in {'FastICA'}
+    algorithm___TruncatedSVD | dim_reduction_choice in {'TruncatedSVD'}
+    assign_labels___SpectralClustering | clustering_choice in {'SpectralClustering'}
+    bandwidth___MeanShift | clustering_choice in {'MeanShift'}
+    batch_size___IncrementalPCA | dim_reduction_choice in {'IncrementalPCA'}
+    batch_size___MiniBatchKMeans | clustering_choice in {'MiniBatchKMeans'}
+    bin_seeding___MeanShift | clustering_choice in {'MeanShift'}
+    branching_factor___Birch | clustering_choice in {'Birch'}
+    cluster_method___OPTICS | clustering_choice in {'OPTICS'}
+    covariance_type___GaussianMixture | clustering_choice in {'GaussianMixture'}
+    damping___AffinityPropagation | clustering_choice in {'AffinityPropagation'}
+    early_exaggeration___TSNE | dim_reduction_choice in {'TSNE'}
+    eigen_solver___SpectralClustering | clustering_choice in {'SpectralClustering'}
+    eps___DBSCAN | clustering_choice in {'DBSCAN'}
+    fun___FastICA | dim_reduction_choice in {'FastICA'}
+    init_params___GaussianMixture | clustering_choice in {'GaussianMixture'}
+    kernel___KernelPCA | dim_reduction_choice in {'KernelPCA'}
+    linkage___AgglomerativeClustering | clustering_choice in {'AgglomerativeClustering'}
+    metric___OPTICS | clustering_choice in {'OPTICS'}
+    min_samples___DBSCAN | clustering_choice in {'DBSCAN'}
+    min_samples___OPTICS | clustering_choice in {'OPTICS'}
+    n_clusters___AgglomerativeClustering | clustering_choice in {'AgglomerativeClustering'}
+    n_clusters___Birch | clustering_choice in {'Birch'}
+    n_clusters___KMeans | clustering_choice in {'KMeans'}
+    n_clusters___MiniBatchKMeans | clustering_choice in {'MiniBatchKMeans'}
+    n_clusters___SpectralClustering | clustering_choice in {'SpectralClustering'}
+    n_components___FastICA | dim_reduction_choice in {'FastICA'}
+    n_components___GaussianMixture | clustering_choice in {'GaussianMixture'}
+    n_components___IncrementalPCA | dim_reduction_choice in {'IncrementalPCA'}
+    n_components___KernelPCA | dim_reduction_choice in {'KernelPCA'}
+    n_components___PCA | dim_reduction_choice in {'PCA'}
+    n_components___TSNE | dim_reduction_choice in {'TSNE'}
+    n_components___TruncatedSVD | dim_reduction_choice in {'TruncatedSVD'}
+    perplexity___TSNE | dim_reduction_choice in {'TSNE'}
+    random_state___NullModel | dim_reduction_choice in {'NullModel'}
+    svd_solver___PCA | dim_reduction_choice in {'PCA'}
+    warm_start___GaussianMixture | clustering_choice in {'GaussianMixture'}
+    whiten___FastICA | dim_reduction_choice in {'FastICA'}
+    whiten___IncrementalPCA | dim_reduction_choice in {'IncrementalPCA'}
+    whiten___PCA | dim_reduction_choice in {'PCA'}
+  Forbidden Clauses:
+    (Forbidden: linkage___AgglomerativeClustering == 'ward' && Forbidden: affinity___AgglomerativeClustering in {'cityblock', 'cosine', 'l1', 'l2', 'manhattan'})
+, 'runcount-limit': 100, 'deterministic': 'true', 'run_obj': 'quality', 'output_dir': 'log//benchmark_experiment_2-2019-07-31_22-34-40-42494/smac-2019-07-31_22-34-43-01143', 'cutoff_time': 100}
+2019-07-31 21:34:43,020 INFO - smac.facade.smac_facade.SMAC - Optimizing a deterministic scenario for quality without a tuner timeout - will make SMAC deterministic!
+2019-07-31 21:34:43,033 INFO - __main__ - Fitting configuration: 
+{'perplexity___TSNE': 30.0, 'n_clusters___KMeans': 5, 'clustering_choice': 'KMeans', 'n_components___TSNE': 2, 'dim_reduction_choice': 'TSNE', 'early_exaggeration___TSNE': 12.0}
+2019-07-31 21:35:50,459 INFO - __main__ - Score obtained by this configuration: 0.3350744843482971
+2019-07-31 21:35:51,051 INFO - __main__ - Fitting configuration: 
+{'clustering_choice': 'KMeans', 'n_clusters___KMeans': 80, 'kernel___KernelPCA': 'poly', 'dim_reduction_choice': 'KernelPCA', 'n_components___KernelPCA': 3}
+2019-07-31 21:35:58,420 INFO - __main__ - Score obtained by this configuration: 0.3699298523812609
+2019-07-31 21:35:58,511 INFO - __main__ - Fitting configuration: 
+{'perplexity___TSNE': 159.25949786473558, 'n_components___GaussianMixture': 72, 'covariance_type___GaussianMixture': 'diag', 'warm_start___GaussianMixture': True, 'clustering_choice': 'GaussianMixture', 'n_components___TSNE': 2, 'init_params___GaussianMixture': 'random', 'dim_reduction_choice': 'TSNE', 'early_exaggeration___TSNE': 10.259528498769093}
+2019-07-31 21:36:27,967 INFO - __main__ - Score obtained by this configuration: inf
+2019-07-31 21:36:27,986 WARNING - smac.tae.execute_func.ExecuteTAFuncDict - Target Algorithm returned NaN or inf as quality. Algorithm run is treated as CRASHED, cost is set to 2147483647.0 for quality scenarios. (Change value through "cost_for_crash"-option.)
+2019-07-31 21:36:27,987 INFO - smac.intensification.intensification.Intensifier - Updated estimated cost of incumbent on 1 runs: 0.3351
+2019-07-31 21:36:28,942 INFO - __main__ - Fitting configuration: 
+{'min_samples___DBSCAN': 54, 'batch_size___IncrementalPCA': 22, 'eps___DBSCAN': 4.87237949334927, 'n_components___IncrementalPCA': 2, 'clustering_choice': 'DBSCAN', 'dim_reduction_choice': 'IncrementalPCA'}
+2019-07-31 21:36:29,355 INFO - __main__ - Score obtained by this configuration: 0.0562783977285529
+2019-07-31 21:36:29,380 INFO - smac.intensification.intensification.Intensifier - Challenger (0.0563) is better than incumbent (0.3351) on 1 runs.
+2019-07-31 21:36:29,381 INFO - smac.intensification.intensification.Intensifier - Changes in incumbent:
+2019-07-31 21:36:29,381 INFO - smac.intensification.intensification.Intensifier -   batch_size___IncrementalPCA : None -> 22
+2019-07-31 21:36:29,381 INFO - smac.intensification.intensification.Intensifier -   clustering_choice : 'KMeans' -> 'DBSCAN'
+2019-07-31 21:36:29,381 INFO - smac.intensification.intensification.Intensifier -   dim_reduction_choice : 'TSNE' -> 'IncrementalPCA'
+2019-07-31 21:36:29,381 INFO - smac.intensification.intensification.Intensifier -   eps___DBSCAN : None -> 4.87237949334927
+2019-07-31 21:36:29,381 INFO - smac.intensification.intensification.Intensifier -   min_samples___DBSCAN : None -> 54
+2019-07-31 21:36:29,381 INFO - smac.intensification.intensification.Intensifier -   n_components___IncrementalPCA : None -> 2
+2019-07-31 21:36:29,382 INFO - smac.intensification.intensification.Intensifier -   whiten___IncrementalPCA : None -> False
+2019-07-31 21:36:29,388 INFO - __main__ - Fitting configuration: 
+{'batch_size___IncrementalPCA': 33, 'n_components___GaussianMixture': 42, 'covariance_type___GaussianMixture': 'tied', 'n_components___IncrementalPCA': 3, 'clustering_choice': 'GaussianMixture', 'init_params___GaussianMixture': 'random', 'whiten___IncrementalPCA': True, 'dim_reduction_choice': 'IncrementalPCA'}
+2019-07-31 21:36:29,610 INFO - __main__ - Score obtained by this configuration: inf
+2019-07-31 21:36:29,639 WARNING - smac.tae.execute_func.ExecuteTAFuncDict - Target Algorithm returned NaN or inf as quality. Algorithm run is treated as CRASHED, cost is set to 2147483647.0 for quality scenarios. (Change value through "cost_for_crash"-option.)
+2019-07-31 21:36:29,640 INFO - smac.intensification.intensification.Intensifier - Updated estimated cost of incumbent on 1 runs: 0.0563
+2019-07-31 21:36:31,279 INFO - __main__ - Fitting configuration: 
+{'perplexity___TSNE': 175.48390215534172, 'linkage___AgglomerativeClustering': 'average', 'affinity___AgglomerativeClustering': 'cityblock', 'n_clusters___AgglomerativeClustering': 9, 'clustering_choice': 'AgglomerativeClustering', 'n_components___TSNE': 2, 'dim_reduction_choice': 'TSNE', 'early_exaggeration___TSNE': 7.471032321220759}
+2019-07-31 21:38:11,318 INFO - __main__ - Fitting configuration: 
+{'perplexity___TSNE': 136.7154024788304, 'n_clusters___MiniBatchKMeans': 36, 'clustering_choice': 'MiniBatchKMeans', 'n_components___TSNE': 2, 'batch_size___MiniBatchKMeans': 883, 'dim_reduction_choice': 'TSNE', 'early_exaggeration___TSNE': 8.832734650202902}
+2019-07-31 21:39:37,292 INFO - __main__ - Score obtained by this configuration: 0.3326584796110789
+2019-07-31 21:39:37,311 INFO - smac.intensification.intensification.Intensifier - Updated estimated cost of incumbent on 1 runs: 0.0563
+2019-07-31 21:39:39,202 INFO - __main__ - Fitting configuration: 
+{'clustering_choice': 'OPTICS', 'cluster_method___OPTICS': 'dbscan', 'min_samples___OPTICS': 963, 'dim_reduction_choice': 'NullModel', 'metric___OPTICS': 'l2'}
+2019-07-31 21:40:02,689 INFO - __main__ - Fitting configuration: 
+{'perplexity___TSNE': 170.781317717653, 'damping___AffinityPropagation': 0.5361339688602682, 'clustering_choice': 'AffinityPropagation', 'n_components___TSNE': 2, 'early_exaggeration___TSNE': 10.919925617913215, 'dim_reduction_choice': 'TSNE', 'affinity___AffinityPropagation': 'euclidean'}
+2019-07-31 21:41:42,715 INFO - smac.intensification.intensification.Intensifier - Updated estimated cost of incumbent on 1 runs: 0.0563
+2019-07-31 21:41:45,378 INFO - __main__ - Fitting configuration: 
+{'clustering_choice': 'Birch', 'fun___FastICA': 'logcosh', 'whiten___FastICA': True, 'algorithm___FastICA': 'parallel', 'n_components___FastICA': 3, 'branching_factor___Birch': 623, 'dim_reduction_choice': 'FastICA', 'n_clusters___Birch': 36}
+2019-07-31 21:41:45,799 INFO - __main__ - Score obtained by this configuration: inf
+2019-07-31 21:41:45,833 WARNING - smac.tae.execute_func.ExecuteTAFuncDict - Target Algorithm returned NaN or inf as quality. Algorithm run is treated as CRASHED, cost is set to 2147483647.0 for quality scenarios. (Change value through "cost_for_crash"-option.)
+2019-07-31 21:41:45,841 INFO - __main__ - Fitting configuration: 
+{'min_samples___DBSCAN': 44, 'eps___DBSCAN': 4.3743550603034835, 'algorithm___TruncatedSVD': 'randomized', 'n_components___TruncatedSVD': 2, 'clustering_choice': 'DBSCAN', 'dim_reduction_choice': 'TruncatedSVD'}
+2019-07-31 21:41:46,199 INFO - __main__ - Score obtained by this configuration: 0.05556095431984335
+2019-07-31 21:41:46,218 INFO - smac.intensification.intensification.Intensifier - Challenger (0.0556) is better than incumbent (0.0563) on 1 runs.
+2019-07-31 21:41:46,218 INFO - smac.intensification.intensification.Intensifier - Changes in incumbent:
+2019-07-31 21:41:46,218 INFO - smac.intensification.intensification.Intensifier -   algorithm___TruncatedSVD : None -> 'randomized'
+2019-07-31 21:41:46,218 INFO - smac.intensification.intensification.Intensifier -   dim_reduction_choice : 'IncrementalPCA' -> 'TruncatedSVD'
+2019-07-31 21:41:46,218 INFO - smac.intensification.intensification.Intensifier -   eps___DBSCAN : 4.87237949334927 -> 4.3743550603034835
+2019-07-31 21:41:46,218 INFO - smac.intensification.intensification.Intensifier -   min_samples___DBSCAN : 54 -> 44
+2019-07-31 21:41:46,218 INFO - smac.intensification.intensification.Intensifier -   n_components___TruncatedSVD : None -> 2
+2019-07-31 21:41:46,219 INFO - smac.intensification.intensification.Intensifier - Updated estimated cost of incumbent on 1 runs: 0.0556
+2019-07-31 21:41:49,055 INFO - __main__ - Fitting configuration: 
+{'min_samples___DBSCAN': 46, 'clustering_choice': 'DBSCAN', 'eps___DBSCAN': 3.3134658661094107, 'fun___FastICA': 'exp', 'dim_reduction_choice': 'FastICA', 'algorithm___FastICA': 'parallel', 'n_components___FastICA': 3, 'whiten___FastICA': True}
+2019-07-31 21:43:29,174 INFO - __main__ - Fitting configuration: 
+{'min_samples___DBSCAN': 81, 'clustering_choice': 'DBSCAN', 'eps___DBSCAN': 2.931069592513968, 'svd_solver___PCA': 'randomized', 'n_components___PCA': 3, 'dim_reduction_choice': 'PCA'}
+2019-07-31 21:45:09,260 INFO - smac.intensification.intensification.Intensifier - Updated estimated cost of incumbent on 1 runs: 0.0556

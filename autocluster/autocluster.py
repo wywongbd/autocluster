@@ -1,6 +1,7 @@
 from algorithms import algorithms
 from evaluators import get_evaluator
 from warmstarter import KDTreeWarmstarter
+from random_sampling_optimizer import RandomOptimizer
 from preprocess_data import PreprocessedDataset
 from utils.stringutils import StringUtils
 from utils.logutils import LogUtils
@@ -47,6 +48,7 @@ class AutoCluster(object):
             run_obj='quality',
             seed=27,
             cutoff_time=50,
+            optimizer='smac',
             evaluator=get_evaluator(evaluator_ls = ['silhouetteScore'], 
                                     weights = [], clustering_num = None, 
                                     min_proportion = .01),
@@ -68,6 +70,7 @@ class AutoCluster(object):
         df: a DataFrame
         n_folds: number of folds used in k-fold cross validation
         preprocess_dict: should be a dictionary with keys 'numeric_cols', 'ordinal_cols', 'categorical_cols' and 'y_col'
+        optimizer: 'smac' or 'random'
         cluster_alg_ls: list of clustering algorithms to explore
         dim_reduction_alg_ls: list of dimension algorithms to explore
         n_evaluations: max # of evaluations done during optimization, higher values yield better results 
@@ -272,22 +275,33 @@ class AutoCluster(object):
                 
             self._log("Score obtained by this configuration: {}".format(score))
             return score
-    
-        # run SMAC to optimize
-        smac_params = {
-            "scenario": scenario,
-            "rng": np.random.RandomState(seed),
-            "tae_runner": evaluate_model,
-            "initial_configurations": initial_cfgs_ls,
-        }
-        self._smac_obj = SMAC(**smac_params)
-        optimal_config = self._smac_obj.optimize()
         
+        if optimizer == 'smac':
+            # run SMAC to optimize
+            smac_params = {
+                "scenario": scenario,
+                "rng": np.random.RandomState(seed),
+                "tae_runner": evaluate_model,
+                "initial_configurations": initial_cfgs_ls,
+            }
+            self._smac_obj = SMAC(**smac_params)
+            optimal_config = self._smac_obj.optimize()
+            time_spent = round(self._smac_obj.stats.get_used_wallclock_time(), 2)
+            
+        elif optimizer == 'random':
+            t0 = time.time()
+            obj = RandomOptimizer(random_seed=seed, 
+                                  blackbox_function=evaluate_model, 
+                                  config_space=cs)
+            optimal_config, score = obj.optimize(n_evaluations=n_evaluations,
+                                                 cutoff=cutoff_time)
+            time_spent = round(time.time() - t0, 2)
+            
         # refit to get optimal model
         self._scaler, self._dim_reduction_model, self._clustering_model = fit_models(cfg_to_dict(optimal_config), 
                                                                                      processed_data_np)
         self._log("Optimization is complete.")
-        self._log("Took {} seconds.".format(round(self._smac_obj.stats.get_used_wallclock_time(), 2)))
+        self._log("Took {} seconds.".format(time_spent))
         self._log("The optimal configuration is \n{}".format(optimal_config))
         
         # return a dictionary
@@ -334,10 +348,7 @@ class AutoCluster(object):
         
         if plot or save_plot:
             colors = cm.nipy_spectral(np.linspace(0, 1, int(max(y_pred) + 1)))
-#             colors = np.array(list(islice(cycle(['#377eb8', '#ff7f00', '#4daf4a', 'magenta',
-#                                                  '#f781bf', '#a65628', '#984ea3', 'black',
-#                                                  '#999999', '#e41a1c', '#dede00', 'cyan']),
-#                                                   int(max(y_pred) + 1))))
+
             # check if dimension reduction is needed
             if compressed_data.shape[1] > 2:
                 self._log('performing TSNE')

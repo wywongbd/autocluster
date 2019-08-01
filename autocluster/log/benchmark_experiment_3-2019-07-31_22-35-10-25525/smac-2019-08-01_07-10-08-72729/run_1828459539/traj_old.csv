@@ -1,0 +1,4 @@
+"CPU Time Used","Estimated Training Performance","Wallclock Time","Incumbent ID","Automatic Configurator (CPU) Time","Configuration..."
+0.000000, 2147483648.000000, 0.000034, 1, 0.000034, clustering_choice=''Birch'', dim_reduction_choice=''TruncatedSVD'', algorithm___TruncatedSVD=''randomized'', branching_factor___Birch='291', n_clusters___Birch='45', n_components___TruncatedSVD='9'
+0.097878, 0.003993, 0.117283, 1, 0.019406, clustering_choice=''Birch'', dim_reduction_choice=''TruncatedSVD'', algorithm___TruncatedSVD=''randomized'', branching_factor___Birch='291', n_clusters___Birch='45', n_components___TruncatedSVD='9'
+119.598612, 0.003993, 185.631231, 2, 66.032619, clustering_choice=''Birch'', dim_reduction_choice=''TruncatedSVD'', algorithm___TruncatedSVD=''arpack'', branching_factor___Birch='319', n_clusters___Birch='35', n_components___TruncatedSVD='9'
