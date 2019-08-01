@@ -277,9 +277,10 @@ class AutoCluster(object):
             self._log("Score obtained by this configuration: {}".format(score))
             return score
         
+        optimal_config = None
         if optimizer == 'smac':
             # reset
-            self._random_optimizer_obj= None
+            self._random_optimizer_obj = None
             
             # run SMAC to optimize
             smac_params = {
