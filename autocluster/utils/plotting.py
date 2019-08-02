@@ -48,7 +48,9 @@ def plot_convergence(data, iterations='max', title=None, x_label='Iterations', y
         fig = plt.figure(figsize=(12,7))
         for i in range(graph_num):
             data_len = min(len(data_in_2D[i]), x_len)
-            plt.plot(lin_sp[:data_len], data_in_2D[i][:data_len], linestyle='-', color=colors[i])
+            data_temp = data_in_2D[i][:data_len]
+            data_temp = [1 if datum==float('inf') else datum for datum in data_temp]
+            plt.plot(lin_sp[:data_len], data_temp, linestyle='-', color=colors[i])
         
         plt.legend(set_legends, loc='best')
             
