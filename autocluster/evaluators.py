@@ -34,17 +34,17 @@ class EvaluatorMapper(object):
         # check if num of clusters is within the range
         if type(clustering_num) == int:
             if len(set(y_pred)) != clustering_num:
-                return float('inf')
+                return 1
         elif type(clustering_num) == tuple:
             if len(clustering_num) == 1 and clustering_num[0] > 1:
                 if len(set(y_pred)) != clustering_num[0]:
-                    return float('inf')
+                    return 1
             elif len(clustering_num) == 2 and clustering_num[0] <= clustering_num[1] and clustering_num[1] > 1:
                 if len(set(y_pred)) < clustering_num[0] or len(set(y_pred)) == 1 or len(set(y_pred)) > clustering_num[1]:
-                    return float('inf')
+                    return 1
 
         if len(set(y_pred)) == 1 :
-            return float('inf')
+            return 1
         
         # check if (minimun cluster size)/(maximun cluster size) is over min_proportion
         freq_dict = Counter(y_pred)
@@ -52,7 +52,7 @@ class EvaluatorMapper(object):
         max_cluster_size = np.max(cluster_size_ls)
         min_cluster_size = np.min(cluster_size_ls)
         if min_cluster_size / max_cluster_size < min_proportion:
-            return float('inf')
+            return 1
     
         # evaluate linear combination of scores
         values = []
