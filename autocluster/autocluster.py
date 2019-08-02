@@ -95,7 +95,7 @@ class AutoCluster(object):
         predicted_labels = ensemble.IsolationForest(n_estimators=100, 
                                                     warm_start=True,
                                                     behaviour='new',
-                                                    contamination='auto').fit_predict(raw_data_np)
+                                                    contamination=0.1).fit_predict(raw_data_np)
         idx_np = np.where(predicted_labels == 1)
         
         # remove outliers

@@ -4,23 +4,31 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
 
-def plot_convergence(data, iterations='max', title=None, x_label='Iterations', y_label='Scores',\
-                     legends=[], show_plot=True, save_plot=True, file_path=None):
+def plot_convergence(data, 
+                     iterations='max', 
+                     title=None, 
+                     x_label='Iterations', 
+                     y_label='Scores',
+                     legends=[], 
+                     show_plot=True, 
+                     save_plot=True, 
+                     file_path=None):
+    """
+    data : list or np.array (1D or 2D)
+           ex) [1, 2, 5] -> one graph
+               [[3, 5, 6, 9], [2, 5, 7], [1, 2, 3, 4, 5]] -> three graphs
+    iterations : number of iterations
+                 iterations='max' : maximum iteration number of datasets
+                                    ex) [[3, 5, 6, 9], [2, 5, 7]] -> 4
+                 iterations='min' : minimum iteration number of datasets
+                                    ex) [[3, 5, 6, 9], [2, 5, 7]] -> 3
+                 iterations=(int) : set iteration number manually
+    legends : set of legends
+              ex) ['SMAC', 'Random Search']
+              if legends==[], then legends are named numbers 1, 2, 3, ...
+    """
     
-    # data : list or np.array (1D or 2D)
-    #        ex) [1, 2, 5] -> one graph
-    #            [[3, 5, 6, 9], [2, 5, 7], [1, 2, 3, 4, 5]] -> three graphs
-    # iterations : number of iterations
-    #              iterations='max' : maximum iteration number of datasets
-    #                                 ex) [[3, 5, 6, 9], [2, 5, 7]] -> 4
-    #              iterations='min' : minimum iteration number of datasets
-    #                                 ex) [[3, 5, 6, 9], [2, 5, 7]] -> 3
-    #              iterations=(int) : set iteration number manually
-    # legends : set of legends
-    #           ex) ['SMAC', 'Random Search']
-    #           if legends==[], then legends are named numbers 1, 2, 3, ...
-    
-    if type(data[0]) == int:
+    if type(data[0]) != list and type(data[0]) != np.ndarray:
         graph_num = 1
         data_in_2D = [data]
     else:
@@ -43,7 +51,7 @@ def plot_convergence(data, iterations='max', title=None, x_label='Iterations', y
         
     if show_plot or save_plot:
         lin_sp = range(1, x_len + 1)
-        colors = cm.nipy_spectral(np.linspace(0, 1, graph_num))
+        colors = cm.nipy_spectral(np.linspace(0, 1, graph_num + 1))
                 
         fig = plt.figure(figsize=(12,7))
         for i in range(graph_num):
@@ -70,3 +78,23 @@ def plot_convergence(data, iterations='max', title=None, x_label='Iterations', y
             plt.show()
                 
         plt.close(fig)
+        
+        
+        
+# def plot_convergence_average(data, 
+#                              iterations='max', 
+#                              title=None, 
+#                              x_label='Iterations', 
+#                              y_label='Scores',
+#                              x_scale='normal',
+#                              area=None
+#                              show_plot=True, 
+#                              save_plot=True, 
+#                              file_path=None):
+#
+#     data_ave = {}
+#     if area == 'stdev':
+#         for key, value in data.items():
+#             len_ls = []
+#             for sublist in value:
+#                 len_ls.append(len(sublist))
