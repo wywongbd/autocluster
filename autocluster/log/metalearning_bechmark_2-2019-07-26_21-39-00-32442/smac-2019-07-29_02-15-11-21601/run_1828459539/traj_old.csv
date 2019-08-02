@@ -1,0 +1,6 @@
+"CPU Time Used","Estimated Training Performance","Wallclock Time","Incumbent ID","Automatic Configurator (CPU) Time","Configuration..."
+0.000000, 2147483648.000000, 0.000299, 1, 0.000299, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='12.0', n_clusters___KMeans='5', n_components___TSNE='2', perplexity___TSNE='30.0'
+38.912772, 0.317256, 38.931059, 1, 0.018287, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='12.0', n_clusters___KMeans='5', n_components___TSNE='2', perplexity___TSNE='30.0'
+457.363896, 0.313340, 473.090811, 2, 15.726915, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='10.787445847072235', n_clusters___KMeans='61', n_components___TSNE='2', perplexity___TSNE='279.157079097051'
+1455.035151, 0.303400, 1555.753506, 3, 100.718355, clustering_choice=''MiniBatchKMeans'', dim_reduction_choice=''FastICA'', algorithm___FastICA=''deflation'', batch_size___MiniBatchKMeans='970', fun___FastICA=''exp'', n_clusters___MiniBatchKMeans='5', n_components___FastICA='2', whiten___FastICA='True'
+1666.407714, 0.294963, 1780.488714, 4, 114.081000, clustering_choice=''KMeans'', dim_reduction_choice=''FastICA'', algorithm___FastICA=''deflation'', fun___FastICA=''logcosh'', n_clusters___KMeans='4', n_components___FastICA='2', whiten___FastICA='True'

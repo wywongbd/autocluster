@@ -1,6 +1,7 @@
 from algorithms import algorithms
 from evaluators import get_evaluator
 from warmstarter import KDTreeWarmstarter
+from random_sampling_optimizer import RandomOptimizer
 from preprocess_data import PreprocessedDataset
 from utils.stringutils import StringUtils
 from utils.logutils import LogUtils
@@ -19,10 +20,12 @@ from smac.optimizer import smbo, pSMAC
 
 import os
 import copy
+import time
 import logging
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 
 class AutoCluster(object):
     def __init__(self, logger=None):
@@ -32,6 +35,7 @@ class AutoCluster(object):
         self._scaler = None
         self._preprocess_dict = None
         self._smac_obj = None
+        self._random_optimizer_obj = None
         self._logger = logger
         self._log_path = None
         
@@ -45,6 +49,7 @@ class AutoCluster(object):
             run_obj='quality',
             seed=27,
             cutoff_time=50,
+            optimizer='smac',
             evaluator=get_evaluator(evaluator_ls = ['silhouetteScore'], 
                                     weights = [], clustering_num = None, 
                                     min_proportion = .01),
@@ -66,6 +71,7 @@ class AutoCluster(object):
         df: a DataFrame
         n_folds: number of folds used in k-fold cross validation
         preprocess_dict: should be a dictionary with keys 'numeric_cols', 'ordinal_cols', 'categorical_cols' and 'y_col'
+        optimizer: 'smac' or 'random'
         cluster_alg_ls: list of clustering algorithms to explore
         dim_reduction_alg_ls: list of dimension algorithms to explore
         n_evaluations: max # of evaluations done during optimization, higher values yield better results 
@@ -89,7 +95,7 @@ class AutoCluster(object):
         predicted_labels = ensemble.IsolationForest(n_estimators=100, 
                                                     warm_start=True,
                                                     behaviour='new',
-                                                    contamination='auto').fit_predict(raw_data_np)
+                                                    contamination=0.1).fit_predict(raw_data_np)
         idx_np = np.where(predicted_labels == 1)
         
         # remove outliers
@@ -270,28 +276,48 @@ class AutoCluster(object):
                 
             self._log("Score obtained by this configuration: {}".format(score))
             return score
-    
-        # run SMAC to optimize
-        smac_params = {
-            "scenario": scenario,
-            "rng": np.random.RandomState(seed),
-            "tae_runner": evaluate_model,
-            "initial_configurations": initial_cfgs_ls,
-        }
-        self._smac_obj = SMAC(**smac_params)
-        optimal_config = self._smac_obj.optimize()
         
+        optimal_config = None
+        if optimizer == 'smac':
+            # reset
+            self._random_optimizer_obj = None
+            
+            # run SMAC to optimize
+            smac_params = {
+                "scenario": scenario,
+                "rng": np.random.RandomState(seed),
+                "tae_runner": evaluate_model,
+                "initial_configurations": initial_cfgs_ls,
+            }
+            self._smac_obj = SMAC(**smac_params)
+            optimal_config = self._smac_obj.optimize()
+            time_spent = round(self._smac_obj.stats.get_used_wallclock_time(), 2)
+            
+        elif optimizer == 'random':
+            # reset
+            self._smac_obj= None
+            
+            # run random optimizer
+            t0 = time.time()
+            self._random_optimizer_obj = RandomOptimizer(random_seed=seed, 
+                                                         blackbox_function=evaluate_model, 
+                                                         config_space=cs)
+            optimal_config, score = self._random_optimizer_obj.optimize(n_evaluations=n_evaluations,
+                                                                        cutoff=cutoff_time)
+            time_spent = round(time.time() - t0, 2)
+            
         # refit to get optimal model
         self._scaler, self._dim_reduction_model, self._clustering_model = fit_models(cfg_to_dict(optimal_config), 
                                                                                      processed_data_np)
         self._log("Optimization is complete.")
-        self._log("Took {} seconds.".format(round(self._smac_obj.stats.get_used_wallclock_time(), 2)))
+        self._log("Took {} seconds.".format(time_spent))
         self._log("The optimal configuration is \n{}".format(optimal_config))
         
         # return a dictionary
         result = {
             "cluster_alg_ls": cluster_alg_ls,
             "dim_reduction_alg_ls": dim_reduction_alg_ls,
+            "random_optimizer_obj": self._random_optimizer_obj,
             "smac_obj": self._smac_obj,
             "optimal_cfg": optimal_config,
             "metafeatures": metafeatures_np,
@@ -303,7 +329,7 @@ class AutoCluster(object):
         return result
     
 
-    def predict(self, df, plot=True):
+    def predict(self, df, plot=True, save_plot=True, file_path=None):
         if (self._clustering_model is None) or (self._preprocess_dict is None):
             return None
         
@@ -330,35 +356,50 @@ class AutoCluster(object):
         except:
             y_pred = self._clustering_model.fit_predict(compressed_data) 
         
-        if plot:
-            colors = np.array(list(islice(cycle(['#377eb8', '#ff7f00', '#4daf4a', 'magenta',
-                                                 '#f781bf', '#a65628', '#984ea3', 'black',
-                                                 '#999999', '#e41a1c', '#dede00', 'cyan']),
-                                                  int(max(y_pred) + 1))))
+        if plot or save_plot:
+            colors = cm.nipy_spectral(np.linspace(0, 1, int(max(y_pred) + 1)))
+
             # check if dimension reduction is needed
             if compressed_data.shape[1] > 2:
                 self._log('performing TSNE')
                 compressed_data = manifold.TSNE(n_components=2).fit_transform(compressed_data) 
                 
-            plt.figure(figsize=(10,10))
+            fig = plt.figure(figsize=(10,10))
             plt.scatter(compressed_data[:, 0], compressed_data[:, 1], s=7, color=colors[y_pred])
             plt.tick_params(axis='x', colors='white')
             plt.tick_params(axis='y', colors='white')
-            plt.show()
+            
+            if save_plot:
+                timestr = time.strftime("%Y-%m-%d_%H-%M-%S")
+                if file_path == None:
+                    fig.savefig('plots/plot-{}.png'.format(timestr), bbox_inches='tight')
+                else:
+                    fig.savefig(file_path, bbox_inches='tight')
+            if plot:
+                plt.show()
+                
+            plt.close(fig)
             
         return y_pred
     
     def get_trajectory(self):
-        if self._smac_obj is None:
+        if (self._smac_obj is None) and (self._random_optimizer_obj is None):
             return None
-        return [(vars(t.incumbent)['_values'], t.train_perf) for t in self._smac_obj.get_trajectory()] 
+        elif self._smac_obj is not None:
+            return [(vars(t.incumbent)['_values'], t.train_perf) for t in self._smac_obj.get_trajectory()] 
+        else:
+            return self._random_optimizer_obj.trajectory
     
     def plot_convergence(self):
-        if self._smac_obj is None:
+        if (self._smac_obj is None) and (self._random_optimizer_obj is None):
             return
+        elif self._smac_obj is not None:
+            history = self._smac_obj.runhistory.data
+            cost_ls = [v.cost for k, v in history.items()]
+        else:
+            history = self._random_optimizer_obj.runhistory
+            cost_ls = [cost for cfg, cost in history]
         
-        history = self._smac_obj.runhistory.data
-        cost_ls = [v.cost for k, v in history.items()]
         min_cost_ls = list(np.minimum.accumulate(cost_ls))
         
         # plotting

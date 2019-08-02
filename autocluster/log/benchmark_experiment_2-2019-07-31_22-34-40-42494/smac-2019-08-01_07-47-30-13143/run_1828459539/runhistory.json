@@ -1,0 +1,2457 @@
+{
+  "data": [
+    [
+      [
+        1,
+        null,
+        0
+      ],
+      [
+        0.19961021343866983,
+        86.70389246940613,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        2,
+        null,
+        0
+      ],
+      [
+        0.3336826252337768,
+        11.455853939056396,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        3,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        100.04387283325195,
+        {
+          "__enum__": "StatusType.TIMEOUT"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        4,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.6531827449798584,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        5,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.3806726932525635,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        6,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        100.10193920135498,
+        {
+          "__enum__": "StatusType.TIMEOUT"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        7,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        100.0293173789978,
+        {
+          "__enum__": "StatusType.TIMEOUT"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        8,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        19.15088176727295,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        9,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        100.02117037773132,
+        {
+          "__enum__": "StatusType.TIMEOUT"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        10,
+        null,
+        0
+      ],
+      [
+        0.32805348975812026,
+        2.1968584060668945,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        11,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        13.545274019241333,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        12,
+        null,
+        0
+      ],
+      [
+        0.054173468080425426,
+        1.1963987350463867,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        13,
+        null,
+        0
+      ],
+      [
+        0.2826459089840178,
+        0.9469950199127197,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        14,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.13628339767456055,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        15,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        100.01992321014404,
+        {
+          "__enum__": "StatusType.TIMEOUT"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        16,
+        null,
+        0
+      ],
+      [
+        0.03747762978721373,
+        4.517874717712402,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        17,
+        null,
+        0
+      ],
+      [
+        0.3295600075512483,
+        3.165853500366211,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        18,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        5.737870454788208,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        19,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        35.36943745613098,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        20,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        3.1398258209228516,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        21,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        4.230321407318115,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        22,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        2.5072524547576904,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        23,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.15613341331481934,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        24,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        1.1596300601959229,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        25,
+        null,
+        0
+      ],
+      [
+        0.3712128838344333,
+        5.2419352531433105,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        26,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.1467592716217041,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        27,
+        null,
+        0
+      ],
+      [
+        0.18633297943156912,
+        1.92364501953125,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        28,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.09377884864807129,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        29,
+        null,
+        0
+      ],
+      [
+        0.13068954400966673,
+        0.7739288806915283,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        30,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        100.10148000717163,
+        {
+          "__enum__": "StatusType.TIMEOUT"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        31,
+        null,
+        0
+      ],
+      [
+        0.05951864408044479,
+        0.8470168113708496,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        32,
+        null,
+        0
+      ],
+      [
+        0.09329102243405706,
+        0.6539041996002197,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        33,
+        null,
+        0
+      ],
+      [
+        0.08471151406785465,
+        1.2518560886383057,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        34,
+        null,
+        0
+      ],
+      [
+        0.14601428310076395,
+        82.15869522094727,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        35,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.372072696685791,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        36,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        15.418512105941772,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        37,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.0630345344543457,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        38,
+        null,
+        0
+      ],
+      [
+        0.04506353492628321,
+        64.12290501594543,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        39,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.3164229393005371,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        40,
+        null,
+        0
+      ],
+      [
+        0.062120417494436586,
+        1.1028637886047363,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        41,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        82.4597442150116,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        42,
+        null,
+        0
+      ],
+      [
+        0.29071566483231187,
+        5.2150702476501465,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        43,
+        null,
+        0
+      ],
+      [
+        0.09035139182301537,
+        0.8369643688201904,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        44,
+        null,
+        0
+      ],
+      [
+        0.047836913591604725,
+        1.0343198776245117,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        45,
+        null,
+        0
+      ],
+      [
+        0.062120417494436996,
+        1.2038474082946777,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        46,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.917668342590332,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        47,
+        null,
+        0
+      ],
+      [
+        0.13011605434297868,
+        0.6990938186645508,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        48,
+        null,
+        0
+      ],
+      [
+        0.0693459760039788,
+        0.8134765625,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        49,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.44427037239074707,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        50,
+        null,
+        0
+      ],
+      [
+        0.047282902535662995,
+        1.3762633800506592,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        51,
+        null,
+        0
+      ],
+      [
+        0.047282902535662974,
+        1.1942615509033203,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        52,
+        null,
+        0
+      ],
+      [
+        0.05836341999820186,
+        0.5243597030639648,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        53,
+        null,
+        0
+      ],
+      [
+        0.05836341999820188,
+        4.603427410125732,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        54,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        9.954740285873413,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        55,
+        null,
+        0
+      ],
+      [
+        0.040235954092435744,
+        0.5525796413421631,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        56,
+        null,
+        0
+      ],
+      [
+        0.3293774698605136,
+        3.5425639152526855,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        57,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        100.0111825466156,
+        {
+          "__enum__": "StatusType.TIMEOUT"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        58,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        100.01882410049438,
+        {
+          "__enum__": "StatusType.TIMEOUT"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        59,
+        null,
+        0
+      ],
+      [
+        0.0693459760039788,
+        1.4772393703460693,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        60,
+        null,
+        0
+      ],
+      [
+        0.0889802443445713,
+        1.0282325744628906,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        61,
+        null,
+        0
+      ],
+      [
+        0.09671796018750317,
+        0.7980787754058838,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        62,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.37365078926086426,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        63,
+        null,
+        0
+      ],
+      [
+        0.11021505805227033,
+        0.9531161785125732,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        64,
+        null,
+        0
+      ],
+      [
+        0.047836913591604746,
+        1.0474863052368164,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        65,
+        null,
+        0
+      ],
+      [
+        0.05487653191684796,
+        0.7321906089782715,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        66,
+        null,
+        0
+      ],
+      [
+        0.24261238593143827,
+        1.8520739078521729,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        67,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.9095485210418701,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        68,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.061646223068237305,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        69,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.33493757247924805,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        70,
+        null,
+        0
+      ],
+      [
+        0.1349029117378659,
+        0.9734923839569092,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        71,
+        null,
+        0
+      ],
+      [
+        0.10416695200101338,
+        0.5791516304016113,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        72,
+        null,
+        0
+      ],
+      [
+        0.16164975244909738,
+        0.7095611095428467,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        73,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.07877731323242188,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        74,
+        null,
+        0
+      ],
+      [
+        0.36630923053597053,
+        1.717374563217163,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        75,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        100.0436761379242,
+        {
+          "__enum__": "StatusType.TIMEOUT"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        76,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        1.6866545677185059,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        77,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        4.24510383605957,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        78,
+        null,
+        0
+      ],
+      [
+        0.3347612773630469,
+        1.147395133972168,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        79,
+        null,
+        0
+      ],
+      [
+        0.3365722208281272,
+        1.7342379093170166,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        80,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        100.02306342124939,
+        {
+          "__enum__": "StatusType.TIMEOUT"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        81,
+        null,
+        0
+      ],
+      [
+        0.09889255539071123,
+        0.83235764503479,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        82,
+        null,
+        0
+      ],
+      [
+        0.07107186353699606,
+        1.012312412261963,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        83,
+        null,
+        0
+      ],
+      [
+        0.357293230603972,
+        5.184686899185181,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        84,
+        null,
+        0
+      ],
+      [
+        0.2641564160891496,
+        72.46263074874878,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        85,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.07743430137634277,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        86,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.23247218132019043,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        87,
+        null,
+        0
+      ],
+      [
+        0.33314020045469767,
+        0.9988830089569092,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        88,
+        null,
+        0
+      ],
+      [
+        0.08820303049727755,
+        0.8214523792266846,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        89,
+        null,
+        0
+      ],
+      [
+        0.2755260787889902,
+        48.70122456550598,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        90,
+        null,
+        0
+      ],
+      [
+        0.1533316671848297,
+        87.39202952384949,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        91,
+        null,
+        0
+      ],
+      [
+        0.1349309285481771,
+        89.41695284843445,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        92,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.3471662998199463,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        93,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.0560297966003418,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        94,
+        null,
+        0
+      ],
+      [
+        0.25071319955687166,
+        0.8518576622009277,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        95,
+        null,
+        0
+      ],
+      [
+        0.13130151871004805,
+        0.6706085205078125,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        96,
+        null,
+        0
+      ],
+      [
+        0.33734505683947713,
+        1.0929334163665771,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        97,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.6302623748779297,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        98,
+        null,
+        0
+      ],
+      [
+        0.37342120201271595,
+        5.564680337905884,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        99,
+        null,
+        0
+      ],
+      [
+        0.18919828943470277,
+        0.5795912742614746,
+        {
+          "__enum__": "StatusType.SUCCESS"
+        },
+        {}
+      ]
+    ],
+    [
+      [
+        100,
+        null,
+        0
+      ],
+      [
+        2147483647.0,
+        0.3743400573730469,
+        {
+          "__enum__": "StatusType.CRASHED"
+        },
+        {}
+      ]
+    ]
+  ],
+  "configs": {
+    "1": {
+      "perplexity___TSNE": 30.0,
+      "n_clusters___KMeans": 5,
+      "clustering_choice": "KMeans",
+      "n_components___TSNE": 2,
+      "dim_reduction_choice": "TSNE",
+      "early_exaggeration___TSNE": 12.0
+    },
+    "2": {
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 80,
+      "kernel___KernelPCA": "poly",
+      "dim_reduction_choice": "KernelPCA",
+      "n_components___KernelPCA": 3
+    },
+    "3": {
+      "perplexity___TSNE": 159.25949786473558,
+      "n_components___GaussianMixture": 72,
+      "covariance_type___GaussianMixture": "diag",
+      "warm_start___GaussianMixture": true,
+      "clustering_choice": "GaussianMixture",
+      "n_components___TSNE": 2,
+      "init_params___GaussianMixture": "random",
+      "dim_reduction_choice": "TSNE",
+      "early_exaggeration___TSNE": 10.259528498769093
+    },
+    "4": {
+      "min_samples___DBSCAN": 54,
+      "batch_size___IncrementalPCA": 22,
+      "eps___DBSCAN": 4.87237949334927,
+      "n_components___IncrementalPCA": 2,
+      "clustering_choice": "DBSCAN",
+      "whiten___IncrementalPCA": false,
+      "dim_reduction_choice": "IncrementalPCA"
+    },
+    "5": {
+      "batch_size___IncrementalPCA": 33,
+      "n_components___GaussianMixture": 42,
+      "covariance_type___GaussianMixture": "tied",
+      "warm_start___GaussianMixture": false,
+      "n_components___IncrementalPCA": 3,
+      "clustering_choice": "GaussianMixture",
+      "init_params___GaussianMixture": "random",
+      "whiten___IncrementalPCA": true,
+      "dim_reduction_choice": "IncrementalPCA"
+    },
+    "6": {
+      "perplexity___TSNE": 175.48390215534172,
+      "linkage___AgglomerativeClustering": "average",
+      "affinity___AgglomerativeClustering": "cityblock",
+      "n_clusters___AgglomerativeClustering": 9,
+      "clustering_choice": "AgglomerativeClustering",
+      "n_components___TSNE": 2,
+      "dim_reduction_choice": "TSNE",
+      "early_exaggeration___TSNE": 7.471032321220759
+    },
+    "7": {
+      "perplexity___TSNE": 136.7154024788304,
+      "n_clusters___MiniBatchKMeans": 36,
+      "clustering_choice": "MiniBatchKMeans",
+      "n_components___TSNE": 2,
+      "batch_size___MiniBatchKMeans": 883,
+      "dim_reduction_choice": "TSNE",
+      "early_exaggeration___TSNE": 8.832734650202902
+    },
+    "8": {
+      "cluster_method___OPTICS": "dbscan",
+      "metric___OPTICS": "l2",
+      "random_state___NullModel": 0,
+      "clustering_choice": "OPTICS",
+      "min_samples___OPTICS": 963,
+      "dim_reduction_choice": "NullModel"
+    },
+    "9": {
+      "perplexity___TSNE": 170.781317717653,
+      "damping___AffinityPropagation": 0.5361339688602682,
+      "clustering_choice": "AffinityPropagation",
+      "n_components___TSNE": 2,
+      "affinity___AffinityPropagation": "euclidean",
+      "dim_reduction_choice": "TSNE",
+      "early_exaggeration___TSNE": 10.919925617913215
+    },
+    "10": {
+      "algorithm___FastICA": "parallel",
+      "fun___FastICA": "cube",
+      "whiten___FastICA": false,
+      "n_clusters___KMeans": 41,
+      "clustering_choice": "KMeans",
+      "n_components___FastICA": 2,
+      "dim_reduction_choice": "FastICA"
+    },
+    "11": {
+      "n_components___GaussianMixture": 64,
+      "covariance_type___GaussianMixture": "full",
+      "warm_start___GaussianMixture": false,
+      "random_state___NullModel": 0,
+      "clustering_choice": "GaussianMixture",
+      "init_params___GaussianMixture": "random",
+      "dim_reduction_choice": "NullModel"
+    },
+    "12": {
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 9,
+      "algorithm___TruncatedSVD": "randomized",
+      "dim_reduction_choice": "TruncatedSVD",
+      "n_components___TruncatedSVD": 3
+    },
+    "13": {
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 16,
+      "algorithm___TruncatedSVD": "arpack",
+      "dim_reduction_choice": "TruncatedSVD",
+      "n_components___TruncatedSVD": 2
+    },
+    "14": {
+      "algorithm___FastICA": "deflation",
+      "whiten___FastICA": false,
+      "fun___FastICA": "exp",
+      "n_clusters___Birch": 72,
+      "clustering_choice": "Birch",
+      "n_components___FastICA": 3,
+      "branching_factor___Birch": 518,
+      "dim_reduction_choice": "FastICA"
+    },
+    "15": {
+      "perplexity___TSNE": 87.25177114220787,
+      "n_clusters___KMeans": 4,
+      "clustering_choice": "KMeans",
+      "n_components___TSNE": 2,
+      "dim_reduction_choice": "TSNE",
+      "early_exaggeration___TSNE": 19.26649199829881
+    },
+    "16": {
+      "linkage___AgglomerativeClustering": "complete",
+      "affinity___AgglomerativeClustering": "euclidean",
+      "kernel___KernelPCA": "rbf",
+      "n_clusters___AgglomerativeClustering": 7,
+      "clustering_choice": "AgglomerativeClustering",
+      "dim_reduction_choice": "KernelPCA",
+      "n_components___KernelPCA": 6
+    },
+    "17": {
+      "n_clusters___KMeans": 57,
+      "whiten___PCA": false,
+      "clustering_choice": "KMeans",
+      "n_components___PCA": 2,
+      "svd_solver___PCA": "auto",
+      "dim_reduction_choice": "PCA"
+    },
+    "18": {
+      "bin_seeding___MeanShift": false,
+      "whiten___PCA": false,
+      "clustering_choice": "MeanShift",
+      "n_components___PCA": 2,
+      "svd_solver___PCA": "arpack",
+      "bandwidth___MeanShift": 9.62675740829067,
+      "dim_reduction_choice": "PCA"
+    },
+    "19": {
+      "affinity___SpectralClustering": "poly",
+      "eigen_solver___SpectralClustering": "arpack",
+      "algorithm___TruncatedSVD": "arpack",
+      "n_components___TruncatedSVD": 9,
+      "clustering_choice": "SpectralClustering",
+      "assign_labels___SpectralClustering": "kmeans",
+      "n_clusters___SpectralClustering": 58,
+      "dim_reduction_choice": "TruncatedSVD"
+    },
+    "20": {
+      "cluster_method___OPTICS": "dbscan",
+      "algorithm___FastICA": "parallel",
+      "fun___FastICA": "logcosh",
+      "whiten___FastICA": false,
+      "clustering_choice": "OPTICS",
+      "n_components___FastICA": 2,
+      "min_samples___OPTICS": 123,
+      "dim_reduction_choice": "FastICA",
+      "metric___OPTICS": "l1"
+    },
+    "21": {
+      "cluster_method___OPTICS": "dbscan",
+      "algorithm___FastICA": "deflation",
+      "fun___FastICA": "cube",
+      "whiten___FastICA": false,
+      "clustering_choice": "OPTICS",
+      "n_components___FastICA": 3,
+      "min_samples___OPTICS": 804,
+      "dim_reduction_choice": "FastICA",
+      "metric___OPTICS": "l2"
+    },
+    "22": {
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 7,
+      "kernel___KernelPCA": "poly",
+      "dim_reduction_choice": "KernelPCA",
+      "n_components___KernelPCA": 4
+    },
+    "23": {
+      "n_clusters___Birch": 45,
+      "algorithm___TruncatedSVD": "randomized",
+      "n_components___TruncatedSVD": 9,
+      "clustering_choice": "Birch",
+      "branching_factor___Birch": 291,
+      "dim_reduction_choice": "TruncatedSVD"
+    },
+    "24": {
+      "n_components___GaussianMixture": 34,
+      "covariance_type___GaussianMixture": "full",
+      "warm_start___GaussianMixture": true,
+      "algorithm___TruncatedSVD": "arpack",
+      "n_components___TruncatedSVD": 9,
+      "clustering_choice": "GaussianMixture",
+      "init_params___GaussianMixture": "random",
+      "dim_reduction_choice": "TruncatedSVD"
+    },
+    "25": {
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 47,
+      "algorithm___TruncatedSVD": "arpack",
+      "dim_reduction_choice": "TruncatedSVD",
+      "n_components___TruncatedSVD": 4
+    },
+    "26": {
+      "algorithm___FastICA": "parallel",
+      "whiten___FastICA": true,
+      "fun___FastICA": "cube",
+      "n_clusters___Birch": 66,
+      "clustering_choice": "Birch",
+      "n_components___FastICA": 2,
+      "branching_factor___Birch": 253,
+      "dim_reduction_choice": "FastICA"
+    },
+    "27": {
+      "algorithm___FastICA": "parallel",
+      "fun___FastICA": "cube",
+      "whiten___FastICA": false,
+      "n_clusters___KMeans": 12,
+      "clustering_choice": "KMeans",
+      "n_components___FastICA": 3,
+      "dim_reduction_choice": "FastICA"
+    },
+    "28": {
+      "algorithm___FastICA": "parallel",
+      "fun___FastICA": "logcosh",
+      "whiten___FastICA": false,
+      "bin_seeding___MeanShift": true,
+      "clustering_choice": "MeanShift",
+      "n_components___FastICA": 3,
+      "bandwidth___MeanShift": 23.080214778267482,
+      "dim_reduction_choice": "FastICA"
+    },
+    "29": {
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 10,
+      "dim_reduction_choice": "NullModel",
+      "random_state___NullModel": 0
+    },
+    "30": {
+      "perplexity___TSNE": 135.94847714453806,
+      "n_clusters___KMeans": 34,
+      "clustering_choice": "KMeans",
+      "n_components___TSNE": 2,
+      "dim_reduction_choice": "TSNE",
+      "early_exaggeration___TSNE": 17.889500283078615
+    },
+    "31": {
+      "algorithm___FastICA": "parallel",
+      "fun___FastICA": "exp",
+      "whiten___FastICA": true,
+      "n_clusters___KMeans": 9,
+      "clustering_choice": "KMeans",
+      "n_components___FastICA": 3,
+      "dim_reduction_choice": "FastICA"
+    },
+    "32": {
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 8,
+      "dim_reduction_choice": "NullModel",
+      "random_state___NullModel": 0
+    },
+    "33": {
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 8,
+      "algorithm___TruncatedSVD": "arpack",
+      "dim_reduction_choice": "TruncatedSVD",
+      "n_components___TruncatedSVD": 8
+    },
+    "34": {
+      "perplexity___TSNE": 30.469611629959665,
+      "n_clusters___KMeans": 9,
+      "clustering_choice": "KMeans",
+      "n_components___TSNE": 2,
+      "dim_reduction_choice": "TSNE",
+      "early_exaggeration___TSNE": 6.962775481701957
+    },
+    "35": {
+      "min_samples___DBSCAN": 60,
+      "algorithm___FastICA": "deflation",
+      "eps___DBSCAN": 1.7999249827389558,
+      "fun___FastICA": "exp",
+      "whiten___FastICA": false,
+      "clustering_choice": "DBSCAN",
+      "n_components___FastICA": 3,
+      "dim_reduction_choice": "FastICA"
+    },
+    "36": {
+      "cluster_method___OPTICS": "dbscan",
+      "metric___OPTICS": "l2",
+      "kernel___KernelPCA": "sigmoid",
+      "clustering_choice": "OPTICS",
+      "min_samples___OPTICS": 964,
+      "dim_reduction_choice": "KernelPCA",
+      "n_components___KernelPCA": 5
+    },
+    "37": {
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 1,
+      "algorithm___TruncatedSVD": "randomized",
+      "dim_reduction_choice": "TruncatedSVD",
+      "n_components___TruncatedSVD": 8
+    },
+    "38": {
+      "svd_solver___PCA": "arpack",
+      "whiten___PCA": false,
+      "damping___AffinityPropagation": 0.8632273122206453,
+      "clustering_choice": "AffinityPropagation",
+      "n_components___PCA": 2,
+      "dim_reduction_choice": "PCA",
+      "affinity___AffinityPropagation": "euclidean"
+    },
+    "39": {
+      "batch_size___IncrementalPCA": 602,
+      "linkage___AgglomerativeClustering": "average",
+      "affinity___AgglomerativeClustering": "cityblock",
+      "n_clusters___AgglomerativeClustering": 25,
+      "clustering_choice": "AgglomerativeClustering",
+      "n_components___IncrementalPCA": 3,
+      "whiten___IncrementalPCA": false,
+      "dim_reduction_choice": "IncrementalPCA"
+    },
+    "40": {
+      "algorithm___FastICA": "parallel",
+      "fun___FastICA": "exp",
+      "whiten___FastICA": true,
+      "n_clusters___KMeans": 8,
+      "clustering_choice": "KMeans",
+      "n_components___FastICA": 3,
+      "dim_reduction_choice": "FastICA"
+    },
+    "41": {
+      "perplexity___TSNE": 19.68652456060632,
+      "damping___AffinityPropagation": 0.5251940283816273,
+      "clustering_choice": "AffinityPropagation",
+      "n_components___TSNE": 2,
+      "affinity___AffinityPropagation": "euclidean",
+      "dim_reduction_choice": "TSNE",
+      "early_exaggeration___TSNE": 6.649044511313928
+    },
+    "42": {
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 22,
+      "kernel___KernelPCA": "cosine",
+      "dim_reduction_choice": "KernelPCA",
+      "n_components___KernelPCA": 5
+    },
+    "43": {
+      "batch_size___IncrementalPCA": 57,
+      "whiten___IncrementalPCA": false,
+      "n_components___IncrementalPCA": 3,
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 8,
+      "dim_reduction_choice": "IncrementalPCA"
+    },
+    "44": {
+      "n_clusters___KMeans": 8,
+      "whiten___PCA": false,
+      "clustering_choice": "KMeans",
+      "n_components___PCA": 2,
+      "svd_solver___PCA": "full",
+      "dim_reduction_choice": "PCA"
+    },
+    "45": {
+      "n_clusters___KMeans": 8,
+      "whiten___PCA": true,
+      "clustering_choice": "KMeans",
+      "n_components___PCA": 3,
+      "svd_solver___PCA": "auto",
+      "dim_reduction_choice": "PCA"
+    },
+    "46": {
+      "linkage___AgglomerativeClustering": "average",
+      "affinity___AgglomerativeClustering": "manhattan",
+      "kernel___KernelPCA": "linear",
+      "n_clusters___AgglomerativeClustering": 47,
+      "clustering_choice": "AgglomerativeClustering",
+      "dim_reduction_choice": "KernelPCA",
+      "n_components___KernelPCA": 6
+    },
+    "47": {
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 7,
+      "dim_reduction_choice": "NullModel",
+      "random_state___NullModel": 1
+    },
+    "48": {
+      "algorithm___FastICA": "deflation",
+      "fun___FastICA": "cube",
+      "whiten___FastICA": false,
+      "n_clusters___KMeans": 7,
+      "clustering_choice": "KMeans",
+      "n_components___FastICA": 2,
+      "dim_reduction_choice": "FastICA"
+    },
+    "49": {
+      "min_samples___DBSCAN": 94,
+      "algorithm___FastICA": "deflation",
+      "eps___DBSCAN": 0.40904514080036913,
+      "fun___FastICA": "exp",
+      "whiten___FastICA": false,
+      "clustering_choice": "DBSCAN",
+      "n_components___FastICA": 2,
+      "dim_reduction_choice": "FastICA"
+    },
+    "50": {
+      "algorithm___FastICA": "deflation",
+      "fun___FastICA": "logcosh",
+      "whiten___FastICA": false,
+      "n_clusters___KMeans": 8,
+      "clustering_choice": "KMeans",
+      "n_components___FastICA": 2,
+      "dim_reduction_choice": "FastICA"
+    },
+    "51": {
+      "algorithm___FastICA": "parallel",
+      "fun___FastICA": "logcosh",
+      "whiten___FastICA": true,
+      "n_clusters___KMeans": 8,
+      "clustering_choice": "KMeans",
+      "n_components___FastICA": 2,
+      "dim_reduction_choice": "FastICA"
+    },
+    "52": {
+      "algorithm___FastICA": "parallel",
+      "fun___FastICA": "exp",
+      "whiten___FastICA": true,
+      "n_clusters___KMeans": 7,
+      "clustering_choice": "KMeans",
+      "n_components___FastICA": 3,
+      "dim_reduction_choice": "FastICA"
+    },
+    "53": {
+      "algorithm___FastICA": "deflation",
+      "fun___FastICA": "logcosh",
+      "whiten___FastICA": true,
+      "n_clusters___KMeans": 7,
+      "clustering_choice": "KMeans",
+      "n_components___FastICA": 3,
+      "dim_reduction_choice": "FastICA"
+    },
+    "54": {
+      "bin_seeding___MeanShift": false,
+      "whiten___PCA": true,
+      "clustering_choice": "MeanShift",
+      "n_components___PCA": 3,
+      "svd_solver___PCA": "auto",
+      "bandwidth___MeanShift": 2.8939752399258953,
+      "dim_reduction_choice": "PCA"
+    },
+    "55": {
+      "batch_size___IncrementalPCA": 561,
+      "whiten___IncrementalPCA": true,
+      "n_components___IncrementalPCA": 2,
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 8,
+      "dim_reduction_choice": "IncrementalPCA"
+    },
+    "56": {
+      "algorithm___FastICA": "deflation",
+      "fun___FastICA": "exp",
+      "whiten___FastICA": true,
+      "n_clusters___KMeans": 55,
+      "clustering_choice": "KMeans",
+      "n_components___FastICA": 2,
+      "dim_reduction_choice": "FastICA"
+    },
+    "57": {
+      "perplexity___TSNE": 93.3993263616884,
+      "n_clusters___KMeans": 8,
+      "clustering_choice": "KMeans",
+      "n_components___TSNE": 2,
+      "dim_reduction_choice": "TSNE",
+      "early_exaggeration___TSNE": 16.85474872716327
+    },
+    "58": {
+      "perplexity___TSNE": 191.9618044474403,
+      "dim_reduction_choice": "TSNE",
+      "clustering_choice": "Birch",
+      "n_components___TSNE": 2,
+      "branching_factor___Birch": 577,
+      "n_clusters___Birch": 51,
+      "early_exaggeration___TSNE": 14.093533127399207
+    },
+    "59": {
+      "algorithm___FastICA": "deflation",
+      "fun___FastICA": "logcosh",
+      "whiten___FastICA": false,
+      "n_clusters___KMeans": 7,
+      "clustering_choice": "KMeans",
+      "n_components___FastICA": 2,
+      "dim_reduction_choice": "FastICA"
+    },
+    "60": {
+      "algorithm___FastICA": "parallel",
+      "fun___FastICA": "logcosh",
+      "whiten___FastICA": true,
+      "n_clusters___KMeans": 6,
+      "clustering_choice": "KMeans",
+      "n_components___FastICA": 2,
+      "dim_reduction_choice": "FastICA"
+    },
+    "61": {
+      "batch_size___IncrementalPCA": 912,
+      "whiten___IncrementalPCA": true,
+      "n_components___IncrementalPCA": 2,
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 6,
+      "dim_reduction_choice": "IncrementalPCA"
+    },
+    "62": {
+      "linkage___AgglomerativeClustering": "average",
+      "affinity___AgglomerativeClustering": "l1",
+      "algorithm___TruncatedSVD": "arpack",
+      "n_components___TruncatedSVD": 6,
+      "n_clusters___AgglomerativeClustering": 31,
+      "clustering_choice": "AgglomerativeClustering",
+      "dim_reduction_choice": "TruncatedSVD"
+    },
+    "63": {
+      "batch_size___IncrementalPCA": 487,
+      "whiten___IncrementalPCA": false,
+      "n_components___IncrementalPCA": 3,
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 7,
+      "dim_reduction_choice": "IncrementalPCA"
+    },
+    "64": {
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 8,
+      "algorithm___TruncatedSVD": "randomized",
+      "dim_reduction_choice": "TruncatedSVD",
+      "n_components___TruncatedSVD": 2
+    },
+    "65": {
+      "batch_size___IncrementalPCA": 834,
+      "whiten___IncrementalPCA": false,
+      "n_components___IncrementalPCA": 2,
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 7,
+      "dim_reduction_choice": "IncrementalPCA"
+    },
+    "66": {
+      "algorithm___FastICA": "parallel",
+      "fun___FastICA": "cube",
+      "whiten___FastICA": false,
+      "n_clusters___KMeans": 3,
+      "clustering_choice": "KMeans",
+      "n_components___FastICA": 3,
+      "dim_reduction_choice": "FastICA"
+    },
+    "67": {
+      "batch_size___IncrementalPCA": 825,
+      "linkage___AgglomerativeClustering": "complete",
+      "affinity___AgglomerativeClustering": "euclidean",
+      "n_clusters___AgglomerativeClustering": 45,
+      "clustering_choice": "AgglomerativeClustering",
+      "n_components___IncrementalPCA": 3,
+      "whiten___IncrementalPCA": true,
+      "dim_reduction_choice": "IncrementalPCA"
+    },
+    "68": {
+      "batch_size___IncrementalPCA": 927,
+      "whiten___IncrementalPCA": true,
+      "n_components___IncrementalPCA": 2,
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 1,
+      "dim_reduction_choice": "IncrementalPCA"
+    },
+    "69": {
+      "min_samples___DBSCAN": 15,
+      "svd_solver___PCA": "full",
+      "eps___DBSCAN": 2.682679024646934,
+      "clustering_choice": "DBSCAN",
+      "n_components___PCA": 3,
+      "whiten___PCA": true,
+      "dim_reduction_choice": "PCA"
+    },
+    "70": {
+      "batch_size___IncrementalPCA": 508,
+      "whiten___IncrementalPCA": false,
+      "n_components___IncrementalPCA": 3,
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 6,
+      "dim_reduction_choice": "IncrementalPCA"
+    },
+    "71": {
+      "batch_size___IncrementalPCA": 173,
+      "whiten___IncrementalPCA": true,
+      "n_components___IncrementalPCA": 2,
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 6,
+      "dim_reduction_choice": "IncrementalPCA"
+    },
+    "72": {
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 6,
+      "dim_reduction_choice": "NullModel",
+      "random_state___NullModel": 1
+    },
+    "73": {
+      "clustering_choice": "MeanShift",
+      "bin_seeding___MeanShift": true,
+      "bandwidth___MeanShift": 11.664355062839316,
+      "dim_reduction_choice": "NullModel",
+      "random_state___NullModel": 0
+    },
+    "74": {
+      "clustering_choice": "MiniBatchKMeans",
+      "batch_size___MiniBatchKMeans": 441,
+      "n_clusters___MiniBatchKMeans": 27,
+      "dim_reduction_choice": "NullModel",
+      "random_state___NullModel": 1
+    },
+    "75": {
+      "algorithm___FastICA": "deflation",
+      "damping___AffinityPropagation": 0.6057310033769197,
+      "fun___FastICA": "exp",
+      "whiten___FastICA": false,
+      "clustering_choice": "AffinityPropagation",
+      "n_components___FastICA": 3,
+      "dim_reduction_choice": "FastICA",
+      "affinity___AffinityPropagation": "euclidean"
+    },
+    "76": {
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 26,
+      "kernel___KernelPCA": "rbf",
+      "dim_reduction_choice": "KernelPCA",
+      "n_components___KernelPCA": 8
+    },
+    "77": {
+      "cluster_method___OPTICS": "dbscan",
+      "metric___OPTICS": "l1",
+      "whiten___PCA": false,
+      "clustering_choice": "OPTICS",
+      "n_components___PCA": 3,
+      "svd_solver___PCA": "full",
+      "min_samples___OPTICS": 733,
+      "dim_reduction_choice": "PCA"
+    },
+    "78": {
+      "svd_solver___PCA": "full",
+      "whiten___PCA": true,
+      "n_clusters___MiniBatchKMeans": 50,
+      "clustering_choice": "MiniBatchKMeans",
+      "n_components___PCA": 2,
+      "batch_size___MiniBatchKMeans": 400,
+      "dim_reduction_choice": "PCA"
+    },
+    "79": {
+      "algorithm___FastICA": "deflation",
+      "fun___FastICA": "logcosh",
+      "whiten___FastICA": true,
+      "n_clusters___MiniBatchKMeans": 42,
+      "clustering_choice": "MiniBatchKMeans",
+      "n_components___FastICA": 2,
+      "batch_size___MiniBatchKMeans": 173,
+      "dim_reduction_choice": "FastICA"
+    },
+    "80": {
+      "perplexity___TSNE": 150.3848475441583,
+      "n_clusters___MiniBatchKMeans": 76,
+      "clustering_choice": "MiniBatchKMeans",
+      "n_components___TSNE": 2,
+      "batch_size___MiniBatchKMeans": 233,
+      "dim_reduction_choice": "TSNE",
+      "early_exaggeration___TSNE": 13.855309670190469
+    },
+    "81": {
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 7,
+      "algorithm___TruncatedSVD": "arpack",
+      "dim_reduction_choice": "TruncatedSVD",
+      "n_components___TruncatedSVD": 4
+    },
+    "82": {
+      "min_samples___DBSCAN": 91,
+      "eps___DBSCAN": 1.2571867775995913,
+      "algorithm___TruncatedSVD": "randomized",
+      "n_components___TruncatedSVD": 4,
+      "clustering_choice": "DBSCAN",
+      "dim_reduction_choice": "TruncatedSVD"
+    },
+    "83": {
+      "batch_size___IncrementalPCA": 298,
+      "whiten___IncrementalPCA": false,
+      "n_components___IncrementalPCA": 3,
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 57,
+      "dim_reduction_choice": "IncrementalPCA"
+    },
+    "84": {
+      "n_components___KernelPCA": 8,
+      "damping___AffinityPropagation": 0.6940110436903313,
+      "kernel___KernelPCA": "linear",
+      "clustering_choice": "AffinityPropagation",
+      "dim_reduction_choice": "KernelPCA",
+      "affinity___AffinityPropagation": "euclidean"
+    },
+    "85": {
+      "clustering_choice": "MeanShift",
+      "bin_seeding___MeanShift": true,
+      "bandwidth___MeanShift": 41.36408970415179,
+      "dim_reduction_choice": "NullModel",
+      "random_state___NullModel": 0
+    },
+    "86": {
+      "n_components___GaussianMixture": 30,
+      "covariance_type___GaussianMixture": "diag",
+      "warm_start___GaussianMixture": true,
+      "random_state___NullModel": 1,
+      "clustering_choice": "GaussianMixture",
+      "init_params___GaussianMixture": "random",
+      "dim_reduction_choice": "NullModel"
+    },
+    "87": {
+      "algorithm___FastICA": "parallel",
+      "fun___FastICA": "logcosh",
+      "whiten___FastICA": false,
+      "n_clusters___MiniBatchKMeans": 35,
+      "clustering_choice": "MiniBatchKMeans",
+      "n_components___FastICA": 2,
+      "batch_size___MiniBatchKMeans": 576,
+      "dim_reduction_choice": "FastICA"
+    },
+    "88": {
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 8,
+      "algorithm___TruncatedSVD": "randomized",
+      "dim_reduction_choice": "TruncatedSVD",
+      "n_components___TruncatedSVD": 9
+    },
+    "89": {
+      "clustering_choice": "AffinityPropagation",
+      "damping___AffinityPropagation": 0.8204576531490796,
+      "random_state___NullModel": 0,
+      "dim_reduction_choice": "NullModel",
+      "affinity___AffinityPropagation": "euclidean"
+    },
+    "90": {
+      "perplexity___TSNE": 34.58727132972228,
+      "n_clusters___KMeans": 10,
+      "clustering_choice": "KMeans",
+      "n_components___TSNE": 2,
+      "dim_reduction_choice": "TSNE",
+      "early_exaggeration___TSNE": 10.769486769683933
+    },
+    "91": {
+      "perplexity___TSNE": 37.31005586178912,
+      "n_clusters___KMeans": 9,
+      "clustering_choice": "KMeans",
+      "n_components___TSNE": 2,
+      "dim_reduction_choice": "TSNE",
+      "early_exaggeration___TSNE": 11.664385501070914
+    },
+    "92": {
+      "batch_size___IncrementalPCA": 420,
+      "linkage___AgglomerativeClustering": "single",
+      "affinity___AgglomerativeClustering": "cosine",
+      "n_clusters___AgglomerativeClustering": 7,
+      "clustering_choice": "AgglomerativeClustering",
+      "n_components___IncrementalPCA": 3,
+      "whiten___IncrementalPCA": true,
+      "dim_reduction_choice": "IncrementalPCA"
+    },
+    "93": {
+      "clustering_choice": "KMeans",
+      "n_clusters___KMeans": 1,
+      "dim_reduction_choice": "NullModel",
+      "random_state___NullModel": 1
+    },
+    "94": {
+      "clustering_choice": "MiniBatchKMeans",
+      "batch_size___MiniBatchKMeans": 21,
+      "n_clusters___MiniBatchKMeans": 14,
+      "dim_reduction_choice": "NullModel",
+      "random_state___NullModel": 0
+    },
+    "95": {
+      "batch_size___IncrementalPCA": 181,
+      "whiten___IncrementalPCA": false,
+      "n_clusters___MiniBatchKMeans": 11,
+      "n_components___IncrementalPCA": 2,
+      "clustering_choice": "MiniBatchKMeans",
+      "batch_size___MiniBatchKMeans": 291,
+      "dim_reduction_choice": "IncrementalPCA"
+    },
+    "96": {
+      "batch_size___IncrementalPCA": 434,
+      "whiten___IncrementalPCA": false,
+      "n_clusters___MiniBatchKMeans": 60,
+      "n_components___IncrementalPCA": 2,
+      "clustering_choice": "MiniBatchKMeans",
+      "batch_size___MiniBatchKMeans": 175,
+      "dim_reduction_choice": "IncrementalPCA"
+    },
+    "97": {
+      "batch_size___IncrementalPCA": 237,
+      "whiten___IncrementalPCA": false,
+      "n_clusters___MiniBatchKMeans": 37,
+      "n_components___IncrementalPCA": 2,
+      "clustering_choice": "MiniBatchKMeans",
+      "batch_size___MiniBatchKMeans": 173,
+      "dim_reduction_choice": "IncrementalPCA"
+    },
+    "98": {
+      "algorithm___FastICA": "parallel",
+      "fun___FastICA": "cube",
+      "whiten___FastICA": true,
+      "n_clusters___KMeans": 79,
+      "clustering_choice": "KMeans",
+      "n_components___FastICA": 3,
+      "dim_reduction_choice": "FastICA"
+    },
+    "99": {
+      "clustering_choice": "MiniBatchKMeans",
+      "batch_size___MiniBatchKMeans": 146,
+      "n_clusters___MiniBatchKMeans": 11,
+      "dim_reduction_choice": "NullModel",
+      "random_state___NullModel": 1
+    },
+    "100": {
+      "min_samples___DBSCAN": 93,
+      "batch_size___IncrementalPCA": 942,
+      "eps___DBSCAN": 4.397521013179522,
+      "n_components___IncrementalPCA": 3,
+      "clustering_choice": "DBSCAN",
+      "whiten___IncrementalPCA": true,
+      "dim_reduction_choice": "IncrementalPCA"
+    }
+  },
+  "config_origins": {
+    "1": "Default",
+    "2": "Random Search (sorted)",
+    "3": "Random Search (sorted)",
+    "4": "Random Search",
+    "5": "Random Search (sorted)",
+    "6": "Random Search (sorted)",
+    "7": "Random Search",
+    "8": "Random Search (sorted)",
+    "9": "Random Search (sorted)",
+    "10": "Random Search (sorted)",
+    "11": "Random Search (sorted)",
+    "12": "Random Search (sorted)",
+    "13": "Random Search (sorted)",
+    "14": "Random Search",
+    "15": "Random Search",
+    "16": "Random Search",
+    "17": "Random Search (sorted)",
+    "18": "Random Search",
+    "19": "Random Search",
+    "20": "Random Search",
+    "21": "Random Search",
+    "22": "Random Search (sorted)",
+    "23": "Random Search",
+    "24": "Random Search",
+    "25": "Random Search (sorted)",
+    "26": "Random Search",
+    "27": "Random Search (sorted)",
+    "28": "Random Search",
+    "29": "Random Search (sorted)",
+    "30": "Random Search",
+    "31": "Random Search (sorted)",
+    "32": "Local Search",
+    "33": "Random Search (sorted)",
+    "34": "Random Search (sorted)",
+    "35": "Random Search",
+    "36": "Random Search",
+    "37": "Random Search (sorted)",
+    "38": "Random Search",
+    "39": "Random Search",
+    "40": "Random Search (sorted)",
+    "41": "Random Search",
+    "42": "Random Search",
+    "43": "Random Search (sorted)",
+    "44": "Random Search (sorted)",
+    "45": "Local Search",
+    "46": "Random Search",
+    "47": "Random Search (sorted)",
+    "48": "Local Search",
+    "49": "Random Search",
+    "50": "Local Search",
+    "51": "Local Search",
+    "52": "Local Search",
+    "53": "Local Search",
+    "54": "Random Search",
+    "55": "Random Search (sorted)",
+    "56": "Random Search",
+    "57": "Local Search",
+    "58": "Random Search",
+    "59": "Local Search",
+    "60": "Local Search",
+    "61": "Random Search (sorted)",
+    "62": "Random Search",
+    "63": "Random Search (sorted)",
+    "64": "Local Search",
+    "65": "Random Search",
+    "66": "Random Search (sorted)",
+    "67": "Random Search",
+    "68": "Random Search (sorted)",
+    "69": "Random Search",
+    "70": "Random Search (sorted)",
+    "71": "Local Search",
+    "72": "Local Search",
+    "73": "Random Search",
+    "74": "Random Search",
+    "75": "Random Search",
+    "76": "Random Search",
+    "77": "Random Search",
+    "78": "Random Search",
+    "79": "Random Search (sorted)",
+    "80": "Random Search",
+    "81": "Random Search (sorted)",
+    "82": "Random Search",
+    "83": "Random Search",
+    "84": "Random Search",
+    "85": "Random Search",
+    "86": "Random Search",
+    "87": "Random Search (sorted)",
+    "88": "Local Search",
+    "89": "Random Search",
+    "90": "Local Search",
+    "91": "Local Search",
+    "92": "Random Search",
+    "93": "Random Search (sorted)",
+    "94": "Random Search (sorted)",
+    "95": "Random Search (sorted)",
+    "96": "Random Search (sorted)",
+    "97": "Local Search",
+    "98": "Random Search",
+    "99": "Local Search",
+    "100": "Random Search"
+  }
+}
