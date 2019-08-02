@@ -20,7 +20,7 @@ def plot_convergence(data, iterations='max', title=None, x_label='Iterations', y
     #           ex) ['SMAC', 'Random Search']
     #           if legends==[], then legends are named numbers 1, 2, 3, ...
     
-    if type(data[0]) == int:
+    if type(data[0]) == int or type(data[0]) == float:
         graph_num = 1
         data_in_2D = [data]
     else:
