@@ -362,7 +362,7 @@ class algorithms(object):
         _name = "NullModel"
         _model = model
         _params = [
-            OrdinalHyperparameter("random_state", sequence=list(range(2)), default_value=1)
+            OrdinalHyperparameter("random_state", sequence=list(range(3)), default_value=1)
         ]
         _params_names = set([p.name for p in _params])
         _conditions = []
