@@ -20,7 +20,7 @@ def plot_convergence(data, iterations='max', title=None, x_label='Iterations', y
     #           ex) ['SMAC', 'Random Search']
     #           if legends==[], then legends are named numbers 1, 2, 3, ...
     
-    if type(data[0]) == int or type(data[0]) == float:
+    if type(data[0]) != list and type(data[0]) != np.ndarray:
         graph_num = 1
         data_in_2D = [data]
     else:
@@ -43,7 +43,7 @@ def plot_convergence(data, iterations='max', title=None, x_label='Iterations', y
         
     if show_plot or save_plot:
         lin_sp = range(1, x_len + 1)
-        colors = cm.nipy_spectral(np.linspace(0, 1, graph_num))
+        colors = cm.nipy_spectral(np.linspace(0, 1, graph_num + 1))
                 
         fig = plt.figure(figsize=(12,7))
         for i in range(graph_num):
