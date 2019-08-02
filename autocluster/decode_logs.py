@@ -17,7 +17,30 @@ class Decoder(object):
     @staticmethod
     def get_records_by_iteration(string_ls):
         # this function returns a list of dictionaries
-        return [eval(string.split('\n')[-2]) for string in string_ls]
+        try:
+            return [eval(string.split('\n')[-2]) for string in string_ls]
+        except:
+            dict_ls = []
+            for string in string_ls:
+                lines = string.split('\n')
+                record_start = -1
+                trajectory_start = -1
+                
+                for i, line in enumerate(lines):
+                    if line.find('Record on ITERATION') != -1:
+                        idx_start = i + 1
+                        break
+                
+                for i, line in enumerate(lines):
+                    if line.find('trajectory') != -1:
+                        trajectory_start = i
+                        break
+                    
+                record_string_ls = lines[record_start : trajectory_start] + [lines[trajectory_start][0 : line.find('trajectory') - 1] + '}']
+                record_string = ''.join(record_string_ls)
+                dict_ls.append(eval(record_string))
+                
+            return dict_ls
     
     @staticmethod
     def get_runhistory(string, sort=True):
