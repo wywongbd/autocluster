@@ -78,3 +78,23 @@ def plot_convergence(data,
             plt.show()
                 
         plt.close(fig)
+        
+        
+        
+# def plot_convergence_average(data, 
+#                              iterations='max', 
+#                              title=None, 
+#                              x_label='Iterations', 
+#                              y_label='Scores',
+#                              x_scale='normal',
+#                              area=None
+#                              show_plot=True, 
+#                              save_plot=True, 
+#                              file_path=None):
+#
+#     data_ave = {}
+#     if area == 'stdev':
+#         for key, value in data.items():
+#             len_ls = []
+#             for sublist in value:
+#                 len_ls.append(len(sublist))

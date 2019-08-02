@@ -30,7 +30,7 @@ class EvaluatorMapper(object):
         return list(EvaluatorMapper.eval_function.keys())
     
     @staticmethod
-    def linearCombinationOfEvaluators(X, y_pred, evaluator_ls, weights, clustering_num, min_proportion):
+    def linearCombinationOfEvaluators(X, y_pred, evaluator_ls, weights, clustering_num, min_proportion, min_relative_proportion):
         # check if num of clusters is within the range
         if type(clustering_num) == int:
             if len(set(y_pred)) != clustering_num:
@@ -46,13 +46,23 @@ class EvaluatorMapper(object):
         if len(set(y_pred)) == 1 :
             return float('inf')
         
-        # check if (minimun cluster size)/(maximun cluster size) is over min_proportion
+        # check if (minimun cluster size)/(sum of all cluster size) is over min_proportion
         freq_dict = Counter(y_pred)
         cluster_size_ls = list(freq_dict.values())
-        max_cluster_size = np.max(cluster_size_ls)
         min_cluster_size = np.min(cluster_size_ls)
-        if min_cluster_size / max_cluster_size < min_proportion:
+        if min_cluster_size / len(y_pred) < min_proportion:
             return float('inf')
+        
+        # check if (minimun cluster size)/(max cluster size) is over min_relative_proportion
+        if type(min_relative_proportion) == float or min_relative_proportion == 'default':
+            if min_relative_proportion == 'default':
+                min_relative_proportion_ = 5 * min_proportion
+            else:
+                min_relative_proportion_ = min_relative_proportion
+            
+            max_cluster_size = np.max(cluster_size_ls)
+            if min_cluster_size / max_cluster_size < min_relative_proportion_:
+                return float('inf')
     
         # evaluate linear combination of scores
         values = []
@@ -68,11 +78,16 @@ class EvaluatorMapper(object):
     
     
     
-def get_evaluator(evaluator_ls = ['silhouetteScore'], weights = [], clustering_num = None, min_proportion = .01):
+def get_evaluator(evaluator_ls = ['silhouetteScore'], weights = [], clustering_num = None, min_proportion = .01,\
+                  min_relative_proportion = 'default'):
     # evaluator_ls : 'silhouetteScore' or 'daviesBouldinScore' or 'calinskiHarabaszScore'
     # weights : coefficients of evaluators. no need to make total = 1, but should not make total = 0
     # clustering_num : integer or tuple. None is equal to (2, float('inf'))
     # min_proportion : (minimun cluster size)/(maximun cluster size)
+    # min_relative_proportion : (minimun cluster size)/(max cluster size)
+    #                           if min_relative_proportion=='default', then min_relative_proportion = 5 * min_proportion
+    #                           if min_relative_proportion==None, then ignore min_relative_proportion
     
     return (lambda X, y_pred: EvaluatorMapper.linearCombinationOfEvaluators(X, y_pred, evaluator_ls = evaluator_ls,\
-                            weights = weights, clustering_num = clustering_num, min_proportion = min_proportion))
+                            weights = weights, clustering_num = clustering_num, min_proportion = min_proportion,\
+                            min_relative_proportion = min_relative_proportion))
