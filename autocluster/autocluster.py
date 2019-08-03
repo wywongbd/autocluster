@@ -38,6 +38,7 @@ class AutoCluster(object):
         self._random_optimizer_obj = None
         self._logger = logger
         self._log_path = None
+        self._verbose_level = None
         
         if self._logger:
             self._log_path = logging.getLoggerClass().root.handlers[0].baseFilename
@@ -62,7 +63,8 @@ class AutoCluster(object):
             warmstart_top_n=20,
             general_metafeatures=[],
             numeric_metafeatures=[],
-            categorical_metafeatures=[]
+            categorical_metafeatures=[],
+            verbose_level=2
            ):
         """
         ---------------------------------------------------------------------------
@@ -78,8 +80,14 @@ class AutoCluster(object):
         run_obj: 'runtime' or 'quality', cutoff_time must be provided if 'runtime' chosen.
         cutoff_time: Maximum runtime, after which the target algorithm is cancelled. Required if run_obj is 'runtime'.
         shared_model: whether or not to use parallel SMAC 
-        evaluator: a function for evaluating clustering result, must have the arguments X and y_pred   
+        evaluator: a function for evaluating clustering result, must have the arguments X and y_pred
+        verbose_level: integer, must be either 0, 1 or 2. The higher the number, the more logs/print statements are used. 
         """
+        #############################################################
+        # Logging/Printing                                          #
+        #############################################################
+        self._verbose_level = verbose_level
+        
         #############################################################
         # Data preprocessing                                        #
         #############################################################
@@ -101,7 +109,8 @@ class AutoCluster(object):
         # remove outliers
         raw_data_cleaned = raw_data.iloc[idx_np].reset_index(drop=True)
         self._log("{}/{} datapoints remaining after outlier removal".format(len(raw_data_cleaned), 
-                                                                            len(raw_data_np)))
+                                                                            len(raw_data_np)),
+                  min_verbose_level=1)
         
         # encode cleaned datasest
         preprocess_dict['df'] = raw_data_cleaned
@@ -113,7 +122,7 @@ class AutoCluster(object):
         
         # construct desired configuration space
         cs = build_config_space(cluster_alg_ls, dim_reduction_alg_ls)
-        self._log(cs)    
+        self._log(cs, min_verbose_level=2)    
         
         # calculate metafeatures
         metafeatures_np = None
@@ -144,7 +153,8 @@ class AutoCluster(object):
         # if too little configurations available, just ignore
         initial_cfgs_ls = None if len(initial_cfgs_ls) < 2 else initial_cfgs_ls
         if initial_cfgs_ls is not None:
-            self._log('Found {} relevant intial configurations from warmstarter.'.format(len(initial_cfgs_ls)))
+            self._log('Found {} relevant intial configurations from warmstarter.'.format(len(initial_cfgs_ls)),
+                      min_verbose_level=1)
         
         #############################################################
         # Bayesian optimization (SMAC)                              #
@@ -156,7 +166,7 @@ class AutoCluster(object):
         clustering_min_size = min([Mapper.getClass(alg).n_possible_cfgs for alg in cluster_alg_ls])
         n_evaluations = min(n_evaluations, clustering_min_size * dim_reduction_min_size)
         initial_cfgs_ls = initial_cfgs_ls[0 : n_evaluations] if initial_cfgs_ls is not None else None
-        self._log('Truncated n_evaluations: {}'.format(n_evaluations))
+        self._log('Truncated n_evaluations: {}'.format(n_evaluations), min_verbose_level=1)
         
         # define scenario object to be passed into SMAC
         scenario_params = {
@@ -169,7 +179,7 @@ class AutoCluster(object):
             "abort_on_first_run_crash": False,
         }
         scenario = Scenario(scenario_params)    
-        self._log('{}'.format(scenario_params))
+        self._log('{}'.format(scenario_params), min_verbose_level=2)
         
         # functions required for SMAC optimization
         def fit_models(cfg, data):
@@ -228,7 +238,7 @@ class AutoCluster(object):
             cfg = cfg_to_dict(cfg)
             
             # logging
-            self._log("Fitting configuration: \n{}".format(cfg))
+            self._log("Fitting configuration: \n{}".format(cfg), min_verbose_level=1)
             
             ################################################
             # K fold cross validation                      #
@@ -274,7 +284,7 @@ class AutoCluster(object):
             else:
                 score = np.mean(score_ls)
                 
-            self._log("Score obtained by this configuration: {}".format(score))
+            self._log("Score obtained by this configuration: {}".format(score), min_verbose_level=1)
             return score
         
         optimal_config = None
@@ -309,9 +319,9 @@ class AutoCluster(object):
         # refit to get optimal model
         self._scaler, self._dim_reduction_model, self._clustering_model = fit_models(cfg_to_dict(optimal_config), 
                                                                                      processed_data_np)
-        self._log("Optimization is complete.")
-        self._log("Took {} seconds.".format(time_spent))
-        self._log("The optimal configuration is \n{}".format(optimal_config))
+        self._log("Optimization is complete.", min_verbose_level=1)
+        self._log("Took {} seconds.".format(time_spent), min_verbose_level=1)
+        self._log("The optimal configuration is \n{}".format(optimal_config), min_verbose_level=1)
         
         # return a dictionary
         result = {
@@ -411,7 +421,11 @@ class AutoCluster(object):
         plt.tick_params(axis='y', colors='white')
         plt.show()
         
-    def _log(self, string):
+    def _log(self, string, min_verbose_level=0):
+        # if verbose level is too low, don't print or log
+        if self._verbose_level < min_verbose_level:
+            return
+        
         if self._logger:
             self._logger.info(string)
         else:
