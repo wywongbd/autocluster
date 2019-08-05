@@ -154,6 +154,8 @@ def plot_convergence_average(data,
         data_ave[key] = data_sum
         
         if area:
+            data_temp = [sublist + list(data_sum[len(sublist):]) if len_max > len(sublist) else sublist for sublist in value]
+            data_temp = np.array(data_temp)
             data_var = np.var(data_temp, axis=0) * graph_num
             data_var = np.sqrt(data_var / num_for_iter)
             data_std[key] = data_var
