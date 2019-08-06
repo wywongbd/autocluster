@@ -161,7 +161,7 @@ def main():
                                        min_proportion = .01),
             "n_folds": config.n_folds,
             "warmstart": (config.warmstart != 0),
-            "warmstart_datasets_dir": 'benchmark_silhouette',
+            "warmstart_datasets_dir": 'benchmark_silhouette_v0',
             "warmstart_metafeatures_table_path": '{}_trimmed.csv'.format(metafeatures_table_name_no_ext),
             "warmstart_n_neighbors": config.warmstart_n_neighbors,
             "warmstart_top_n": config.warmstart_top_n,
