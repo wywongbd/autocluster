@@ -1,0 +1,6 @@
+"CPU Time Used","Estimated Training Performance","Wallclock Time","Incumbent ID","Automatic Configurator (CPU) Time","Configuration..."
+0.000000, 2147483648.000000, 0.000290, 1, 0.000290, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='12.0', n_clusters___KMeans='5', n_components___TSNE='2', perplexity___TSNE='30.0'
+102.270191, 0.293681, 102.290182, 1, 0.019991, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='12.0', n_clusters___KMeans='5', n_components___TSNE='2', perplexity___TSNE='30.0'
+451.952081, 0.159976, 461.981756, 2, 10.029675, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='16.78986014609721', n_clusters___KMeans='22', n_components___TSNE='2', perplexity___TSNE='52.161319039703756'
+7279.207578, 0.137610, 7420.665996, 3, 141.458418, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='14.191020958613732', n_clusters___KMeans='38', n_components___TSNE='2', perplexity___TSNE='24.543271561083085'
+8872.368307, 0.133680, 9050.980342, 4, 178.612035, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='14.672138485562524', n_clusters___KMeans='35', n_components___TSNE='2', perplexity___TSNE='47.55012942001764'
