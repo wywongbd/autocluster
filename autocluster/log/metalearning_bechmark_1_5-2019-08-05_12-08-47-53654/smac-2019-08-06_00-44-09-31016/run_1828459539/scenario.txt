@@ -1,0 +1,13 @@
+deterministic = True
+cutoff = 1000.0
+overall_obj = par10
+initial_incumbent = DEFAULT
+run_obj = quality
+algo_runs_timelimit = inf
+wallclock_limit = inf
+always_race_default = False
+ta_run_limit = 200.0
+par_factor = 10
+execdir = .
+pcs_fn = log//metalearning_bechmark_1_5-2019-08-05_12-08-47-53654/smac-2019-08-06_00-44-09-31016/run_1828459539/configspace.json
+cost_for_crash = 2147483647.0

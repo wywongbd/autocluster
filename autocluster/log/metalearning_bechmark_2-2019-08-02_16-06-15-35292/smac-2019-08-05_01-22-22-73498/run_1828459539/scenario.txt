@@ -1,0 +1,13 @@
+deterministic = True
+par_factor = 10
+pcs_fn = log//metalearning_bechmark_2-2019-08-02_16-06-15-35292/smac-2019-08-05_01-22-22-73498/run_1828459539/configspace.json
+cutoff = 1000.0
+overall_obj = par10
+execdir = .
+run_obj = quality
+ta_run_limit = 200.0
+always_race_default = False
+cost_for_crash = 2147483647.0
+wallclock_limit = inf
+initial_incumbent = DEFAULT
+algo_runs_timelimit = inf
