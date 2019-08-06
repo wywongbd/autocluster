@@ -44,8 +44,8 @@ cd ..
 
 # random optimization
 python test_autocluster_on_benchmark.py \
---benchmark_metafeatures_table_path metaknowledge/benchmark_silhouette_metafeatures_table.csv \
---log_dir_prefix benchmark_experiment_4 \
+--benchmark_metafeatures_table_path metaknowledge/benchmark_silhouette_metafeatures_table_v0.csv \
+--log_dir_prefix benchmark_experiment_4_v0 \
 --optimizer random \
 --warmstart 0 \
 --test_size 0.1666 \
