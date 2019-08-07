@@ -1,0 +1,5 @@
+"CPU Time Used","Estimated Training Performance","Wallclock Time","Incumbent ID","Automatic Configurator (CPU) Time","Configuration..."
+0.000000, 2147483648.000000, 0.000309, 1, 0.000309, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='12.0', n_clusters___KMeans='5', n_components___TSNE='2', perplexity___TSNE='30.0'
+13.915761, 0.234940, 13.934863, 1, 0.019102, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='12.0', n_clusters___KMeans='5', n_components___TSNE='2', perplexity___TSNE='30.0'
+37.439230, 0.008799, 38.978007, 2, 1.538777, clustering_choice=''Birch'', dim_reduction_choice=''PCA'', branching_factor___Birch='429', n_clusters___Birch='23', n_components___PCA='3', svd_solver___PCA=''randomized'', whiten___PCA='False'
+71.875124, 0.004642, 85.684810, 3, 13.809686, clustering_choice=''AffinityPropagation'', dim_reduction_choice=''TruncatedSVD'', affinity___AffinityPropagation=''euclidean'', algorithm___TruncatedSVD=''randomized'', damping___AffinityPropagation='0.911772468885', n_components___TruncatedSVD='9'
