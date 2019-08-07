@@ -1,0 +1,13 @@
+overall_obj = par10
+cutoff = 100.0
+par_factor = 10
+pcs_fn = log//benchmark_experiment_2_v0-2019-08-06_19-55-07-13747/smac-2019-08-07_01-16-32-50737/run_1828459539/configspace.json
+run_obj = quality
+initial_incumbent = DEFAULT
+algo_runs_timelimit = inf
+wallclock_limit = inf
+ta_run_limit = 100.0
+deterministic = True
+cost_for_crash = 2147483647.0
+execdir = .
+always_race_default = False
