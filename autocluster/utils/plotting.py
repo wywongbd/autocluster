@@ -108,6 +108,7 @@ def plot_convergence_average(data,
                              y_label='Average Scores',
                              font_color='default',
                              x_scale='linear',
+                             y_range='default',
                              area=True,
                              show_plot=True, 
                              save_plot=True, 
@@ -124,6 +125,9 @@ def plot_convergence_average(data,
     font_color : color of title, x_label, and y_label
                  font_color='default' : white for script file, black for png file
     x_scale : 'linear' or 'log'
+    y_range : range of y-axis
+              y_range='default' : 0 <= y <= 1
+              y_range=(tuple) : y is in (tuple)
     area : True for standard deviation area, False for only graph
     """
 
@@ -156,6 +160,7 @@ def plot_convergence_average(data,
         if area:
             data_temp = [sublist + list(data_sum[len(sublist):]) if len_max > len(sublist) else sublist for sublist in value]
             data_temp = np.array(data_temp)
+            data_temp[data_temp == float('inf')] = 1
             data_var = np.var(data_temp, axis=0) * graph_num
             data_var = np.sqrt(data_var / num_for_iter)
             data_std[key] = data_var
@@ -171,7 +176,7 @@ def plot_convergence_average(data,
         
     if show_plot or save_plot:
         lin_sp = range(1, x_len + 1)
-        colors = cm.nipy_spectral(np.linspace(0, 1, graph_num + 1))
+        colors = cm.nipy_spectral(np.linspace(0, 1, graph_num + 2))
                 
         fig = plt.figure(figsize=(12,7))
         for i, key in enumerate(legends):
@@ -184,6 +189,11 @@ def plot_convergence_average(data,
         plt.legend(legends, loc='best')
         plt.ylim(bottom=0)
         plt.xscale(x_scale)
+        
+        if y_range == 'default':
+            plt.ylim(0, 1)
+        else:
+            plt.ylim(y_range)
             
         if save_plot:
             if font_color == 'default':
