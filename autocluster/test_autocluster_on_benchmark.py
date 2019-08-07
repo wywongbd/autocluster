@@ -178,7 +178,8 @@ def main():
         _logger.info("Statistics of predictions: {}".format(Counter(predictions)))
         
         # save result
-        records["trajectory"] = cluster.get_trajectory()
+        if config.optimizer != 'random':
+            records["trajectory"] = cluster.get_trajectory()
         metafeatures_ls = list(result["metafeatures"][0])
         records.update(dict(zip(result["metafeatures_used"], metafeatures_ls))) 
         
