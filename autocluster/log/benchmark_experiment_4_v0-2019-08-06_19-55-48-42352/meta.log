@@ -503,52 +503,7 @@ Configuration:
 2019-08-06 19:10:49,708 INFO - __main__ - Statistics of predictions: Counter({1: 1024, 0: 1023})
 2019-08-06 19:10:49,708 INFO - __main__ - Done optimizing on g2-32-20.csv.
 2019-08-06 19:10:49,709 INFO - __main__ - Record on ITERATION 1: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2459.531591682635, 'medianCovariance': 2488.4644970012873, 'maxCovariance': 2989.426025073707, 'numberOfInstances': 1842.0, 'medianSkewness': -0.0017637693396955214, 'minCorrelation': 0.8504515344721763, 'trajectory': [(Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8884105143198501
-  dim_reduction_choice, Value: 'NullModel'
-  random_state___NullModel, Value: 2
-, 0.4941828054539876), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8105514981743429
-  dim_reduction_choice, Value: 'PCA'
-  n_components___PCA, Value: 2
-  svd_solver___PCA, Value: 'randomized'
-  whiten___PCA, Value: False
-, 0.3364459840981929), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  algorithm___FastICA, Value: 'parallel'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8781385056075739
-  dim_reduction_choice, Value: 'FastICA'
-  fun___FastICA, Value: 'exp'
-  n_components___FastICA, Value: 2
-  whiten___FastICA, Value: True
-, 0.2511033184521767), (Configuration:
-  cluster_method___OPTICS, Value: 'xi'
-  clustering_choice, Value: 'OPTICS'
-  dim_reduction_choice, Value: 'NullModel'
-  metric___OPTICS, Value: 'minkowski'
-  min_samples___OPTICS, Value: 37
-  random_state___NullModel, Value: 0
-, 0.13301815828526822), (Configuration:
-  algorithm___TruncatedSVD, Value: 'arpack'
-  clustering_choice, Value: 'DBSCAN'
-  dim_reduction_choice, Value: 'TruncatedSVD'
-  eps___DBSCAN, Value: 3.5903263734480366
-  min_samples___DBSCAN, Value: 19
-  n_components___TruncatedSVD, Value: 3
-, 0.03915523870854909), (Configuration:
-  clustering_choice, Value: 'DBSCAN'
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 18.17655819576955
-  eps___DBSCAN, Value: 1.9265182811350776
-  min_samples___DBSCAN, Value: 92
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 210.51021248346686
-, 0.01837991674741109)], 'missingValuesRatio': 0.0, 'dataset': 'g2-32-20.csv', 'meanKurtosis': -1.5045319963290547, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.8663932807584275, 'thirdQuartileCovariance': 2516.2639315984497, 'minCovariance': 2387.532988196827, 'PCASkewnessFirstPC': -0.0018531642903463113, 'meanSkewness': -0.0023631114022004155, 'thirdQuartileSkewness': 0.008057352147455716, 'medianKurtosis': -1.5086649630669906, 'thirdQuartileKurtosis': -1.4946735601918208, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.006802944910598414, 'PCAKurtosisFirstPC': -1.981904763551719, 'meanCovariance': 2498.5155959132494, 'firstQuartileCorrelation': 0.8629390686085947, 'PCAFractionOfComponentsFor95PercentVariance': 0.59375, 'minSkewness': -0.034647783551601856, 'medianCorrelation': 0.8666750571746336, 'maxCorrelation': 0.8804194415060951, 'maxSkewness': 0.015962292731695322, 'thirdQuartileCorrelation': 0.8695962026361337, 'firstQuartileKurtosis': -1.519393970039172, 'minKurtosis': -1.542327350116445, 'maxKurtosis': -1.4595052017191903}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2459.531591682635, 'medianCovariance': 2488.4644970012873, 'maxCovariance': 2989.426025073707, 'numberOfInstances': 1842.0, 'medianSkewness': -0.0017637693396955214, 'minCorrelation': 0.8504515344721763, 'missingValuesRatio': 0.0, 'dataset': 'g2-32-20.csv', 'meanKurtosis': -1.5045319963290547, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.8663932807584275, 'thirdQuartileCovariance': 2516.2639315984497, 'minCovariance': 2387.532988196827, 'PCASkewnessFirstPC': -0.0018531642903463113, 'meanSkewness': -0.0023631114022004155, 'thirdQuartileSkewness': 0.008057352147455716, 'medianKurtosis': -1.5086649630669906, 'thirdQuartileKurtosis': -1.4946735601918208, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.006802944910598414, 'PCAKurtosisFirstPC': -1.981904763551719, 'meanCovariance': 2498.5155959132494, 'firstQuartileCorrelation': 0.8629390686085947, 'PCAFractionOfComponentsFor95PercentVariance': 0.59375, 'minSkewness': -0.034647783551601856, 'medianCorrelation': 0.8666750571746336, 'maxCorrelation': 0.8804194415060951, 'maxSkewness': 0.015962292731695322, 'thirdQuartileCorrelation': 0.8695962026361337, 'firstQuartileKurtosis': -1.519393970039172, 'minKurtosis': -1.542327350116445, 'maxKurtosis': -1.4595052017191903}
 2019-08-06 19:10:49,709 INFO - __main__ - Done with ITERATION 1.
 2019-08-06 19:10:49,709 INFO - __main__ - ITERATION 2 of 20
 2019-08-06 19:10:49,709 INFO - __main__ - Running on dataset: birch3.csv
@@ -990,37 +945,7 @@ Configuration:
 2019-08-06 20:55:44,831 INFO - __main__ - Statistics of predictions: Counter({9: 5687, 11: 5518, 2: 5506, 16: 5148, 7: 4600, 3: 4598, 13: 4477, 21: 4362, 20: 3749, 12: 3528, 29: 3511, 14: 3424, 19: 3368, 0: 3366, 22: 3250, 8: 2995, 10: 2965, 25: 2938, 5: 2800, 6: 2777, 27: 2565, 26: 2482, 15: 2330, 30: 2116, 1: 1954, 24: 1934, 17: 1895, 28: 1635, 18: 1540, 23: 1524, 4: 1458})
 2019-08-06 20:55:44,832 INFO - __main__ - Done optimizing on birch3.csv.
 2019-08-06 20:55:44,832 INFO - __main__ - Record on ITERATION 2: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': -12503592309.211843, 'medianCovariance': 13495516258.328556, 'maxCovariance': 47710638834.67058, 'numberOfInstances': 90001.0, 'medianSkewness': 0.0075360895870746555, 'minCorrelation': -0.28804357503611594, 'trajectory': [(Configuration:
-  clustering_choice, Value: 'GaussianMixture'
-  covariance_type___GaussianMixture, Value: 'diag'
-  dim_reduction_choice, Value: 'NullModel'
-  init_params___GaussianMixture, Value: 'kmeans'
-  n_components___GaussianMixture, Value: 12
-  random_state___NullModel, Value: 0
-  warm_start___GaussianMixture, Value: True
-, 0.3083947706658112), (Configuration:
-  algorithm___FastICA, Value: 'parallel'
-  batch_size___MiniBatchKMeans, Value: 999
-  clustering_choice, Value: 'MiniBatchKMeans'
-  dim_reduction_choice, Value: 'FastICA'
-  fun___FastICA, Value: 'logcosh'
-  n_clusters___MiniBatchKMeans, Value: 21
-  n_components___FastICA, Value: 3
-  whiten___FastICA, Value: False
-, 0.2560736939314214), (Configuration:
-  clustering_choice, Value: 'KMeans'
-  dim_reduction_choice, Value: 'NullModel'
-  n_clusters___KMeans, Value: 24
-  random_state___NullModel, Value: 1
-, 0.2377762304750517), (Configuration:
-  algorithm___FastICA, Value: 'deflation'
-  clustering_choice, Value: 'KMeans'
-  dim_reduction_choice, Value: 'FastICA'
-  fun___FastICA, Value: 'cube'
-  n_clusters___KMeans, Value: 31
-  n_components___FastICA, Value: 3
-  whiten___FastICA, Value: True
-, 0.22545124009850762)], 'missingValuesRatio': 0.0, 'dataset': 'birch3.csv', 'meanKurtosis': -0.9741316292066052, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': -0.28804357503611594, 'thirdQuartileCovariance': 41548628328.06937, 'minCovariance': -12503592309.211843, 'PCASkewnessFirstPC': 0.24980802092417215, 'meanSkewness': 0.0075360895870746555, 'thirdQuartileSkewness': 0.0594955099631215, 'medianKurtosis': -0.9741316292066052, 'thirdQuartileKurtosis': -0.9052118619431295, 'logNumberOfInstances': 11.407576060361786, 'firstQuartileSkewness': -0.04442333078897219, 'PCAKurtosisFirstPC': -0.6856154542404798, 'meanCovariance': 15549519760.528961, 'firstQuartileCorrelation': -0.28804357503611594, 'PCAFractionOfComponentsFor95PercentVariance': 1.0, 'minSkewness': -0.09638275116501904, 'medianCorrelation': -0.28804357503611594, 'maxCorrelation': 0.0, 'maxSkewness': 0.11145493033916835, 'thirdQuartileCorrelation': -0.28804357503611594, 'firstQuartileKurtosis': -1.043051396470081, 'minKurtosis': -1.1119711637335568, 'maxKurtosis': -0.8362920946796537}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': -12503592309.211843, 'medianCovariance': 13495516258.328556, 'maxCovariance': 47710638834.67058, 'numberOfInstances': 90001.0, 'medianSkewness': 0.0075360895870746555, 'minCorrelation': -0.28804357503611594, 'missingValuesRatio': 0.0, 'dataset': 'birch3.csv', 'meanKurtosis': -0.9741316292066052, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': -0.28804357503611594, 'thirdQuartileCovariance': 41548628328.06937, 'minCovariance': -12503592309.211843, 'PCASkewnessFirstPC': 0.24980802092417215, 'meanSkewness': 0.0075360895870746555, 'thirdQuartileSkewness': 0.0594955099631215, 'medianKurtosis': -0.9741316292066052, 'thirdQuartileKurtosis': -0.9052118619431295, 'logNumberOfInstances': 11.407576060361786, 'firstQuartileSkewness': -0.04442333078897219, 'PCAKurtosisFirstPC': -0.6856154542404798, 'meanCovariance': 15549519760.528961, 'firstQuartileCorrelation': -0.28804357503611594, 'PCAFractionOfComponentsFor95PercentVariance': 1.0, 'minSkewness': -0.09638275116501904, 'medianCorrelation': -0.28804357503611594, 'maxCorrelation': 0.0, 'maxSkewness': 0.11145493033916835, 'thirdQuartileCorrelation': -0.28804357503611594, 'firstQuartileKurtosis': -1.043051396470081, 'minKurtosis': -1.1119711637335568, 'maxKurtosis': -0.8362920946796537}
 2019-08-06 20:55:44,833 INFO - __main__ - Done with ITERATION 2.
 2019-08-06 20:55:44,833 INFO - __main__ - ITERATION 3 of 20
 2019-08-06 20:55:44,833 INFO - __main__ - Running on dataset: g2-2-90.csv
@@ -1499,55 +1424,7 @@ Configuration:
 2019-08-06 21:06:16,190 INFO - __main__ - Statistics of predictions: Counter({12: 119, 4: 111, 0: 110, 8: 105, 20: 104, 6: 100, 1: 98, 10: 96, 11: 95, 18: 94, 3: 90, 7: 90, 17: 90, 5: 89, 9: 89, 15: 88, 14: 86, 19: 85, 2: 84, 13: 82, 21: 73, 16: 69})
 2019-08-06 21:06:16,191 INFO - __main__ - Done optimizing on g2-2-90.csv.
 2019-08-06 21:06:16,192 INFO - __main__ - Record on ITERATION 3: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 1993.6921402414894, 'medianCovariance': 4884.435253287849, 'maxCovariance': 7799.1286659695525, 'numberOfInstances': 1842.0, 'medianSkewness': -0.06595916806866794, 'minCorrelation': 0.2560235256061655, 'trajectory': [(Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8884105143198501
-  dim_reduction_choice, Value: 'NullModel'
-  random_state___NullModel, Value: 2
-, 0.326985610532509), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8105514981743429
-  dim_reduction_choice, Value: 'PCA'
-  n_components___PCA, Value: 2
-  svd_solver___PCA, Value: 'randomized'
-  whiten___PCA, Value: False
-, 0.32676370657030973), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  algorithm___FastICA, Value: 'parallel'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8781385056075739
-  dim_reduction_choice, Value: 'FastICA'
-  fun___FastICA, Value: 'exp'
-  n_components___FastICA, Value: 2
-  whiten___FastICA, Value: True
-, 0.3258130095563306), (Configuration:
-  affinity___SpectralClustering, Value: 'nearest_neighbors'
-  assign_labels___SpectralClustering, Value: 'discretize'
-  clustering_choice, Value: 'SpectralClustering'
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 13.295757697515906
-  eigen_solver___SpectralClustering, Value: 'arpack'
-  n_clusters___SpectralClustering, Value: 5
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 244.47392897136072
-, 0.31656797230243683), (Configuration:
-  batch_size___MiniBatchKMeans, Value: 416
-  clustering_choice, Value: 'MiniBatchKMeans'
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 15.350386517931009
-  n_clusters___MiniBatchKMeans, Value: 16
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 89.90314384067615
-, 0.3100258062283198), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.7441178388237608
-  dim_reduction_choice, Value: 'KernelPCA'
-  kernel___KernelPCA, Value: 'cosine'
-  n_components___KernelPCA, Value: 3
-, 0.22917742979659197)], 'missingValuesRatio': 0.0, 'dataset': 'g2-2-90.csv', 'meanKurtosis': -0.5214671662296726, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.2560235256061655, 'thirdQuartileCovariance': 7781.165941243045, 'minCovariance': 1993.6921402414894, 'PCASkewnessFirstPC': -0.023256653849270826, 'meanSkewness': -0.06595916806866794, 'thirdQuartileSkewness': -0.06409935816213731, 'medianKurtosis': -0.5214671662296726, 'thirdQuartileKurtosis': -0.513954523996615, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.06781897797519858, 'PCAKurtosisFirstPC': -0.6861807320429922, 'meanCovariance': 4890.422828196685, 'firstQuartileCorrelation': 0.2560235256061655, 'PCAFractionOfComponentsFor95PercentVariance': 1.0, 'minSkewness': -0.06967878788172921, 'medianCorrelation': 0.2560235256061655, 'maxCorrelation': 0.25602352560616554, 'maxSkewness': -0.06223954825560668, 'thirdQuartileCorrelation': 0.2560235256061655, 'firstQuartileKurtosis': -0.5289798084627302, 'minKurtosis': -0.5364924506957878, 'maxKurtosis': -0.5064418817635574}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 1993.6921402414894, 'medianCovariance': 4884.435253287849, 'maxCovariance': 7799.1286659695525, 'numberOfInstances': 1842.0, 'medianSkewness': -0.06595916806866794, 'minCorrelation': 0.2560235256061655, 'missingValuesRatio': 0.0, 'dataset': 'g2-2-90.csv', 'meanKurtosis': -0.5214671662296726, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.2560235256061655, 'thirdQuartileCovariance': 7781.165941243045, 'minCovariance': 1993.6921402414894, 'PCASkewnessFirstPC': -0.023256653849270826, 'meanSkewness': -0.06595916806866794, 'thirdQuartileSkewness': -0.06409935816213731, 'medianKurtosis': -0.5214671662296726, 'thirdQuartileKurtosis': -0.513954523996615, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.06781897797519858, 'PCAKurtosisFirstPC': -0.6861807320429922, 'meanCovariance': 4890.422828196685, 'firstQuartileCorrelation': 0.2560235256061655, 'PCAFractionOfComponentsFor95PercentVariance': 1.0, 'minSkewness': -0.06967878788172921, 'medianCorrelation': 0.2560235256061655, 'maxCorrelation': 0.25602352560616554, 'maxSkewness': -0.06223954825560668, 'thirdQuartileCorrelation': 0.2560235256061655, 'firstQuartileKurtosis': -0.5289798084627302, 'minKurtosis': -0.5364924506957878, 'maxKurtosis': -0.5064418817635574}
 2019-08-06 21:06:16,192 INFO - __main__ - Done with ITERATION 3.
 2019-08-06 21:06:16,192 INFO - __main__ - ITERATION 4 of 20
 2019-08-06 21:06:16,192 INFO - __main__ - Running on dataset: g2-16-50.csv
@@ -2052,52 +1929,7 @@ Configuration:
 2019-08-06 21:20:34,415 INFO - __main__ - Statistics of predictions: Counter({1: 1024, 0: 1023})
 2019-08-06 21:20:34,416 INFO - __main__ - Done optimizing on g2-16-50.csv.
 2019-08-06 21:20:34,417 INFO - __main__ - Record on ITERATION 4: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2322.724830896677, 'medianCovariance': 2391.9294493091074, 'maxCovariance': 5030.638987332216, 'numberOfInstances': 1842.0, 'medianSkewness': 0.02368118302555336, 'minCorrelation': 0.47330062048412685, 'trajectory': [(Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8884105143198501
-  dim_reduction_choice, Value: 'NullModel'
-  random_state___NullModel, Value: 2
-, 0.48609097211775104), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8105514981743429
-  dim_reduction_choice, Value: 'PCA'
-  n_components___PCA, Value: 2
-  svd_solver___PCA, Value: 'randomized'
-  whiten___PCA, Value: False
-, 0.3358653903600934), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.5260291005550608
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 17.793611304119267
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 175.81235127502305
-, 0.3338767985502879), (Configuration:
-  branching_factor___Birch, Value: 624
-  clustering_choice, Value: 'Birch'
-  dim_reduction_choice, Value: 'KernelPCA'
-  kernel___KernelPCA, Value: 'poly'
-  n_clusters___Birch, Value: 42
-  n_components___KernelPCA, Value: 2
-, 0.23032468428577868), (Configuration:
-  clustering_choice, Value: 'DBSCAN'
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 18.17655819576955
-  eps___DBSCAN, Value: 1.9265182811350776
-  min_samples___DBSCAN, Value: 92
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 210.51021248346686
-, 0.03370038668314616), (Configuration:
-  clustering_choice, Value: 'DBSCAN'
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 10.399041806567533
-  eps___DBSCAN, Value: 4.166244816051749
-  min_samples___DBSCAN, Value: 98
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 180.07621827255477
-, 0.030082811911900837)], 'missingValuesRatio': 0.0, 'dataset': 'g2-16-50.csv', 'meanKurtosis': -0.5428158276121993, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.507541502729797, 'thirdQuartileCovariance': 2485.1030759878295, 'minCovariance': 2190.5445728581863, 'PCASkewnessFirstPC': 0.08591408679744876, 'meanSkewness': 0.011001751261161109, 'thirdQuartileSkewness': 0.045930053631762814, 'medianKurtosis': -0.5341127516298969, 'thirdQuartileKurtosis': -0.5016506304857817, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.015894635791844525, 'PCAKurtosisFirstPC': -1.777802923453866, 'meanCovariance': 2544.097777934928, 'firstQuartileCorrelation': 0.4956219242655645, 'PCAFractionOfComponentsFor95PercentVariance': 0.9375, 'minSkewness': -0.07905530379496566, 'medianCorrelation': 0.5070940366457262, 'maxCorrelation': 0.5435329354462023, 'maxSkewness': 0.06287416883727036, 'thirdQuartileCorrelation': 0.519064452525627, 'firstQuartileKurtosis': -0.6092192556666933, 'minKurtosis': -0.6458771448897247, 'maxKurtosis': -0.4346223428670939}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2322.724830896677, 'medianCovariance': 2391.9294493091074, 'maxCovariance': 5030.638987332216, 'numberOfInstances': 1842.0, 'medianSkewness': 0.02368118302555336, 'minCorrelation': 0.47330062048412685, 'missingValuesRatio': 0.0, 'dataset': 'g2-16-50.csv', 'meanKurtosis': -0.5428158276121993, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.507541502729797, 'thirdQuartileCovariance': 2485.1030759878295, 'minCovariance': 2190.5445728581863, 'PCASkewnessFirstPC': 0.08591408679744876, 'meanSkewness': 0.011001751261161109, 'thirdQuartileSkewness': 0.045930053631762814, 'medianKurtosis': -0.5341127516298969, 'thirdQuartileKurtosis': -0.5016506304857817, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.015894635791844525, 'PCAKurtosisFirstPC': -1.777802923453866, 'meanCovariance': 2544.097777934928, 'firstQuartileCorrelation': 0.4956219242655645, 'PCAFractionOfComponentsFor95PercentVariance': 0.9375, 'minSkewness': -0.07905530379496566, 'medianCorrelation': 0.5070940366457262, 'maxCorrelation': 0.5435329354462023, 'maxSkewness': 0.06287416883727036, 'thirdQuartileCorrelation': 0.519064452525627, 'firstQuartileKurtosis': -0.6092192556666933, 'minKurtosis': -0.6458771448897247, 'maxKurtosis': -0.4346223428670939}
 2019-08-06 21:20:34,417 INFO - __main__ - Done with ITERATION 4.
 2019-08-06 21:20:34,417 INFO - __main__ - ITERATION 5 of 20
 2019-08-06 21:20:34,417 INFO - __main__ - Running on dataset: g2-256-50.csv
@@ -2601,52 +2433,7 @@ Configuration:
 2019-08-06 21:36:01,810 INFO - __main__ - Statistics of predictions: Counter({1: 1024, 0: 1023})
 2019-08-06 21:36:01,810 INFO - __main__ - Done optimizing on g2-256-50.csv.
 2019-08-06 21:36:01,811 INFO - __main__ - Record on ITERATION 5: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2421.936241677533, 'medianCovariance': 2490.6231021768017, 'maxCovariance': 5403.009611568088, 'numberOfInstances': 1842.0, 'medianSkewness': 0.00232162070810792, 'minCorrelation': 0.28573492391308836, 'trajectory': [(Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8884105143198501
-  dim_reduction_choice, Value: 'NullModel'
-  random_state___NullModel, Value: 2
-, 0.50120653825751), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8105514981743429
-  dim_reduction_choice, Value: 'PCA'
-  n_components___PCA, Value: 2
-  svd_solver___PCA, Value: 'randomized'
-  whiten___PCA, Value: False
-, 0.3345561811252498), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  algorithm___FastICA, Value: 'parallel'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8781385056075739
-  dim_reduction_choice, Value: 'FastICA'
-  fun___FastICA, Value: 'exp'
-  n_components___FastICA, Value: 2
-  whiten___FastICA, Value: True
-, 0.2563335850345927), (Configuration:
-  algorithm___TruncatedSVD, Value: 'arpack'
-  clustering_choice, Value: 'DBSCAN'
-  dim_reduction_choice, Value: 'TruncatedSVD'
-  eps___DBSCAN, Value: 3.5903263734480366
-  min_samples___DBSCAN, Value: 19
-  n_components___TruncatedSVD, Value: 3
-, 0.03568558148226982), (Configuration:
-  branching_factor___Birch, Value: 624
-  clustering_choice, Value: 'Birch'
-  dim_reduction_choice, Value: 'KernelPCA'
-  kernel___KernelPCA, Value: 'poly'
-  n_clusters___Birch, Value: 42
-  n_components___KernelPCA, Value: 2
-, 0.029996365246955536), (Configuration:
-  clustering_choice, Value: 'DBSCAN'
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 18.17655819576955
-  eps___DBSCAN, Value: 1.9265182811350776
-  min_samples___DBSCAN, Value: 92
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 210.51021248346686
-, 0.02319498856862386)], 'missingValuesRatio': 0.0, 'dataset': 'g2-256-50.csv', 'meanKurtosis': -0.5000492890091045, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.5008470674742811, 'thirdQuartileCovariance': 2560.4412097235067, 'minCovariance': 1424.939093609726, 'PCASkewnessFirstPC': -0.004209605993483516, 'meanSkewness': 0.0039099152356660526, 'thirdQuartileSkewness': 0.030503374779380508, 'medianKurtosis': -0.5000055221769744, 'thirdQuartileKurtosis': -0.4509001120728765, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.021499883759999578, 'PCAKurtosisFirstPC': -1.9844208937764498, 'meanCovariance': 2500.48238425771, 'firstQuartileCorrelation': 0.4908856841187965, 'PCAFractionOfComponentsFor95PercentVariance': 0.80859375, 'minSkewness': -0.08984591601735124, 'medianCorrelation': 0.501059491981434, 'maxCorrelation': 0.6200305713739268, 'maxSkewness': 0.1135873360243669, 'thirdQuartileCorrelation': 0.5110659253416139, 'firstQuartileKurtosis': -0.5497732542240834, 'minKurtosis': -0.7001663396858229, 'maxKurtosis': -0.3169210874593493}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2421.936241677533, 'medianCovariance': 2490.6231021768017, 'maxCovariance': 5403.009611568088, 'numberOfInstances': 1842.0, 'medianSkewness': 0.00232162070810792, 'minCorrelation': 0.28573492391308836, 'missingValuesRatio': 0.0, 'dataset': 'g2-256-50.csv', 'meanKurtosis': -0.5000492890091045, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.5008470674742811, 'thirdQuartileCovariance': 2560.4412097235067, 'minCovariance': 1424.939093609726, 'PCASkewnessFirstPC': -0.004209605993483516, 'meanSkewness': 0.0039099152356660526, 'thirdQuartileSkewness': 0.030503374779380508, 'medianKurtosis': -0.5000055221769744, 'thirdQuartileKurtosis': -0.4509001120728765, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.021499883759999578, 'PCAKurtosisFirstPC': -1.9844208937764498, 'meanCovariance': 2500.48238425771, 'firstQuartileCorrelation': 0.4908856841187965, 'PCAFractionOfComponentsFor95PercentVariance': 0.80859375, 'minSkewness': -0.08984591601735124, 'medianCorrelation': 0.501059491981434, 'maxCorrelation': 0.6200305713739268, 'maxSkewness': 0.1135873360243669, 'thirdQuartileCorrelation': 0.5110659253416139, 'firstQuartileKurtosis': -0.5497732542240834, 'minKurtosis': -0.7001663396858229, 'maxKurtosis': -0.3169210874593493}
 2019-08-06 21:36:01,811 INFO - __main__ - Done with ITERATION 5.
 2019-08-06 21:36:01,811 INFO - __main__ - ITERATION 6 of 20
 2019-08-06 21:36:01,812 INFO - __main__ - Running on dataset: s4.csv
@@ -3116,27 +2903,7 @@ Configuration:
 2019-08-06 21:59:30,438 INFO - __main__ - Statistics of predictions: Counter({5: 378, 2: 365, 0: 358, 10: 323, 11: 304, 19: 302, 12: 299, 16: 288, 6: 283, 9: 265, 14: 261, 1: 251, 4: 241, 17: 234, 15: 214, 13: 157, 8: 129, 7: 125, 18: 113, 3: 110})
 2019-08-06 21:59:30,438 INFO - __main__ - Done optimizing on s4.csv.
 2019-08-06 21:59:30,439 INFO - __main__ - Record on ITERATION 6: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2778112453.6337147, 'medianCovariance': 13799379360.41492, 'maxCovariance': 25415548982.330166, 'numberOfInstances': 4500.0, 'medianSkewness': -0.007563349833697278, 'minCorrelation': 0.11060978067796573, 'trajectory': [(Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8884105143198501
-  dim_reduction_choice, Value: 'NullModel'
-  random_state___NullModel, Value: 2
-, 0.2594704773568944), (Configuration:
-  algorithm___FastICA, Value: 'parallel'
-  batch_size___MiniBatchKMeans, Value: 999
-  clustering_choice, Value: 'MiniBatchKMeans'
-  dim_reduction_choice, Value: 'FastICA'
-  fun___FastICA, Value: 'logcosh'
-  n_clusters___MiniBatchKMeans, Value: 21
-  n_components___FastICA, Value: 3
-  whiten___FastICA, Value: False
-, 0.2592213016514275), (Configuration:
-  clustering_choice, Value: 'KMeans'
-  dim_reduction_choice, Value: 'NullModel'
-  n_clusters___KMeans, Value: 20
-  random_state___NullModel, Value: 0
-, 0.2548698046199142)], 'missingValuesRatio': 0.0, 'dataset': 's4.csv', 'meanKurtosis': -1.048956656477615, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.11060978067796573, 'thirdQuartileCovariance': 24969371945.979637, 'minCovariance': 2778112453.6337147, 'PCASkewnessFirstPC': 0.0798081763140766, 'meanSkewness': -0.007563349833697278, 'thirdQuartileSkewness': 0.006380711747871205, 'medianKurtosis': -1.048956656477615, 'thirdQuartileKurtosis': -1.0373881905171405, 'logNumberOfInstances': 8.411832675758411, 'firstQuartileSkewness': -0.021507411415265763, 'PCAKurtosisFirstPC': -0.9755631316974833, 'meanCovariance': 13948105039.19843, 'firstQuartileCorrelation': 0.11060978067796573, 'PCAFractionOfComponentsFor95PercentVariance': 1.0, 'minSkewness': -0.035451472996834245, 'medianCorrelation': 0.11060978067796573, 'maxCorrelation': 0.11060978067796573, 'maxSkewness': 0.020324773329439688, 'thirdQuartileCorrelation': 0.11060978067796573, 'firstQuartileKurtosis': -1.0605251224380894, 'minKurtosis': -1.0720935883985638, 'maxKurtosis': -1.025819724556666}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2778112453.6337147, 'medianCovariance': 13799379360.41492, 'maxCovariance': 25415548982.330166, 'numberOfInstances': 4500.0, 'medianSkewness': -0.007563349833697278, 'minCorrelation': 0.11060978067796573, 'missingValuesRatio': 0.0, 'dataset': 's4.csv', 'meanKurtosis': -1.048956656477615, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.11060978067796573, 'thirdQuartileCovariance': 24969371945.979637, 'minCovariance': 2778112453.6337147, 'PCASkewnessFirstPC': 0.0798081763140766, 'meanSkewness': -0.007563349833697278, 'thirdQuartileSkewness': 0.006380711747871205, 'medianKurtosis': -1.048956656477615, 'thirdQuartileKurtosis': -1.0373881905171405, 'logNumberOfInstances': 8.411832675758411, 'firstQuartileSkewness': -0.021507411415265763, 'PCAKurtosisFirstPC': -0.9755631316974833, 'meanCovariance': 13948105039.19843, 'firstQuartileCorrelation': 0.11060978067796573, 'PCAFractionOfComponentsFor95PercentVariance': 1.0, 'minSkewness': -0.035451472996834245, 'medianCorrelation': 0.11060978067796573, 'maxCorrelation': 0.11060978067796573, 'maxSkewness': 0.020324773329439688, 'thirdQuartileCorrelation': 0.11060978067796573, 'firstQuartileKurtosis': -1.0605251224380894, 'minKurtosis': -1.0720935883985638, 'maxKurtosis': -1.025819724556666}
 2019-08-06 21:59:30,439 INFO - __main__ - Done with ITERATION 6.
 2019-08-06 21:59:30,439 INFO - __main__ - ITERATION 7 of 20
 2019-08-06 21:59:30,439 INFO - __main__ - Running on dataset: g2-32-40.csv
@@ -3641,52 +3408,7 @@ Configuration:
 2019-08-06 22:14:08,808 INFO - __main__ - Statistics of predictions: Counter({1: 1024, 0: 1023})
 2019-08-06 22:14:08,809 INFO - __main__ - Done optimizing on g2-32-40.csv.
 2019-08-06 22:14:08,810 INFO - __main__ - Record on ITERATION 7: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2385.6821523967583, 'medianCovariance': 2426.8313506562135, 'maxCovariance': 4170.090773496205, 'numberOfInstances': 1842.0, 'medianSkewness': 0.02112422037670034, 'minCorrelation': 0.5821120595016491, 'trajectory': [(Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8884105143198501
-  dim_reduction_choice, Value: 'NullModel'
-  random_state___NullModel, Value: 2
-, 0.4944355763711954), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8105514981743429
-  dim_reduction_choice, Value: 'PCA'
-  n_components___PCA, Value: 2
-  svd_solver___PCA, Value: 'randomized'
-  whiten___PCA, Value: False
-, 0.33513952968287714), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  algorithm___FastICA, Value: 'parallel'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8781385056075739
-  dim_reduction_choice, Value: 'FastICA'
-  fun___FastICA, Value: 'exp'
-  n_components___FastICA, Value: 2
-  whiten___FastICA, Value: True
-, 0.2867479248142678), (Configuration:
-  cluster_method___OPTICS, Value: 'xi'
-  clustering_choice, Value: 'OPTICS'
-  dim_reduction_choice, Value: 'NullModel'
-  metric___OPTICS, Value: 'minkowski'
-  min_samples___OPTICS, Value: 37
-  random_state___NullModel, Value: 0
-, 0.24436740699777829), (Configuration:
-  algorithm___TruncatedSVD, Value: 'arpack'
-  clustering_choice, Value: 'DBSCAN'
-  dim_reduction_choice, Value: 'TruncatedSVD'
-  eps___DBSCAN, Value: 3.5903263734480366
-  min_samples___DBSCAN, Value: 19
-  n_components___TruncatedSVD, Value: 3
-, 0.07757782486253896), (Configuration:
-  clustering_choice, Value: 'DBSCAN'
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 18.17655819576955
-  eps___DBSCAN, Value: 1.9265182811350776
-  min_samples___DBSCAN, Value: 92
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 210.51021248346686
-, 0.01740013559659322)], 'missingValuesRatio': 0.0, 'dataset': 'g2-32-40.csv', 'meanKurtosis': -0.7597076248754255, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.6136309122416974, 'thirdQuartileCovariance': 2479.133298728267, 'minCovariance': 2243.333947289422, 'PCASkewnessFirstPC': 0.06323580038437938, 'meanSkewness': 0.020241512099498725, 'thirdQuartileSkewness': 0.046443678485206585, 'medianKurtosis': -0.7600843197416374, 'thirdQuartileKurtosis': -0.7275349576194251, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': 0.0010557569464965972, 'PCAKurtosisFirstPC': -1.9175592390686145, 'meanCovariance': 2474.6091778252726, 'firstQuartileCorrelation': 0.6056141113924016, 'PCAFractionOfComponentsFor95PercentVariance': 0.84375, 'minSkewness': -0.06910640875466546, 'medianCorrelation': 0.6138157522509384, 'maxCorrelation': 0.6479042581414804, 'maxSkewness': 0.10824033989706408, 'thirdQuartileCorrelation': 0.6222314607400962, 'firstQuartileKurtosis': -0.7815307896710658, 'minKurtosis': -0.8474911601752257, 'maxKurtosis': -0.6689115963895529}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2385.6821523967583, 'medianCovariance': 2426.8313506562135, 'maxCovariance': 4170.090773496205, 'numberOfInstances': 1842.0, 'medianSkewness': 0.02112422037670034, 'minCorrelation': 0.5821120595016491, 'missingValuesRatio': 0.0, 'dataset': 'g2-32-40.csv', 'meanKurtosis': -0.7597076248754255, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.6136309122416974, 'thirdQuartileCovariance': 2479.133298728267, 'minCovariance': 2243.333947289422, 'PCASkewnessFirstPC': 0.06323580038437938, 'meanSkewness': 0.020241512099498725, 'thirdQuartileSkewness': 0.046443678485206585, 'medianKurtosis': -0.7600843197416374, 'thirdQuartileKurtosis': -0.7275349576194251, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': 0.0010557569464965972, 'PCAKurtosisFirstPC': -1.9175592390686145, 'meanCovariance': 2474.6091778252726, 'firstQuartileCorrelation': 0.6056141113924016, 'PCAFractionOfComponentsFor95PercentVariance': 0.84375, 'minSkewness': -0.06910640875466546, 'medianCorrelation': 0.6138157522509384, 'maxCorrelation': 0.6479042581414804, 'maxSkewness': 0.10824033989706408, 'thirdQuartileCorrelation': 0.6222314607400962, 'firstQuartileKurtosis': -0.7815307896710658, 'minKurtosis': -0.8474911601752257, 'maxKurtosis': -0.6689115963895529}
 2019-08-06 22:14:08,810 INFO - __main__ - Done with ITERATION 7.
 2019-08-06 22:14:08,810 INFO - __main__ - ITERATION 8 of 20
 2019-08-06 22:14:08,810 INFO - __main__ - Running on dataset: g2-32-100.csv
@@ -4190,22 +3912,7 @@ Configuration:
 2019-08-06 22:24:33,879 INFO - __main__ - Statistics of predictions: Counter({0: 1018, 2: 386, 1: 330, 3: 313})
 2019-08-06 22:24:33,879 INFO - __main__ - Done optimizing on g2-32-100.csv.
 2019-08-06 22:24:33,880 INFO - __main__ - Record on ITERATION 8: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2187.5671899300587, 'medianCovariance': 2384.046823883069, 'maxCovariance': 13064.141204297572, 'numberOfInstances': 1842.0, 'medianSkewness': -0.009769760649273446, 'minCorrelation': 0.13130863396863032, 'trajectory': [(Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8105514981743429
-  dim_reduction_choice, Value: 'PCA'
-  n_components___PCA, Value: 2
-  svd_solver___PCA, Value: 'randomized'
-  whiten___PCA, Value: False
-, 0.33142947325613664), (Configuration:
-  branching_factor___Birch, Value: 624
-  clustering_choice, Value: 'Birch'
-  dim_reduction_choice, Value: 'KernelPCA'
-  kernel___KernelPCA, Value: 'poly'
-  n_clusters___Birch, Value: 42
-  n_components___KernelPCA, Value: 2
-, 0.1607116489319244)], 'missingValuesRatio': 0.0, 'dataset': 'g2-32-100.csv', 'meanKurtosis': -0.10464098499665615, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.19798445404245985, 'thirdQuartileCovariance': 2568.408558878153, 'minCovariance': 1556.2595559817664, 'PCASkewnessFirstPC': -0.042220558475998315, 'meanSkewness': -0.0046842224747861705, 'thirdQuartileSkewness': 0.04968739781698393, 'medianKurtosis': -0.11837819055498855, 'thirdQuartileKurtosis': -0.053189549534240266, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.04080002399310882, 'PCAKurtosisFirstPC': -1.5887161852289649, 'meanCovariance': 2665.917761737717, 'firstQuartileCorrelation': 0.18427381670648796, 'PCAFractionOfComponentsFor95PercentVariance': 0.9375, 'minSkewness': -0.1569321425410593, 'medianCorrelation': 0.19857827091745975, 'maxCorrelation': 0.25700013048032855, 'maxSkewness': 0.09544203651696051, 'thirdQuartileCorrelation': 0.21125450257078765, 'firstQuartileKurtosis': -0.16437177572069683, 'minKurtosis': -0.2460100400667944, 'maxKurtosis': 0.101613648254673}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2187.5671899300587, 'medianCovariance': 2384.046823883069, 'maxCovariance': 13064.141204297572, 'numberOfInstances': 1842.0, 'medianSkewness': -0.009769760649273446, 'minCorrelation': 0.13130863396863032, 'missingValuesRatio': 0.0, 'dataset': 'g2-32-100.csv', 'meanKurtosis': -0.10464098499665615, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.19798445404245985, 'thirdQuartileCovariance': 2568.408558878153, 'minCovariance': 1556.2595559817664, 'PCASkewnessFirstPC': -0.042220558475998315, 'meanSkewness': -0.0046842224747861705, 'thirdQuartileSkewness': 0.04968739781698393, 'medianKurtosis': -0.11837819055498855, 'thirdQuartileKurtosis': -0.053189549534240266, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.04080002399310882, 'PCAKurtosisFirstPC': -1.5887161852289649, 'meanCovariance': 2665.917761737717, 'firstQuartileCorrelation': 0.18427381670648796, 'PCAFractionOfComponentsFor95PercentVariance': 0.9375, 'minSkewness': -0.1569321425410593, 'medianCorrelation': 0.19857827091745975, 'maxCorrelation': 0.25700013048032855, 'maxSkewness': 0.09544203651696051, 'thirdQuartileCorrelation': 0.21125450257078765, 'firstQuartileKurtosis': -0.16437177572069683, 'minKurtosis': -0.2460100400667944, 'maxKurtosis': 0.101613648254673}
 2019-08-06 22:24:33,880 INFO - __main__ - Done with ITERATION 8.
 2019-08-06 22:24:33,880 INFO - __main__ - ITERATION 9 of 20
 2019-08-06 22:24:33,880 INFO - __main__ - Running on dataset: g2-512-20.csv
@@ -4707,51 +4414,7 @@ Configuration:
 2019-08-06 22:39:57,199 INFO - __main__ - Statistics of predictions: Counter({1: 1024, 0: 1023})
 2019-08-06 22:39:57,200 INFO - __main__ - Done optimizing on g2-512-20.csv.
 2019-08-06 22:39:57,201 INFO - __main__ - Record on ITERATION 9: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2470.4153987972118, 'medianCovariance': 2493.78796044495, 'maxCovariance': 3046.1345410162176, 'numberOfInstances': 1842.0, 'medianSkewness': 0.09743969659434384, 'minCorrelation': 0.7767255567405338, 'trajectory': [(Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8884105143198501
-  dim_reduction_choice, Value: 'NullModel'
-  random_state___NullModel, Value: 2
-, 0.5016091370400783), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8105514981743429
-  dim_reduction_choice, Value: 'PCA'
-  n_components___PCA, Value: 2
-  svd_solver___PCA, Value: 'randomized'
-  whiten___PCA, Value: False
-, 0.33965686982210025), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  algorithm___FastICA, Value: 'parallel'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8781385056075739
-  dim_reduction_choice, Value: 'FastICA'
-  fun___FastICA, Value: 'exp'
-  n_components___FastICA, Value: 2
-  whiten___FastICA, Value: True
-, 0.2293871984677406), (Configuration:
-  cluster_method___OPTICS, Value: 'xi'
-  clustering_choice, Value: 'OPTICS'
-  dim_reduction_choice, Value: 'NullModel'
-  metric___OPTICS, Value: 'minkowski'
-  min_samples___OPTICS, Value: 37
-  random_state___NullModel, Value: 0
-, 0.13588689358890912), (Configuration:
-  algorithm___TruncatedSVD, Value: 'arpack'
-  clustering_choice, Value: 'DBSCAN'
-  dim_reduction_choice, Value: 'TruncatedSVD'
-  eps___DBSCAN, Value: 3.5903263734480366
-  min_samples___DBSCAN, Value: 19
-  n_components___TruncatedSVD, Value: 3
-, 0.010313866212051678), (Configuration:
-  branching_factor___Birch, Value: 624
-  clustering_choice, Value: 'Birch'
-  dim_reduction_choice, Value: 'KernelPCA'
-  kernel___KernelPCA, Value: 'poly'
-  n_clusters___Birch, Value: 42
-  n_components___KernelPCA, Value: 2
-, 0.009364010316162538)], 'missingValuesRatio': 0.0, 'dataset': 'g2-512-20.csv', 'meanKurtosis': -1.4752837537168821, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.8620150126997076, 'thirdQuartileCovariance': 2517.413842822523, 'minCovariance': 2249.5578436871333, 'PCASkewnessFirstPC': 0.12176416080953163, 'meanSkewness': 0.09669623204496616, 'thirdQuartileSkewness': 0.10526446329649056, 'medianKurtosis': -1.4754972483276685, 'thirdQuartileKurtosis': -1.4615744172773524, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': 0.08825320289834315, 'PCAKurtosisFirstPC': -1.983929939544861, 'meanCovariance': 2494.4605821986243, 'firstQuartileCorrelation': 0.859250699519345, 'PCAFractionOfComponentsFor95PercentVariance': 0.41796875, 'minSkewness': 0.04715112351058396, 'medianCorrelation': 0.8620909968898931, 'maxCorrelation': 0.9151527290982321, 'maxSkewness': 0.138756457734302, 'thirdQuartileCorrelation': 0.8648777077312215, 'firstQuartileKurtosis': -1.4890311155465048, 'minKurtosis': -1.5277588584495139, 'maxKurtosis': -1.4105346356179618}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2470.4153987972118, 'medianCovariance': 2493.78796044495, 'maxCovariance': 3046.1345410162176, 'numberOfInstances': 1842.0, 'medianSkewness': 0.09743969659434384, 'minCorrelation': 0.7767255567405338, 'missingValuesRatio': 0.0, 'dataset': 'g2-512-20.csv', 'meanKurtosis': -1.4752837537168821, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.8620150126997076, 'thirdQuartileCovariance': 2517.413842822523, 'minCovariance': 2249.5578436871333, 'PCASkewnessFirstPC': 0.12176416080953163, 'meanSkewness': 0.09669623204496616, 'thirdQuartileSkewness': 0.10526446329649056, 'medianKurtosis': -1.4754972483276685, 'thirdQuartileKurtosis': -1.4615744172773524, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': 0.08825320289834315, 'PCAKurtosisFirstPC': -1.983929939544861, 'meanCovariance': 2494.4605821986243, 'firstQuartileCorrelation': 0.859250699519345, 'PCAFractionOfComponentsFor95PercentVariance': 0.41796875, 'minSkewness': 0.04715112351058396, 'medianCorrelation': 0.8620909968898931, 'maxCorrelation': 0.9151527290982321, 'maxSkewness': 0.138756457734302, 'thirdQuartileCorrelation': 0.8648777077312215, 'firstQuartileKurtosis': -1.4890311155465048, 'minKurtosis': -1.5277588584495139, 'maxKurtosis': -1.4105346356179618}
 2019-08-06 22:39:57,201 INFO - __main__ - Done with ITERATION 9.
 2019-08-06 22:39:57,201 INFO - __main__ - ITERATION 10 of 20
 2019-08-06 22:39:57,201 INFO - __main__ - Running on dataset: g2-2-50.csv
@@ -5230,44 +4893,7 @@ Configuration:
 2019-08-06 22:49:08,419 INFO - __main__ - Statistics of predictions: Counter({330: 157, 298: 138, 176: 133, 45: 112, 411: 88, 363: 87, 188: 83, 60: 82, 219: 77, 383: 69, 83: 68, 20: 63, 183: 59, 389: 57, 428: 57, 255: 49, 362: 40, 365: 39, 392: 25, 200: 19, 114: 17, 294: 16, 352: 16, 423: 15, 422: 14, 323: 6, 99: 4, 291: 4, 71: 3, 320: 3, 413: 3, 13: 2, 24: 2, 43: 2, 63: 2, 70: 2, 88: 2, 96: 2, 101: 2, 103: 2, 105: 2, 106: 2, 115: 2, 129: 2, 143: 2, 152: 2, 158: 2, 169: 2, 175: 2, 178: 2, 180: 2, 199: 2, 211: 2, 214: 2, 240: 2, 253: 2, 263: 2, 279: 2, 282: 2, 292: 2, 319: 2, 324: 2, 327: 2, 329: 2, 332: 2, 341: 2, 354: 2, 373: 2, 380: 2, 387: 2, 395: 2, 410: 2, 412: 2, 432: 2, 435: 2, 0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1, 10: 1, 11: 1, 12: 1, 14: 1, 15: 1, 16: 1, 17: 1, 18: 1, 19: 1, 21: 1, 22: 1, 23: 1, 26: 1, 27: 1, 28: 1, 29: 1, 30: 1, 31: 1, 32: 1, 33: 1, 34: 1, 35: 1, 36: 1, 37: 1, 38: 1, 39: 1, 40: 1, 41: 1, 42: 1, 44: 1, 46: 1, 47: 1, 48: 1, 49: 1, 50: 1, 51: 1, 52: 1, 53: 1, 54: 1, 55: 1, 56: 1, 57: 1, 58: 1, 59: 1, 61: 1, 62: 1, 64: 1, 65: 1, 66: 1, 67: 1, 68: 1, 69: 1, 72: 1, 73: 1, 74: 1, 75: 1, 76: 1, 77: 1, 78: 1, 79: 1, 80: 1, 81: 1, 82: 1, 84: 1, 85: 1, 86: 1, 87: 1, 89: 1, 90: 1, 91: 1, 92: 1, 93: 1, 94: 1, 95: 1, 97: 1, 100: 1, 102: 1, 104: 1, 107: 1, 108: 1, 109: 1, 110: 1, 111: 1, 112: 1, 113: 1, 116: 1, 117: 1, 118: 1, 119: 1, 120: 1, 121: 1, 122: 1, 123: 1, 124: 1, 125: 1, 126: 1, 127: 1, 128: 1, 130: 1, 131: 1, 132: 1, 133: 1, 134: 1, 135: 1, 136: 1, 137: 1, 138: 1, 139: 1, 140: 1, 141: 1, 142: 1, 144: 1, 145: 1, 146: 1, 147: 1, 148: 1, 149: 1, 150: 1, 151: 1, 153: 1, 154: 1, 155: 1, 156: 1, 157: 1, 159: 1, 160: 1, 161: 1, 162: 1, 163: 1, 164: 1, 165: 1, 167: 1, 168: 1, 170: 1, 171: 1, 172: 1, 173: 1, 174: 1, 177: 1, 179: 1, 181: 1, 182: 1, 184: 1, 185: 1, 186: 1, 187: 1, 189: 1, 190: 1, 191: 1, 192: 1, 193: 1, 194: 1, 195: 1, 196: 1, 197: 1, 198: 1, 201: 1, 202: 1, 203: 1, 204: 1, 205: 1, 206: 1, 207: 1, 208: 1, 209: 1, 210: 1, 212: 1, 213: 1, 215: 1, 217: 1, 218: 1, 220: 1, 221: 1, 222: 1, 223: 1, 224: 1, 225: 1, 226: 1, 227: 1, 228: 1, 229: 1, 230: 1, 231: 1, 232: 1, 233: 1, 234: 1, 235: 1, 236: 1, 237: 1, 238: 1, 239: 1, 241: 1, 242: 1, 243: 1, 244: 1, 245: 1, 246: 1, 247: 1, 248: 1, 250: 1, 251: 1, 252: 1, 254: 1, 256: 1, 257: 1, 258: 1, 259: 1, 260: 1, 261: 1, 262: 1, 264: 1, 265: 1, 266: 1, 267: 1, 268: 1, 269: 1, 270: 1, 271: 1, 272: 1, 273: 1, 274: 1, 275: 1, 276: 1, 277: 1, 278: 1, 280: 1, 283: 1, 284: 1, 285: 1, 286: 1, 287: 1, 288: 1, 289: 1, 290: 1, 293: 1, 295: 1, 296: 1, 297: 1, 299: 1, 300: 1, 301: 1, 302: 1, 303: 1, 304: 1, 305: 1, 306: 1, 307: 1, 308: 1, 309: 1, 310: 1, 311: 1, 312: 1, 313: 1, 314: 1, 315: 1, 316: 1, 317: 1, 318: 1, 321: 1, 322: 1, 325: 1, 326: 1, 328: 1, 331: 1, 333: 1, 334: 1, 335: 1, 336: 1, 337: 1, 338: 1, 339: 1, 340: 1, 342: 1, 343: 1, 344: 1, 345: 1, 346: 1, 347: 1, 348: 1, 349: 1, 350: 1, 351: 1, 353: 1, 355: 1, 356: 1, 357: 1, 358: 1, 359: 1, 360: 1, 361: 1, 364: 1, 366: 1, 367: 1, 368: 1, 369: 1, 370: 1, 371: 1, 372: 1, 374: 1, 375: 1, 376: 1, 377: 1, 378: 1, 379: 1, 381: 1, 382: 1, 384: 1, 385: 1, 386: 1, 388: 1, 390: 1, 391: 1, 393: 1, 394: 1, 396: 1, 397: 1, 398: 1, 399: 1, 400: 1, 401: 1, 402: 1, 404: 1, 405: 1, 406: 1, 407: 1, 408: 1, 409: 1, 414: 1, 415: 1, 416: 1, 417: 1, 418: 1, 419: 1, 420: 1, 421: 1, 424: 1, 425: 1, 426: 1, 427: 1, 429: 1, 430: 1, 431: 1, 433: 1, 434: 1, 436: 1, 437: 1})
 2019-08-06 22:49:08,419 INFO - __main__ - Done optimizing on g2-2-50.csv.
 2019-08-06 22:49:08,420 INFO - __main__ - Record on ITERATION 10: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2109.7525335272508, 'medianCovariance': 3017.64440441836, 'maxCovariance': 4047.504112503178, 'numberOfInstances': 1842.0, 'medianSkewness': -0.013181972530512936, 'minCorrelation': 0.529283518091868, 'trajectory': [(Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8884105143198501
-  dim_reduction_choice, Value: 'NullModel'
-  random_state___NullModel, Value: 2
-, 0.3245703932193678), (Configuration:
-  batch_size___MiniBatchKMeans, Value: 416
-  clustering_choice, Value: 'MiniBatchKMeans'
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 15.350386517931009
-  n_clusters___MiniBatchKMeans, Value: 16
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 89.90314384067615
-, 0.32340159515539807), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.759947002383505
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 7.434050280933937
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 72.75893457474419
-, 0.30661478141943616), (Configuration:
-  clustering_choice, Value: 'GaussianMixture'
-  covariance_type___GaussianMixture, Value: 'diag'
-  dim_reduction_choice, Value: 'NullModel'
-  init_params___GaussianMixture, Value: 'kmeans'
-  n_components___GaussianMixture, Value: 2
-  random_state___NullModel, Value: 0
-  warm_start___GaussianMixture, Value: False
-, 0.25283525311862), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.7441178388237608
-  dim_reduction_choice, Value: 'KernelPCA'
-  kernel___KernelPCA, Value: 'cosine'
-  n_components___KernelPCA, Value: 3
-, 0.22474152863808294)], 'missingValuesRatio': 0.0, 'dataset': 'g2-2-50.csv', 'meanKurtosis': -0.821204347677575, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.529283518091868, 'thirdQuartileCovariance': 3956.0282346078966, 'minCovariance': 2109.7525335272508, 'PCASkewnessFirstPC': 0.002541313482063377, 'meanSkewness': -0.013181972530512936, 'thirdQuartileSkewness': -0.0068106362340874275, 'medianKurtosis': -0.821204347677575, 'thirdQuartileKurtosis': -0.801785522747531, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.019553308826938447, 'PCAKurtosisFirstPC': -1.1677914415163708, 'meanCovariance': 3048.136363716787, 'firstQuartileCorrelation': 0.529283518091868, 'PCAFractionOfComponentsFor95PercentVariance': 1.0, 'minSkewness': -0.025924645123363954, 'medianCorrelation': 0.529283518091868, 'maxCorrelation': 0.529283518091868, 'maxSkewness': -0.0004392999376619189, 'thirdQuartileCorrelation': 0.529283518091868, 'firstQuartileKurtosis': -0.840623172607619, 'minKurtosis': -0.860041997537663, 'maxKurtosis': -0.782366697817487}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2109.7525335272508, 'medianCovariance': 3017.64440441836, 'maxCovariance': 4047.504112503178, 'numberOfInstances': 1842.0, 'medianSkewness': -0.013181972530512936, 'minCorrelation': 0.529283518091868, 'missingValuesRatio': 0.0, 'dataset': 'g2-2-50.csv', 'meanKurtosis': -0.821204347677575, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.529283518091868, 'thirdQuartileCovariance': 3956.0282346078966, 'minCovariance': 2109.7525335272508, 'PCASkewnessFirstPC': 0.002541313482063377, 'meanSkewness': -0.013181972530512936, 'thirdQuartileSkewness': -0.0068106362340874275, 'medianKurtosis': -0.821204347677575, 'thirdQuartileKurtosis': -0.801785522747531, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.019553308826938447, 'PCAKurtosisFirstPC': -1.1677914415163708, 'meanCovariance': 3048.136363716787, 'firstQuartileCorrelation': 0.529283518091868, 'PCAFractionOfComponentsFor95PercentVariance': 1.0, 'minSkewness': -0.025924645123363954, 'medianCorrelation': 0.529283518091868, 'maxCorrelation': 0.529283518091868, 'maxSkewness': -0.0004392999376619189, 'thirdQuartileCorrelation': 0.529283518091868, 'firstQuartileKurtosis': -0.840623172607619, 'minKurtosis': -0.860041997537663, 'maxKurtosis': -0.782366697817487}
 2019-08-06 22:49:08,420 INFO - __main__ - Done with ITERATION 10.
 2019-08-06 22:49:08,420 INFO - __main__ - ITERATION 11 of 20
 2019-08-06 22:49:08,420 INFO - __main__ - Running on dataset: g2-256-60.csv
@@ -5771,44 +5397,7 @@ Configuration:
 2019-08-06 23:05:11,360 INFO - __main__ - Statistics of predictions: Counter({1: 1024, 0: 1023})
 2019-08-06 23:05:11,360 INFO - __main__ - Done optimizing on g2-256-60.csv.
 2019-08-06 23:05:11,361 INFO - __main__ - Record on ITERATION 11: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2389.1470055486056, 'medianCovariance': 2472.180417277821, 'maxCovariance': 6457.875501087841, 'numberOfInstances': 1842.0, 'medianSkewness': 0.02668621878652082, 'minCorrelation': 0.2677435180106744, 'trajectory': [(Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8884105143198501
-  dim_reduction_choice, Value: 'NullModel'
-  random_state___NullModel, Value: 2
-, 0.5014907000054566), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  algorithm___FastICA, Value: 'parallel'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8781385056075739
-  dim_reduction_choice, Value: 'FastICA'
-  fun___FastICA, Value: 'exp'
-  n_components___FastICA, Value: 2
-  whiten___FastICA, Value: True
-, 0.2589073922457371), (Configuration:
-  algorithm___TruncatedSVD, Value: 'arpack'
-  clustering_choice, Value: 'DBSCAN'
-  dim_reduction_choice, Value: 'TruncatedSVD'
-  eps___DBSCAN, Value: 3.5903263734480366
-  min_samples___DBSCAN, Value: 19
-  n_components___TruncatedSVD, Value: 3
-, 0.04235394235286525), (Configuration:
-  branching_factor___Birch, Value: 624
-  clustering_choice, Value: 'Birch'
-  dim_reduction_choice, Value: 'KernelPCA'
-  kernel___KernelPCA, Value: 'poly'
-  n_clusters___Birch, Value: 42
-  n_components___KernelPCA, Value: 2
-, 0.033818943828640646), (Configuration:
-  clustering_choice, Value: 'DBSCAN'
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 18.17655819576955
-  eps___DBSCAN, Value: 1.9265182811350776
-  min_samples___DBSCAN, Value: 92
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 210.51021248346686
-, 0.015512506167093912)], 'missingValuesRatio': 0.0, 'dataset': 'g2-256-60.csv', 'meanKurtosis': -0.3356423778231826, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.4092940897908584, 'thirdQuartileCovariance': 2555.962639135366, 'minCovariance': 1569.903764594727, 'PCASkewnessFirstPC': 0.12664281484552706, 'meanSkewness': 0.02959022061228342, 'thirdQuartileSkewness': 0.060429463967046314, 'medianKurtosis': -0.3404560290001606, 'thirdQuartileKurtosis': -0.2738996751481704, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.0013585370996572039, 'PCAKurtosisFirstPC': -1.9617788007119847, 'meanCovariance': 2485.8089751682955, 'firstQuartileCorrelation': 0.39844595144023953, 'PCAFractionOfComponentsFor95PercentVariance': 0.8359375, 'minSkewness': -0.07469375839816068, 'medianCorrelation': 0.40947667952552147, 'maxCorrelation': 0.5301386597076466, 'maxSkewness': 0.1533083083036371, 'thirdQuartileCorrelation': 0.4200760153157126, 'firstQuartileKurtosis': -0.39141778892544143, 'minKurtosis': -0.5360729550945869, 'maxKurtosis': -0.10705455063884228}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2389.1470055486056, 'medianCovariance': 2472.180417277821, 'maxCovariance': 6457.875501087841, 'numberOfInstances': 1842.0, 'medianSkewness': 0.02668621878652082, 'minCorrelation': 0.2677435180106744, 'missingValuesRatio': 0.0, 'dataset': 'g2-256-60.csv', 'meanKurtosis': -0.3356423778231826, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.4092940897908584, 'thirdQuartileCovariance': 2555.962639135366, 'minCovariance': 1569.903764594727, 'PCASkewnessFirstPC': 0.12664281484552706, 'meanSkewness': 0.02959022061228342, 'thirdQuartileSkewness': 0.060429463967046314, 'medianKurtosis': -0.3404560290001606, 'thirdQuartileKurtosis': -0.2738996751481704, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.0013585370996572039, 'PCAKurtosisFirstPC': -1.9617788007119847, 'meanCovariance': 2485.8089751682955, 'firstQuartileCorrelation': 0.39844595144023953, 'PCAFractionOfComponentsFor95PercentVariance': 0.8359375, 'minSkewness': -0.07469375839816068, 'medianCorrelation': 0.40947667952552147, 'maxCorrelation': 0.5301386597076466, 'maxSkewness': 0.1533083083036371, 'thirdQuartileCorrelation': 0.4200760153157126, 'firstQuartileKurtosis': -0.39141778892544143, 'minKurtosis': -0.5360729550945869, 'maxKurtosis': -0.10705455063884228}
 2019-08-06 23:05:11,362 INFO - __main__ - Done with ITERATION 11.
 2019-08-06 23:05:11,362 INFO - __main__ - ITERATION 12 of 20
 2019-08-06 23:05:11,362 INFO - __main__ - Running on dataset: dim032.csv
@@ -6312,29 +5901,7 @@ Configuration:
 2019-08-06 23:08:25,701 INFO - __main__ - Statistics of predictions: Counter({174: 192, 536: 125, 485: 64, 457: 64, 522: 64, 235: 64, 589: 64, 4: 64, 92: 64, 31: 64, 345: 63, 89: 43, 243: 40, 125: 24, 100: 21, 356: 3, 341: 1})
 2019-08-06 23:08:25,702 INFO - __main__ - Done optimizing on dim032.csv.
 2019-08-06 23:08:25,702 INFO - __main__ - Record on ITERATION 12: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': -387.0912043265828, 'medianCovariance': 92.84873719492097, 'maxCovariance': 4534.573292262664, 'numberOfInstances': 921.0, 'medianSkewness': 0.07197356550590367, 'minCorrelation': -0.8040741770714773, 'trajectory': [(Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8884105143198501
-  dim_reduction_choice, Value: 'NullModel'
-  random_state___NullModel, Value: 2
-, 0.03813385970534655), (Configuration:
-  batch_size___MiniBatchKMeans, Value: 416
-  clustering_choice, Value: 'MiniBatchKMeans'
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 15.350386517931009
-  n_clusters___MiniBatchKMeans, Value: 16
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 89.90314384067615
-, 0.03308930993080139), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.759947002383505
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 7.434050280933937
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 72.75893457474419
-, 0.03298152486483256)], 'missingValuesRatio': 0.0, 'dataset': 'dim032.csv', 'meanKurtosis': -1.1166429690531954, 'sparsityOnNumericColumns': 0.00044109663409337674, 'sparsity': 0.00044109663409337674, 'meanCorrelation': 0.013496984955803516, 'thirdQuartileCovariance': 520.8961702780531, 'minCovariance': -2376.6905596468873, 'PCASkewnessFirstPC': -0.02935166394542036, 'meanSkewness': 0.047594693066452726, 'thirdQuartileSkewness': 0.2821059769313109, 'medianKurtosis': -1.1692998092584217, 'thirdQuartileKurtosis': -0.9740660907168569, 'logNumberOfInstances': 6.825460036255307, 'firstQuartileSkewness': -0.14502457488045117, 'PCAKurtosisFirstPC': -1.0895059844938977, 'meanCovariance': 118.547395077273, 'firstQuartileCorrelation': -0.18025005698317298, 'PCAFractionOfComponentsFor95PercentVariance': 0.375, 'minSkewness': -0.7358199185202187, 'medianCorrelation': 0.021953325709268036, 'maxCorrelation': 0.7028198665184996, 'maxSkewness': 0.6749078728337318, 'thirdQuartileCorrelation': 0.199487714964069, 'firstQuartileKurtosis': -1.3416018417541296, 'minKurtosis': -1.6226648286615326, 'maxKurtosis': -0.048131036153743256}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': -387.0912043265828, 'medianCovariance': 92.84873719492097, 'maxCovariance': 4534.573292262664, 'numberOfInstances': 921.0, 'medianSkewness': 0.07197356550590367, 'minCorrelation': -0.8040741770714773, 'missingValuesRatio': 0.0, 'dataset': 'dim032.csv', 'meanKurtosis': -1.1166429690531954, 'sparsityOnNumericColumns': 0.00044109663409337674, 'sparsity': 0.00044109663409337674, 'meanCorrelation': 0.013496984955803516, 'thirdQuartileCovariance': 520.8961702780531, 'minCovariance': -2376.6905596468873, 'PCASkewnessFirstPC': -0.02935166394542036, 'meanSkewness': 0.047594693066452726, 'thirdQuartileSkewness': 0.2821059769313109, 'medianKurtosis': -1.1692998092584217, 'thirdQuartileKurtosis': -0.9740660907168569, 'logNumberOfInstances': 6.825460036255307, 'firstQuartileSkewness': -0.14502457488045117, 'PCAKurtosisFirstPC': -1.0895059844938977, 'meanCovariance': 118.547395077273, 'firstQuartileCorrelation': -0.18025005698317298, 'PCAFractionOfComponentsFor95PercentVariance': 0.375, 'minSkewness': -0.7358199185202187, 'medianCorrelation': 0.021953325709268036, 'maxCorrelation': 0.7028198665184996, 'maxSkewness': 0.6749078728337318, 'thirdQuartileCorrelation': 0.199487714964069, 'firstQuartileKurtosis': -1.3416018417541296, 'minKurtosis': -1.6226648286615326, 'maxKurtosis': -0.048131036153743256}
 2019-08-06 23:08:25,702 INFO - __main__ - Done with ITERATION 12.
 2019-08-06 23:08:25,702 INFO - __main__ - ITERATION 13 of 20
 2019-08-06 23:08:25,702 INFO - __main__ - Running on dataset: dim512.csv
@@ -6837,27 +6404,7 @@ Configuration:
 2019-08-06 23:12:06,537 INFO - __main__ - Statistics of predictions: Counter({0: 64, 1: 64, 2: 64, 3: 64, 4: 64, 5: 64, 6: 64, 7: 64, 8: 64, 9: 64, 10: 64, 11: 64, 12: 64, 13: 64, 14: 64, 15: 64})
 2019-08-06 23:12:06,538 INFO - __main__ - Done optimizing on dim512.csv.
 2019-08-06 23:12:06,538 INFO - __main__ - Record on ITERATION 13: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': -377.1327184534783, 'medianCovariance': 8.254534886466894, 'maxCovariance': 4683.04818014445, 'numberOfInstances': 921.0, 'medianSkewness': -0.056947071531582134, 'minCorrelation': -0.8872566237904853, 'trajectory': [(Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8884105143198501
-  dim_reduction_choice, Value: 'NullModel'
-  random_state___NullModel, Value: 2
-, 0.021349598924164676), (Configuration:
-  algorithm___TruncatedSVD, Value: 'randomized'
-  branching_factor___Birch, Value: 88
-  clustering_choice, Value: 'Birch'
-  dim_reduction_choice, Value: 'TruncatedSVD'
-  n_clusters___Birch, Value: 68
-  n_components___TruncatedSVD, Value: 8
-, 0.004720533790572616), (Configuration:
-  branching_factor___Birch, Value: 648
-  clustering_choice, Value: 'Birch'
-  dim_reduction_choice, Value: 'KernelPCA'
-  kernel___KernelPCA, Value: 'linear'
-  n_clusters___Birch, Value: 18
-  n_components___KernelPCA, Value: 9
-, 0.004584930063665856)], 'missingValuesRatio': 0.0, 'dataset': 'dim512.csv', 'meanKurtosis': -1.0311728892290875, 'sparsityOnNumericColumns': 0.0010666904180238871, 'sparsity': 0.0010666904180238871, 'meanCorrelation': 0.00431856948006681, 'thirdQuartileCovariance': 400.6064996105372, 'minCovariance': -3052.985188594628, 'PCASkewnessFirstPC': 0.10207884610963655, 'meanSkewness': -0.06004376945273497, 'thirdQuartileSkewness': 0.17105073721866476, 'medianKurtosis': -1.1036442339352508, 'thirdQuartileKurtosis': -0.8437206714090197, 'logNumberOfInstances': 6.825460036255307, 'firstQuartileSkewness': -0.31377185146474684, 'PCAKurtosisFirstPC': -0.9322877687405731, 'meanCovariance': 14.06302022251895, 'firstQuartileCorrelation': -0.17458261291159172, 'PCAFractionOfComponentsFor95PercentVariance': 0.02734375, 'minSkewness': -1.1449851840897203, 'medianCorrelation': 0.0033840242289078825, 'maxCorrelation': 0.8846922062506449, 'maxSkewness': 1.2877263640700072, 'thirdQuartileCorrelation': 0.18441140223387226, 'firstQuartileKurtosis': -1.3142805220153169, 'minKurtosis': -1.7174698590496529, 'maxKurtosis': 1.0270060300625188}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': -377.1327184534783, 'medianCovariance': 8.254534886466894, 'maxCovariance': 4683.04818014445, 'numberOfInstances': 921.0, 'medianSkewness': -0.056947071531582134, 'minCorrelation': -0.8872566237904853, 'missingValuesRatio': 0.0, 'dataset': 'dim512.csv', 'meanKurtosis': -1.0311728892290875, 'sparsityOnNumericColumns': 0.0010666904180238871, 'sparsity': 0.0010666904180238871, 'meanCorrelation': 0.00431856948006681, 'thirdQuartileCovariance': 400.6064996105372, 'minCovariance': -3052.985188594628, 'PCASkewnessFirstPC': 0.10207884610963655, 'meanSkewness': -0.06004376945273497, 'thirdQuartileSkewness': 0.17105073721866476, 'medianKurtosis': -1.1036442339352508, 'thirdQuartileKurtosis': -0.8437206714090197, 'logNumberOfInstances': 6.825460036255307, 'firstQuartileSkewness': -0.31377185146474684, 'PCAKurtosisFirstPC': -0.9322877687405731, 'meanCovariance': 14.06302022251895, 'firstQuartileCorrelation': -0.17458261291159172, 'PCAFractionOfComponentsFor95PercentVariance': 0.02734375, 'minSkewness': -1.1449851840897203, 'medianCorrelation': 0.0033840242289078825, 'maxCorrelation': 0.8846922062506449, 'maxSkewness': 1.2877263640700072, 'thirdQuartileCorrelation': 0.18441140223387226, 'firstQuartileKurtosis': -1.3142805220153169, 'minKurtosis': -1.7174698590496529, 'maxKurtosis': 1.0270060300625188}
 2019-08-06 23:12:06,538 INFO - __main__ - Done with ITERATION 13.
 2019-08-06 23:12:06,538 INFO - __main__ - ITERATION 14 of 20
 2019-08-06 23:12:06,538 INFO - __main__ - Running on dataset: birch2.csv
@@ -7300,32 +6847,7 @@ Configuration:
 2019-08-07 00:57:59,423 INFO - __main__ - Statistics of predictions: Counter({8: 11003, 4: 10748, 10: 9951, 0: 9910, 7: 9577, 5: 9143, 6: 8198, 2: 7952, 11: 7313, 3: 7043, 1: 4674, 9: 4488})
 2019-08-07 00:57:59,423 INFO - __main__ - Done optimizing on birch2.csv.
 2019-08-07 00:57:59,424 INFO - __main__ - Record on ITERATION 14: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': -1155841294.366556, 'medianCovariance': -209964896.01769507, 'maxCovariance': 65137415425.06241, 'numberOfInstances': 90000.0, 'medianSkewness': 0.004635123103037115, 'minCorrelation': -0.16694374422252053, 'trajectory': [(Configuration:
-  clustering_choice, Value: 'GaussianMixture'
-  covariance_type___GaussianMixture, Value: 'diag'
-  dim_reduction_choice, Value: 'NullModel'
-  init_params___GaussianMixture, Value: 'kmeans'
-  n_components___GaussianMixture, Value: 12
-  random_state___NullModel, Value: 0
-  warm_start___GaussianMixture, Value: True
-, 0.2703460110081506), (Configuration:
-  algorithm___FastICA, Value: 'parallel'
-  batch_size___MiniBatchKMeans, Value: 999
-  clustering_choice, Value: 'MiniBatchKMeans'
-  dim_reduction_choice, Value: 'FastICA'
-  fun___FastICA, Value: 'logcosh'
-  n_clusters___MiniBatchKMeans, Value: 21
-  n_components___FastICA, Value: 3
-  whiten___FastICA, Value: False
-, 0.2256401520204759), (Configuration:
-  batch_size___MiniBatchKMeans, Value: 936
-  clustering_choice, Value: 'MiniBatchKMeans'
-  dim_reduction_choice, Value: 'PCA'
-  n_clusters___MiniBatchKMeans, Value: 12
-  n_components___PCA, Value: 2
-  svd_solver___PCA, Value: 'full'
-  whiten___PCA, Value: True
-, 0.2199669545217133)], 'missingValuesRatio': 0.0, 'dataset': 'birch2.csv', 'meanKurtosis': -1.3470057071083534, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': -0.1669437442225205, 'thirdQuartileCovariance': 16836287483.013977, 'minCovariance': -1155841294.366556, 'PCASkewnessFirstPC': 0.033597737609364596, 'meanSkewness': 0.004635123103037115, 'thirdQuartileSkewness': 0.023825227603123174, 'medianKurtosis': -1.3470057071083534, 'thirdQuartileKurtosis': -1.2466986582230046, 'logNumberOfInstances': 11.407564949312402, 'firstQuartileSkewness': -0.014554981397048944, 'PCAKurtosisFirstPC': -1.1445785744485646, 'meanCovariance': 15890411084.665117, 'firstQuartileCorrelation': -0.1669437442225205, 'PCAFractionOfComponentsFor95PercentVariance': 0.5, 'minSkewness': -0.033745085897135006, 'medianCorrelation': -0.1669437442225205, 'maxCorrelation': 0.0, 'maxSkewness': 0.043015332103209236, 'thirdQuartileCorrelation': -0.1669437442225205, 'firstQuartileKurtosis': -1.4473127559937022, 'minKurtosis': -1.5476198048790508, 'maxKurtosis': -1.146391609337656}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': -1155841294.366556, 'medianCovariance': -209964896.01769507, 'maxCovariance': 65137415425.06241, 'numberOfInstances': 90000.0, 'medianSkewness': 0.004635123103037115, 'minCorrelation': -0.16694374422252053, 'missingValuesRatio': 0.0, 'dataset': 'birch2.csv', 'meanKurtosis': -1.3470057071083534, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': -0.1669437442225205, 'thirdQuartileCovariance': 16836287483.013977, 'minCovariance': -1155841294.366556, 'PCASkewnessFirstPC': 0.033597737609364596, 'meanSkewness': 0.004635123103037115, 'thirdQuartileSkewness': 0.023825227603123174, 'medianKurtosis': -1.3470057071083534, 'thirdQuartileKurtosis': -1.2466986582230046, 'logNumberOfInstances': 11.407564949312402, 'firstQuartileSkewness': -0.014554981397048944, 'PCAKurtosisFirstPC': -1.1445785744485646, 'meanCovariance': 15890411084.665117, 'firstQuartileCorrelation': -0.1669437442225205, 'PCAFractionOfComponentsFor95PercentVariance': 0.5, 'minSkewness': -0.033745085897135006, 'medianCorrelation': -0.1669437442225205, 'maxCorrelation': 0.0, 'maxSkewness': 0.043015332103209236, 'thirdQuartileCorrelation': -0.1669437442225205, 'firstQuartileKurtosis': -1.4473127559937022, 'minKurtosis': -1.5476198048790508, 'maxKurtosis': -1.146391609337656}
 2019-08-07 00:57:59,424 INFO - __main__ - Done with ITERATION 14.
 2019-08-07 00:57:59,424 INFO - __main__ - ITERATION 15 of 20
 2019-08-07 00:57:59,424 INFO - __main__ - Running on dataset: dim7.csv
@@ -7822,23 +7344,7 @@ Configuration:
 2019-08-07 01:20:04,887 INFO - __main__ - Statistics of predictions: Counter({1: 1050, 2: 527, 0: 525, 4: 525, 5: 525, 6: 525, 3: 524, 7: 323, 8: 202})
 2019-08-07 01:20:04,887 INFO - __main__ - Done optimizing on dim7.csv.
 2019-08-07 01:20:04,887 INFO - __main__ - Record on ITERATION 15: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': -2945453464.993264, 'medianCovariance': -259705034.64300692, 'maxCovariance': 74106870599.42764, 'numberOfInstances': 4253.0, 'medianSkewness': -0.0019321092700237195, 'minCorrelation': -0.4891093171252131, 'trajectory': [(Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8105514981743429
-  dim_reduction_choice, Value: 'PCA'
-  n_components___PCA, Value: 2
-  svd_solver___PCA, Value: 'randomized'
-  whiten___PCA, Value: False
-, 0.2087849908516867), (Configuration:
-  clustering_choice, Value: 'GaussianMixture'
-  covariance_type___GaussianMixture, Value: 'tied'
-  dim_reduction_choice, Value: 'NullModel'
-  init_params___GaussianMixture, Value: 'kmeans'
-  n_components___GaussianMixture, Value: 9
-  random_state___NullModel, Value: 0
-  warm_start___GaussianMixture, Value: False
-, 0.13557154158661974)], 'missingValuesRatio': 0.0, 'dataset': 'dim7.csv', 'meanKurtosis': -0.658603759010468, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.000959669860034373, 'thirdQuartileCovariance': 13203979752.797947, 'minCovariance': -20046560863.292763, 'PCASkewnessFirstPC': 0.6057762089229414, 'meanSkewness': 0.30992504553184713, 'thirdQuartileSkewness': 0.7520154220218562, 'medianKurtosis': -1.0349006391480013, 'thirdQuartileKurtosis': -0.3883467361851487, 'logNumberOfInstances': 8.355379895253634, 'firstQuartileSkewness': -0.06921183647881435, 'PCAKurtosisFirstPC': -0.8410575633381598, 'meanCovariance': 6188132613.127779, 'firstQuartileCorrelation': -0.23042336120192752, 'PCAFractionOfComponentsFor95PercentVariance': 0.7142857142857143, 'minSkewness': -0.25210767925479816, 'medianCorrelation': -0.05207848621867374, 'maxCorrelation': 0.5276577446823998, 'maxSkewness': 1.0579079361616683, 'thirdQuartileCorrelation': 0.22698142503903276, 'firstQuartileKurtosis': -1.2112531441820948, 'minKurtosis': -1.2346953258140232, 'maxKurtosis': 0.8585694126232362}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': -2945453464.993264, 'medianCovariance': -259705034.64300692, 'maxCovariance': 74106870599.42764, 'numberOfInstances': 4253.0, 'medianSkewness': -0.0019321092700237195, 'minCorrelation': -0.4891093171252131, 'missingValuesRatio': 0.0, 'dataset': 'dim7.csv', 'meanKurtosis': -0.658603759010468, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.000959669860034373, 'thirdQuartileCovariance': 13203979752.797947, 'minCovariance': -20046560863.292763, 'PCASkewnessFirstPC': 0.6057762089229414, 'meanSkewness': 0.30992504553184713, 'thirdQuartileSkewness': 0.7520154220218562, 'medianKurtosis': -1.0349006391480013, 'thirdQuartileKurtosis': -0.3883467361851487, 'logNumberOfInstances': 8.355379895253634, 'firstQuartileSkewness': -0.06921183647881435, 'PCAKurtosisFirstPC': -0.8410575633381598, 'meanCovariance': 6188132613.127779, 'firstQuartileCorrelation': -0.23042336120192752, 'PCAFractionOfComponentsFor95PercentVariance': 0.7142857142857143, 'minSkewness': -0.25210767925479816, 'medianCorrelation': -0.05207848621867374, 'maxCorrelation': 0.5276577446823998, 'maxSkewness': 1.0579079361616683, 'thirdQuartileCorrelation': 0.22698142503903276, 'firstQuartileKurtosis': -1.2112531441820948, 'minKurtosis': -1.2346953258140232, 'maxKurtosis': 0.8585694126232362}
 2019-08-07 01:20:04,888 INFO - __main__ - Done with ITERATION 15.
 2019-08-07 01:20:04,888 INFO - __main__ - ITERATION 16 of 20
 2019-08-07 01:20:04,888 INFO - __main__ - Running on dataset: dim6.csv
@@ -8336,45 +7842,7 @@ Configuration:
 2019-08-07 01:40:09,962 INFO - __main__ - Statistics of predictions: Counter({9: 438, 0: 274, 12: 259, 4: 256, 7: 255, 1: 253, 19: 231, 17: 229, 3: 192, 5: 189, 15: 174, 2: 173, 21: 153, 13: 138, 8: 129, 14: 128, 16: 127, 10: 104, 11: 79, -1: 77, 18: 68, 20: 66, 6: 59})
 2019-08-07 01:40:09,962 INFO - __main__ - Done optimizing on dim6.csv.
 2019-08-07 01:40:09,963 INFO - __main__ - Record on ITERATION 16: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': -2030731780.7256718, 'medianCovariance': 219689091.11691046, 'maxCovariance': 70871537249.15694, 'numberOfInstances': 3646.0, 'medianSkewness': 0.1033007317893468, 'minCorrelation': -0.6220181143508745, 'trajectory': [(Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8884105143198501
-  dim_reduction_choice, Value: 'NullModel'
-  random_state___NullModel, Value: 2
-, 0.22912360884253194), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8105514981743429
-  dim_reduction_choice, Value: 'PCA'
-  n_components___PCA, Value: 2
-  svd_solver___PCA, Value: 'randomized'
-  whiten___PCA, Value: False
-, 0.14314135534269878), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  algorithm___FastICA, Value: 'parallel'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8781385056075739
-  dim_reduction_choice, Value: 'FastICA'
-  fun___FastICA, Value: 'exp'
-  n_components___FastICA, Value: 2
-  whiten___FastICA, Value: True
-, 0.13421078985746004), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.7441178388237608
-  dim_reduction_choice, Value: 'KernelPCA'
-  kernel___KernelPCA, Value: 'cosine'
-  n_components___KernelPCA, Value: 3
-, 0.11579493990766525), (Configuration:
-  clustering_choice, Value: 'DBSCAN'
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 12.541954282209428
-  eps___DBSCAN, Value: 1.0399407986842248
-  min_samples___DBSCAN, Value: 14
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 57.03739351247885
-, 0.07288991411526997)], 'missingValuesRatio': 0.0, 'dataset': 'dim6.csv', 'meanKurtosis': -0.8282432929836826, 'sparsityOnNumericColumns': 4.5712196013896505e-05, 'sparsity': 4.5712196013896505e-05, 'meanCorrelation': -0.04138555169895493, 'thirdQuartileCovariance': 26597924713.022038, 'minCovariance': -40879141914.52842, 'PCASkewnessFirstPC': 0.3974814564318837, 'meanSkewness': 0.07769202590564656, 'thirdQuartileSkewness': 0.40349013166742165, 'medianKurtosis': -0.8971087637890633, 'thirdQuartileKurtosis': -0.5467059326715608, 'logNumberOfInstances': 8.201385955238608, 'firstQuartileSkewness': -0.24147273569157504, 'PCAKurtosisFirstPC': -1.1868843824990214, 'meanCovariance': 10522881616.702948, 'firstQuartileCorrelation': -0.2637812804238034, 'PCAFractionOfComponentsFor95PercentVariance': 0.6666666666666666, 'minSkewness': -0.4326923164234554, 'medianCorrelation': -0.19560857639431595, 'maxCorrelation': 0.5519785966789182, 'maxSkewness': 0.5450869681704101, 'thirdQuartileCorrelation': 0.21535306995183906, 'firstQuartileKurtosis': -1.0537635562193695, 'minKurtosis': -1.2647924562774042, 'maxKurtosis': -0.3745629647180322}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': -2030731780.7256718, 'medianCovariance': 219689091.11691046, 'maxCovariance': 70871537249.15694, 'numberOfInstances': 3646.0, 'medianSkewness': 0.1033007317893468, 'minCorrelation': -0.6220181143508745, 'missingValuesRatio': 0.0, 'dataset': 'dim6.csv', 'meanKurtosis': -0.8282432929836826, 'sparsityOnNumericColumns': 4.5712196013896505e-05, 'sparsity': 4.5712196013896505e-05, 'meanCorrelation': -0.04138555169895493, 'thirdQuartileCovariance': 26597924713.022038, 'minCovariance': -40879141914.52842, 'PCASkewnessFirstPC': 0.3974814564318837, 'meanSkewness': 0.07769202590564656, 'thirdQuartileSkewness': 0.40349013166742165, 'medianKurtosis': -0.8971087637890633, 'thirdQuartileKurtosis': -0.5467059326715608, 'logNumberOfInstances': 8.201385955238608, 'firstQuartileSkewness': -0.24147273569157504, 'PCAKurtosisFirstPC': -1.1868843824990214, 'meanCovariance': 10522881616.702948, 'firstQuartileCorrelation': -0.2637812804238034, 'PCAFractionOfComponentsFor95PercentVariance': 0.6666666666666666, 'minSkewness': -0.4326923164234554, 'medianCorrelation': -0.19560857639431595, 'maxCorrelation': 0.5519785966789182, 'maxSkewness': 0.5450869681704101, 'thirdQuartileCorrelation': 0.21535306995183906, 'firstQuartileKurtosis': -1.0537635562193695, 'minKurtosis': -1.2647924562774042, 'maxKurtosis': -0.3745629647180322}
 2019-08-07 01:40:09,964 INFO - __main__ - Done with ITERATION 16.
 2019-08-07 01:40:09,964 INFO - __main__ - ITERATION 17 of 20
 2019-08-07 01:40:09,964 INFO - __main__ - Running on dataset: g2-2-60.csv
@@ -8853,52 +8321,7 @@ Configuration:
 2019-08-07 01:50:35,195 INFO - __main__ - Statistics of predictions: Counter({15: 166, 16: 151, 3: 122, 17: 120, 65: 119, 0: 110, 2: 110, 102: 107, 78: 103, 68: 96, 60: 94, 5: 84, 11: 80, 26: 72, 14: 71, 23: 70, 71: 68, 52: 57, 69: 56, 24: 36, 61: 10, 110: 10, 43: 7, 67: 7, 88: 7, 40: 4, 87: 3, 21: 2, 25: 2, 35: 2, 47: 2, 49: 2, 54: 2, 58: 2, 72: 2, 73: 2, 74: 2, 90: 2, 111: 2, 113: 2, 118: 2, 1: 1, 4: 1, 6: 1, 7: 1, 8: 1, 9: 1, 10: 1, 12: 1, 13: 1, 18: 1, 19: 1, 20: 1, 22: 1, 27: 1, 28: 1, 29: 1, 30: 1, 31: 1, 32: 1, 33: 1, 34: 1, 36: 1, 37: 1, 38: 1, 39: 1, 41: 1, 42: 1, 44: 1, 45: 1, 46: 1, 48: 1, 50: 1, 51: 1, 53: 1, 55: 1, 56: 1, 57: 1, 59: 1, 62: 1, 63: 1, 64: 1, 66: 1, 70: 1, 75: 1, 76: 1, 77: 1, 79: 1, 80: 1, 81: 1, 82: 1, 83: 1, 84: 1, 85: 1, 86: 1, 89: 1, 91: 1, 92: 1, 93: 1, 94: 1, 95: 1, 96: 1, 97: 1, 98: 1, 99: 1, 100: 1, 101: 1, 103: 1, 104: 1, 105: 1, 106: 1, 107: 1, 108: 1, 109: 1, 112: 1, 114: 1, 115: 1, 117: 1, 119: 1, 121: 1})
 2019-08-07 01:50:35,195 INFO - __main__ - Done optimizing on g2-2-60.csv.
 2019-08-07 01:50:35,197 INFO - __main__ - Record on ITERATION 17: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 1889.4109719437988, 'medianCovariance': 3290.8866696627247, 'maxCovariance': 4776.080405246404, 'numberOfInstances': 1842.0, 'medianSkewness': 0.007304582871281849, 'minCorrelation': 0.39911205595738214, 'trajectory': [(Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8884105143198501
-  dim_reduction_choice, Value: 'NullModel'
-  random_state___NullModel, Value: 2
-, 0.3239905200093835), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8105514981743429
-  dim_reduction_choice, Value: 'PCA'
-  n_components___PCA, Value: 2
-  svd_solver___PCA, Value: 'randomized'
-  whiten___PCA, Value: False
-, 0.3227121959802331), (Configuration:
-  batch_size___MiniBatchKMeans, Value: 416
-  clustering_choice, Value: 'MiniBatchKMeans'
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 15.350386517931009
-  n_clusters___MiniBatchKMeans, Value: 16
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 89.90314384067615
-, 0.3118884712457657), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.759947002383505
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 7.434050280933937
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 72.75893457474419
-, 0.3086349715789159), (Configuration:
-  clustering_choice, Value: 'GaussianMixture'
-  covariance_type___GaussianMixture, Value: 'diag'
-  dim_reduction_choice, Value: 'NullModel'
-  init_params___GaussianMixture, Value: 'kmeans'
-  n_components___GaussianMixture, Value: 2
-  random_state___NullModel, Value: 0
-  warm_start___GaussianMixture, Value: False
-, 0.28037075171425885), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.7441178388237608
-  dim_reduction_choice, Value: 'KernelPCA'
-  kernel___KernelPCA, Value: 'cosine'
-  n_components___KernelPCA, Value: 3
-, 0.22939875089934605)], 'missingValuesRatio': 0.0, 'dataset': 'g2-2-60.csv', 'meanKurtosis': -0.7513077488428788, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.39911205595738214, 'thirdQuartileCovariance': 4713.291876847839, 'minCovariance': 1889.4109719437988, 'PCASkewnessFirstPC': -0.015614699982851693, 'meanSkewness': 0.007304582871281849, 'thirdQuartileSkewness': 0.020502965734400063, 'medianKurtosis': -0.7513077488428788, 'thirdQuartileKurtosis': -0.7477949205414357, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.005893799991836365, 'PCAKurtosisFirstPC': -0.988989777378348, 'meanCovariance': 3311.816179128913, 'firstQuartileCorrelation': 0.39911205595738214, 'PCAFractionOfComponentsFor95PercentVariance': 1.0, 'minSkewness': -0.01909218285495458, 'medianCorrelation': 0.39911205595738214, 'maxCorrelation': 0.39911205595738214, 'maxSkewness': 0.03370134859751828, 'thirdQuartileCorrelation': 0.39911205595738214, 'firstQuartileKurtosis': -0.7548205771443218, 'minKurtosis': -0.7583334054457649, 'maxKurtosis': -0.7442820922399926}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 1889.4109719437988, 'medianCovariance': 3290.8866696627247, 'maxCovariance': 4776.080405246404, 'numberOfInstances': 1842.0, 'medianSkewness': 0.007304582871281849, 'minCorrelation': 0.39911205595738214, 'missingValuesRatio': 0.0, 'dataset': 'g2-2-60.csv', 'meanKurtosis': -0.7513077488428788, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.39911205595738214, 'thirdQuartileCovariance': 4713.291876847839, 'minCovariance': 1889.4109719437988, 'PCASkewnessFirstPC': -0.015614699982851693, 'meanSkewness': 0.007304582871281849, 'thirdQuartileSkewness': 0.020502965734400063, 'medianKurtosis': -0.7513077488428788, 'thirdQuartileKurtosis': -0.7477949205414357, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.005893799991836365, 'PCAKurtosisFirstPC': -0.988989777378348, 'meanCovariance': 3311.816179128913, 'firstQuartileCorrelation': 0.39911205595738214, 'PCAFractionOfComponentsFor95PercentVariance': 1.0, 'minSkewness': -0.01909218285495458, 'medianCorrelation': 0.39911205595738214, 'maxCorrelation': 0.39911205595738214, 'maxSkewness': 0.03370134859751828, 'thirdQuartileCorrelation': 0.39911205595738214, 'firstQuartileKurtosis': -0.7548205771443218, 'minKurtosis': -0.7583334054457649, 'maxKurtosis': -0.7442820922399926}
 2019-08-07 01:50:35,197 INFO - __main__ - Done with ITERATION 17.
 2019-08-07 01:50:35,197 INFO - __main__ - ITERATION 18 of 20
 2019-08-07 01:50:35,197 INFO - __main__ - Running on dataset: g2-16-90.csv
@@ -9402,30 +8825,7 @@ Configuration:
 2019-08-07 02:02:41,649 INFO - __main__ - Statistics of predictions: Counter({7: 603, 0: 559, 5: 361, 3: 254, 4: 190, 6: 53, 2: 27})
 2019-08-07 02:02:41,649 INFO - __main__ - Done optimizing on g2-16-90.csv.
 2019-08-07 02:02:41,650 INFO - __main__ - Record on ITERATION 18: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2090.360085319844, 'medianCovariance': 2222.2965201487887, 'maxCovariance': 10522.256568769864, 'numberOfInstances': 1842.0, 'medianSkewness': -0.005409841548532008, 'minCorrelation': 0.15618617727448444, 'trajectory': [(Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8105514981743429
-  dim_reduction_choice, Value: 'PCA'
-  n_components___PCA, Value: 2
-  svd_solver___PCA, Value: 'randomized'
-  whiten___PCA, Value: False
-, 0.33376132832943267), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.5260291005550608
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 17.793611304119267
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 175.81235127502305
-, 0.33027322093645733), (Configuration:
-  clustering_choice, Value: 'KMeans'
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 9.54478942466844
-  n_clusters___KMeans, Value: 11
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 226.72886846194424
-, 0.3286755681037903)], 'missingValuesRatio': 0.0, 'dataset': 'g2-16-90.csv', 'meanKurtosis': -0.12827928950941114, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.2260426552564621, 'thirdQuartileCovariance': 2410.2492742814916, 'minCovariance': 1480.6361699756008, 'PCASkewnessFirstPC': -0.01501190418971585, 'meanSkewness': -0.02115125225551533, 'thirdQuartileSkewness': 0.018647273088338023, 'medianKurtosis': -0.11608438724413439, 'thirdQuartileKurtosis': -0.09660270213095101, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.04624916697421125, 'PCAKurtosisFirstPC': -1.4128769426905616, 'meanCovariance': 2687.3293234614252, 'firstQuartileCorrelation': 0.21358143405327826, 'PCAFractionOfComponentsFor95PercentVariance': 0.9375, 'minSkewness': -0.1812968751437881, 'medianCorrelation': 0.2265110338324746, 'maxCorrelation': 0.27954681831908124, 'maxSkewness': 0.06901383507204058, 'thirdQuartileCorrelation': 0.24087973584137454, 'firstQuartileKurtosis': -0.16403161306997716, 'minKurtosis': -0.29867019198920364, 'maxKurtosis': 0.0036923635172825264}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2090.360085319844, 'medianCovariance': 2222.2965201487887, 'maxCovariance': 10522.256568769864, 'numberOfInstances': 1842.0, 'medianSkewness': -0.005409841548532008, 'minCorrelation': 0.15618617727448444, 'missingValuesRatio': 0.0, 'dataset': 'g2-16-90.csv', 'meanKurtosis': -0.12827928950941114, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.2260426552564621, 'thirdQuartileCovariance': 2410.2492742814916, 'minCovariance': 1480.6361699756008, 'PCASkewnessFirstPC': -0.01501190418971585, 'meanSkewness': -0.02115125225551533, 'thirdQuartileSkewness': 0.018647273088338023, 'medianKurtosis': -0.11608438724413439, 'thirdQuartileKurtosis': -0.09660270213095101, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.04624916697421125, 'PCAKurtosisFirstPC': -1.4128769426905616, 'meanCovariance': 2687.3293234614252, 'firstQuartileCorrelation': 0.21358143405327826, 'PCAFractionOfComponentsFor95PercentVariance': 0.9375, 'minSkewness': -0.1812968751437881, 'medianCorrelation': 0.2265110338324746, 'maxCorrelation': 0.27954681831908124, 'maxSkewness': 0.06901383507204058, 'thirdQuartileCorrelation': 0.24087973584137454, 'firstQuartileKurtosis': -0.16403161306997716, 'minKurtosis': -0.29867019198920364, 'maxKurtosis': 0.0036923635172825264}
 2019-08-07 02:02:41,652 INFO - __main__ - Done with ITERATION 18.
 2019-08-07 02:02:41,652 INFO - __main__ - ITERATION 19 of 20
 2019-08-07 02:02:41,652 INFO - __main__ - Running on dataset: g2-8-100.csv
@@ -9926,32 +9326,7 @@ Configuration:
 2019-08-07 02:14:16,205 INFO - __main__ - Statistics of predictions: Counter({1: 309, 4: 309, 7: 232, 9: 203, 10: 177, 6: 176, 3: 164, 0: 152, 8: 133, 2: 99, 5: 93})
 2019-08-07 02:14:16,210 INFO - __main__ - Done optimizing on g2-8-100.csv.
 2019-08-07 02:14:16,214 INFO - __main__ - Record on ITERATION 19: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2152.060218417385, 'medianCovariance': 2337.55617845657, 'maxCovariance': 11922.110198630422, 'numberOfInstances': 1842.0, 'medianSkewness': 0.024309686159093156, 'minCorrelation': 0.15747055508270624, 'trajectory': [(Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8105514981743429
-  dim_reduction_choice, Value: 'PCA'
-  n_components___PCA, Value: 2
-  svd_solver___PCA, Value: 'randomized'
-  whiten___PCA, Value: False
-, 0.32931384856482776), (Configuration:
-  affinity___SpectralClustering, Value: 'nearest_neighbors'
-  assign_labels___SpectralClustering, Value: 'discretize'
-  clustering_choice, Value: 'SpectralClustering'
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 13.295757697515906
-  eigen_solver___SpectralClustering, Value: 'arpack'
-  n_clusters___SpectralClustering, Value: 5
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 244.47392897136072
-, 0.3290228297313054), (Configuration:
-  clustering_choice, Value: 'KMeans'
-  dim_reduction_choice, Value: 'TSNE'
-  early_exaggeration___TSNE, Value: 9.54478942466844
-  n_clusters___KMeans, Value: 11
-  n_components___TSNE, Value: 2
-  perplexity___TSNE, Value: 226.72886846194424
-, 0.3237698475519816)], 'missingValuesRatio': 0.0, 'dataset': 'g2-8-100.csv', 'meanKurtosis': -0.16000598094159324, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.20090184166298958, 'thirdQuartileCovariance': 2534.3841956290566, 'minCovariance': 1748.9998900069054, 'PCASkewnessFirstPC': -0.018605850882513902, 'meanSkewness': 0.024494682253398865, 'thirdQuartileSkewness': 0.07404671769382713, 'medianKurtosis': -0.17165399922701785, 'thirdQuartileKurtosis': -0.085796809033853, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.01284340067072074, 'PCAKurtosisFirstPC': -1.0085950319592492, 'meanCovariance': 3455.0902972019653, 'firstQuartileCorrelation': 0.18566188141700815, 'PCAFractionOfComponentsFor95PercentVariance': 1.0, 'minSkewness': -0.0570364882872352, 'medianCorrelation': 0.20403127020577436, 'maxCorrelation': 0.2559247113196465, 'maxSkewness': 0.08834703474439655, 'thirdQuartileCorrelation': 0.21435495426124168, 'firstQuartileKurtosis': -0.24651941055990612, 'minKurtosis': -0.31793001661316733, 'maxKurtosis': 0.011804119938810587}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': 2152.060218417385, 'medianCovariance': 2337.55617845657, 'maxCovariance': 11922.110198630422, 'numberOfInstances': 1842.0, 'medianSkewness': 0.024309686159093156, 'minCorrelation': 0.15747055508270624, 'missingValuesRatio': 0.0, 'dataset': 'g2-8-100.csv', 'meanKurtosis': -0.16000598094159324, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': 0.20090184166298958, 'thirdQuartileCovariance': 2534.3841956290566, 'minCovariance': 1748.9998900069054, 'PCASkewnessFirstPC': -0.018605850882513902, 'meanSkewness': 0.024494682253398865, 'thirdQuartileSkewness': 0.07404671769382713, 'medianKurtosis': -0.17165399922701785, 'thirdQuartileKurtosis': -0.085796809033853, 'logNumberOfInstances': 7.518607216815252, 'firstQuartileSkewness': -0.01284340067072074, 'PCAKurtosisFirstPC': -1.0085950319592492, 'meanCovariance': 3455.0902972019653, 'firstQuartileCorrelation': 0.18566188141700815, 'PCAFractionOfComponentsFor95PercentVariance': 1.0, 'minSkewness': -0.0570364882872352, 'medianCorrelation': 0.20403127020577436, 'maxCorrelation': 0.2559247113196465, 'maxSkewness': 0.08834703474439655, 'thirdQuartileCorrelation': 0.21435495426124168, 'firstQuartileKurtosis': -0.24651941055990612, 'minKurtosis': -0.31793001661316733, 'maxKurtosis': 0.011804119938810587}
 2019-08-07 02:14:16,219 INFO - __main__ - Done with ITERATION 19.
 2019-08-07 02:14:16,220 INFO - __main__ - ITERATION 20 of 20
 2019-08-07 02:14:16,221 INFO - __main__ - Running on dataset: a3.csv
@@ -10423,27 +9798,5 @@ Configuration:
 2019-08-07 02:43:11,537 INFO - __main__ - Statistics of predictions: Counter({33: 300, 31: 294, 9: 281, 12: 278, 19: 276, 13: 259, 6: 235, 7: 214, 10: 190, 32: 172, 29: 170, 11: 169, 3: 155, 18: 154, 26: 154, 42: 154, 23: 153, 35: 153, 28: 152, 0: 151, 5: 151, 8: 151, 25: 151, 34: 151, 40: 151, 1: 150, 15: 150, 16: 150, 17: 150, 20: 150, 38: 150, 2: 149, 21: 149, 22: 149, 24: 149, 27: 149, 30: 149, 41: 149, 4: 148, 14: 148, 36: 148, 39: 148, 37: 146})
 2019-08-07 02:43:11,537 INFO - __main__ - Done optimizing on a3.csv.
 2019-08-07 02:43:11,538 INFO - __main__ - Record on ITERATION 20: 
-{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': -11146860.750257578, 'medianCovariance': 135082513.63606086, 'maxCovariance': 288886242.8099972, 'numberOfInstances': 6750.0, 'medianSkewness': -0.04328584886374478, 'minCorrelation': -0.03910165169013927, 'trajectory': [(Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8884105143198501
-  dim_reduction_choice, Value: 'NullModel'
-  random_state___NullModel, Value: 2
-, 0.2185607976239566), (Configuration:
-  affinity___AffinityPropagation, Value: 'euclidean'
-  algorithm___FastICA, Value: 'parallel'
-  clustering_choice, Value: 'AffinityPropagation'
-  damping___AffinityPropagation, Value: 0.8781385056075739
-  dim_reduction_choice, Value: 'FastICA'
-  fun___FastICA, Value: 'exp'
-  n_components___FastICA, Value: 2
-  whiten___FastICA, Value: True
-, 0.216096572592533), (Configuration:
-  batch_size___IncrementalPCA, Value: 522
-  clustering_choice, Value: 'KMeans'
-  dim_reduction_choice, Value: 'IncrementalPCA'
-  n_clusters___KMeans, Value: 43
-  n_components___IncrementalPCA, Value: 2
-  whiten___IncrementalPCA, Value: True
-, 0.21352890925050483)], 'missingValuesRatio': 0.0, 'dataset': 'a3.csv', 'meanKurtosis': -1.247093168231161, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': -0.039101651690139266, 'thirdQuartileCovariance': 283205476.71928376, 'minCovariance': -11146860.750257578, 'PCASkewnessFirstPC': 0.04881786556915887, 'meanSkewness': -0.04328584886374478, 'thirdQuartileSkewness': -0.008464296195665924, 'medianKurtosis': -1.247093168231161, 'thirdQuartileKurtosis': -1.2253740839751806, 'logNumberOfInstances': 8.817297783866575, 'firstQuartileSkewness': -0.07810740153182363, 'PCAKurtosisFirstPC': -0.7813578213320658, 'meanCovariance': 136976102.33296534, 'firstQuartileCorrelation': -0.03910165169013927, 'PCAFractionOfComponentsFor95PercentVariance': 1.0, 'minSkewness': -0.1129289541999025, 'medianCorrelation': -0.039101651690139266, 'maxCorrelation': 0.0, 'maxSkewness': 0.026357256472412934, 'thirdQuartileCorrelation': -0.039101651690139266, 'firstQuartileKurtosis': -1.2688122524871415, 'minKurtosis': -1.290531336743122, 'maxKurtosis': -1.2036549997192}
+{'numberOfMissingValues': 0.0, 'firstQuartileCovariance': -11146860.750257578, 'medianCovariance': 135082513.63606086, 'maxCovariance': 288886242.8099972, 'numberOfInstances': 6750.0, 'medianSkewness': -0.04328584886374478, 'minCorrelation': -0.03910165169013927, 'missingValuesRatio': 0.0, 'dataset': 'a3.csv', 'meanKurtosis': -1.247093168231161, 'sparsityOnNumericColumns': 0.0, 'sparsity': 0.0, 'meanCorrelation': -0.039101651690139266, 'thirdQuartileCovariance': 283205476.71928376, 'minCovariance': -11146860.750257578, 'PCASkewnessFirstPC': 0.04881786556915887, 'meanSkewness': -0.04328584886374478, 'thirdQuartileSkewness': -0.008464296195665924, 'medianKurtosis': -1.247093168231161, 'thirdQuartileKurtosis': -1.2253740839751806, 'logNumberOfInstances': 8.817297783866575, 'firstQuartileSkewness': -0.07810740153182363, 'PCAKurtosisFirstPC': -0.7813578213320658, 'meanCovariance': 136976102.33296534, 'firstQuartileCorrelation': -0.03910165169013927, 'PCAFractionOfComponentsFor95PercentVariance': 1.0, 'minSkewness': -0.1129289541999025, 'medianCorrelation': -0.039101651690139266, 'maxCorrelation': 0.0, 'maxSkewness': 0.026357256472412934, 'thirdQuartileCorrelation': -0.039101651690139266, 'firstQuartileKurtosis': -1.2688122524871415, 'minKurtosis': -1.290531336743122, 'maxKurtosis': -1.2036549997192}
 2019-08-07 02:43:11,538 INFO - __main__ - Done with ITERATION 20.
