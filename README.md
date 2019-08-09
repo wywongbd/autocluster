@@ -4,7 +4,8 @@
 ## How to get started?
 - First, install [SMAC](https://automl.github.io/SMAC3/stable/installation.html).
 - ``pip install autocluster``
-  
+
+## Links  
 [Link](https://pypi.org/project/autocluster/) to pypi. 
 
 ## Examples
