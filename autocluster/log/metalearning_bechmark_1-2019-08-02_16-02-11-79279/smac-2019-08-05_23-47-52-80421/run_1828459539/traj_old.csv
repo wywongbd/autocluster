@@ -1,0 +1,6 @@
+"CPU Time Used","Estimated Training Performance","Wallclock Time","Incumbent ID","Automatic Configurator (CPU) Time","Configuration..."
+0.000000, 2147483648.000000, 0.000297, 1, 0.000297, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='12.0', n_clusters___KMeans='5', n_components___TSNE='2', perplexity___TSNE='30.0'
+32.906057, 0.219433, 32.924811, 1, 0.018755, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='12.0', n_clusters___KMeans='5', n_components___TSNE='2', perplexity___TSNE='30.0'
+118.578940, 0.081017, 120.053339, 2, 1.474398, clustering_choice=''Birch'', dim_reduction_choice=''PCA'', branching_factor___Birch='429', n_clusters___Birch='23', n_components___PCA='3', svd_solver___PCA=''randomized'', whiten___PCA='False'
+165.327941, 0.065612, 195.623285, 3, 30.295344, clustering_choice=''AffinityPropagation'', dim_reduction_choice=''PCA'', affinity___AffinityPropagation=''euclidean'', damping___AffinityPropagation='0.9797916927466241', n_components___PCA='3', svd_solver___PCA=''full'', whiten___PCA='True'
+394.448254, 0.065612, 481.590915, 4, 87.142661, clustering_choice=''DBSCAN'', dim_reduction_choice=''PCA'', eps___DBSCAN='0.20118448773890366', min_samples___DBSCAN='8', n_components___PCA='3', svd_solver___PCA=''auto'', whiten___PCA='True'

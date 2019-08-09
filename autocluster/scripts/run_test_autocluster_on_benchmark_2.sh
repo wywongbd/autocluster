@@ -16,8 +16,8 @@ cd ..
 
 # bayesian optimization only
 python test_autocluster_on_benchmark.py \
---benchmark_metafeatures_table_path metaknowledge/benchmark_silhouette_metafeatures_table.csv \
---log_dir_prefix benchmark_experiment_2 \
+--benchmark_metafeatures_table_path metaknowledge/benchmark_silhouette_metafeatures_table_v0.csv \
+--log_dir_prefix benchmark_experiment_2_v0 \
 --test_size 0.1666 \
 --n_folds 3 \
 --random_seed 27 \

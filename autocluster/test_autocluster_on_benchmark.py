@@ -161,7 +161,7 @@ def main():
                                        min_proportion = .01),
             "n_folds": config.n_folds,
             "warmstart": (config.warmstart != 0),
-            "warmstart_datasets_dir": 'benchmark_silhouette',
+            "warmstart_datasets_dir": 'benchmark_silhouette_v0',
             "warmstart_metafeatures_table_path": '{}_trimmed.csv'.format(metafeatures_table_name_no_ext),
             "warmstart_n_neighbors": config.warmstart_n_neighbors,
             "warmstart_top_n": config.warmstart_top_n,
@@ -178,7 +178,8 @@ def main():
         _logger.info("Statistics of predictions: {}".format(Counter(predictions)))
         
         # save result
-        records["trajectory"] = cluster.get_trajectory()
+        if config.optimizer != 'random':
+            records["trajectory"] = cluster.get_trajectory()
         metafeatures_ls = list(result["metafeatures"][0])
         records.update(dict(zip(result["metafeatures_used"], metafeatures_ls))) 
         
