@@ -8,3 +8,6 @@
 
 ## Examples
 Examples are available in these [notebooks](/autocluster/examples/).
+
+## Disclaimer
+The project is experimental and still under development.
