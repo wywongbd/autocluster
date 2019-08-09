@@ -3,10 +3,10 @@ from .evaluators import get_evaluator
 from .warmstarter import KDTreeWarmstarter
 from .random_sampling_optimizer import RandomOptimizer
 from .preprocess_data import PreprocessedDataset
+from .build_config_space import build_config_space, build_config_obj, Mapper
 from .utils.stringutils import StringUtils
 from .utils.logutils import LogUtils
 from .utils.metafeatures import calculate_metafeatures, MetafeatureMapper
-from .build_config_space import build_config_space, build_config_obj, Mapper
 
 from itertools import cycle, islice
 from sklearn import cluster, metrics, manifold, ensemble, model_selection, preprocessing
