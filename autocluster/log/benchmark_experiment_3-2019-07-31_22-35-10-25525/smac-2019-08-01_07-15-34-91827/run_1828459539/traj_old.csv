@@ -1,4 +1,0 @@
-"CPU Time Used","Estimated Training Performance","Wallclock Time","Incumbent ID","Automatic Configurator (CPU) Time","Configuration..."
-0.000000, 2147483648.000000, 0.000033, 1, 0.000033, clustering_choice=''Birch'', dim_reduction_choice=''TSNE'', branching_factor___Birch='906', early_exaggeration___TSNE='8.56922288474435', n_clusters___Birch='31', n_components___TSNE='2', perplexity___TSNE='292.56507375600023'
-79.944604, 0.015663, 79.966072, 1, 0.021467, clustering_choice=''Birch'', dim_reduction_choice=''TSNE'', branching_factor___Birch='906', early_exaggeration___TSNE='8.56922288474435', n_clusters___Birch='31', n_components___TSNE='2', perplexity___TSNE='292.56507375600023'
-147.850900, 0.012350, 147.896554, 2, 0.045653, clustering_choice=''DBSCAN'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='6.836556941677436', eps___DBSCAN='2.61531105937427', min_samples___DBSCAN='9', n_components___TSNE='2', perplexity___TSNE='247.23274732984768'

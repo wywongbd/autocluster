@@ -1,4 +1,0 @@
-"CPU Time Used","Estimated Training Performance","Wallclock Time","Incumbent ID","Automatic Configurator (CPU) Time","Configuration..."
-0.000000, 2147483648.000000, 0.000291, 1, 0.000291, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='12.0', n_clusters___KMeans='5', n_components___TSNE='2', perplexity___TSNE='30.0'
-33.803855, 0.295353, 33.821223, 1, 0.017369, clustering_choice=''KMeans'', dim_reduction_choice=''TSNE'', early_exaggeration___TSNE='12.0', n_clusters___KMeans='5', n_components___TSNE='2', perplexity___TSNE='30.0'
-603.096177, 0.279731, 666.299682, 2, 63.203505, clustering_choice=''KMeans'', dim_reduction_choice=''IncrementalPCA'', batch_size___IncrementalPCA='632', n_clusters___KMeans='2', n_components___IncrementalPCA='2', whiten___IncrementalPCA='False'

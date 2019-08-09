@@ -4,7 +4,6 @@ import pathlib
 import pickle
 import pandas as pd
 
-from utils.constants import Constants
 from sklearn.neighbors import KDTree
 from sklearn.preprocessing import StandardScaler
 

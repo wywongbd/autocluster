@@ -1,13 +1,12 @@
-from algorithms import algorithms
-from evaluators import get_evaluator
-from warmstarter import KDTreeWarmstarter
-from random_sampling_optimizer import RandomOptimizer
-from preprocess_data import PreprocessedDataset
-from utils.stringutils import StringUtils
-from utils.logutils import LogUtils
-from utils.constants import Constants 
-from utils.metafeatures import calculate_metafeatures, MetafeatureMapper
-from build_config_space import build_config_space, build_config_obj, Mapper
+from .algorithms import algorithms
+from .evaluators import get_evaluator
+from .warmstarter import KDTreeWarmstarter
+from .random_sampling_optimizer import RandomOptimizer
+from .preprocess_data import PreprocessedDataset
+from .utils.stringutils import StringUtils
+from .utils.logutils import LogUtils
+from .utils.metafeatures import calculate_metafeatures, MetafeatureMapper
+from .build_config_space import build_config_space, build_config_obj, Mapper
 
 from itertools import cycle, islice
 from sklearn import cluster, metrics, manifold, ensemble, model_selection, preprocessing
@@ -54,7 +53,7 @@ class AutoCluster(object):
             evaluator=get_evaluator(evaluator_ls = ['silhouetteScore'], 
                                     weights = [], clustering_num = None, 
                                     min_proportion = .001,
-                                    min_relative_proportion_proportion = 0.01),
+                                    min_relative_proportion = 0.01),
             n_folds=3,
             preprocess_dict={},
             isolation_forest_contamination='auto',

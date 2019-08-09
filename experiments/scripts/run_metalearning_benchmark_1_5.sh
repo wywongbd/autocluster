@@ -1,0 +1,6 @@
+cd ..
+
+python metalearning.py \
+--raw_data_path_ls  /data/benchmark_data/g2-256-10.csv /data/benchmark_data/g2-16-100.csv /data/benchmark_data/g2-128-70.csv /data/benchmark_data/a1.csv /data/benchmark_data/g2-16-20.csv /data/benchmark_data/dim9.csv /data/benchmark_data/g2-16-90.csv /data/benchmark_data/g2-128-90.csv /data/benchmark_data/g2-256-20.csv /data/benchmark_data/g2-128-100.csv /data/benchmark_data/g2-16-10.csv /data/benchmark_data/g2-2-20.csv  \
+--json_data_path_ls /data/benchmark_data/g2-256-10.json /data/benchmark_data/g2-16-100.json /data/benchmark_data/g2-128-70.json /data/benchmark_data/a1.json /data/benchmark_data/g2-16-20.json /data/benchmark_data/dim9.json /data/benchmark_data/g2-16-90.json /data/benchmark_data/g2-128-90.json /data/benchmark_data/g2-256-20.json /data/benchmark_data/g2-128-100.json /data/benchmark_data/g2-16-10.json /data/benchmark_data/g2-2-20.json  \
+--n_folds 3 --random_seed 27 --n_evaluations 200 --cutoff_time 1000 --log_dir_prefix metalearning_bechmark_1_5

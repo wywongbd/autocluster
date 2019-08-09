@@ -4,8 +4,8 @@ with open('README.md') as readme_file:
     README = readme_file.read()
 
 setup_args = dict(
-    name = 'auto-cluster',
-    version = '0.1',
+    name = 'autocluster',
+    version = '0.2',
     description = 'Automated machine learning toolkit for performing clustering tasks.',
     long_description_content_type = "text/markdown",
     long_description = README,
