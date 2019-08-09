@@ -7,3 +7,9 @@ __pycache__
 *.csv
 *.zip
 *.txt
+build
+*.egg-info
+dist
+push_to_pip.sh
+push_to_test_pip.sh
+log/

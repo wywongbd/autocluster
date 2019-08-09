@@ -1,7 +1,7 @@
 import itertools
 
-from algorithms import algorithms
-from utils.stringutils import StringUtils
+from .algorithms import algorithms
+from .utils.stringutils import StringUtils
 
 from smac.configspace import ConfigurationSpace, Configuration
 from ConfigSpace.hyperparameters import CategoricalHyperparameter, \
