@@ -15,6 +15,13 @@
 ## Examples
 Examples are available in these [notebooks](/autocluster/examples/).
 
+## Experimental results
+![image1](images/clustering_result_dim128.png)
+- This dataset comprises of 16 Gaussian clusters in 128-dimensional space with ``N = 1024`` points. The optimal configuration obtained by ``autocluster `` (SMAC + Warmstarting) consists of a Truncated SVD dimension reduction model + Birch clustering model.
+
+![image2](images/clustering_result_s2.png)
+- This dataset comprises of 15 Gaussian clusters in 2-dimensional space with ``N = 5000 points``. The optimal configuration obtained by ``autocluster`` (SMAC + Warmstarting) consists of a TSNE dimension reduction model + Agglomerative clustering model.
+
 ## Links  
 [Link](https://pypi.org/project/autocluster/) to pypi. 
 
