@@ -3,7 +3,7 @@
 
 ## Prerequisites
 - Python 3.5 or above
-- Linux OS, or (Windows WSL)[https://docs.microsoft.com/en-us/windows/wsl/about] is also possible
+- Linux OS, or [Windows WSL](https://docs.microsoft.com/en-us/windows/wsl/about) is also possible
 
 ## How to get started?
 1. First, install [SMAC](https://automl.github.io/SMAC3/stable/installation.html):
