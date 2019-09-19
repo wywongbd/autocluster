@@ -12,6 +12,25 @@
   - ``pip install smac==0.8.0``
 2. ``pip install autocluster``
 
+## How it works?
+- ``autocluster`` automatically optimizes the *configuration* of a clustering problem. By *configuration*, we mean 
+    - choice of dimension reduction algorithm
+    - choice of clustering model
+    - setting of dimension reduction algorithm's hyperparameters
+    - setting of clustering model's hyperparameters  
+  
+- ``autocluster`` provides 3 different approaches to optimize the configuration (with increasing complexity): 
+    - random optimization
+    - bayesian optimization
+    - bayesian optimization + meta-learning (warmstarting)
+
+## Algorithms/Models supported
+- List of dimension reduction algorithms in ``sklearn`` supported by ``autocluster``'s optimizer.
+<img src="images/dim_reduction_algorithms.png" width="600">
+
+- List of clustering models in ``sklearn`` supported by ``autocluster``'s optimizer.
+<img src="images/clustering_algorithms.png" width="600">
+
 ## Examples
 Examples are available in these [notebooks](/autocluster/examples/).
 
