@@ -23,8 +23,7 @@ Report and presentation slides can be found [here](https://github.com/wywongbd/a
   
 - ``autocluster`` provides 3 different approaches to optimize the configuration (with increasing complexity): 
     - random optimization
-    - bayesian optimization
-	- great [tutorial](http://krasserm.github.io/2018/03/21/bayesian-optimization/) by Martin Krasser 
+    - bayesian optimization 
     - bayesian optimization + meta-learning (warmstarting)
 
 ## Algorithms/Models supported
@@ -46,7 +45,8 @@ Examples are available in these [notebooks](/autocluster/examples/).
 
 
 ## Links  
-[Link](https://pypi.org/project/autocluster/) to pypi. 
+- [Link](https://pypi.org/project/autocluster/) to pypi. 
+- Great [writeup](http://krasserm.github.io/2018/03/21/bayesian-optimization/) by Martin Krasser on Bayesian Optimization
 
 ## Disclaimer
 The project is experimental and still under development.
