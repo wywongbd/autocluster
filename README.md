@@ -24,6 +24,7 @@ Report and presentation slides can be found [here](https://github.com/wywongbd/a
 - ``autocluster`` provides 3 different approaches to optimize the configuration (with increasing complexity): 
     - random optimization
     - bayesian optimization
+	- great [tutorial](http://krasserm.github.io/2018/03/21/bayesian-optimization/) by Martin Krasser 
     - bayesian optimization + meta-learning (warmstarting)
 
 ## Algorithms/Models supported
