@@ -1,5 +1,7 @@
 ## autocluster
-``autocluster`` is an automated machine learning toolkit for performing clustering tasks.   
+``autocluster`` is an automated machine learning (AutoML) toolkit for performing clustering tasks.   
+
+Report and presentation slides can be found [here](https://github.com/wywongbd/autocluster/blob/master/reports/autocluster_report.pdf) and [here](https://github.com/wywongbd/autocluster/blob/master/reports/autocluster_ppt.pdf).
 
 ## Prerequisites
 - Python 3.5 or above
