@@ -49,4 +49,4 @@ Examples are available in these [notebooks](/autocluster/examples/).
 - Great [writeup](http://krasserm.github.io/2018/03/21/bayesian-optimization/) by Martin Krasser on Bayesian Optimization
 
 ## Disclaimer
-The project is experimental and still under development.
+The project is experimental.
