@@ -19,19 +19,19 @@ setup_args = dict(
 )
 
 install_requires = [            
-    'cycler>=0.10.0',
-    'joblib>=0.11.0',
-    'kiwisolver>=1.0.1',
-    'matplotlib==3.0.3',
-    'numpy>=1.12.0',
-    'pandas==0.24.2',
-    'pyparsing==2.4.0',
-    'python-dateutil>=2.5.0',
-    'pytz==2019.1',
-    'scikit-learn==0.21.3',
-    'scipy>=0.17.0',
-    'six>=1.5.0',
-    'sklearn==0.0'
+    'joblib',
+    'cycler',
+    'kiwisolver',
+    'matplotlib',
+    'numpy',
+    'pandas',
+    'pyparsing',
+    'python-dateutil',
+    'pytz',
+    'scikit-learn',
+    'scipy',
+    'six',
+    'sklearn'
 ]
 
 if __name__ == '__main__':
