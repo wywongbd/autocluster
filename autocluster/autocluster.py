@@ -104,7 +104,7 @@ class AutoCluster(object):
         # perform outlier detection
         predicted_labels = ensemble.IsolationForest(n_estimators=100, 
                                                     warm_start=True,
-                                                    behaviour='new',
+                                                    # behaviour='new',
                                                     contamination=isolation_forest_contamination).fit_predict(raw_data_np)
         idx_np = np.where(predicted_labels == 1)
         
